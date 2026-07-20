@@ -42,13 +42,22 @@ nav .brand{font-weight:700;color:var(--navy);margin-right:4px;display:inline-fle
 
 /* HERO */
 header{padding:48px 0 40px;border-bottom:1px solid var(--rule)}
+.hero-flex{display:flex;gap:36px;align-items:flex-end}
+.hero-main{flex:1;min-width:0}
+.hero-photo{flex:0 0 auto;margin-bottom:-40px}
+.hero-photo img{display:block;height:400px;width:auto}
+.numbers-strip{padding:20px 0;border-bottom:1px solid var(--rule)}
+.who-flex{display:flex;gap:36px;align-items:flex-end}
+.who-main{flex:1;min-width:0}
+.who-photo{flex:0 0 auto;margin-bottom:-40px}
+.who-photo img{display:block;height:340px;width:auto}
 .tagline{font-size:16px;font-weight:700;color:var(--accent);margin-top:8px}
 .brand-line{font-size:14px;color:var(--muted);margin-top:8px}
 .contact-line{font-size:13px;color:var(--muted);margin-top:10px}
 .hero-rule{width:48px;height:4px;background:var(--accent);margin:24px 0}
 .thesis{font-size:19px;line-height:1.45;max-width:760px}
 .hero-cta{margin-top:20px;font-size:16px}
-.numbers{display:flex;gap:12px;margin-top:24px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scroll-snap-type:x proximity}
+.numbers{display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scroll-snap-type:x proximity}
 .num-card{flex:1 1 0;min-width:172px;border:1px solid var(--rule);border-top:4px solid var(--accent);padding:14px 16px;background:var(--bg);scroll-snap-align:start}
 .num-card b{display:block;font-size:22px;line-height:1.15;color:var(--navy)}
 .num-card span{font-size:13px;color:var(--muted);display:block;margin-top:4px}
@@ -123,6 +132,11 @@ footer{border-top:1px solid var(--rule);padding:16px 0 32px;font-size:13px;color
   .stage-num{flex-basis:38px;font-size:21px}
   .num-card{min-width:142px}
   .dir{white-space:normal;max-width:110px}
+  .hero-flex,.who-flex{flex-wrap:wrap;gap:0}
+  .hero-photo{margin-bottom:-28px;margin-left:auto}
+  .hero-photo img{height:250px}
+  .who-photo{margin-bottom:-40px;margin-left:auto}
+  .who-photo img{height:230px}
 }
 
 /* PRINT */
@@ -153,23 +167,30 @@ footer{border-top:1px solid var(--rule);padding:16px 0 32px;font-size:13px;color
 </nav>
 
 <header id="top">
-  <div class="wrap">
+  <div class="wrap hero-flex">
+    <div class="hero-main">
     <h1>КОНСТАНТИН БАБАДЖАНЯН</h1>
     <div class="tagline">Стратегия, сделки M&amp;A, эффективность, AI – для владельцев и акционеров среднего и крупного бизнеса</div>
     <div class="brand-line">Школа McKinsey: стажировка McKinsey CIS, затем Yakov &amp; Partners / Яндекс Реклама / офис трансформации национального оператора (CEO-1)</div>
     <div class="contact-line">Москва / <a href="tel:+79055500958">+7 905 550-09-58</a> / babadzhanyan.k.s@gmail.com / Telegram <a href="https://t.me/kostya_younker">@kostya_younker</a> / <a href="https://linkedin.com/in/konstantin-babadzhanyan">LinkedIn</a></div>
     <div class="hero-rule"></div>
     <p class="thesis">Сопровождаю бизнес по всему циклу создания стоимости – от входа в сделку до выхода: M&amp;A, стратегия, трансформация, рост, монетизация. Один исполнитель держит весь контур – не нужно собирать пять подрядчиков</p>
+    <p class="hero-cta"><b>Обсудить задачу:</b> Telegram <a href="https://t.me/kostya_younker">@kostya_younker</a> – 30 минут созвона, дальше <a href="#contact">понятный первый шаг</a></p>
+    </div>
+    <div class="hero-photo"><img src="img/kostya-hero.png" alt="Константин Бабаджанян"></div>
+  </div>
+</header>
+<main>
+<section class="numbers-strip">
+  <div class="wrap">
     <div class="numbers">
       <div class="num-card"><b>20+</b><span>проектов в 7 отраслях</span></div>
       <div class="num-card"><b>2 сделки M&amp;A</b><span>~$16 и ~$25 млн EV – тезисы одобрены комитетами</span></div>
       <div class="num-card"><b>3x EBITDA</b><span>цель пятилетней стратегии, защищённой на совете директоров</span></div>
       <div class="num-card"><b>+$30 млн/год</b><span>потенциал программы эффективности продаж в Яндекс</span></div>
     </div>
-    <p class="hero-cta"><b>Обсудить задачу:</b> Telegram <a href="https://t.me/kostya_younker">@kostya_younker</a> – 30 минут созвона, дальше <a href="#contact">понятный первый шаг</a></p>
   </div>
-</header>
-<main>
+</section>
 
 <section class="section" id="cycle">
   <div class="wrap">
@@ -316,13 +337,16 @@ footer{border-top:1px solid var(--rule);padding:16px 0 32px;font-size:13px;color
 </section>
 
 <section class="section" id="who">
-  <div class="wrap">
+  <div class="wrap who-flex">
+    <div class="who-main">
     <div class="eyebrow">Кто я</div>
     <h2>Школа McKinsey, операционный опыт CEO-1 и живая сделочная практика</h2>
     <p class="who-text">Школа McKinsey – стажировка в McKinsey CIS, затем бизнес-аналитик в Yakov &amp; Partners (ex-McKinsey CIS). Дальше – коммерческая трансформация в Яндекс Рекламе и офис трансформации национального оператора как CEO-1. Сейчас – независимая практика с партнёрами ex-McKinsey и командами ex-BCG / ex-Bain / ex-EY: сделки, стратегии, операционная эффективность. 20+ проектов в 7 отраслях: FMCG, промышленность, банки, телематика, digital-реклама, девелопмент, B2B SaaS</p>
     <p class="who-text">Победитель McKinsey Business Diving 2021 (из 400+ команд) и призёр ещё 5 кейс-чемпионатов; преподавал Excel и Power BI стажёрам McKinsey, обучил 300+ аналитиков</p>
     <p class="who-text">Сейчас в работе: buy-side поиск таргетов для технологического стратега, стратегическая диагностика роста в партнёрстве с ex-EY командой, посредничество в M&amp;A-сделке, технологический и коммерческий DD ed-tech, инвестиционные материалы под стратегических покупателей</p>
     <div class="tools">Инструменты: Excel / Google Sheets (advanced), Think-cell, SQL, Python, Power BI, Tableau, DataLens, генеративный AI, Claude Code. Русский родной, английский C1. School of Finance (финмоделирование и оценка)</div>
+    </div>
+    <div class="who-photo"><img src="img/kostya-who.png" alt="Константин Бабаджанян, фото в рост"></div>
   </div>
 </section>
 
