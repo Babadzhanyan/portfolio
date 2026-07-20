@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Константин Бабаджанян – стратегия, сделки, эффективность</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1A1A1A; --muted:#666666; --rule:#E5E7E5; --navy:#1A1A2E; --accent:#0F3460;
+  --bg:#FFFFFF; --soft:#F4F5F8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  font-family:'Source Sans Pro',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);
+  border-left:8px solid var(--navy);
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+h1{font-size:32px;font-weight:700;line-height:1.2;color:var(--navy)}
+h2{font-size:24px;font-weight:700;line-height:1.25;color:var(--ink)}
+h3{font-size:18px;font-weight:700;line-height:1.3}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.eyebrow{font-size:13px;font-weight:700;text-transform:uppercase;color:var(--navy)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+/* NAV */
+nav{
+  position:sticky;top:0;height:52px;background:var(--bg);z-index:10;
+  border-bottom:1px solid var(--rule);
+}
+nav .wrap{display:flex;align-items:stretch;gap:20px;height:52px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+nav a{font-size:13px;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;border-bottom:2px solid transparent;flex:0 0 auto}
+nav a:hover{color:var(--accent);text-decoration:none}
+nav a.active{color:var(--accent);border-bottom-color:var(--accent)}
+nav .brand{font-weight:700;color:var(--navy);margin-right:4px;display:inline-flex;align-items:center}
+
+/* HERO */
+header{padding:48px 0 40px;border-bottom:1px solid var(--rule)}
+.tagline{font-size:16px;font-weight:700;color:var(--accent);margin-top:8px}
+.brand-line{font-size:14px;color:var(--muted);margin-top:8px}
+.contact-line{font-size:13px;color:var(--muted);margin-top:10px}
+.hero-rule{width:48px;height:4px;background:var(--accent);margin:24px 0}
+.thesis{font-size:19px;line-height:1.45;max-width:760px}
+.hero-cta{margin-top:20px;font-size:16px}
+.numbers{display:flex;gap:12px;margin-top:24px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scroll-snap-type:x proximity}
+.num-card{flex:1 1 0;min-width:172px;border:1px solid var(--rule);border-top:4px solid var(--accent);padding:14px 16px;background:var(--bg);scroll-snap-align:start}
+.num-card b{display:block;font-size:22px;line-height:1.15;color:var(--navy)}
+.num-card span{font-size:13px;color:var(--muted);display:block;margin-top:4px}
+
+/* STORYLINE */
+.section{padding:40px 0;border-bottom:1px solid var(--rule)}
+.section-intro{max-width:760px;margin-top:12px}
+.stage{display:flex;gap:22px;margin-top:32px}
+.stage-num{
+  flex:0 0 52px;font-size:26px;font-weight:700;color:var(--accent);
+  border-top:4px solid var(--accent);padding-top:2px;line-height:1;
+}
+.stage-body{flex:1;min-width:0}
+.stage-body h3{margin-bottom:4px}
+.stage-body h3 .verb{color:var(--accent)}
+.stage-sub{font-size:14px;color:var(--muted);margin-bottom:10px}
+.proofs{list-style:none}
+.proofs li{
+  padding-left:18px;position:relative;margin-bottom:8px;font-size:16px;line-height:1.45;
+}
+.proofs li::before{content:"–";position:absolute;left:0;color:var(--accent);font-weight:700}
+.order-line{font-size:14px;margin-top:12px;padding:10px 16px;background:var(--soft);border-left:4px solid var(--accent)}
+.order-line b{color:var(--navy)}
+
+/* MATRIX */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:24px}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th{
+  text-align:left;font-size:13px;font-weight:700;color:var(--navy);
+  background:var(--soft);padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;
+}
+th span{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}
+td{
+  padding:10px 12px;border-bottom:1px solid var(--rule);font-size:14px;
+  line-height:1.4;vertical-align:top;
+}
+th:first-child,.dir{position:sticky;left:0;background:var(--soft);z-index:1;border-right:1px solid var(--rule)}
+.dir{font-weight:700;color:var(--accent);white-space:nowrap;text-align:left;background:var(--bg)}
+
+/* FORMATS */
+.formats{display:flex;gap:12px;margin-top:24px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.fmt{flex:1 1 0;min-width:200px;border:1px solid var(--rule);padding:18px 18px 16px;background:var(--bg)}
+.fmt h3{font-size:18px;color:var(--navy);margin-bottom:6px}
+.fmt p{font-size:14px;color:var(--ink)}
+.principles{margin-top:24px;max-width:760px}
+.principles li{padding-left:18px;position:relative;margin-bottom:8px;list-style:none;font-size:16px}
+.principles li::before{content:"–";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* WHO */
+.who-text{max-width:760px;margin-top:12px;font-size:16px}
+.tools{margin-top:16px;font-size:14px;color:var(--muted)}
+
+/* CTA */
+.cta{padding:48px 0 56px}
+.cta-box{background:var(--navy);color:#FFFFFF;padding:32px}
+.cta-box h2{color:#FFFFFF;margin-bottom:8px}
+.cta-box p{color:rgba(255,255,255,0.92);max-width:640px;font-size:16px}
+.cta-box .steps{margin-top:12px}
+.cta-contacts{margin-top:16px;font-size:15px;line-height:1.7}
+.cta-contacts a{color:#FFFFFF;font-weight:700;text-decoration:underline}
+footer{border-top:1px solid var(--rule);padding:16px 0 32px;font-size:13px;color:var(--muted)}
+
+/* MOBILE */
+@media (max-width:768px){
+  body{border-left-width:4px}
+  .wrap{padding:0 16px}
+  h1{font-size:26px}
+  h2{font-size:21px}
+  header{padding:32px 0 28px}
+  .thesis{font-size:17px}
+  .stage{gap:14px;margin-top:28px}
+  .stage-num{flex-basis:38px;font-size:21px}
+  .num-card{min-width:142px}
+  .dir{white-space:normal;max-width:110px}
+}
+
+/* PRINT */
+@media print{
+  nav{display:none}
+  body{border-left:none}
+  .numbers,.formats{flex-wrap:wrap}
+  .num-card,.fmt{min-width:40%}
+  .section,.stage{page-break-inside:avoid}
+  .cta-box{background:none;color:var(--ink);border:1px solid var(--ink);padding:20px}
+  .cta-box h2,.cta-box p{color:var(--ink)}
+  .cta-contacts a{color:var(--ink)}
+  a{color:var(--ink)}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Разделы">
+  <div class="wrap">
+    <span class="brand">КБ</span>
+    <a href="#cycle">Цикл стоимости</a>
+    <a href="#matrix">Продукты и сроки</a>
+    <a href="#formats">Форматы</a>
+    <a href="#who">Кто я</a>
+    <a href="#contact">Контакт</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <h1>КОНСТАНТИН БАБАДЖАНЯН</h1>
+    <div class="tagline">Стратегия, сделки M&amp;A, эффективность, AI – для владельцев и акционеров среднего и крупного бизнеса</div>
+    <div class="brand-line">Школа McKinsey: стажировка McKinsey CIS, затем Yakov &amp; Partners / Яндекс Реклама / офис трансформации национального оператора (CEO-1)</div>
+    <div class="contact-line">Москва / <a href="tel:+79055500958">+7 905 550-09-58</a> / babadzhanyan.k.s@gmail.com / Telegram <a href="https://t.me/kostya_younker">@kostya_younker</a> / <a href="https://linkedin.com/in/konstantin-babadzhanyan">LinkedIn</a></div>
+    <div class="hero-rule"></div>
+    <p class="thesis">Сопровождаю бизнес по всему циклу создания стоимости – от входа в сделку до выхода: M&amp;A, стратегия, трансформация, рост, монетизация. Один исполнитель держит весь контур – не нужно собирать пять подрядчиков</p>
+    <div class="numbers">
+      <div class="num-card"><b>20+</b><span>проектов в 7 отраслях</span></div>
+      <div class="num-card"><b>2 сделки M&amp;A</b><span>~$16 и ~$25 млн EV – тезисы одобрены комитетами</span></div>
+      <div class="num-card"><b>3x EBITDA</b><span>цель пятилетней стратегии, защищённой на совете директоров</span></div>
+      <div class="num-card"><b>+$30 млн/год</b><span>потенциал программы эффективности продаж в Яндекс</span></div>
+    </div>
+    <p class="hero-cta"><b>Обсудить задачу:</b> Telegram <a href="https://t.me/kostya_younker">@kostya_younker</a> – 30 минут созвона, дальше <a href="#contact">понятный первый шаг</a></p>
+  </div>
+</header>
+<main>
+
+<section class="section" id="cycle">
+  <div class="wrap">
+    <div class="eyebrow">Сторилайн</div>
+    <h2>Пять моментов, когда владельцу нужна тяжёлая аналитика – я закрываю каждый</h2>
+    <p class="section-intro">Бизнес проходит один и тот же цикл: купить или создать актив, решить, куда расти, навести порядок в операционке, разогнать выручку, продать дороже. На каждом этапе решение стоит десятки миллионов, а принимать его приходится по цифрам, которых обычно нет под рукой. Ниже – что я делаю на каждом этапе и чем это подтверждено</p>
+
+    <div class="stage" id="s1">
+      <div class="stage-num">01</div>
+      <div class="stage-body">
+        <h3><span class="verb">Купить актив:</span> сделка под ключ, от DD до одобрения комитетами</h3>
+        <div class="stage-sub">Когда есть цель на покупку, но нужны проверка, модель и защита решения</div>
+        <ul class="proofs">
+          <li>LBO проблемного молочного актива (FMCG, <b>~$16 млн EV</b>): коммерческий due diligence, LBO- и кредитная модели, NPV синергий; тезис одобрен инвестиционным и кредитным комитетами</li>
+          <li>Коммерческий DD и оценка FMCG-бренда косметики (<b>~$25 млн EV</b>): покупка контрольной доли 50%+1 со структурой earn-out, DCF и мультипликаторы, нормализация прибыли</li>
+          <li>Финмодели сделок с нуля: LBO, DCF, оценка по мультипликаторам, синергии, сценарии</li>
+        </ul>
+        <div class="order-line"><b>Вход:</b> прикидка стоимости за день / сделка до закрытия – 1–3 месяца / <a href="https://t.me/kostya_younker">обсудить в Telegram</a></div>
+      </div>
+    </div>
+
+    <div class="stage" id="s2">
+      <div class="stage-num">02</div>
+      <div class="stage-body">
+        <h3><span class="verb">Решить, куда расти:</span> стратегия, которую утверждает совет директоров</h3>
+        <div class="stage-sub">Когда рост упёрся в потолок и нужен план, за который проголосуют деньги</div>
+        <ul class="proofs">
+          <li>Пятилетняя стратегия диверсификации национального оператора с целью <b>3x EBITDA</b> – защищена перед советом директоров и Министром транспорта; 4 стратсессии с топ-менеджментом</li>
+          <li>Корпоративная, GTM и функциональные стратегии для B2B SaaS (~700 сотрудников) с партнёрами ex-McKinsey: AI-pivot, рост с <b>$24 до $120 млн</b> к 2030 в целевой модели</li>
+          <li>Вывод 3 новых направлений на инвесткомитет: спутниковая связь, мониторинг БПЛА, высокоточная навигация</li>
+        </ul>
+        <div class="order-line"><b>Вход:</b> разбор и рекомендация за день / стратегия 3–5 лет – 1–3 месяца / <a href="https://t.me/kostya_younker">обсудить в Telegram</a></div>
+      </div>
+    </div>
+
+    <div class="stage" id="s3">
+      <div class="stage-num">03</div>
+      <div class="stage-body">
+        <h3><span class="verb">Поднять эффективность:</span> операционка и внедрение AI</h3>
+        <div class="stage-sub">Когда выручка есть, а прибыль растворяется в процессах и численности</div>
+        <ul class="proofs">
+          <li>Построил офис трансформации национального оператора с нуля как <b>CEO-1</b>, в прямом подчинении гендиректора</li>
+          <li>10+ проектов операционной эффективности в девелопменте, промышленности и топ-3 банке РФ с потенциалом оптимизации численности <b>10–30%</b>; сталеплавильный актив $1 млрд: +10% темпа, ~+$3 млн прибыли</li>
+          <li>Внедрение AI: бенчмарк AI-native vs AI-enabled, MVP речевой аналитики на <b>10&nbsp;000 звонков</b>, мультиагентные пайплайны и рабочие дашборды под процесс – Python, SQL, BI, Claude Code</li>
+        </ul>
+        <div class="order-line"><b>Вход:</b> разбор процесса за день / программа эффективности – 1–3 месяца / <a href="https://t.me/kostya_younker">обсудить в Telegram</a></div>
+      </div>
+    </div>
+
+    <div class="stage" id="s4">
+      <div class="stage-num">04</div>
+      <div class="stage-body">
+        <h3><span class="verb">Вырастить выручку:</span> перестроить продажи и клиентские базы</h3>
+        <div class="stage-sub">Когда продавцы заняты всем, кроме продаж, а базы поделены по привычке</div>
+        <ul class="proofs">
+          <li>Яндекс: программа эффективности продаж с охватом 70+ человек – потенциал <b>+$30 млн/год</b> выручки (+2,5%); перестройка клиентских баз и обучение команд – +5% выручки сегмента</li>
+          <li>Продажи медийной рекламы <b>+$2,8 млн/год</b> через аналитику и регулярные оценки эффективности</li>
+        </ul>
+        <div class="order-line"><b>Вход:</b> консультация по росту или AI за день / перестройка продаж или AI-трансформация – 1–3 месяца / <a href="https://t.me/kostya_younker">обсудить в Telegram</a></div>
+      </div>
+    </div>
+
+    <div class="stage" id="s5">
+      <div class="stage-num">05</div>
+      <div class="stage-body">
+        <h3><span class="verb">Продать дороже:</span> подготовить к выходу и довести сделку до закрытия</h3>
+        <div class="stage-sub">Когда пора выходить, а бизнес пока не упакован под глаза покупателя</div>
+        <ul class="proofs">
+          <li>Sell-side полного цикла для потребительского бренда (<b>~$2 млн EV</b>): поиск и привлечение стратегического инвестора, переговоры с собственником, NDA / term sheet / SHA / SPA до закрытия</li>
+          <li>Упаковка направлений в инвестиционные кейсы для комитетов: материалы, финмодель, защита</li>
+        </ul>
+        <div class="order-line"><b>Вход:</b> оценка и упаковка под инвестора – 1–4 недели / сделка до закрытия – 1–3 месяца / <a href="https://t.me/kostya_younker">обсудить в Telegram</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="matrix">
+  <div class="wrap">
+    <div class="eyebrow">Продукты и сроки</div>
+    <h2>Что можно заказать и за какой срок</h2>
+    <div class="table-scroll">
+      <table>
+        <tr>
+          <th></th>
+          <th scope="col">Разовое<span>часы – день</span></th>
+          <th scope="col">Короткое / среднее<span>1 – 4 недели</span></th>
+          <th scope="col">Проект<span>1 – 3 месяца</span></th>
+        </tr>
+        <tr>
+          <th scope="row" class="dir">Стратегия</th>
+          <td>разбор и рекомендация</td>
+          <td>конкурентный анализ, рыночное исследование, стратсессия</td>
+          <td>корпоративная стратегия 3–5 лет</td>
+        </tr>
+        <tr>
+          <th scope="row" class="dir">Сделки и M&amp;A</th>
+          <td>быстрая прикидка стоимости</td>
+          <td>оценка бизнеса или актива, обоснование и проверка сделки</td>
+          <td>сопровождение сделки до закрытия</td>
+        </tr>
+        <tr>
+          <th scope="row" class="dir">Эффективность</th>
+          <td>разбор процесса</td>
+          <td>диагностика, программа снижения затрат</td>
+          <td>внедрение улучшений, руководитель на время</td>
+        </tr>
+        <tr>
+          <th scope="row" class="dir">Рост и AI</th>
+          <td>консультация по AI</td>
+          <td>отраслевой обзор, аудит и пилот AI</td>
+          <td>перестройка продаж, AI-трансформация</td>
+        </tr>
+        <tr>
+          <th scope="row" class="dir">Модели и аналитика</th>
+          <td>финмодель, презентация, записка</td>
+          <td>бизнес-план, финансовая модель, оценка</td>
+          <td>аналитические панели и отчётность</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="formats">
+  <div class="wrap">
+    <div class="eyebrow">Форматы работы</div>
+    <h2>Четыре формата – от разовой консультации до проекта под ключ</h2>
+    <div class="formats">
+      <div class="fmt"><h3>Проект под ключ</h3><p>Фиксированный результат и срок: сделка, стратегия, программа эффективности</p></div>
+      <div class="fmt"><h3>Руководитель на время</h3><p>Interim-роль внутри команды: офис трансформации, направление, штаб сделки</p></div>
+      <div class="fmt"><h3>Разовая консультация</h3><p>Разбор задачи и рекомендация за встречу: быстро, по делу, с цифрами</p></div>
+      <div class="fmt"><h3>Советник</h3><p>Регулярное сопровождение решений собственника: сделки, стратегия, метрики</p></div>
+    </div>
+    <ul class="principles">
+      <li>Ответ первым: сначала вывод и рекомендация, потом доказательства</li>
+      <li>Цифры вместо мнений: каждый тезис опирается на расчёт, факт или источник</li>
+      <li>Довожу до внедрения и одобрения, не до слайдов: комитеты, совет директоров, подписанные документы</li>
+      <li>Большой проект не упирается в одного человека: под задачу собираю партнёров ex-McKinsey и команды ex-BCG / ex-Bain / ex-EY, ответственный перед вами один – я</li>
+      <li>Калибр анализа как у больших фирм, цена – без наценки на бренд и офис: AI-стек заменяет пирамиду аналитиков</li>
+      <li>Конфиденциальность по умолчанию: клиенты в кейсах не названы, NDA – стандарт</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="who">
+  <div class="wrap">
+    <div class="eyebrow">Кто я</div>
+    <h2>Школа McKinsey, операционный опыт CEO-1 и живая сделочная практика</h2>
+    <p class="who-text">Школа McKinsey – стажировка в McKinsey CIS, затем бизнес-аналитик в Yakov &amp; Partners (ex-McKinsey CIS). Дальше – коммерческая трансформация в Яндекс Рекламе и офис трансформации национального оператора как CEO-1. Сейчас – независимая практика с партнёрами ex-McKinsey и командами ex-BCG / ex-Bain / ex-EY: сделки, стратегии, операционная эффективность. 20+ проектов в 7 отраслях: FMCG, промышленность, банки, телематика, digital-реклама, девелопмент, B2B SaaS</p>
+    <p class="who-text">Победитель McKinsey Business Diving 2021 (из 400+ команд) и призёр ещё 5 кейс-чемпионатов; преподавал Excel и Power BI стажёрам McKinsey, обучил 300+ аналитиков</p>
+    <div class="tools">Инструменты: Excel / Google Sheets (advanced), Think-cell, SQL, Python, Power BI, Tableau, DataLens, генеративный AI, Claude Code. Русский родной, английский C1. School of Finance (финмоделирование и оценка)</div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>30 минут – разберу вашу задачу</h2>
+      <p>Расскажите, что сейчас болит: сделка, рост, косты или выход. За встречу скажу, чем могу быть полезен, чем не могу, и какой первый шаг даст цифру для решения</p>
+      <p class="steps">Как начинается работа: сообщение в Telegram – 30 минут созвона – предложение с ценой, сроком и результатом до старта. Первое сообщение – одна строка: кто вы и какая задача</p>
+      <div class="cta-contacts">
+        Telegram: <a href="https://t.me/kostya_younker">@kostya_younker</a><br>
+        Почта: <a href="mailto:babadzhanyan.k.s@gmail.com">babadzhanyan.k.s@gmail.com</a> / Телефон: <a href="tel:+79055500958">+7 905 550-09-58</a><br>
+        Открыт к встречным интро
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Константин Бабаджанян / стратегия, сделки, эффективность / Москва</div>
+</footer>
+
+<script>
+const links=[...document.querySelectorAll('nav a')];
+const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spy=()=>{
+  let cur=targets[0];
+  for(const t of targets){if(t.getBoundingClientRect().top<=80)cur=t;}
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur.id));
+};
+document.addEventListener('scroll',spy,{passive:true});spy();
+</script>
+</body>
+</html>
