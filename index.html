@@ -68,10 +68,9 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.04;margin:18px 0 22px}
 .hero .lead{font-size:20px;line-height:1.5;color:var(--muted);max-width:560px;margin-bottom:30px}
 .hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.hero-visual{position:relative;min-height:500px}
+.hero-visual{position:relative;min-height:500px;display:flex;align-items:flex-end;justify-content:flex-end;padding-bottom:56px}
 .ghost-name{position:absolute;bottom:0;right:-4vw;font-family:var(--disp);font-weight:800;font-size:clamp(90px,13vw,190px);line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(10,46,36,.15);user-select:none;pointer-events:none;white-space:nowrap}
-.hero-visual img{position:relative;z-index:2;height:540px;width:auto;margin:0 auto}
-.hero-visual::before{content:"";position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(18,87,64,.10),transparent 65%)}
+.hero-visual img{position:relative;z-index:2;height:500px;width:auto;border-radius:20px;box-shadow:0 24px 56px rgba(10,46,36,.16)}
 
 /* logos */
 .logos{border-top:1px solid var(--line);padding:22px 0;background:var(--paper)}
@@ -199,6 +198,29 @@ footer a:hover{color:var(--ink)}
 
 #mcta{display:none}
 
+/* work modal */
+#workModal{width:min(880px,94vw);max-height:90vh;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);box-shadow:0 24px 64px rgba(10,46,36,.25)}
+#workModal::backdrop{background:rgba(10,46,36,.55);backdrop-filter:blur(6px)}
+#workModal header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 28px;border-bottom:1px solid var(--line)}
+#workModal h3{font-size:22px;line-height:1.25}
+#wmMeta{color:var(--muted);margin-top:6px}
+.wm-x{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;flex:0 0 auto;font-size:15px}
+.wm-x:hover{border-color:var(--accent);color:var(--accent)}
+.wm-scroll{overflow-y:auto;max-height:calc(90vh - 86px);padding:24px 28px 32px;display:grid;gap:26px}
+.wm-pages{display:grid;gap:14px}
+.wm-pages img{width:100%;border:1px solid var(--line);border-radius:10px;display:block}
+.wm-lab{color:var(--accent);margin-bottom:12px}
+.wm-steps{list-style:none;counter-reset:st;display:grid;gap:12px}
+.wm-steps li{counter-increment:st;display:flex;gap:14px;font-size:16px;line-height:1.5}
+.wm-steps li::before{content:"0" counter(st);font-family:var(--mono);font-size:13px;font-weight:500;color:var(--accent);padding-top:3px;flex:0 0 26px}
+.wm-res p{border-left:2px solid var(--accent);padding-left:14px;font-weight:600}
+.wm-disc{font-size:12px;color:var(--muted)}
+@media(max-width:768px){#workModal{width:100vw;max-width:none;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}.wm-scroll{max-height:calc(100dvh - 86px)}}
+.frame[data-case]{cursor:pointer}
+.frame[data-case] .frame-bar{position:relative}
+.frame[data-case] .frame-bar::after{content:"Открыть →";position:absolute;right:12px;top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .15s}
+.frame[data-case]:hover .frame-bar::after{opacity:1}
+
 @media (max-width:1000px){
   .stats-grid,.cases-grid{grid-template-columns:1fr 1fr}
   .work-grid{grid-template-columns:1fr 1fr}
@@ -279,7 +301,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <div class="hero-visual">
       <div class="ghost-name">БАБАДЖАНЯН</div>
-      <img src="img/kostya-who.png" alt="Константин Бабаджанян">
+      <img src="img/kostya-hero-conf.jpg" alt="Константин Бабаджанян выступает на конференции">
     </div>
   </div>
 </header>
@@ -390,12 +412,12 @@ footer a:hover{color:var(--ink)}
     <h2 class="reveal">Что вы получаете на руки</h2>
     <p class="bridge reveal">Презентации для советов директоров, финмодели, документы сделок – вот как это выглядит <b>↓</b></p>
     <div class="work-grid">
-      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-3.jpg" alt="Дек инвестиционного кейса"><figcaption class="mono">Дек инвест-кейса / PE-фонд (тестовый)</figcaption></figure>
-      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-2.jpg" alt="LBO-модель для кредитного комитета"><figcaption class="mono">LBO-модель / кредитный комитет (синтетика)</figcaption></figure>
-      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-1.jpg" alt="Кейс-тизер стратегии роста SaaS"><figcaption class="mono">Кейс-тизер / стратегия роста B2B SaaS</figcaption></figure>
-      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-4.jpg" alt="Executive summary инвестиционного кейса"><figcaption class="mono">Executive summary / экономика фонда</figcaption></figure>
-      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-6.jpg" alt="Шаблон соглашения об условиях сделки"><figcaption class="mono">Соглашение об условиях сделки / шаблон</figcaption></figure>
-      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-5.jpg" alt="Авторская аналитика по финмоделям"><figcaption class="mono">Авторская аналитика / red flags финмоделей</figcaption></figure>
+      <figure class="frame reveal" data-case="saas"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-1.jpg" alt="Мини-дек стратегии роста SaaS"><figcaption class="mono">Мини-дек / стратегия B2B SaaS (реконструкция)</figcaption></figure>
+      <figure class="frame reveal" data-case="pantea"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-3.jpg" alt="Дек инвестиционного кейса"><figcaption class="mono">Дек инвест-кейса / PE-фонд (тестовый)</figcaption></figure>
+      <figure class="frame reveal" data-case="lbo"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-2.jpg" alt="LBO-модель для кредитного комитета"><figcaption class="mono">LBO-модель / кредитный комитет (синтетика)</figcaption></figure>
+      <figure class="frame reveal" data-case="pantea"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-4.jpg" alt="Executive summary инвестиционного кейса"><figcaption class="mono">Executive summary / экономика фонда</figcaption></figure>
+      <figure class="frame reveal" data-case="ts"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-6.jpg" alt="Шаблон соглашения об условиях сделки"><figcaption class="mono">Соглашение об условиях сделки / шаблон</figcaption></figure>
+      <figure class="frame reveal" data-case="car"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-5.jpg" alt="Авторская аналитика по финмоделям"><figcaption class="mono">Авторская аналитика / red flags финмоделей</figcaption></figure>
     </div>
     <p class="work-note mono reveal">Все материалы санитизированы: тестовые и синтетические кейсы, шаблоны без клиентских данных. Клиентские работы – под соглашением о неразглашении</p>
   </div>
@@ -419,7 +441,6 @@ footer a:hover{color:var(--ink)}
         <figure class="shot"><img src="img/f-plant.jpg" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
         <figure class="shot"><img src="img/f-roof.jpg" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
         <figure class="shot"><img src="img/f-award.jpg" alt="Награждение"><figcaption>Награждение / Яркий старт</figcaption></figure>
-        <figure class="shot"><img src="img/f-stage.jpg" alt="Выступление на конференции"><figcaption>Конференция / выступление</figcaption></figure>
         <figure class="shot"><img src="img/f-conf.jpg" alt="Деловая конференция"><figcaption>Деловая конференция</figcaption></figure>
         <figure class="shot"><img src="img/f-lift.jpg" alt="Выпуск МГТУ им. Баумана"><figcaption>МГТУ им. Н.Э. Баумана / выпуск, инженер-специалист</figcaption></figure>
       </div>
@@ -535,6 +556,21 @@ footer a:hover{color:var(--ink)}
   </div>
 </footer>
 
+<dialog id="workModal" aria-label="Пример работы">
+  <header>
+    <div><h3 id="wmTitle"></h3><p class="mono" id="wmMeta"></p></div>
+    <button class="wm-x" aria-label="Закрыть" onclick="workModal.close()">✕</button>
+  </header>
+  <div class="wm-scroll">
+    <div class="wm-pages" id="wmPages"></div>
+    <section><div class="mono wm-lab">Этапы работы</div><ol class="wm-steps" id="wmSteps"></ol></section>
+    <section><div class="mono wm-lab">Что внутри</div><p id="wmInside"></p></section>
+    <section class="wm-res"><div class="mono wm-lab">Результат</div><p id="wmResult"></p></section>
+    <p class="mono wm-disc" id="wmDisc"></p>
+    <a class="btn" href="https://t.me/kostya_younker" style="justify-self:start"><svg><use href="#i-tg"/></svg>Обсудить похожую задачу</a>
+  </div>
+</dialog>
+
 <div id="mcta">
   <a class="btn inv" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg>Обсудить задачу</a>
   <a class="ibtn" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
@@ -547,6 +583,36 @@ const bar=document.getElementById('progress');
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const WORKS={
+saas:{t:'Стратегия 5x для B2B SaaS – AI-native pivot',m:'Клиентский проект / санитизированная реконструкция под NDA',p:['saas-1','saas-2','saas-3','saas-4','saas-5'],
+s:['AI-бенчмарк: AI-native и AI-enabled игроки глобально – архитектуры, pricing, покрытие use cases','Сегментация: cash-cow сегментам – AI-enabled апгрейд, быстрорастущим – экономика AI-native','Валидация: 5+ интервью с российскими и международными практиками','Speech-аналитика с нуля: pipeline на 10 000 звонков, 7 причин отвала клиентов','Сценарии и защита: 4 рыночных сценария, 15+ инициатив, вынос на акционеров'],
+i:'Развилка трёх путей (AI-enabled / AI-native / гибрид) / бенчмарк и сегментация / speech-аналитика с апсайдом +10–15 pp к конверсии (верхняя оценка) / 15+ приоритизированных инициатив',
+r:'5-летняя стратегия роста до $120 млн к 2030 одобрена акционерами',d:'Санитизировано под NDA – названия и детали клиента раскрываются на созвоне'},
+pantea:{t:'3 таргета B2B IT для фонда – Net IRR 15–22%',m:'Тестовый кейс / мемо 6 стр + дек 17 слайдов + модель Excel / имена публичные',p:['pantea-1','pantea-2','pantea-3','pantea-4','pantea-5','pantea-6'],
+s:['Карта рынка: первая волна импортозамещения закрыта – primary-капитал там не нужен','Выбор вертикалей: cash-in только там, где капитал компаундит ров – технический или сетевой','Pressure-test таргетов: один кандидат отклонён после challenge и заменён','Модель возвратов: CoC / IRR по каждому таргету, VC-метод + First-Chicago E[CoC]','Экономика фонда: полный waterfall Gross → Net – carry 20%, hurdle 8%, catch-up'],
+i:'Investment memo: exec, challenge & response, 3 таргета / дек: рынок → таргет → возвраты / Excel 8 вкладок с живыми формулами, comps и прецеденты',
+r:'Портфель gross MOIC 2,2x base / 2,9x expected; Net MOIC 1,6–2,0x, Net IRR 15–22%',d:'Тестовое задание на публичных данных – не клиентская работа'},
+lbo:{t:'Buy-side LBO ~3 млрд руб – от DD до кредитного комитета',m:'Синтетический кейс / модель Excel + IC-пакет / имена и юрлица заменены',p:['lbo-1','lbo-2','lbo-3','lbo-4','lbo-5'],
+s:['Реконструкция сделки: консолидатор покупает региональный завод (выручка 4,4 млрд руб, EBITDA 320 млн) за EV ~3,1 млрд','Входной пакет: профиль актива, DD-риски, 3 сценария, comps, term sheet мезонина','Финмодель: sources & uses, returns, sensitivity, EBITDA bridge, ковенанты','Проверка ловушек: скрытые корректировки EBITDA, синергии без haircut, ковенантные конфликты','Рекомендация для комитета: цена захода – число, условие, trigger'],
+i:'Sources & uses / sensitivity-анализ / 8 trading comps + 4 прецедентные сделки / ковенантный анализ / EBITDA bridge с корректировками',
+r:'Пакет уровня инвесткомитета: обоснованная рекомендация по цене захода',d:'Синтетический кейс – названия и часть чисел заменены, бизнес-логика реального проекта'},
+ts:{t:'Term sheet по российскому праву – рабочий шаблон',m:'Шаблон / версия А (маркетплейсы) 21 стр + универсальная версия B / без клиентских данных',p:['ts-1','ts-2','ts-3'],
+s:['Правовая конструкция: соглашение о порядке ведения переговоров (ст. 434.1 ГК РФ)','Два слоя: обязательная часть (исключительность, конфиденциальность, споры) отделена от коммерческих условий','Баланс сторон: защитные права инвестора, операционное управление у основателей','Механика подписания: парафирование страниц, числовые поля, равносильные экземпляры','Санкции: неустойки за срыв исключительности и недобросовестные переговоры'],
+i:'Преамбула с блоками юрлицо / физлицо / таблица статуса соглашения / специфика маркетплейсов / отдельные drafting notes',
+r:'Заполняемый документ под подписание: поля, парафы, предельная дата закрытия',d:'Шаблон без клиентских данных – все поля обезличены'},
+car:{t:'Финмодель продавца врёт в 5 местах',m:'Авторская аналитика / карусель 8 кадров / публичный канал',p:['car-1','car-2','car-3','car-4','car-5','car-6','car-7','car-8'],
+s:['Хоккейная клюшка: история −5% в год, прогноз +30% – без драйвера резать до исторического темпа','Маржа: рост EBITDA margin без инвестиций в эффективность','Оборотный капитал: дебиторка и запасы «на месте» при выручке ×2','CAPEX ниже D&A: терминальная стоимость на «бесплатном» износе актива','Прибыль без кэша: рекордный P&L при хронически отрицательном OCF'],
+i:'Каждый флаг: симптом + вопрос продавцу + проверка за минуту',
+r:'Чек-лист проверки за 10 минут – аргументы к цене продавца в переговорах',d:'Авторский образовательный контент – без клиентских данных'}};
+document.querySelectorAll('.frame[data-case]').forEach(f=>f.addEventListener('click',()=>{
+  const d=WORKS[f.dataset.case]; if(!d) return;
+  wmTitle.textContent=d.t; wmMeta.textContent=d.m;
+  wmPages.innerHTML=d.p.map(s=>`<img src="img/g/${s}.jpg" alt="Страница материала" loading="lazy">`).join('');
+  wmSteps.innerHTML=d.s.map(s=>`<li>${s}</li>`).join('');
+  wmInside.textContent=d.i; wmResult.textContent=d.r; wmDisc.textContent=d.d;
+  workModal.showModal(); document.querySelector('.wm-scroll').scrollTop=0;
+}));
+workModal.addEventListener('click',e=>{if(e.target===workModal)workModal.close()});
 const links=[...document.querySelectorAll('.nav-links a')];
 const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
 const spy=()=>{let cur=null;for(const t of targets){if(t.getBoundingClientRect().top<=90)cur=t;}
