@@ -73,9 +73,9 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .hero-visual img{position:relative;z-index:2;height:500px;width:auto;border-radius:20px;box-shadow:0 24px 56px rgba(10,46,36,.16)}
 
 /* logos */
-.logos{border-top:1px solid var(--line);padding:22px 0;background:var(--paper)}
-.logos .wrap{display:flex;align-items:baseline;gap:44px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-.logos .cap{color:var(--muted);flex:0 0 auto}
+.logos{border-top:1px solid var(--line);padding:30px 0;background:var(--paper)}
+.logos .wrap{display:flex;align-items:baseline;justify-content:center;gap:18px 44px;flex-wrap:wrap}
+.logos .cap{color:var(--muted);flex:0 0 100%;text-align:center;margin-bottom:4px}
 .wordmark{font-family:var(--disp);font-weight:700;font-size:16px;color:var(--muted);letter-spacing:.01em;flex:0 0 auto}
 .wordmark.serif{font-family:Georgia,'Times New Roman',serif;font-weight:700}
 .wordmark.mono-wm{font-family:var(--mono);font-size:13.5px;letter-spacing:.12em;font-weight:500}
@@ -127,6 +127,14 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .case .cb.res p{color:var(--ink);font-weight:600}
 .cta-line{margin-top:28px;font-size:16px}
 .cta-line a{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
+
+/* deals tombstones */
+.deals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.deal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.deal .role{color:var(--accent);display:block;margin-bottom:14px}
+.deal .sum{font-family:var(--disp);font-weight:800;font-size:clamp(28px,2.6vw,38px);letter-spacing:-.02em;line-height:1;color:var(--accent)}
+.deal p{font-size:14.5px;color:var(--muted);margin:10px 0 14px}
+.deal .st{color:var(--ink);border-top:1px solid var(--line);padding-top:12px;display:block}
 
 /* work samples */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -235,22 +243,27 @@ footer a:hover{color:var(--ink)}
   .off-grid img{order:-1}
 }
 @media (max-width:768px){
-  body{font-size:16px}
-  section{padding:64px 0}
-  h2{font-size:28px}
+  body{font-size:16px;line-height:1.65}
+  section{padding:72px 0}
+  h2{font-size:26px;margin-bottom:14px}
   .hero{padding-top:40px}
+  .hero h1{font-size:clamp(32px,8.5vw,40px)}
   .hero .lead{font-size:17px}
   .hero-visual img{height:330px}
   .hero-main,.who-main{flex:1 1 100%}
   .stats-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .stat{padding:20px 18px}
-  .cases-grid,.work-grid{grid-template-columns:1fr}
+  .stat{padding:18px 16px}
+  .cases-grid,.work-grid,.deals-grid{grid-template-columns:1fr;gap:12px}
+  .case{padding:24px 20px}
   .practice{grid-template-columns:1fr}
+  .practice li{padding:12px 0 12px 22px;font-size:14.5px}
   .steps{grid-template-columns:1fr}
+  .ab-grid,.off-grid{gap:24px}
   .cta-inner{grid-template-columns:1fr}
   .shot img{height:300px}
-  .slide{flex-basis:270px}
-  .bridge{font-size:17px}
+  .slide{flex-basis:270px;gap:12px}
+  .bridge{font-size:17px;margin-bottom:28px}
+  .plate .wrap[style]{padding-top:56px!important;padding-bottom:56px!important}
   #mcta{display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(10,46,36,.96);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
   #mcta .btn{flex:1}
   #mcta .ibtn{background:var(--plate-card);border-color:var(--line-inv);color:var(--accent-inv);flex:0 0 auto}
@@ -274,6 +287,7 @@ footer a:hover{color:var(--ink)}
     <div class="nav-links">
       <a href="#moments">Когда я нужен</a>
       <a href="#cases">Кейсы</a>
+      <a href="#deals">Сделки</a>
       <a href="#work">Примеры работ</a>
       <a href="#products">Продукты</a>
       <a href="#faq">Вопросы</a>
@@ -290,9 +304,9 @@ footer a:hover{color:var(--ink)}
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-copy">
-      <div class="mono eyebrow">Константин Бабаджанян / Стратегия / M&amp;A / AI</div>
-      <h1>Весь цикл стоимости – от покупки до выхода</h1>
-      <p class="lead">M&amp;A, стратегия, эффективность, рост. Веду задачу сам, под масштаб собираю команду ex-McKinsey / ex-BCG / ex-Bain. Цифры, которые проходят комитеты и советы директоров</p>
+      <div class="mono eyebrow">Константин Бабаджанян / ex-McKinsey</div>
+      <h1>Помогаю купить, вырастить и продать бизнес</h1>
+      <p class="lead">M&amp;A, стратегия, эффективность – цифры, которые проходят комитеты. Ядро делаю сам, под масштаб – команда ex-McKinsey / ex-BCG / ex-Bain</p>
       <div class="hero-ctas">
         <a class="btn" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg>Обсудить задачу</a>
         <a class="ibtn" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
@@ -301,19 +315,21 @@ footer a:hover{color:var(--ink)}
     </div>
     <div class="hero-visual">
       <div class="ghost-name">БАБАДЖАНЯН</div>
-      <img src="img/kostya-hero-conf.jpg" alt="Константин Бабаджанян выступает на конференции">
+      <img src="img/kostya-hero-suit.jpg" alt="Константин Бабаджанян, деловой портрет">
     </div>
   </div>
 </header>
 
 <div class="logos">
   <div class="wrap">
-    <span class="mono cap">Школа и практика</span>
+    <span class="mono cap">Карьера, партнёрства и школа</span>
     <span class="wordmark serif">McKinsey &amp; Company</span>
-    <span class="wordmark">Yakov &amp; Partners</span>
     <span class="wordmark">Яндекс</span>
+    <span class="wordmark">АФК Система</span>
     <span class="wordmark mono-wm">ГЛОНАСС</span>
+    <span class="wordmark">Yakov &amp; Partners</span>
     <span class="wordmark">МГТУ им. Н.Э. Баумана</span>
+    <span class="wordmark">The Experts (School of Finance)</span>
   </div>
 </div>
 
@@ -327,7 +343,7 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="mono eyebrow">/01 – Когда я нужен</div>
     <h2 class="reveal">Пять моментов, когда решение стоит десятки миллионов</h2>
-    <p class="bridge reveal">Бизнес проходит один цикл: купить, вырастить, навести порядок, разогнать выручку, продать. Я включаюсь в каждой точке <b>↓</b></p>
+    <p class="bridge reveal">Купить, вырастить, навести порядок, разогнать, продать – включаюсь в каждой точке <b>↓</b></p>
     <div class="slider">
       <div class="slide reveal"><div class="num">01</div><h3>Купить актив</h3><p>Цена названа, а проверить её нечем: ни модели, ни DD, ни аргументов для комитета</p></div>
       <div class="slide reveal"><div class="num">02</div><h3>Решить, куда расти</h3><p>Рост упёрся в потолок, гипотез много – плана, за который проголосуют деньги, нет</p></div>
@@ -347,8 +363,8 @@ footer a:hover{color:var(--ink)}
       <div class="bio reveal">
         <p class="lead-line">Константин Бабаджанян – стратегия и сделки со школой McKinsey и операционным опытом на стороне бизнеса</p>
         <p>Школа McKinsey (2,5 года в McKinsey CIS и Yakov &amp; Partners – ex-McKinsey CIS). Затем – коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в роли CEO-1</p>
-        <p>Инженер МГТУ им. Н.Э. Баумана (специалитет). Разработал программу обучения по бизнес-анализу и обучил 300+ сотрудников телеком-компании</p>
-        <p>Под масштаб задачи собираю команду: партнёры ex-McKinsey, команды ex-BCG / ex-Bain / ex-EY. Ответственный перед клиентом один – я</p>
+        <p>Инженер МГТУ им. Н.Э. Баумана (специалитет); разработал программу обучения по бизнес-анализу и обучил 300+ сотрудников телеком-компании</p>
+        <p>Под масштаб задачи собираю команду: партнёры ex-McKinsey, команды ex-BCG / ex-Bain / ex-EY – ответственный перед клиентом один</p>
       </div>
     </div>
   </div>
@@ -359,7 +375,7 @@ footer a:hover{color:var(--ink)}
     <div class="wrap" style="padding-top:72px;padding-bottom:72px">
       <div class="stats-grid">
         <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в 7 отраслях</span></div>
-        <div class="stat reveal"><div class="mono idx">/02</div><b>2 сделки M&amp;A</b><span>~$16 и ~$25 млн EV – одобрены комитетами</span></div>
+        <div class="stat reveal"><div class="mono idx">/02</div><b>5 сделок M&amp;A</b><span>3 доведены до решения, 2 активных мандата</span></div>
         <div class="stat reveal"><div class="mono idx">/03</div><b>3x EBITDA</b><span>стратегия ГЛОНАСС – защищена советом директоров</span></div>
         <div class="stat reveal"><div class="mono idx">/04</div><b>+$30 млн/год</b><span>потенциал программы продаж в Яндексе</span></div>
       </div>
@@ -371,7 +387,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="mono eyebrow">/03 – Кейсы</div>
     <h2 class="reveal">Тезисы проходят комитеты, стратегии – советы директоров</h2>
-    <p class="bridge reveal">Четыре истории с одинаковой механикой: вызов – работа – одобренный результат <b>↓</b></p>
     <div class="cases-grid">
       <div class="case reveal">
         <div class="big">~$16 млн EV</div>
@@ -406,11 +421,24 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
+<section id="deals" style="padding-top:24px">
+  <div class="wrap">
+    <div class="mono eyebrow">/04 – Сделки</div>
+    <h2 class="reveal">Реестр сделок: от проверки цены до подписи</h2>
+    <div class="deals-grid" style="margin-top:28px">
+      <div class="deal reveal"><span class="mono role">Buy-side / LBO</span><div class="sum">~$16 млн EV</div><p>Молочный актив FMCG: DD, LBO- и кредитная модели</p><span class="mono st">Одобрена двумя комитетами</span></div>
+      <div class="deal reveal"><span class="mono role">Buy-side / DD и оценка</span><div class="sum">~$25 млн EV</div><p>Косметический бренд: доля 50%+1 с earn-out</p><span class="mono st">Одобрена комитетом</span></div>
+      <div class="deal reveal"><span class="mono role">Sell-side / полный цикл</span><div class="sum">~$2 млн EV</div><p>Продажа бренда: инвестор, NDA, term sheet, SHA, SPA</p><span class="mono st">Доведена до SPA</span></div>
+      <div class="deal reveal"><span class="mono role">M&amp;A / посредничество</span><div class="sum">В работе</div><p>Свожу стороны и веду переговоры до term sheet</p><span class="mono st">Активный мандат</span></div>
+      <div class="deal reveal"><span class="mono role">Buy-side / sourcing</span><div class="sum">В работе</div><p>Поиск и оценка таргетов под мандат покупателя</p><span class="mono st">Активный мандат</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="work" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/04 – Примеры работ</div>
+    <div class="mono eyebrow">/05 – Примеры работ</div>
     <h2 class="reveal">Что вы получаете на руки</h2>
-    <p class="bridge reveal">Презентации для советов директоров, финмодели, документы сделок – вот как это выглядит <b>↓</b></p>
     <div class="work-grid">
       <figure class="frame reveal" data-case="saas"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-1.jpg" alt="Мини-дек стратегии роста SaaS"><figcaption class="mono">Мини-дек / стратегия B2B SaaS (реконструкция)</figcaption></figure>
       <figure class="frame reveal" data-case="pantea"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-3.jpg" alt="Дек инвестиционного кейса"><figcaption class="mono">Дек инвест-кейса / PE-фонд (тестовый)</figcaption></figure>
@@ -423,25 +451,18 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="mq2">
-    <span>Комитеты</span><span>/</span><span>Совет директоров</span><span>/</span><span>Стратсессии</span><span>/</span><span>Финмодели</span><span>/</span><span>Деки</span><span>/</span><span>Дашборды</span><span>/</span><span>Соглашения</span><span>/</span>
-  </div>
-</div>
-
 <section id="field" style="padding-top:64px">
   <div class="plate">
     <div style="padding:72px 0">
       <div class="wrap">
-        <div class="mono eyebrow">/05 – В полях</div>
+        <div class="mono eyebrow">/06 – В полях</div>
         <h2 class="reveal">Не только слайды – цеха, крыши, сцены</h2>
-        <p class="bridge reveal" style="color:var(--muted-inv)">Цифры рождаются не в опенспейсе – диагностика начинается там, где создаётся стоимость <b style="color:#FFFFFF">↓</b></p>
       </div>
       <div class="strip">
         <figure class="shot"><img src="img/f-plant.jpg" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
         <figure class="shot"><img src="img/f-roof.jpg" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
         <figure class="shot"><img src="img/f-award.jpg" alt="Награждение"><figcaption>Награждение / Яркий старт</figcaption></figure>
-        <figure class="shot"><img src="img/f-conf.jpg" alt="Деловая конференция"><figcaption>Деловая конференция</figcaption></figure>
+        <figure class="shot"><img src="img/kostya-hero-conf.jpg" alt="Выступление на конференции"><figcaption>Конференция / выступление</figcaption></figure>
         <figure class="shot"><img src="img/f-lift.jpg" alt="Выпуск МГТУ им. Баумана"><figcaption>МГТУ им. Н.Э. Баумана / выпуск, инженер-специалист</figcaption></figure>
       </div>
     </div>
@@ -450,10 +471,8 @@ footer a:hover{color:var(--ink)}
 
 <section style="padding-top:64px">
   <div class="wrap">
-    <div class="mono eyebrow">/06 – Ещё из практики</div>
+    <div class="mono eyebrow">/07 – Ещё из практики</div>
     <ul class="practice reveal">
-      <li>DD и оценка FMCG-бренда косметики ~$25 млн EV: доля 50%+1 с earn-out</li>
-      <li>Sell-side бренда ~$2 млн EV: от поиска инвестора до NDA, term sheet, SHA, SPA</li>
       <li>Сталеплавильный актив $1 млрд: +10% темпа, ~+$3 млн прибыли</li>
       <li>10+ проектов эффективности: девелопмент, промышленность, топ-3 банк РФ</li>
       <li>FTE-модели численности по 7 функциям для топ-1 девелопера РФ</li>
@@ -465,7 +484,7 @@ footer a:hover{color:var(--ink)}
 
 <section id="products" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/07 – Продукты и форматы</div>
+    <div class="mono eyebrow">/08 – Продукты и форматы</div>
     <h2 class="reveal">Что можно заказать</h2>
     <div class="prod-grid" style="margin-top:28px">
       <div class="prod reveal"><h3>Стратегия</h3><div><b>День</b>разбор и рекомендация</div><div><b>1–4 недели</b>анализ рынка, стратсессия</div><div><b>1–3 месяца</b>стратегия 3–5 лет</div></div>
@@ -486,7 +505,7 @@ footer a:hover{color:var(--ink)}
 
 <section style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/08 – Как начинается работа</div>
+    <div class="mono eyebrow">/09 – Как начинается работа</div>
     <div class="steps" style="margin-top:28px">
       <div class="step reveal"><div class="mono idx">Шаг 1</div><p>Пишете <a href="https://t.me/kostya_younker">в Телеграм</a>: что за бизнес и какая задача</p></div>
       <div class="step reveal"><div class="mono idx">Шаг 2</div><p>Созвон 30 минут: чем могу быть полезен, чем нет, и какой первый шаг даст цифру</p></div>
@@ -497,7 +516,7 @@ footer a:hover{color:var(--ink)}
 
 <section id="faq" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/09 – Вопросы</div>
+    <div class="mono eyebrow">/10 – Вопросы</div>
     <h2 class="reveal">Что спрашивают до старта</h2>
     <div class="faq" style="margin-top:16px">
       <details><summary>Почему вы, а не большая консалтинговая фирма</summary><p>Калибр анализа тот же – школа McKinsey, стандарты комитетов и советов директоров. Цена без наценки на бренд и офис: вместо пирамиды джуниоров – senior-команда и AI-стек. И мы доводим до внедрения, а не до слайдов</p></details>
@@ -510,12 +529,11 @@ footer a:hover{color:var(--ink)}
 
 <section id="offwork" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/10 – Вне работы</div>
+    <div class="mono eyebrow">/11 – Вне работы</div>
     <div class="off-grid">
       <div class="bio reveal">
         <h2 style="font-size:30px">Лучшие решения приходят не за столом</h2>
-        <p>Путешествия и горы, тайский бокс, шахматы. Активный образ жизни – часть рабочего метода: голова считает лучше после движения</p>
-        <p>Инженерная база МГТУ им. Н.Э. Баумана научила разбирать сложные системы до винтика – теперь так же разбираю бизнесы</p>
+        <p>Горы, тайский бокс, шахматы – голова считает лучше после движения</p>
         <div class="tools">Excel / Think-cell / SQL / Python / Power BI / Tableau / DataLens / генеративный AI / Claude Code – Русский родной, английский C1 – School of Finance</div>
       </div>
       <img class="reveal" src="img/kostya-travel.jpg" alt="Константин в горах Шри-Ланки">
