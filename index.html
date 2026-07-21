@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Константин Бабаджанян – стратегия, сделки, эффективность</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312122B'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' font-weight='bold' fill='%23fff' text-anchor='middle'%3EКБ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A2E24'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' font-weight='bold' fill='%23fff' text-anchor='middle'%3EКБ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F7F6F2; --card:#FFFFFF; --dark:#12122B; --ink:#16161D; --muted:#5D5D6B;
-  --ink-inv:#EDEEF4; --muted-inv:rgba(237,238,244,.62);
-  --navy:#1A1A2E; --accent:#0F3460; --cobalt:#2F6BFF; --cobalt-inv:#8FB0FF;
-  --line:#E7E5DE; --line-inv:rgba(255,255,255,.14); --plate:rgba(255,255,255,.05);
+  --paper:#FAFAF7; --card:#FFFFFF; --dark:#0A2E24; --ink:#131614; --muted:#4E5A54;
+  --ink-inv:#F2F5F3; --muted-inv:rgba(242,245,243,.72);
+  --accent:#125740; --accent-dk:#0C4030; --accent-inv:#86D8BC;
+  --line:#E5E7E3; --line-inv:rgba(255,255,255,.16); --plate-card:rgba(255,255,255,.05);
   --disp:'Manrope',-apple-system,sans-serif; --text:'Golos Text',-apple-system,sans-serif; --mono:'IBM Plex Mono',SFMono-Regular,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -28,50 +28,63 @@ h2{font-size:40px;line-height:1.12;margin-bottom:16px}
 .mono{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
 .eyebrow{color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
-.dark .eyebrow{color:var(--cobalt-inv)}
-.dark .eyebrow::after{background:var(--line-inv)}
+.plate .eyebrow{color:var(--accent-inv)}
+.plate .eyebrow::after{background:var(--line-inv)}
 section{padding:96px 0}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+.bridge{font-size:19px;color:var(--muted);max-width:640px;margin:0 0 40px}
+.bridge b{color:var(--accent);font-family:var(--mono);font-weight:500}
 
 /* progress + nav */
-#progress{position:fixed;top:0;left:0;height:2px;background:var(--cobalt);width:0;z-index:60}
-nav{position:sticky;top:0;z-index:50;background:rgba(247,246,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
-.logo{font-family:var(--disp);font-weight:800;font-size:18px;color:var(--navy);flex:0 0 auto}
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:60}
+nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
+.logo{font-family:var(--disp);font-weight:800;font-size:18px;color:var(--ink);flex:0 0 auto}
 .nav-links{display:flex;gap:22px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;flex:1}
 .nav-links a{font-size:14px;font-weight:500;color:var(--muted);padding:6px 0}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--text);font-weight:600;font-size:16px;border-radius:999px;padding:14px 28px;background:var(--accent);color:#fff;transition:background .15s,transform .15s}
-.btn:hover{background:#0c2a4f;transform:translateY(-1px)}
-.btn.small{font-size:14px;padding:9px 20px}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);}
-.btn.ghost:hover{background:rgba(22,22,29,.05)}
-.btn.inv{background:var(--cobalt);}
-.btn.inv:hover{background:#1f56e0}
-.btn.ghost-inv{background:transparent;color:var(--ink-inv);border:1px solid rgba(255,255,255,.4)}
-.btn.ghost-inv:hover{border-color:#fff}
-nav .btn{flex:0 0 auto}
+.nav-icons{display:flex;gap:8px;flex:0 0 auto}
+
+/* buttons + icon buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--text);font-weight:600;font-size:16px;border-radius:999px;padding:14px 26px;background:var(--accent);color:#fff;transition:background .15s,transform .15s}
+.btn:hover{background:var(--accent-dk);transform:translateY(-1px)}
+.btn svg{width:18px;height:18px;flex:0 0 auto}
+.btn.inv{background:var(--accent-inv);color:var(--dark)}
+.btn.inv:hover{background:#9BE3C9}
+.ibtn{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--accent);transition:border-color .15s,transform .15s,background .15s}
+.ibtn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ibtn svg{width:21px;height:21px}
+.ibtn.small{width:38px;height:38px}
+.ibtn.small svg{width:17px;height:17px}
+.plate .ibtn{background:var(--plate-card);border-color:var(--line-inv);color:var(--accent-inv)}
+.plate .ibtn:hover{border-color:var(--accent-inv)}
 
 /* hero */
-.hero{padding:72px 0 0;overflow:hidden}
+.hero{padding:64px 0 0;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:end}
-.hero-copy{padding-bottom:88px}
-.hero h1{font-size:clamp(40px,6vw,74px);line-height:1.04;margin:18px 0 22px}
-.hero .lead{font-size:20px;line-height:1.5;color:var(--muted);max-width:560px;margin-bottom:32px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
-.trust{border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13.5px;max-width:560px}
-.trust b{color:var(--ink);font-weight:600}
-.hero-visual{position:relative;min-height:520px}
-.ghost-name{position:absolute;bottom:0;right:-4vw;font-family:var(--disp);font-weight:800;font-size:clamp(90px,13vw,190px);line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(26,26,46,.14);user-select:none;pointer-events:none;white-space:nowrap}
-.hero-visual img{position:relative;z-index:2;height:560px;width:auto;margin:0 auto}
-.hero-visual::before{content:"";position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(15,52,96,.08),transparent 65%)}
+.hero-copy{padding-bottom:72px}
+.hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.04;margin:18px 0 22px}
+.hero .lead{font-size:20px;line-height:1.5;color:var(--muted);max-width:560px;margin-bottom:30px}
+.hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.hero-visual{position:relative;min-height:500px}
+.ghost-name{position:absolute;bottom:0;right:-4vw;font-family:var(--disp);font-weight:800;font-size:clamp(90px,13vw,190px);line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(10,46,36,.15);user-select:none;pointer-events:none;white-space:nowrap}
+.hero-visual img{position:relative;z-index:2;height:540px;width:auto;margin:0 auto}
+.hero-visual::before{content:"";position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(18,87,64,.10),transparent 65%)}
+
+/* logos */
+.logos{border-top:1px solid var(--line);padding:22px 0;background:var(--paper)}
+.logos .wrap{display:flex;align-items:baseline;gap:44px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.logos .cap{color:var(--muted);flex:0 0 auto}
+.wordmark{font-family:var(--disp);font-weight:700;font-size:16px;color:var(--muted);letter-spacing:.01em;flex:0 0 auto}
+.wordmark.serif{font-family:Georgia,'Times New Roman',serif;font-weight:700}
+.wordmark.mono-wm{font-family:var(--mono);font-size:13.5px;letter-spacing:.12em;font-weight:500}
 
 /* marquee */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:14px 0;background:var(--paper)}
-.marquee-track{display:flex;gap:0;width:max-content;animation:mq 42s linear infinite}
-.marquee span{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--muted);padding:0 18px;white-space:nowrap}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:13px 0;background:var(--paper)}
+.marquee-track{display:flex;width:max-content;animation:mq 42s linear infinite}
+.marquee span{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--muted);padding:0 18px;white-space:nowrap;text-transform:uppercase}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion: reduce){.marquee-track{animation:none}}
 
@@ -80,29 +93,51 @@ nav .btn{flex:0 0 auto}
 .plate h2{color:#fff}
 @media (max-width:768px){.plate{border-radius:20px;margin:0}}
 
-/* stats */
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.stat{background:var(--plate);border:1px solid var(--line-inv);border-radius:20px;padding:26px 24px}
-.stat .idx{color:var(--cobalt-inv);margin-bottom:14px}
-.stat b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(28px,3vw,42px);line-height:1.05;letter-spacing:-.02em;color:#fff}
-.stat span{display:block;margin-top:10px;font-size:14px;color:var(--muted-inv);line-height:1.45}
-
-/* cycle slider */
+/* moments slider */
 .slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 4px 18px;margin:0 -4px}
 .slide{flex:0 0 300px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s,transform .15s}
-.slide:hover{border-color:var(--cobalt);box-shadow:0 12px 32px rgba(26,26,46,.08);transform:translateY(-2px)}
-.slide .num{position:absolute;top:-18px;right:6px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:rgba(26,26,46,.06);user-select:none}
+.slide:hover{border-color:var(--accent);box-shadow:0 12px 32px rgba(10,46,36,.08);transform:translateY(-2px)}
+.slide .num{position:absolute;top:-18px;right:6px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:rgba(10,46,36,.06);user-select:none}
 .slide h3{font-size:21px;margin-bottom:10px;position:relative}
 .slide p{font-size:15px;color:var(--muted);position:relative}
 .hint{margin-top:6px;color:var(--muted)}
 
-/* cases */
+/* about-short */
+.ab-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;align-items:center}
+.ab-grid img{border-radius:20px;width:100%}
+.ab-grid .bio p{margin-bottom:13px;font-size:16.5px}
+.ab-grid .bio .lead-line{font-size:20px;font-weight:600;line-height:1.4}
+
+/* stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:var(--plate-card);border:1px solid var(--line-inv);border-radius:20px;padding:26px 24px}
+.stat .idx{color:var(--accent-inv);margin-bottom:14px}
+.stat b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(28px,3vw,42px);line-height:1.05;letter-spacing:-.02em;color:#fff}
+.stat span{display:block;margin-top:10px;font-size:14px;color:var(--muted-inv);line-height:1.45}
+
+/* deep cases */
 .cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .case{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;transition:border-color .15s,box-shadow .15s,transform .15s}
-.case:hover{border-color:var(--cobalt);box-shadow:0 12px 32px rgba(26,26,46,.08);transform:translateY(-2px)}
-.case .big{font-family:var(--disp);font-weight:800;font-size:clamp(34px,3.4vw,52px);letter-spacing:-.02em;line-height:1;color:var(--accent)}
-.case .what{font-weight:600;font-size:17px;margin:14px 0 6px}
-.case p{font-size:14.5px;color:var(--muted)}
+.case:hover{border-color:var(--accent);box-shadow:0 12px 32px rgba(10,46,36,.08);transform:translateY(-2px)}
+.case .big{font-family:var(--disp);font-weight:800;font-size:clamp(32px,3vw,46px);letter-spacing:-.02em;line-height:1;color:var(--accent)}
+.case .what{font-weight:600;font-size:17px;margin:12px 0 4px}
+.case .cb{border-top:1px solid var(--line);padding:12px 0 2px;margin-top:12px}
+.case .cb .mono{color:var(--accent);display:block;margin-bottom:5px}
+.case .cb p{font-size:14.5px;color:var(--muted)}
+.case .cb.res{border-left:2px solid var(--accent);padding-left:14px;border-top:none;margin-top:14px}
+.case .cb.res p{color:var(--ink);font-weight:600}
+.cta-line{margin-top:28px;font-size:16px}
+.cta-line a{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
+
+/* work samples */
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.frame{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .15s,box-shadow .15s,transform .15s}
+.frame:hover{border-color:var(--accent);box-shadow:0 16px 40px rgba(10,46,36,.10);transform:translateY(-4px)}
+.frame-bar{height:30px;background:#F1F3F1;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 12px}
+.frame-bar i{width:8px;height:8px;border-radius:50%;background:rgba(19,22,20,.18)}
+.frame img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+.frame figcaption{padding:12px 14px;color:var(--muted)}
+.work-note{margin-top:22px;color:var(--muted)}
 
 /* photo strip */
 .strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 24px 6px}
@@ -110,51 +145,51 @@ nav .btn{flex:0 0 auto}
 .shot img{height:380px;width:auto;border-radius:12px}
 .shot figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-inv);margin-top:10px}
 
-/* practice list */
+/* practice */
 .practice{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
 .practice li{list-style:none;padding:14px 0 14px 26px;border-bottom:1px solid var(--line);position:relative;font-size:15px}
-.practice li::before{content:"–";position:absolute;left:0;color:var(--cobalt);font-weight:700}
+.practice li::before{content:"–";position:absolute;left:0;color:var(--accent);font-weight:700}
 
-/* products */
+/* products + formats */
 .prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .prod{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px}
 .prod h3{font-size:17px;margin-bottom:14px}
 .prod div{font-size:13.5px;color:var(--muted);padding:7px 0;border-top:1px solid var(--line);line-height:1.45}
 .prod div b{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--accent);font-weight:500;display:block}
-
-/* process + formats */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
-.step .idx{color:var(--cobalt);margin-bottom:12px}
-.step p{font-size:15px}
-.formats{display:flex;flex-wrap:wrap;gap:10px}
+.formats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 18px;font-size:14px}
 .chip b{font-weight:600}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.step .idx{color:var(--accent);margin-bottom:12px}
+.step p{font-size:15px}
+.step a{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
 
 /* faq */
 .faq{max-width:820px}
 .faq details{border-bottom:1px solid var(--line);padding:6px 0}
 .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:600;font-size:17px;padding:16px 0}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--disp);font-weight:700;font-size:22px;color:var(--cobalt);flex:0 0 auto;transition:transform .2s}
+.faq summary::after{content:"+";font-family:var(--disp);font-weight:700;font-size:22px;color:var(--accent);flex:0 0 auto;transition:transform .2s}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{padding:0 0 18px;color:var(--muted);font-size:15.5px;max-width:700px}
 
-/* who */
-.who-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
-.who-grid img{border-radius:20px;width:100%}
-.who-grid .bio p{margin-bottom:14px;font-size:16px}
-.who-grid .bio .award-line{font-weight:600}
-.tools{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
+/* off-work */
+.off-grid{display:grid;grid-template-columns:1.28fr .72fr;gap:48px;align-items:center}
+.off-grid img{border-radius:20px;width:100%}
+.off-grid .bio p{margin-bottom:13px;font-size:16.5px}
+.tools{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:10px}
 
 /* cta */
 .cta-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
 .cta-inner h2{font-size:clamp(30px,4vw,52px)}
 .cta-inner .lead{color:var(--muted-inv);font-size:18px;margin-bottom:28px;max-width:520px}
-.cta-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.cta-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
 .cta-note{font-size:14px;color:var(--muted-inv)}
-.cta-contact{font-size:15px;line-height:2;color:var(--muted-inv)}
-.cta-contact a{color:#fff;font-weight:600;border-bottom:1px solid var(--cobalt-inv)}
+.cta-contact{font-size:15px;line-height:2.1;color:var(--muted-inv)}
+.cta-contact a{color:#fff;font-weight:600;border-bottom:1px solid var(--accent-inv)}
 
 /* footer */
 footer{padding:36px 0 110px;font-size:13px;color:var(--muted)}
@@ -162,11 +197,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-betw
 footer a{border-bottom:1px solid var(--line)}
 footer a:hover{color:var(--ink)}
 
-/* mobile sticky cta */
 #mcta{display:none}
 
 @media (max-width:1000px){
   .stats-grid,.cases-grid{grid-template-columns:1fr 1fr}
+  .work-grid{grid-template-columns:1fr 1fr}
   .prod-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}
   .prod{flex:0 0 240px;scroll-snap-align:start}
   .hero .wrap{grid-template-columns:1fr}
@@ -174,26 +209,30 @@ footer a:hover{color:var(--ink)}
   .hero-visual{min-height:0;margin-top:8px}
   .hero-visual img{height:420px;margin:0 0 0 auto}
   .ghost-name{font-size:clamp(70px,17vw,130px);right:0}
+  .ab-grid,.off-grid{grid-template-columns:1fr;gap:28px}
+  .off-grid img{order:-1}
 }
 @media (max-width:768px){
   body{font-size:16px}
   section{padding:64px 0}
   h2{font-size:28px}
-  .hero{padding-top:44px}
+  .hero{padding-top:40px}
   .hero .lead{font-size:17px}
-  .hero-visual img{height:340px}
+  .hero-visual img{height:330px}
+  .hero-main,.who-main{flex:1 1 100%}
   .stats-grid{grid-template-columns:1fr 1fr;gap:10px}
   .stat{padding:20px 18px}
-  .cases-grid{grid-template-columns:1fr}
+  .cases-grid,.work-grid{grid-template-columns:1fr}
   .practice{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
-  .who-grid{grid-template-columns:1fr;gap:28px}
   .cta-inner{grid-template-columns:1fr}
   .shot img{height:300px}
   .slide{flex-basis:270px}
-  #mcta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(18,18,43,.96);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
-  #mcta a{flex:1}
-  nav .btn{display:none}
+  .bridge{font-size:17px}
+  #mcta{display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(10,46,36,.96);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+  #mcta .btn{flex:1}
+  #mcta .ibtn{background:var(--plate-card);border-color:var(--line-inv);color:var(--accent-inv);flex:0 0 auto}
+  nav .nav-icons{display:none}
   footer{padding-bottom:150px}
 }
 </style>
@@ -201,18 +240,28 @@ footer a:hover{color:var(--ink)}
 <body>
 <div id="progress"></div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="m20.7 3.3-17.8 6.9c-.8.3-.8 1.1-.1 1.3l4.4 1.4 1.7 5.2c.2.6.9.7 1.3.3l2.4-2.3 4.6 3.4c.5.3 1.1.1 1.2-.5l3-14.6c.2-.8-.5-1.4-1.3-1.1zM8.4 12.9l8.6-5.4c.2-.1.4.1.2.3l-7 6.5-.3 3-1.5-4.4z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.1 1.5 5.8L0 24l6.3-1.7c1.7.9 3.6 1.5 5.7 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.7 2.2 13.9 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8zm5.4-7.3c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.4.2-.7.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 5h18v14H3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="m3 6 9 7 9-7"/></symbol>
+</svg>
+
 <nav aria-label="Разделы">
   <div class="wrap">
     <a class="logo" href="#top">КБ</a>
     <div class="nav-links">
-      <a href="#cycle">Когда я нужен</a>
+      <a href="#moments">Когда я нужен</a>
       <a href="#cases">Кейсы</a>
-      <a href="#field">В полях</a>
+      <a href="#work">Примеры работ</a>
       <a href="#products">Продукты</a>
       <a href="#faq">Вопросы</a>
-      <a href="#who">Кто я</a>
+      <a href="#contact">Контакт</a>
     </div>
-    <a class="btn small" href="https://t.me/kostya_younker">Обсудить задачу</a>
+    <div class="nav-icons">
+      <a class="ibtn small" href="https://t.me/kostya_younker" aria-label="Телеграм"><svg><use href="#i-tg"/></svg></a>
+      <a class="ibtn small" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
+      <a class="ibtn small" href="mailto:babadzhanyan.k.s@gmail.com?subject=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%20%2F%20%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0" aria-label="Почта"><svg><use href="#i-mail"/></svg></a>
+    </div>
   </div>
 </nav>
 
@@ -220,13 +269,13 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="hero-copy">
       <div class="mono eyebrow">Константин Бабаджанян / Стратегия / M&amp;A / AI</div>
-      <h1>Весь цикл стоимости – один исполнитель</h1>
-      <p class="lead">M&amp;A, стратегия, эффективность, рост и выход – цифры, которые проходят комитеты и советы директоров</p>
+      <h1>Весь цикл стоимости – от покупки до выхода</h1>
+      <p class="lead">M&amp;A, стратегия, эффективность, рост. Веду задачу сам, под масштаб собираю команду ex-McKinsey / ex-BCG / ex-Bain. Цифры, которые проходят комитеты и советы директоров</p>
       <div class="hero-ctas">
-        <a class="btn" href="https://t.me/kostya_younker">Обсудить задачу в Telegram</a>
-        <a class="btn ghost" href="mailto:babadzhanyan.k.s@gmail.com?subject=%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F&body=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%3A%0A%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%0A">Написать на почту</a>
+        <a class="btn" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg>Обсудить задачу</a>
+        <a class="ibtn" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
+        <a class="ibtn" href="mailto:babadzhanyan.k.s@gmail.com?subject=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%20%2F%20%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0" aria-label="Почта"><svg><use href="#i-mail"/></svg></a>
       </div>
-      <div class="trust">Школа <b>McKinsey</b> – стажировка McKinsey CIS, затем <b>Yakov &amp; Partners</b> / <b>Яндекс Реклама</b> / офис трансформации национального оператора <b>(CEO-1)</b></div>
     </div>
     <div class="hero-visual">
       <div class="ghost-name">БАБАДЖАНЯН</div>
@@ -235,29 +284,28 @@ footer a:hover{color:var(--ink)}
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="mq">
-    <span>M&amp;A</span><span>/</span><span>LBO</span><span>/</span><span>Due Diligence</span><span>/</span><span>Стратегия</span><span>/</span><span>Трансформация</span><span>/</span><span>AI</span><span>/</span><span>Финмодели</span><span>/</span><span>Оценка</span><span>/</span><span>GTM</span><span>/</span><span>Операционная эффективность</span><span>/</span>
+<div class="logos">
+  <div class="wrap">
+    <span class="mono cap">Школа и практика</span>
+    <span class="wordmark serif">McKinsey &amp; Company</span>
+    <span class="wordmark">Yakov &amp; Partners</span>
+    <span class="wordmark">Яндекс</span>
+    <span class="wordmark mono-wm">ГЛОНАСС</span>
+    <span class="wordmark">МГТУ им. Н.Э. Баумана</span>
   </div>
 </div>
 
-<section>
-  <div class="plate">
-    <div class="wrap" style="padding-top:72px;padding-bottom:72px">
-      <div class="stats-grid">
-        <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в 7 отраслях</span></div>
-        <div class="stat reveal"><div class="mono idx">/02</div><b>2 сделки M&amp;A</b><span>~$16 и ~$25 млн EV – одобрены комитетами</span></div>
-        <div class="stat reveal"><div class="mono idx">/03</div><b>3x EBITDA</b><span>стратегия, защищённая советом директоров</span></div>
-        <div class="stat reveal"><div class="mono idx">/04</div><b>+$30 млн/год</b><span>потенциал программы продаж в Яндексе</span></div>
-      </div>
-    </div>
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq">
+    <span>M&amp;A</span><span>/</span><span>LBO</span><span>/</span><span>Due Diligence</span><span>/</span><span>Стратегия</span><span>/</span><span>Трансформация</span><span>/</span><span>AI</span><span>/</span><span>Финмодели</span><span>/</span><span>Оценка</span><span>/</span><span>GTM</span><span>/</span><span>Эффективность</span><span>/</span>
   </div>
-</section>
+</div>
 
-<section id="cycle" style="padding-top:0">
+<section id="moments">
   <div class="wrap">
-    <div class="mono eyebrow">/01 – Цикл стоимости</div>
+    <div class="mono eyebrow">/01 – Когда я нужен</div>
     <h2 class="reveal">Пять моментов, когда решение стоит десятки миллионов</h2>
+    <p class="bridge reveal">Бизнес проходит один цикл: купить, вырастить, навести порядок, разогнать выручку, продать. Я включаюсь в каждой точке <b>↓</b></p>
     <div class="slider">
       <div class="slide reveal"><div class="num">01</div><h3>Купить актив</h3><p>Цена названа, а проверить её нечем: ни модели, ни DD, ни аргументов для комитета</p></div>
       <div class="slide reveal"><div class="num">02</div><h3>Решить, куда расти</h3><p>Рост упёрся в потолок, гипотез много – плана, за который проголосуют деньги, нет</p></div>
@@ -269,57 +317,134 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section id="cases" style="padding-top:24px">
+<section id="about" style="padding-top:16px">
   <div class="wrap">
-    <div class="mono eyebrow">/02 – Кейсы</div>
-    <h2 class="reveal">Тезисы проходят комитеты, стратегии – советы директоров</h2>
-    <div class="cases-grid" style="margin-top:28px">
-      <div class="case reveal"><div class="big">~$16 млн EV</div><div class="what">LBO одобрен инвестиционным и кредитным комитетами</div><p>Проблемный молочный актив (FMCG): DD, LBO- и кредитная модели, NPV синергий</p></div>
-      <div class="case reveal"><div class="big">3x EBITDA</div><div class="what">Стратегия защищена советом директоров</div><p>Пятилетняя диверсификация национального оператора: 4 стратсессии, защита перед СД и Министром транспорта</p></div>
-      <div class="case reveal"><div class="big">+$30 млн/год</div><div class="what">Потенциал программы продаж в Яндексе</div><p>Эффективность продаж, 70+ человек (+2,5% выручки); перестройка баз – +5% выручки сегмента</p></div>
-      <div class="case reveal"><div class="big">$24 → $120 млн</div><div class="what">Целевая модель роста B2B SaaS к 2030</div><p>Корпоративная, GTM и функциональные стратегии, AI-pivot – с партнёрами ex-McKinsey</p></div>
+    <div class="mono eyebrow">/02 – Кто с вами говорит</div>
+    <div class="ab-grid">
+      <img class="reveal" src="img/kostya-cafe.jpg" alt="Константин Бабаджанян за работой">
+      <div class="bio reveal">
+        <p class="lead-line">Константин Бабаджанян – стратегия и сделки со школой McKinsey и операционным опытом на стороне бизнеса</p>
+        <p>Школа McKinsey (2,5 года в McKinsey CIS и Yakov &amp; Partners – ex-McKinsey CIS). Затем – коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в роли CEO-1</p>
+        <p>Инженер МГТУ им. Н.Э. Баумана (специалитет). Разработал программу обучения по бизнес-анализу и обучил 300+ сотрудников телеком-компании</p>
+        <p>Под масштаб задачи собираю команду: партнёры ex-McKinsey, команды ex-BCG / ex-Bain / ex-EY. Ответственный перед клиентом один – я</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="field" style="padding-top:24px">
+<section style="padding-top:0">
+  <div class="plate">
+    <div class="wrap" style="padding-top:72px;padding-bottom:72px">
+      <div class="stats-grid">
+        <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в 7 отраслях</span></div>
+        <div class="stat reveal"><div class="mono idx">/02</div><b>2 сделки M&amp;A</b><span>~$16 и ~$25 млн EV – одобрены комитетами</span></div>
+        <div class="stat reveal"><div class="mono idx">/03</div><b>3x EBITDA</b><span>стратегия ГЛОНАСС – защищена советом директоров</span></div>
+        <div class="stat reveal"><div class="mono idx">/04</div><b>+$30 млн/год</b><span>потенциал программы продаж в Яндексе</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases" style="padding-top:64px">
+  <div class="wrap">
+    <div class="mono eyebrow">/03 – Кейсы</div>
+    <h2 class="reveal">Тезисы проходят комитеты, стратегии – советы директоров</h2>
+    <p class="bridge reveal">Четыре истории с одинаковой механикой: вызов – работа – одобренный результат <b>↓</b></p>
+    <div class="cases-grid">
+      <div class="case reveal">
+        <div class="big">~$16 млн EV</div>
+        <div class="what">LBO молочного актива – одобрен двумя комитетами</div>
+        <div class="cb"><span class="mono">Вызов</span><p>Проблемный молочный актив (FMCG) – покупать ли и по какой цене</p></div>
+        <div class="cb"><span class="mono">Что сделали</span><p>Due diligence, LBO- и кредитная модели, оценка NPV синергий</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>Сделка ~$16 млн EV одобрена инвестиционным и кредитным комитетами</p></div>
+      </div>
+      <div class="case reveal">
+        <div class="big">3x EBITDA</div>
+        <div class="what">ГЛОНАСС – стратегия, защищённая советом директоров</div>
+        <div class="cb"><span class="mono">Вызов</span><p>Пятилетняя диверсификация – нужен план, за который проголосуют СД и государство</p></div>
+        <div class="cb"><span class="mono">Что сделали</span><p>Офис трансформации с нуля в роли CEO-1, 4 стратсессии, стратегия диверсификации</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>Стратегия с целью 3x EBITDA защищена перед советом директоров и Министром транспорта</p></div>
+      </div>
+      <div class="case reveal">
+        <div class="big">+$30 млн/год</div>
+        <div class="what">Яндекс – программа эффективности продаж</div>
+        <div class="cb"><span class="mono">Вызов</span><p>Коммерческая трансформация – выручка команд росла медленнее возможного</p></div>
+        <div class="cb"><span class="mono">Что сделали</span><p>Программа эффективности продаж для 70+ человек, перестройка клиентских баз сегмента</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>+2,5% выручки от программы и +5% от перестройки баз – потенциал +$30 млн/год</p></div>
+      </div>
+      <div class="case reveal">
+        <div class="big">$24 → $120 млн</div>
+        <div class="what">B2B SaaS – целевая модель роста к 2030</div>
+        <div class="cb"><span class="mono">Вызов</span><p>Вендору нужен план кратного роста и ответ на AI-сдвиг рынка</p></div>
+        <div class="cb"><span class="mono">Что сделали</span><p>Корпоративная, GTM и функциональные стратегии, AI-pivot – с партнёрами ex-McKinsey</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>Целевая модель роста $24 → $120 млн к 2030</p></div>
+      </div>
+    </div>
+    <p class="cta-line reveal">Похожая задача? <a href="https://t.me/kostya_younker">Напишите – скажу, какой кейс релевантен вашей ситуации</a></p>
+  </div>
+</section>
+
+<section id="work" style="padding-top:24px">
+  <div class="wrap">
+    <div class="mono eyebrow">/04 – Примеры работ</div>
+    <h2 class="reveal">Что вы получаете на руки</h2>
+    <p class="bridge reveal">Презентации для советов директоров, финмодели, документы сделок – вот как это выглядит <b>↓</b></p>
+    <div class="work-grid">
+      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-3.jpg" alt="Дек инвестиционного кейса"><figcaption class="mono">Дек инвест-кейса / PE-фонд (тестовый)</figcaption></figure>
+      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-2.jpg" alt="LBO-модель для кредитного комитета"><figcaption class="mono">LBO-модель / кредитный комитет (синтетика)</figcaption></figure>
+      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-1.jpg" alt="Кейс-тизер стратегии роста SaaS"><figcaption class="mono">Кейс-тизер / стратегия роста B2B SaaS</figcaption></figure>
+      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-4.jpg" alt="Executive summary инвестиционного кейса"><figcaption class="mono">Executive summary / экономика фонда</figcaption></figure>
+      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-6.jpg" alt="Шаблон соглашения об условиях сделки"><figcaption class="mono">Соглашение об условиях сделки / шаблон</figcaption></figure>
+      <figure class="frame reveal"><div class="frame-bar"><i></i><i></i><i></i></div><img src="img/w-5.jpg" alt="Авторская аналитика по финмоделям"><figcaption class="mono">Авторская аналитика / red flags финмоделей</figcaption></figure>
+    </div>
+    <p class="work-note mono reveal">Все материалы санитизированы: тестовые и синтетические кейсы, шаблоны без клиентских данных. Клиентские работы – под соглашением о неразглашении</p>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq2">
+    <span>Комитеты</span><span>/</span><span>Совет директоров</span><span>/</span><span>Стратсессии</span><span>/</span><span>Финмодели</span><span>/</span><span>Деки</span><span>/</span><span>Дашборды</span><span>/</span><span>Соглашения</span><span>/</span>
+  </div>
+</div>
+
+<section id="field" style="padding-top:64px">
   <div class="plate">
     <div style="padding:72px 0">
       <div class="wrap">
-        <div class="mono eyebrow">/03 – В полях</div>
+        <div class="mono eyebrow">/05 – В полях</div>
         <h2 class="reveal">Не только слайды – цеха, крыши, сцены</h2>
+        <p class="bridge reveal" style="color:var(--muted-inv)">Цифры рождаются не в опенспейсе – диагностика начинается там, где создаётся стоимость <b style="color:var(--accent-inv)">↓</b></p>
       </div>
-      <div class="strip" style="margin-top:28px">
+      <div class="strip">
         <figure class="shot"><img src="img/f-plant.jpg" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
         <figure class="shot"><img src="img/f-roof.jpg" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
         <figure class="shot"><img src="img/f-award.jpg" alt="Награждение"><figcaption>Награждение / Яркий старт</figcaption></figure>
         <figure class="shot"><img src="img/f-stage.jpg" alt="Выступление на конференции"><figcaption>Конференция / выступление</figcaption></figure>
         <figure class="shot"><img src="img/f-conf.jpg" alt="Деловая конференция"><figcaption>Деловая конференция</figcaption></figure>
-        <figure class="shot"><img src="img/f-lift.jpg" alt="На объекте"><figcaption>На объекте</figcaption></figure>
+        <figure class="shot"><img src="img/f-lift.jpg" alt="Выпуск МГТУ им. Баумана"><figcaption>МГТУ им. Н.Э. Баумана / выпуск, инженер-специалист</figcaption></figure>
       </div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:24px">
+<section style="padding-top:64px">
   <div class="wrap">
-    <div class="mono eyebrow">/04 – Ещё из практики</div>
+    <div class="mono eyebrow">/06 – Ещё из практики</div>
     <ul class="practice reveal">
       <li>DD и оценка FMCG-бренда косметики ~$25 млн EV: доля 50%+1 с earn-out</li>
       <li>Sell-side бренда ~$2 млн EV: от поиска инвестора до NDA, term sheet, SHA, SPA</li>
       <li>Сталеплавильный актив $1 млрд: +10% темпа, ~+$3 млн прибыли</li>
       <li>10+ проектов эффективности: девелопмент, промышленность, топ-3 банк РФ</li>
       <li>FTE-модели численности по 7 функциям для топ-1 девелопера РФ</li>
-      <li>Офис трансформации национального оператора с нуля, роль CEO-1</li>
       <li>MVP речевой аналитики на 10&nbsp;000 звонков, мультиагентные AI-пайплайны</li>
-      <li>Продажи медийной рекламы +$2,8 млн/год через аналитику</li>
+      <li>Продажи медийной рекламы в Яндексе: +$2,8 млн/год через аналитику</li>
     </ul>
   </div>
 </section>
 
 <section id="products" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/05 – Продукты и сроки</div>
+    <div class="mono eyebrow">/07 – Продукты и форматы</div>
     <h2 class="reveal">Что можно заказать</h2>
     <div class="prod-grid" style="margin-top:28px">
       <div class="prod reveal"><h3>Стратегия</h3><div><b>День</b>разбор и рекомендация</div><div><b>1–4 недели</b>анализ рынка, стратсессия</div><div><b>1–3 месяца</b>стратегия 3–5 лет</div></div>
@@ -328,51 +453,51 @@ footer a:hover{color:var(--ink)}
       <div class="prod reveal"><h3>Рост и AI</h3><div><b>День</b>консультация по AI</div><div><b>1–4 недели</b>аудит и пилот AI</div><div><b>1–3 месяца</b>перестройка продаж</div></div>
       <div class="prod reveal"><h3>Модели и аналитика</h3><div><b>День</b>финмодель, записка</div><div><b>1–4 недели</b>бизнес-план, оценка</div><div><b>1–3 месяца</b>панели и отчётность</div></div>
     </div>
-  </div>
-</section>
-
-<section style="padding-top:24px">
-  <div class="wrap">
-    <div class="mono eyebrow">/06 – Как начинается работа</div>
-    <div class="steps" style="margin-top:28px">
-      <div class="step reveal"><div class="mono idx">Шаг 1</div><p>Пишете в Telegram: что за бизнес и какая задача</p></div>
-      <div class="step reveal"><div class="mono idx">Шаг 2</div><p>Созвон 30 минут: чем могу быть полезен, чем нет, и какой первый шаг даст цифру</p></div>
-      <div class="step reveal"><div class="mono idx">Шаг 3</div><p>Предложение до старта: цена, срок и результат зафиксированы</p></div>
-    </div>
     <div class="formats reveal">
       <div class="chip"><b>Проект под ключ</b> – фиксированный результат и срок</div>
       <div class="chip"><b>Руководитель на время</b> – interim-роль внутри команды</div>
       <div class="chip"><b>Разовая консультация</b> – разбор и рекомендация за встречу</div>
       <div class="chip"><b>Советник</b> – регулярное сопровождение собственника</div>
     </div>
+    <p class="cta-line reveal">Не нашли свой формат? <a href="https://t.me/kostya_younker">Опишите задачу – соберу предложение под неё</a></p>
+  </div>
+</section>
+
+<section style="padding-top:24px">
+  <div class="wrap">
+    <div class="mono eyebrow">/08 – Как начинается работа</div>
+    <div class="steps" style="margin-top:28px">
+      <div class="step reveal"><div class="mono idx">Шаг 1</div><p>Пишете <a href="https://t.me/kostya_younker">в Телеграм</a>: что за бизнес и какая задача</p></div>
+      <div class="step reveal"><div class="mono idx">Шаг 2</div><p>Созвон 30 минут: чем могу быть полезен, чем нет, и какой первый шаг даст цифру</p></div>
+      <div class="step reveal"><div class="mono idx">Шаг 3</div><p>Предложение до старта: цена, срок и результат зафиксированы</p></div>
+    </div>
   </div>
 </section>
 
 <section id="faq" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/07 – Вопросы</div>
+    <div class="mono eyebrow">/09 – Вопросы</div>
     <h2 class="reveal">Что спрашивают до старта</h2>
     <div class="faq" style="margin-top:16px">
-      <details><summary>Почему вы, а не большая консалтинговая фирма</summary><p>Калибр анализа тот же – школа McKinsey, стандарты комитетов и советов директоров. Цена без наценки на бренд и офис: пирамиду аналитиков заменяет AI-стек. И я довожу до внедрения, а не до слайдов</p></details>
-      <details><summary>Один человек потянет большой проект</summary><p>Большой проект не упирается в одного: под задачу собираю партнёров ex-McKinsey и команды ex-BCG / ex-Bain / ex-EY. Ответственный перед вами один – я</p></details>
-      <details><summary>Что с конфиденциальностью</summary><p>NDA – стандарт. Клиенты в кейсах не названы: вы видите цифры и результат, но не имена. С вашим проектом будет так же</p></details>
+      <details><summary>Почему вы, а не большая консалтинговая фирма</summary><p>Калибр анализа тот же – школа McKinsey, стандарты комитетов и советов директоров. Цена без наценки на бренд и офис: вместо пирамиды джуниоров – senior-команда и AI-стек. И мы доводим до внедрения, а не до слайдов</p></details>
+      <details><summary>Кто именно будет делать проект</summary><p>Ядро делаю сам. Под масштаб подключаю партнёров ex-McKinsey и команды ex-BCG / ex-Bain / ex-EY. Ответственный перед вами один – я</p></details>
+      <details><summary>Что с конфиденциальностью</summary><p>Соглашение о неразглашении – стандарт. Часть клиентов названа с их разрешения, остальные кейсы – цифры без имён. С вашим проектом – как договоримся</p></details>
       <details><summary>Сколько стоит</summary><p>Вилка зависит от задачи – называю её по итогам 30-минутного созвона. До старта вы получаете предложение с фиксированной ценой, сроком и результатом</p></details>
     </div>
   </div>
 </section>
 
-<section id="who" style="padding-top:24px">
+<section id="offwork" style="padding-top:24px">
   <div class="wrap">
-    <div class="mono eyebrow">/08 – Кто я</div>
-    <div class="who-grid" style="margin-top:28px">
-      <img class="reveal" src="img/kostya-portrait.jpg" alt="Константин Бабаджанян, портрет">
+    <div class="mono eyebrow">/10 – Вне работы</div>
+    <div class="off-grid">
       <div class="bio reveal">
-        <h2 style="font-size:30px">Школа McKinsey, роль CEO-1 и живая сделочная практика</h2>
-        <p>Стажировка в McKinsey CIS, затем бизнес-аналитик в Yakov &amp; Partners (ex-McKinsey CIS). Дальше – коммерческая трансформация в Яндекс Рекламе и офис трансформации национального оператора в роли CEO-1. Сейчас – независимая практика: сделки, стратегии, эффективность</p>
-        <p class="award-line">Победитель McKinsey Business Diving 2021 из 400+ команд, призёр ещё 5 кейс-чемпионатов. Обучил 300+ аналитиков</p>
-        <p>Сейчас в работе: buy-side поиск таргетов для технологического стратега, диагностика роста с ex-EY командой, посредничество в M&amp;A-сделке, DD ed-tech, материалы под стратегических покупателей</p>
-        <div class="tools">Excel / Think-cell / SQL / Python / Power BI / Tableau / DataLens / генеративный AI / Claude Code · Русский родной, английский C1 · School of Finance</div>
+        <h2 style="font-size:30px">Лучшие решения приходят не за столом</h2>
+        <p>Путешествия и горы, тайский бокс, шахматы. Активный образ жизни – часть рабочего метода: голова считает лучше после движения</p>
+        <p>Инженерная база МГТУ им. Н.Э. Баумана научила разбирать сложные системы до винтика – теперь так же разбираю бизнесы</p>
+        <div class="tools">Excel / Think-cell / SQL / Python / Power BI / Tableau / DataLens / генеративный AI / Claude Code – Русский родной, английский C1 – School of Finance</div>
       </div>
+      <img class="reveal" src="img/kostya-travel.jpg" alt="Константин в горах Шри-Ланки">
     </div>
   </div>
 </section>
@@ -385,16 +510,17 @@ footer a:hover{color:var(--ink)}
           <h2 class="reveal">Сделка, рост, косты или выход – начнём с задачи</h2>
           <p class="lead">За один созвон скажу, чем могу быть полезен, чем не могу, и какой первый шаг даст цифру для решения</p>
           <div class="cta-ctas">
-            <a class="btn inv" href="https://t.me/kostya_younker">Написать в Telegram</a>
-            <a class="btn ghost-inv" href="mailto:babadzhanyan.k.s@gmail.com?subject=%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F&body=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%3A%0A%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%0A">Написать на почту</a>
+            <a class="btn inv" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg>Написать в Telegram</a>
+            <a class="ibtn" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
+            <a class="ibtn" href="mailto:babadzhanyan.k.s@gmail.com?subject=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%20%2F%20%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0" aria-label="Почта"><svg><use href="#i-mail"/></svg></a>
           </div>
           <div class="cta-note">Первое сообщение – одна строка: кто вы и какая задача. Отвечаю в течение рабочего дня</div>
         </div>
         <div class="cta-contact">
           Telegram – <a href="https://t.me/kostya_younker">@kostya_younker</a><br>
+          WhatsApp – <a href="https://wa.me/79055500958">написать</a><br>
           Почта – <a href="mailto:babadzhanyan.k.s@gmail.com">babadzhanyan.k.s@gmail.com</a><br>
-          Телефон – <a href="tel:+79055500958">+7 905 550-09-58</a><br>
-          <a href="https://www.linkedin.com/in/konstantin-babadzhanyan/">LinkedIn</a> · Москва · Открыт к встречным интро
+          <a href="https://www.linkedin.com/in/konstantin-babadzhanyan/">LinkedIn</a> / Москва / Открыт к встречным интро
         </div>
       </div>
     </div>
@@ -403,16 +529,20 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <div>ИП Бабаджанян Константин Сергеевич · ИНН 231216808537 · ОГРНИП 325774600768538</div>
-    <div><a href="oferta.html">Оферта на консультационные услуги</a> · <a href="privacy.html">Политика обработки персональных данных</a></div>
-    <div>© 2026 · Москва</div>
+    <div>ИП Бабаджанян Константин Сергеевич / ИНН 231216808537 / ОГРНИП 325774600768538</div>
+    <div><a href="oferta.html">Оферта</a> / <a href="privacy.html">Политика обработки персональных данных</a></div>
+    <div>© 2026 / Москва</div>
   </div>
 </footer>
 
-<div id="mcta"><a class="btn inv" href="https://t.me/kostya_younker">Обсудить задачу в Telegram</a></div>
+<div id="mcta">
+  <a class="btn inv" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg>Обсудить задачу</a>
+  <a class="ibtn" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
+  <a class="ibtn" href="mailto:babadzhanyan.k.s@gmail.com?subject=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%20%2F%20%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0" aria-label="Почта"><svg><use href="#i-mail"/></svg></a>
+</div>
 
 <script>
-const mq=document.getElementById('mq');mq.innerHTML+=mq.innerHTML;
+for(const id of ['mq','mq2']){const m=document.getElementById(id);if(m)m.innerHTML+=m.innerHTML;}
 const bar=document.getElementById('progress');
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
