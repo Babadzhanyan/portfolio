@@ -39,8 +39,8 @@ section{padding:96px 0}
 
 /* glossary tooltips */
 .t{border-bottom:1px dotted var(--accent);cursor:help;position:relative}
-.t::after{content:attr(data-d);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);width:max-content;max-width:min(280px,78vw);background:var(--dark);color:var(--ink-inv);font-family:var(--text);font-size:13px;font-weight:400;line-height:1.5;letter-spacing:0;text-transform:none;padding:10px 13px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:40;white-space:normal;text-align:left}
-.t::before{content:"";position:absolute;left:50%;bottom:calc(100% + 3px);transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark);opacity:0;transition:opacity .15s;z-index:40}
+.t::after{content:attr(data-d);position:absolute;left:-10px;bottom:calc(100% + 9px);width:max-content;max-width:min(280px,76vw);background:var(--dark);color:var(--ink-inv);font-family:var(--text);font-size:13px;font-weight:400;line-height:1.5;letter-spacing:0;text-transform:none;padding:10px 13px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:40;white-space:normal;text-align:left}
+.t::before{content:"";position:absolute;left:12px;bottom:calc(100% + 3px);border:6px solid transparent;border-top-color:var(--dark);opacity:0;transition:opacity .15s;z-index:40}
 .t:hover::after,.t:hover::before,.t.on::after,.t.on::before{opacity:1}
 .wordmark.t{border-bottom:none}
 .wordmark.t::after{font-family:var(--text)}
