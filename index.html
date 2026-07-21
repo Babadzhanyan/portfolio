@@ -37,6 +37,17 @@ section{padding:96px 0}
 .bridge{font-size:19px;color:var(--muted);max-width:640px;margin:0 0 40px}
 .bridge b{color:var(--accent);font-family:var(--mono);font-weight:500}
 
+/* glossary tooltips */
+.t{border-bottom:1px dotted var(--accent);cursor:help;position:relative}
+.t::after{content:attr(data-d);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);width:max-content;max-width:min(280px,78vw);background:var(--dark);color:var(--ink-inv);font-family:var(--text);font-size:13px;font-weight:400;line-height:1.5;letter-spacing:0;text-transform:none;padding:10px 13px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:40;white-space:normal;text-align:left}
+.t::before{content:"";position:absolute;left:50%;bottom:calc(100% + 3px);transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark);opacity:0;transition:opacity .15s;z-index:40}
+.t:hover::after,.t:hover::before,.t.on::after,.t.on::before{opacity:1}
+.wordmark.t{border-bottom:none}
+.wordmark.t::after{font-family:var(--text)}
+.plate .t{border-bottom-color:var(--accent-inv)}
+.plate .t::after{background:var(--paper);color:var(--ink)}
+.plate .t::before{border-top-color:var(--paper)}
+
 /* progress + nav */
 #progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:60}
 nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -316,9 +327,9 @@ footer a:hover{color:var(--ink)}
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-copy">
-      <div class="mono eyebrow">Константин Бабаджанян / ex-McKinsey</div>
+      <div class="mono eyebrow">Константин Бабаджанян / <span class="t" data-d="McKinsey &amp; Company – крупнейшая в мире компания стратегического консалтинга: помогает владельцам и руководителям принимать ключевые решения">ex-McKinsey</span></div>
       <h1>Помогаю купить, вырастить и продать бизнес</h1>
-      <p class="lead">M&amp;A, стратегия, эффективность – цифры, которые проходят комитеты и советы директоров</p>
+      <p class="lead"><span class="t" data-d="Сделки покупки и продажи бизнеса (mergers &amp; acquisitions)">M&amp;A</span>, стратегия, эффективность – цифры, которые проходят комитеты и советы директоров</p>
       <div class="hero-ctas">
         <a class="btn" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg>Обсудить задачу</a>
         <a class="ibtn" href="https://wa.me/79055500958" aria-label="Ватсап"><svg><use href="#i-wa"/></svg></a>
@@ -334,13 +345,13 @@ footer a:hover{color:var(--ink)}
 <div class="logos">
   <div class="wrap">
     <span class="mono cap">Карьера, партнёрства и школа</span>
-    <span class="wordmark serif">McKinsey &amp; Company</span>
-    <span class="wordmark">Яндекс</span>
-    <span class="wordmark">АФК Система</span>
-    <span class="wordmark mono-wm">ГЛОНАСС</span>
-    <span class="wordmark">Yakov &amp; Partners</span>
-    <span class="wordmark">МГТУ им. Н.Э. Баумана</span>
-    <span class="wordmark">The Experts (School of Finance)</span>
+    <span class="wordmark serif t" data-d="Крупнейшая в мире компания стратегического консалтинга – школа Константина">McKinsey &amp; Company</span>
+    <span class="wordmark t" data-d="Крупнейшая ИТ-компания России – программа эффективности продаж рекламы">Яндекс</span>
+    <span class="wordmark t" data-d="Одна из крупнейших инвестиционных групп России – партнёрство в проектах">АФК Система</span>
+    <span class="wordmark mono-wm t" data-d="Государственный оператор навигационных систем – офис трансформации в роли CEO-1">ГЛОНАСС</span>
+    <span class="wordmark t" data-d="Крупнейшая российская стратегическая консалтинговая фирма, выросшая из McKinsey CIS">Yakov &amp; Partners</span>
+    <span class="wordmark t" data-d="Ведущий инженерный университет России – диплом инженера-специалиста">МГТУ им. Н.Э. Баумана</span>
+    <span class="wordmark t" data-d="Школа финансов: оценка бизнеса и финансовое моделирование">The Experts (School of Finance)</span>
   </div>
 </div>
 
@@ -356,7 +367,7 @@ footer a:hover{color:var(--ink)}
     <h2 class="reveal">Пять моментов, когда решение стоит десятки миллионов</h2>
     <p class="bridge reveal">Купить, вырастить, навести порядок, разогнать, продать – включаюсь в каждой точке <b>↓</b></p>
     <div class="slider">
-      <div class="slide reveal"><div class="num">01</div><h3>Купить актив</h3><p>Цена названа, а проверить её нечем: ни модели, ни DD, ни аргументов для комитета</p></div>
+      <div class="slide reveal"><div class="num">01</div><h3>Купить актив</h3><p>Цена названа, а проверить её нечем: ни модели, ни <span class="t" data-d="Due diligence – проверка бизнеса перед сделкой: финансы, риски, обязательства">DD</span>, ни аргументов для комитета</p></div>
       <div class="slide reveal"><div class="num">02</div><h3>Решить, куда расти</h3><p>Рост упёрся в потолок, гипотез много – плана, за который проголосуют деньги, нет</p></div>
       <div class="slide reveal"><div class="num">03</div><h3>Поднять эффективность</h3><p>Выручка есть, а прибыль растворяется в процессах и численности</p></div>
       <div class="slide reveal"><div class="num">04</div><h3>Вырастить выручку</h3><p>Продавцы заняты всем, кроме продаж, а клиентские базы поделены по привычке</p></div>
@@ -373,7 +384,7 @@ footer a:hover{color:var(--ink)}
       <img class="reveal" src="img/kostya-cafe.jpg" alt="Константин Бабаджанян за работой">
       <div class="bio reveal">
         <p class="lead-line">Константин Бабаджанян – стратегия и сделки со школой McKinsey и операционным опытом на стороне бизнеса</p>
-        <p>Школа McKinsey (2,5 года в McKinsey CIS и Yakov &amp; Partners – ex-McKinsey CIS). Затем – коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в роли CEO-1</p>
+        <p>Школа McKinsey (2,5 года в McKinsey CIS и Yakov &amp; Partners – ex-McKinsey CIS). Затем – коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в роли <span class="t" data-d="Прямое подчинение генеральному директору">CEO-1</span></p>
         <p>Инженер МГТУ им. Н.Э. Баумана (специалитет); разработал программу обучения по бизнес-анализу и обучил 300+ сотрудников телеком-компании</p>
         <p>Под масштаб задачи собираю команду: партнёры ex-McKinsey, команды ex-BCG / ex-Bain / ex-EY – ответственный перед клиентом один</p>
         <div class="tools">Excel / Think-cell / SQL / Python / Power BI / Tableau / DataLens / генеративный AI / Claude Code – Русский родной, английский C1 – School of Finance</div>
@@ -388,7 +399,7 @@ footer a:hover{color:var(--ink)}
       <div class="stats-grid">
         <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в 7 отраслях</span></div>
         <div class="stat reveal"><div class="mono idx">/02</div><b>5 сделок M&amp;A</b><span>3 доведены до решения, 2 активных мандата</span></div>
-        <div class="stat reveal"><div class="mono idx">/03</div><b>3x EBITDA</b><span>стратегия ГЛОНАСС – защищена советом директоров</span></div>
+        <div class="stat reveal"><div class="mono idx">/03</div><b>3x <span class="t" data-d="Прибыль до процентов, налогов и амортизации – базовая мера заработка бизнеса">EBITDA</span></b><span>стратегия ГЛОНАСС – защищена советом директоров</span></div>
         <div class="stat reveal"><div class="mono idx">/04</div><b>+$30 млн/год</b><span>потенциал программы продаж в Яндексе</span></div>
       </div>
     </div>
@@ -401,10 +412,10 @@ footer a:hover{color:var(--ink)}
     <h2 class="reveal">Тезисы проходят комитеты, стратегии – советы директоров</h2>
     <div class="cases-grid">
       <div class="case reveal">
-        <div class="big">~$16 млн EV</div>
-        <div class="what">LBO молочного актива – одобрен двумя комитетами</div>
+        <div class="big">~$16 млн <span class="t" data-d="Enterprise value – оценка стоимости бизнеса целиком">EV</span></div>
+        <div class="what"><span class="t" data-d="Leveraged buyout – покупка бизнеса преимущественно на кредитные деньги">LBO</span> молочного актива – одобрен двумя комитетами</div>
         <div class="cb"><span class="mono">Вызов</span><p>Проблемный молочный актив (FMCG) – покупать ли и по какой цене</p></div>
-        <div class="cb"><span class="mono">Что сделали</span><p>Due diligence, LBO- и кредитная модели, оценка NPV синергий</p></div>
+        <div class="cb"><span class="mono">Что сделали</span><p><span class="t" data-d="Проверка бизнеса перед сделкой: финансы, риски, обязательства">Due diligence</span>, LBO- и кредитная модели, оценка <span class="t" data-d="Сегодняшняя ценность будущих выгод от объединения бизнесов">NPV синергий</span></p></div>
         <div class="cb res"><span class="mono">Результат</span><p>Сделка ~$16 млн EV одобрена инвестиционным и кредитным комитетами</p></div>
       </div>
       <div class="case reveal">
@@ -425,7 +436,7 @@ footer a:hover{color:var(--ink)}
         <div class="big">$24 → $120 млн</div>
         <div class="what">B2B SaaS – целевая модель роста к 2030</div>
         <div class="cb"><span class="mono">Вызов</span><p>Вендору нужен план кратного роста и ответ на AI-сдвиг рынка</p></div>
-        <div class="cb"><span class="mono">Что сделали</span><p>Корпоративная, GTM и функциональные стратегии, AI-pivot – с партнёрами ex-McKinsey</p></div>
+        <div class="cb"><span class="mono">Что сделали</span><p>Корпоративная, <span class="t" data-d="Go-to-market – план выхода на рынок и организации продаж">GTM</span> и функциональные стратегии, <span class="t" data-d="Разворот продукта и модели работы компании на искусственный интеллект">AI-pivot</span> – с партнёрами ex-McKinsey</p></div>
         <div class="cb res"><span class="mono">Результат</span><p>Целевая модель роста $24 → $120 млн к 2030</p></div>
       </div>
     </div>
@@ -438,11 +449,11 @@ footer a:hover{color:var(--ink)}
     <div class="mono eyebrow">/04 – Сделки</div>
     <h2 class="reveal">Реестр сделок: от проверки цены до подписи</h2>
     <div class="deals-grid" style="margin-top:28px">
-      <div class="deal reveal"><span class="mono role">Buy-side / LBO</span><div class="sum">~$16 млн EV</div><p>Молочный актив FMCG: DD, LBO- и кредитная модели</p><span class="mono st">Одобрена двумя комитетами</span></div>
-      <div class="deal reveal"><span class="mono role">Buy-side / DD и оценка</span><div class="sum">~$25 млн EV</div><p>Косметический бренд: доля 50%+1 с earn-out</p><span class="mono st">Одобрена комитетом</span></div>
-      <div class="deal reveal"><span class="mono role">Sell-side / полный цикл</span><div class="sum">~$2 млн EV</div><p>Продажа бренда: инвестор, NDA, term sheet, SHA, SPA</p><span class="mono st">Доведена до SPA</span></div>
-      <div class="deal reveal"><span class="mono role">Sell-side / привлечение инвестора</span><div class="sum">30 млн руб</div><p>Fashion-бренд на Wildberries: cash-in за долю 20% – term sheet, SHA, финмодель</p><span class="mono st">Сделка структурирована</span></div>
-      <div class="deal reveal"><span class="mono role">Buy-side / sourcing</span><div class="sum">В работе</div><p>Поиск и оценка таргетов под мандат покупателя</p><span class="mono st">Активный мандат</span></div>
+      <div class="deal reveal"><span class="mono role"><span class="t" data-d="Работа на стороне покупателя бизнеса">Buy-side</span> / LBO</span><div class="sum">~$16 млн EV</div><p>Молочный актив FMCG: DD, LBO- и кредитная модели</p><span class="mono st">Одобрена двумя комитетами</span></div>
+      <div class="deal reveal"><span class="mono role">Buy-side / DD и оценка</span><div class="sum">~$25 млн EV</div><p>Косметический бренд: доля 50%+1 с <span class="t" data-d="Часть цены платится позже и зависит от будущих результатов бизнеса">earn-out</span></p><span class="mono st">Одобрена комитетом</span></div>
+      <div class="deal reveal"><span class="mono role"><span class="t" data-d="Работа на стороне продавца бизнеса">Sell-side</span> / полный цикл</span><div class="sum">~$2 млн EV</div><p>Продажа бренда: инвестор, <span class="t" data-d="Соглашение о неразглашении">NDA</span>, <span class="t" data-d="Короткий документ с ключевыми условиями сделки – до подписания договоров">term sheet</span>, <span class="t" data-d="Корпоративный договор: правила игры между совладельцами">SHA</span>, <span class="t" data-d="Договор купли-продажи доли">SPA</span></p><span class="mono st">Доведена до SPA</span></div>
+      <div class="deal reveal"><span class="mono role">Sell-side / привлечение инвестора</span><div class="sum">30 млн руб</div><p>Fashion-бренд на Wildberries: <span class="t" data-d="Деньги идут в компанию на развитие, а не продавцу в карман">cash-in</span> за долю 20% – term sheet, SHA, финмодель</p><span class="mono st">Сделка структурирована</span></div>
+      <div class="deal reveal"><span class="mono role">Buy-side / <span class="t" data-d="Поиск и первичная оценка компаний для покупки">sourcing</span></span><div class="sum">В работе</div><p>Поиск и оценка таргетов под мандат покупателя</p><span class="mono st">Активный мандат</span></div>
     </div>
   </div>
 </section>
@@ -488,8 +499,8 @@ footer a:hover{color:var(--ink)}
     <ul class="practice reveal" style="margin-top:24px">
       <li>Сталеплавильный актив $1 млрд: +10% темпа, ~+$3 млн прибыли</li>
       <li>10+ проектов эффективности: девелопмент, промышленность, топ-3 банк РФ</li>
-      <li>FTE-модели численности по 7 функциям для топ-1 девелопера РФ</li>
-      <li>MVP речевой аналитики на 10&nbsp;000 звонков, мультиагентные AI-пайплайны</li>
+      <li><span class="t" data-d="Расчёт необходимой численности сотрудников по функциям">FTE-модели</span> численности по 7 функциям для топ-1 девелопера РФ</li>
+      <li><span class="t" data-d="Быстрая рабочая версия решения для проверки идеи">MVP</span> речевой аналитики на 10&nbsp;000 звонков, мультиагентные AI-пайплайны</li>
       <li>Продажи медийной рекламы в Яндексе: +$2,8 млн/год через аналитику</li>
     </ul>
   </div>
@@ -502,7 +513,7 @@ footer a:hover{color:var(--ink)}
     <div class="prod-grid" style="margin-top:28px">
       <div class="prod reveal"><h3>Стратегия</h3><div><b>День</b>разбор и рекомендация</div><div><b>1–4 недели</b>анализ рынка, стратсессия</div><div><b>1–3 месяца</b>стратегия 3–5 лет</div></div>
       <div class="prod reveal"><h3>Сделки и M&amp;A</h3><div><b>День</b>прикидка стоимости</div><div><b>1–4 недели</b>оценка, проверка сделки</div><div><b>1–3 месяца</b>сделка до закрытия</div></div>
-      <div class="prod reveal"><h3>Эффективность</h3><div><b>День</b>разбор процесса</div><div><b>1–4 недели</b>диагностика, программа затрат</div><div><b>1–3 месяца</b>внедрение, interim-роль</div></div>
+      <div class="prod reveal"><h3>Эффективность</h3><div><b>День</b>разбор процесса</div><div><b>1–4 недели</b>диагностика, программа затрат</div><div><b>1–3 месяца</b>внедрение, <span class="t" data-d="Временный руководитель внутри вашей команды на срок проекта">interim-роль</span></div></div>
       <div class="prod reveal"><h3>Рост и AI</h3><div><b>День</b>консультация по AI</div><div><b>1–4 недели</b>аудит и пилот AI</div><div><b>1–3 месяца</b>перестройка продаж</div></div>
       <div class="prod reveal"><h3>Модели и аналитика</h3><div><b>День</b>финмодель, записка</div><div><b>1–4 недели</b>бизнес-план, оценка</div><div><b>1–3 месяца</b>панели и отчётность</div></div>
     </div>
@@ -662,6 +673,11 @@ document.querySelectorAll('.frame[data-case]').forEach(f=>f.addEventListener('cl
   wmN=d.p.length; wmIdx=0; wmTrack.scrollTo({left:0}); wmUpd();
 }));
 workModal.addEventListener('click',e=>{if(e.target===workModal)workModal.close()});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.t');
+  document.querySelectorAll('.t.on').forEach(x=>{if(x!==t)x.classList.remove('on')});
+  if(t)t.classList.toggle('on');
+},{passive:true});
 const links=[...document.querySelectorAll('.nav-links a')];
 const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
 const spy=()=>{let cur=null;for(const t of targets){if(t.getBoundingClientRect().top<=90)cur=t;}
