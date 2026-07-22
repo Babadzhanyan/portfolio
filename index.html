@@ -299,9 +299,11 @@ body:has(#workModal[open]){overflow:hidden}
 .wm-slide{flex:0 0 100%;width:100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain}
 .wm-slide.pg{padding:0 14px 16px}
 .wm-slide.pg img{width:100%;height:100%;min-height:0;object-fit:contain;background:#F4F5F2;border:1px solid var(--line);border-radius:12px}
-.wm-slide.txt{gap:14px;padding:6px 30px 30px;align-content:start}
+.wm-slide.txt{gap:14px;padding:8px 34px 34px;justify-content:center;align-content:center}
 .wm-slide h4{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;font-size:clamp(20px,4.4vw,28px);line-height:1.25}
-.wm-meta,.wm-hint,.wm-disc{font-size:12px;color:var(--muted)}
+.wm-meta{font-family:var(--text);font-size:15px;color:var(--muted);text-transform:none;letter-spacing:0;line-height:1.45}
+.wm-hint,.wm-disc{font-size:12px;color:var(--muted)}
+.wm-hint{margin-top:auto;padding-right:56px}
 .wm-lab{color:var(--accent);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .wm-a,.wm-slide p{font-size:16px;line-height:1.5}
 .wm-steps{list-style:none;display:grid;gap:12px}
@@ -313,7 +315,7 @@ body:has(#workModal[open]){overflow:hidden}
 .wm-nav:hover{border-color:var(--accent);color:var(--accent)}
 .wm-nav[disabled]{opacity:.3;cursor:default}
 .wm-prev{left:10px}.wm-next{right:10px}
-@media(max-width:768px){#workModal{width:100vw;max-width:none;height:100dvh;border-radius:0;border:0;margin:0}.wm-slide.txt{padding:6px 18px 24px}.wm-slide.pg{padding:0 8px 12px}}
+@media(max-width:768px){#workModal{width:100vw;max-width:none;height:100dvh;border-radius:0;border:0;margin:0}.wm-slide.txt{padding:8px 20px 28px}.wm-hint{padding-right:0}.wm-slide.pg{padding:0 8px 12px}}
 .frame[data-case] .frame-bar{position:relative}
 .frame[data-case] .frame-bar::after{content:"→";position:absolute;right:14px;top:9px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .15s}
 .frame[data-case]:hover .frame-bar::after{opacity:1}
