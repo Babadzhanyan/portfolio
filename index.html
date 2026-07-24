@@ -265,11 +265,6 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .shot figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,245,243,.85);margin-top:10px}
 
 /* practice */
-.practice{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:26px 32px}
-.practice li{list-style:none;border-top:2px solid var(--line);padding-top:14px}
-.practice li b{display:block;font-family:var(--disp);font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.1;color:var(--accent);margin-bottom:6px}
-.practice li span{font-size:var(--fs-sm);color:var(--muted);line-height:1.45;display:block;overflow-wrap:anywhere}
-@media(max-width:1000px){.practice{grid-template-columns:repeat(2,1fr)}}
 
 /* directions */
 .dir{display:grid;grid-template-columns:1fr 1.4fr;gap:var(--s6);border-top:1px solid var(--line);padding:var(--s6) 0;align-items:start}
@@ -312,7 +307,7 @@ section[id],.case[id]{scroll-margin-top:80px}
 .chip b{font-weight:600}
 
 .plate-in{padding-block:var(--s9)}
-.mt,.deals-grid,.steps,.faq,.practice,.work-grid,.eyebrow-sub{margin-top:var(--s8)}
+.mt,.deals-grid,.steps,.faq,.work-grid,.eyebrow-sub{margin-top:var(--s8)}
 .dir:first-of-type{margin-top:var(--s6)}
 .dir:last-of-type{border-bottom:1px solid var(--line)}
 .bio-note{font-size:var(--fs-sm)}
@@ -435,8 +430,6 @@ body:has(#workModal[open]){overflow:hidden}
   .dir{grid-template-columns:1fr;gap:18px;padding:28px 0}
   .dir-head{grid-column:auto}
   .case{padding:24px 20px}
-  .practice{grid-template-columns:1fr 1fr;gap:20px 16px}
-  .practice li b{font-size:21px}
   .ab-grid,  .cta-inner{grid-template-columns:1fr}
   .shot img{width:calc(100vw - 48px);max-width:420px;height:auto;aspect-ratio:4/3;object-fit:cover}
   .shot figcaption{max-width:calc(100vw - 48px);white-space:normal}
@@ -468,7 +461,6 @@ body:has(#workModal[open]){overflow:hidden}
   h2{margin-bottom:18px}
   footer{padding-bottom:150px}
 }
-@media(max-width:379px){.practice{grid-template-columns:1fr}}
 @media(max-width:359px){
   nav .wrap{gap:10px;padding:0 14px}
   .nav-cta{padding:9px 12px;font-size:13px}
@@ -584,7 +576,7 @@ body:has(#workModal[open]){overflow:hidden}
     <h2 class="reveal">Четыре направления: внутри кейсы, сделки, материалы и состав работ</h2>
     <p class="svc-note reveal" style="margin-top:12px">Раскройте направление – внутри кейсы с результатами, примеры материалов и что входит в работу</p>
 
-    <details class="area reveal" id="area-deal" open>
+    <details class="area reveal" id="area-deal">
       <summary>
         <div class="area-head"><h3>Сделки и M&amp;A</h3><p>Коммерческая и финансовая часть сделки – от оценки до согласованных условий</p></div>
         <span class="mono area-meta">2 кейса / 4 сделки / 5 материалов</span>
@@ -622,7 +614,7 @@ body:has(#workModal[open]){overflow:hidden}
     </div>
         <div class="mono eyebrow eyebrow-sub" style="margin-top:28px">Материалы</div>
         <div class="work-grid" style="margin-top:14px">
-          <button type="button" class="frame reveal" data-case="ts" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-6.jpg" width="745" height="1053" loading="lazy" decoding="async" alt=""><span class="cap mono">Соглашение об условиях сделки / шаблон</span></button>
+          <button type="button" class="frame reveal" data-case="ts" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-6.jpg" width="745" height="1053" loading="lazy" decoding="async" alt=""><span class="cap mono">Соглашение об условиях сделки / рабочая версия</span></button>
           <button type="button" class="frame reveal" data-case="pantea" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-3.jpg" width="1100" height="619" loading="lazy" decoding="async" alt=""><span class="cap mono">Дек инвест-кейса / PE-фонд</span></button>
           <button type="button" class="frame reveal" data-case="pantea" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-4.jpg" width="1100" height="619" loading="lazy" decoding="async" alt=""><span class="cap mono">Резюме для инвесткомитета / экономика фонда</span></button>
         </div>
@@ -1020,6 +1012,8 @@ workModal.addEventListener('close',()=>{if(wmOpener){wmOpener.focus();wmOpener=n
 function revealNow(el){if(!el)return;let p=el.closest('details');while(p){p.open=true;p=p.parentElement&&p.parentElement.closest('details')}el.classList.add('in');el.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'))}
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const h=a.getAttribute('href');if(h&&h.length>1)revealNow(document.querySelector(h))}));
 if(location.hash&&location.hash.length>1)revealNow(document.querySelector(location.hash));
+// направления: при открытии сразу грузим картинки и показываем контент без reveal-мерцания
+document.querySelectorAll('details.area').forEach(a=>a.addEventListener('toggle',()=>{if(a.open){a.querySelectorAll('img[loading="lazy"]').forEach(i=>i.loading='eager');a.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'))}}));
 // мобильное меню: доступное, с Escape и возвратом фокуса
 const burger=document.querySelector('.nav-burger'),navmenu=document.getElementById('navmenu');
 if(burger&&navmenu){
