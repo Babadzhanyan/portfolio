@@ -151,8 +151,9 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .edge-sub{color:var(--muted);font-size:var(--fs-sm);max-width:760px}
 
 /* logos */
-.ab-logos{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:26px;display:flex;flex-direction:column;gap:18px}
-.lg{display:flex;align-items:baseline;gap:16px 36px;flex-wrap:wrap}
+.ab-logos{margin-top:var(--s5);border-top:1px solid var(--line);padding-top:26px;display:flex;flex-direction:column;gap:18px}
+.lg{display:flex;align-items:baseline;gap:16px}
+.lgw{display:flex;flex-wrap:wrap;gap:12px 30px;align-items:baseline;flex:1;min-width:0}
 .ab-logos .cap{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex:0 0 108px}
 .wordmark{font-family:var(--text);font-weight:600;font-size:17px;line-height:1;color:#242A23;letter-spacing:0;flex:0 0 auto;white-space:nowrap}
 .wordmark .wm-amp{font-weight:500;color:var(--muted)}
@@ -211,7 +212,7 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .area-body{padding:8px 28px 30px}
 .area-body .cases-grid{margin-top:20px}
 .area-body .deals-grid,.area-body .work-grid{margin-top:14px}
-.area-res{margin-top:30px;display:grid;grid-template-columns:1fr 1.4fr;gap:var(--s6);align-items:start;border-top:1px solid var(--line);padding-top:24px}
+.area-res{margin-top:20px;display:grid;grid-template-columns:1fr 1.4fr;gap:var(--s6);align-items:start;border-bottom:1px solid var(--line);padding-bottom:26px}
 .area-srok{display:block;margin-top:12px;color:var(--accent);font-size:11px;letter-spacing:.06em}
 @media(max-width:900px){.area-res{grid-template-columns:1fr;gap:var(--s5)}}
 @media(max-width:768px){
@@ -436,9 +437,10 @@ body:has(#workModal[open]){overflow:hidden}
   #mcta{display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(18,75,56,.96);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
   #mcta .btn{flex:1}
   #mcta .ibtn{background:var(--plate-card);border-color:var(--line-inv);color:var(--accent-inv);flex:0 0 auto}
-  .ab-logos .lg{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-items:baseline;justify-items:start}
-  .ab-logos .lg:last-of-type{grid-template-columns:1fr}
-  .ab-logos .cap{grid-column:1/-1;flex:none;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:2px}
+  .ab-logos .lg{display:block}
+  .ab-logos .cap{display:block;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px}
+  .lgw{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;justify-items:start}
+  .ab-logos .lg:last-of-type .lgw{grid-template-columns:1fr}
   .wordmark{font-size:15px;white-space:normal}
   .wordmark.serif{font-size:14px;white-space:nowrap}
   .hero-proof{flex-direction:column;gap:8px}
@@ -523,18 +525,19 @@ body:has(#workModal[open]){overflow:hidden}
         <p>2,5 года в консалтинге – McKinsey CIS и Yakov &amp; Partners (ex-McKinsey CIS). Затем коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в прямом подчинении генеральному директору. Инженер МГТУ им. Н.Э. Баумана, обучил 300+ сотрудников телеком-компании по своей программе бизнес-анализа</p>
         <p>Отраслевую, юридическую и налоговую экспертизу подключаю по задаче, роли согласуем заранее. Ответственный один – я</p>
         <p class="bio-note" style="color:var(--muted)">Вне работы – тайский бокс и шахматы: голова считает лучше после движения</p>
-      </div>
-    </div>
-    <div class="ab-logos reveal">
-      <div class="lg"><span class="cap">Работал</span>
+        <div class="ab-logos reveal">
+      <div class="lg"><span class="cap">Работал</span><span class="lgw">
       <span class="wordmark serif t" data-d="Крупнейшая в мире компания стратегического консалтинга – школа Константина">McKinsey<span class="wm-amp"> &amp; Company</span></span>
       <span class="wordmark serif t" data-d="Крупнейшая российская стратегическая консалтинговая фирма, выросшая из McKinsey CIS">Yakov<span class="wm-amp"> &amp; Partners</span></span>
       <span class="wordmark t" data-d="Крупнейшая ИТ-компания России – программа эффективности продаж рекламы">Яндекс</span>
-      <span class="wordmark mono-wm t" data-d="Государственный оператор навигационных систем – офис трансформации в роли CEO-1">ГЛОНАСС</span></div>
-      <div class="lg"><span class="cap">Образование</span>
+      <span class="wordmark mono-wm t" data-d="Государственный оператор навигационных систем – офис трансформации в роли CEO-1">ГЛОНАСС</span></span></div>
+      <div class="lg"><span class="cap">Образование</span><span class="lgw">
       <span class="wordmark t" data-d="Ведущий инженерный университет России – диплом инженера-специалиста">МГТУ<span class="wm-amp"> им. Н.Э. Баумана</span></span>
-      <span class="wordmark t" data-d="Школа финансов при экономическом факультете МГУ: оценка бизнеса и финансовое моделирование">School of Finance<span class="wm-amp"> при эк. факультете МГУ</span></span></div>
+      <span class="wordmark t" data-d="Школа финансов при экономическом факультете МГУ: оценка бизнеса и финансовое моделирование">School of Finance<span class="wm-amp"> при эк. факультете МГУ</span></span></span></div>
     </div>
+      </div>
+    </div>
+    
   </div>
 </section>
 
@@ -578,6 +581,8 @@ body:has(#workModal[open]){overflow:hidden}
         <span class="area-x" aria-hidden="true">+</span>
       </summary>
       <div class="area-body">
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки – материалы для решения</p><span class="mono area-srok">Срок: от 2 недель (оценка) до 3–6 месяцев (полный цикл)</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul><ul class="dir-list"><li>Названа цена – проверить её нечем</li><li>Покупка или продажа тянется без структуры</li><li>Документы не отражают договорённости</li><li>К продаже не готовы: нет финмодели, структуры и документов</li></ul></details></div></div>
         <div class="cases-grid">
 <div class="case reveal" id="case-lbo" data-t="deal">
         <div class="big"><span class="big-lab">Одобрено двумя комитетами – стоимость актива</span>~$16 млн</div>
@@ -609,8 +614,7 @@ body:has(#workModal[open]){overflow:hidden}
       <div class="deal reveal"><span class="mono role">Привлечение капитала</span><div class="sum">$0,5 млн</div><p>Раунд для DeFi-проекта (США): материалы и сопровождение</p><span class="mono st">Раунд привлечён</span></div>
     </div>
         
-        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки – материалы для решения</p><span class="mono area-srok">Срок: от 2 недель (оценка) до 3–6 месяцев (полный цикл)</span></div>
-        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul><ul class="dir-list"><li>Названа цена – проверить её нечем</li><li>Покупка или продажа тянется без структуры</li><li>Документы не отражают договорённости</li><li>К продаже не готовы: нет финмодели, структуры и документов</li></ul></details></div></div>
+        
       </div>
     </details>
 
@@ -621,6 +625,8 @@ body:has(#workModal[open]){overflow:hidden}
         <span class="area-x" aria-hidden="true">+</span>
       </summary>
       <div class="area-body">
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта – для решения собственников или совета директоров</p><span class="mono area-srok">Срок: около 3 месяцев</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul><ul class="dir-list"><li>Рост упёрся в потолок, непонятно куда дальше</li><li>Гипотез много – плана, за который проголосуют, нет</li><li>Нужен новый продукт или направление, но неясно какое</li><li>Решения о развитии принимаются без цифр</li></ul></details></div></div>
         <div class="cases-grid">
 <div class="case reveal" id="case-strategy" data-t="strategy">
         <div class="big"><span class="big-lab">Одобрено советом директоров – цель</span>3× <span class="t" tabindex="0" aria-describedby="tip" data-d="EBITDA – прибыль до вычета процентов, налогов и амортизации; грубая мера операционной прибыли бизнеса">EBITDA</span></div>
@@ -673,8 +679,7 @@ body:has(#workModal[open]){overflow:hidden}
       </div>
         </div>
         
-        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта – для решения собственников или совета директоров</p><span class="mono area-srok">Срок: около 3 месяцев</span></div>
-        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul><ul class="dir-list"><li>Рост упёрся в потолок, непонятно куда дальше</li><li>Гипотез много – плана, за который проголосуют, нет</li><li>Нужен новый продукт или направление, но неясно какое</li><li>Решения о развитии принимаются без цифр</li></ul></details></div></div>
+        
       </div>
     </details>
 
@@ -685,6 +690,8 @@ body:has(#workModal[open]){overflow:hidden}
         <span class="area-x" aria-hidden="true">+</span>
       </summary>
       <div class="area-body">
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера эффекта</p><span class="mono area-srok">Срок: 4–8 недель</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul><ul class="dir-list"><li>Продавцы заняты всем, кроме продаж</li><li>Клиентские базы поделены по привычке</li><li>Конверсия падает, а причины отвала никто не считал</li><li>Решения принимаются по ощущениям, а не по данным воронки</li></ul></details></div></div>
         <div class="cases-grid">
 <div class="case reveal" id="case-sales" data-t="sales">
         <div class="big"><span class="big-lab">Расчётный потенциал</span>до $30 млн/год</div>
@@ -717,8 +724,7 @@ body:has(#workModal[open]){overflow:hidden}
       </div>
         </div>
                 
-        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера эффекта</p><span class="mono area-srok">Срок: 4–8 недель</span></div>
-        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul><ul class="dir-list"><li>Продавцы заняты всем, кроме продаж</li><li>Клиентские базы поделены по привычке</li><li>Конверсия падает, а причины отвала никто не считал</li><li>Решения принимаются по ощущениям, а не по данным воронки</li></ul></details></div></div>
+        
       </div>
     </details>
 
@@ -729,6 +735,8 @@ body:has(#workModal[open]){overflow:hidden}
         <span class="area-x" aria-hidden="true">+</span>
       </summary>
       <div class="area-body">
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Модель эффектов (база, цель, мероприятия), ответственные и план запуска</p><span class="mono area-srok">Срок: 6–12 недель</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul><ul class="dir-list"><li>Выручка растёт, прибыль – нет</li><li>Затраты раздуты, где именно – неясно</li><li>Численность росла быстрее задач</li><li>Изменения буксуют без выделенного руководителя</li></ul></details></div></div>
         <div class="cases-grid">
 <div class="case reveal" id="case-bank" data-t="opex">
         <div class="big"><span class="big-lab">Управленческий контур банка $120 млн+</span>22 вертикали</div>
@@ -769,8 +777,7 @@ body:has(#workModal[open]){overflow:hidden}
       </div>
         </div>
                 
-        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Модель эффектов (база, цель, мероприятия), ответственные и план запуска</p><span class="mono area-srok">Срок: 6–12 недель</span></div>
-        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul><ul class="dir-list"><li>Выручка растёт, прибыль – нет</li><li>Затраты раздуты, где именно – неясно</li><li>Численность росла быстрее задач</li><li>Изменения буксуют без выделенного руководителя</li></ul></details></div></div>
+        
       </div>
     </details>
 
