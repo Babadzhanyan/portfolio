@@ -151,10 +151,9 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .edge-sub{color:var(--muted);font-size:var(--fs-sm);max-width:760px}
 
 /* logos */
-.logos{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 0;background:var(--paper)}
-.logos .wrap{display:flex;flex-direction:column;gap:20px}
+.ab-logos{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:26px;display:flex;flex-direction:column;gap:18px}
 .lg{display:flex;align-items:baseline;gap:16px 36px;flex-wrap:wrap}
-.logos .cap{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex:0 0 108px}
+.ab-logos .cap{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex:0 0 108px}
 .wordmark{font-family:var(--text);font-weight:600;font-size:17px;line-height:1;color:#242A23;letter-spacing:0;flex:0 0 auto;white-space:nowrap}
 .wordmark .wm-amp{font-weight:500;color:var(--muted)}
 .wordmark.serif{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:19px;letter-spacing:.01em}
@@ -437,11 +436,9 @@ body:has(#workModal[open]){overflow:hidden}
   #mcta{display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(18,75,56,.96);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
   #mcta .btn{flex:1}
   #mcta .ibtn{background:var(--plate-card);border-color:var(--line-inv);color:var(--accent-inv);flex:0 0 auto}
-  .logos{padding:26px 0}
-  .logos .wrap{gap:22px}
-  .logos .lg{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-items:baseline;justify-items:start}
-  .logos .lg:last-of-type{grid-template-columns:1fr}
-  .logos .cap{grid-column:1/-1;flex:none;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:2px}
+  .ab-logos .lg{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-items:baseline;justify-items:start}
+  .ab-logos .lg:last-of-type{grid-template-columns:1fr}
+  .ab-logos .cap{grid-column:1/-1;flex:none;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:2px}
   .wordmark{font-size:15px;white-space:normal}
   .wordmark.serif{font-size:14px;white-space:nowrap}
   .hero-proof{flex-direction:column;gap:8px}
@@ -514,18 +511,6 @@ body:has(#workModal[open]){overflow:hidden}
   </div>
 </header>
 
-<div class="logos">
-  <div class="wrap">
-    <div class="lg"><span class="cap">Работал</span>
-      <span class="wordmark serif t" data-d="Крупнейшая в мире компания стратегического консалтинга – школа Константина">McKinsey<span class="wm-amp"> &amp; Company</span></span>
-      <span class="wordmark serif t" data-d="Крупнейшая российская стратегическая консалтинговая фирма, выросшая из McKinsey CIS">Yakov<span class="wm-amp"> &amp; Partners</span></span>
-      <span class="wordmark t" data-d="Крупнейшая ИТ-компания России – программа эффективности продаж рекламы">Яндекс</span>
-      <span class="wordmark mono-wm t" data-d="Государственный оператор навигационных систем – офис трансформации в роли CEO-1">ГЛОНАСС</span></div>
-    <div class="lg"><span class="cap">Образование</span>
-      <span class="wordmark t" data-d="Ведущий инженерный университет России – диплом инженера-специалиста">МГТУ<span class="wm-amp"> им. Н.Э. Баумана</span></span>
-      <span class="wordmark t" data-d="Школа финансов при экономическом факультете МГУ: оценка бизнеса и финансовое моделирование">School of Finance<span class="wm-amp"> при эк. факультете МГУ</span></span></div>
-  </div>
-</div>
 
 <section id="about">
   <div class="wrap">
@@ -539,6 +524,16 @@ body:has(#workModal[open]){overflow:hidden}
         <p>Отраслевую, юридическую и налоговую экспертизу подключаю по задаче, роли согласуем заранее. Ответственный один – я</p>
         <p class="bio-note" style="color:var(--muted)">Вне работы – тайский бокс и шахматы: голова считает лучше после движения</p>
       </div>
+    </div>
+    <div class="ab-logos reveal">
+      <div class="lg"><span class="cap">Работал</span>
+      <span class="wordmark serif t" data-d="Крупнейшая в мире компания стратегического консалтинга – школа Константина">McKinsey<span class="wm-amp"> &amp; Company</span></span>
+      <span class="wordmark serif t" data-d="Крупнейшая российская стратегическая консалтинговая фирма, выросшая из McKinsey CIS">Yakov<span class="wm-amp"> &amp; Partners</span></span>
+      <span class="wordmark t" data-d="Крупнейшая ИТ-компания России – программа эффективности продаж рекламы">Яндекс</span>
+      <span class="wordmark mono-wm t" data-d="Государственный оператор навигационных систем – офис трансформации в роли CEO-1">ГЛОНАСС</span></div>
+      <div class="lg"><span class="cap">Образование</span>
+      <span class="wordmark t" data-d="Ведущий инженерный университет России – диплом инженера-специалиста">МГТУ<span class="wm-amp"> им. Н.Э. Баумана</span></span>
+      <span class="wordmark t" data-d="Школа финансов при экономическом факультете МГУ: оценка бизнеса и финансовое моделирование">School of Finance<span class="wm-amp"> при эк. факультете МГУ</span></span></div>
     </div>
   </div>
 </section>
@@ -792,8 +787,6 @@ body:has(#workModal[open]){overflow:hidden}
 
 
 
-
-
 <section id="how">
   <div class="wrap">
     <div class="mono eyebrow">/04 – Как устроена работа</div>
@@ -813,7 +806,6 @@ body:has(#workModal[open]){overflow:hidden}
     </div>
   </div>
 </section>
-
 
 
 
