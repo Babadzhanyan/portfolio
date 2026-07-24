@@ -197,6 +197,20 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .case-mat img{width:64px;height:48px;object-fit:cover;object-position:center top;border-radius:6px;border:1px solid var(--line);background:#F4F5F2;flex:0 0 auto}
 .case-mat span{font-size:13.5px;font-weight:600;color:var(--accent);line-height:1.35}
 
+/* избранные результаты */
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:var(--s6)}
+.res-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:8px;transition:border-color .15s}
+.res-card:hover{border-color:var(--accent)}
+.res-pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(18,75,56,.3);border-radius:999px;padding:5px 12px;align-self:flex-start}
+.res-num{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.02em;color:var(--accent);line-height:1.05}
+.res-name{font-weight:600;font-size:var(--fs-body)}
+.res-link{margin-top:auto;padding-top:8px;color:var(--accent);font-weight:600;font-size:var(--fs-sm)}
+@media(max-width:768px){.res-grid{grid-template-columns:1fr}}
+#mcta.hide{display:none!important}
+body:has(#workModal[open]) #mcta{display:none}
+.strip-hint{display:none}
+@media(max-width:768px){.strip-hint{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-inv);padding:12px 24px 0}}
+
 /* аккордеон направлений */
 .area{border:1px solid var(--line);border-radius:16px;background:var(--card);margin-top:14px;overflow:hidden}
 .area>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:18px;padding:24px 28px;transition:background .15s}
@@ -384,11 +398,11 @@ body:has(#workModal[open]){overflow:hidden}
 .wm-slide{flex:0 0 100%;width:100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain}
 .wm-slide.pg{padding:0 14px 16px}
 .wm-slide.pg img{width:100%;height:100%;min-height:0;object-fit:contain;background:#F4F5F2;border:1px solid var(--line);border-radius:12px}
-.wm-slide.txt{gap:14px;padding:8px 34px 34px;justify-content:center;align-content:center}
+.wm-slide.txt{gap:14px;padding:22px 34px 34px;justify-content:flex-start}
 .wm-slide h4{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;font-size:clamp(20px,4.4vw,28px);line-height:1.25}
 .wm-meta{font-family:var(--text);font-size:15px;color:var(--muted);text-transform:none;letter-spacing:0;line-height:1.45}
 .wm-hint,.wm-disc{font-size:12px;color:var(--muted)}
-.wm-hint{margin-top:auto;padding-right:56px}
+.wm-hint{margin-top:24px;padding-right:56px}
 .wm-lab{color:var(--accent);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .wm-a,.wm-slide p{font-size:16px;line-height:1.5}
 .wm-steps{list-style:none;display:grid;gap:12px}
@@ -484,12 +498,13 @@ body:has(#workModal[open]){overflow:hidden}
     <div class="nav-links" id="navmenu">
       <a href="#about">Обо мне</a>
       <a href="#icp">Задачи</a>
+      <a href="#results">Результаты</a>
       <a href="#cases">Кейсы и услуги</a>
       <a href="#how">Как работаю</a>
       <a href="#faq">Вопросы</a>
     </div>
     <a class="btn nav-cta" data-ev="cta" data-ch="telegram" data-loc="nav" href="https://t.me/kostya_younker">Обсудить задачу</a>
-    <button class="nav-burger" aria-expanded="false" aria-controls="navmenu" aria-label="Открыть меню"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <button type="button" class="nav-burger" aria-expanded="false" aria-controls="navmenu" aria-label="Открыть меню"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </nav>
 
@@ -504,9 +519,9 @@ body:has(#workModal[open]){overflow:hidden}
       <div class="hero-proof"><i>20+ проектов</i><i>Сделки $0,5–25 млн</i><i>Решения проходят комитеты и СД</i></div>
       <div class="hero-ctas">
         <a class="btn lg" data-ev="cta" data-ch="telegram" data-loc="hero" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg><span>Обсудить задачу<span class="hide-sm"> в Telegram</span></span></a>
-        <a class="btn ghost" href="#cases">Посмотреть кейсы</a>
+        <a class="btn ghost" href="#results">Посмотреть результаты</a>
       </div>
-      <p class="hero-note">За 30 минут: какое решение принять, каких данных не хватает, первый шаг. Если задача не моя – скажу сразу</p>
+      <p class="hero-note">За 30 минут определим, что именно нужно решить, каких данных не хватает и с чего начать. Если задача не моя – скажу сразу</p>
     </div>
     <div class="hero-visual">
       <img src="img/kostya-hero-conf.jpg" width="673" height="725" fetchpriority="high" decoding="async" alt="Константин Бабаджанян выступает на деловой конференции">
@@ -547,7 +562,7 @@ body:has(#workModal[open]){overflow:hidden}
     <div class="wrap plate-in">
       <div class="stats-grid">
         <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в консалтинге и индустрии</span></div>
-        <div class="stat reveal"><div class="mono idx">/02</div><b>6</b><span>проектов по сделкам: 2 одобрены комитетами, 3 – до документов и закрытия</span></div>
+        <div class="stat reveal"><div class="mono idx">/02</div><b>6</b><span>проектов по сделкам – от оценки и комитетов до документов и сопровождения</span></div>
         <div class="stat reveal"><div class="mono idx">/03</div><b>7</b><span>отраслей: FMCG, промышленность, банки, телеком, реклама, девелопмент, ПО</span></div>
         <div class="stat reveal"><div class="mono idx">/04</div><b>300+</b><span>сотрудников обучено бизнес-анализу по моей программе</span></div>
       </div>
@@ -569,11 +584,25 @@ body:has(#workModal[open]){overflow:hidden}
   </div>
 </section>
 
+<section id="results">
+  <div class="wrap">
+    <div class="mono eyebrow">/03 – Избранные результаты</div>
+    <h2 class="reveal">Результаты на задачах, близких к вашей</h2>
+    <p class="svc-note reveal" style="margin-top:12px">Четыре примера – по одному на направление. Полные кейсы, сделки и материалы – в каталоге ниже</p>
+    <div class="res-grid">
+      <div class="res-card reveal"><span class="res-pill">Решение одобрено двумя комитетами</span><span class="res-num">~$16 млн</span><span class="res-name">Покупка молочного актива на кредитные деньги – стоимость актива</span><a class="res-link" href="#case-lbo">Открыть кейс →</a></div>
+      <div class="res-card reveal"><span class="res-pill">Одобрено советом директоров – цель</span><span class="res-num">3× EBITDA</span><span class="res-name">ГЛОНАСС – стратегия диверсификации</span><a class="res-link" href="#case-strategy">Открыть кейс →</a></div>
+      <div class="res-card reveal"><span class="res-pill">Расчётный потенциал</span><span class="res-num">до $30 млн/год</span><span class="res-name">Яндекс – программа эффективности продаж для 70+ человек</span><a class="res-link" href="#case-sales">Открыть кейс →</a></div>
+      <div class="res-card reveal"><span class="res-pill">Операционный результат</span><span class="res-num">+10%</span><span class="res-name">Темп выпуска на сталеплавильном активе $1 млрд</span><a class="res-link" href="#case-steel">Открыть кейс →</a></div>
+    </div>
+  </div>
+</section>
+
 <section id="cases">
   <div class="wrap">
-    <div class="mono eyebrow">/03 – Кейсы и услуги</div>
-    <h2 class="reveal">Четыре направления: внутри кейсы, сделки, материалы и состав работ</h2>
-    <p class="svc-note reveal" style="margin-top:12px">Раскройте направление – внутри кейсы с результатами, примеры материалов и что входит в работу</p>
+    <div class="mono eyebrow">/04 – Кейсы и услуги</div>
+    <h2 class="reveal">Что могу взять на себя</h2>
+    <p class="svc-note reveal" style="margin-top:12px">Состав работ, сроки, кейсы и обезличенные материалы – раскрывайте направление</p>
 
     <details class="area reveal" id="area-deal">
       <summary>
@@ -792,7 +821,7 @@ body:has(#workModal[open]){overflow:hidden}
 
 <section id="how">
   <div class="wrap">
-    <div class="mono eyebrow">/04 – Как устроена работа</div>
+    <div class="mono eyebrow">/05 – Как устроена работа</div>
     <h2 class="reveal">Старт за один созвон, формат – под задачу</h2>
     <div class="steps">
       <div class="step reveal"><div class="n">01</div><h3>Короткое сообщение</h3><p>2–3 строки <a href="https://t.me/kostya_younker">в Телеграм</a>: бизнес, масштаб, решение</p></div>
@@ -816,21 +845,22 @@ body:has(#workModal[open]){overflow:hidden}
   <div class="plate">
     <div class="plate-in">
       <div class="wrap">
-        <div class="mono eyebrow">/05 – В полях</div>
+        <div class="mono eyebrow">/06 – В полях</div>
         <h2 class="reveal">Работаю там, где создаётся стоимость</h2>
       </div>
       <div class="strip">
-        <figure class="shot"><img src="img/f-demo.jpg" width="801" height="1200" decoding="async" alt="Константин на демо-дне акселератора"><figcaption>Демо-день акселератора ЦУ / приглашённый эксперт</figcaption></figure>
-        <figure class="shot"><img src="img/f-plant.jpg" width="1200" height="900" decoding="async" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
-        <figure class="shot"><img src="img/f-roof.jpg" width="673" height="900" decoding="async" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
+        <figure class="shot"><img src="img/f-demo.jpg" width="801" height="1200" loading="lazy" decoding="async" alt="Константин на демо-дне акселератора"><figcaption>Демо-день акселератора ЦУ / приглашённый эксперт</figcaption></figure>
+        <figure class="shot"><img src="img/f-plant.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
+        <figure class="shot"><img src="img/f-roof.jpg" width="673" height="900" loading="lazy" decoding="async" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
       </div>
+      <div class="strip-hint">Листайте →</div>
     </div>
   </div>
 </section>
 
 <section id="faq">
   <div class="wrap">
-    <div class="mono eyebrow">/06 – Вопросы</div>
+    <div class="mono eyebrow">/07 – Вопросы</div>
     <h2 class="reveal">Что спрашивают до старта</h2>
     <div class="faq">
       <details><summary>Когда этот формат подходит, а когда лучше большая фирма</summary><p>Мой формат – прямой доступ к старшему исполнителю и конкретное решение. Большая фирма лучше, когда нужны международная команда, масштабная полевая работа или её бренд как фактор. Не подходит – скажу до старта</p></details>
@@ -1007,6 +1037,9 @@ document.querySelectorAll('button[data-case]').forEach(f=>f.addEventListener('cl
 document.querySelectorAll('.faq details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)track('faq_open',{faq_id:(d.querySelector('summary')||{}).textContent||''})}));
 const _sd={25:0,50:0,75:0,90:0};
 addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100;[25,50,75,90].forEach(m=>{if(!_sd[m]&&p>=m){_sd[m]=1;track('scroll_depth',{depth:m})}})},{passive:true});
+// плавающая CTA скрывается на финальном контакте
+const mcta=document.getElementById('mcta'),contactSec=document.getElementById('contact');
+if(mcta&&contactSec)new IntersectionObserver(es=>es.forEach(e=>mcta.classList.toggle('hide',e.isIntersecting)),{threshold:.15}).observe(contactSec);
 // возврат фокуса на карточку-инициатор после закрытия модалки
 workModal.addEventListener('close',()=>{if(wmOpener){wmOpener.focus();wmOpener=null}});
 // якорный переход: целевая секция видна сразу, без ожидания reveal-анимации
@@ -1020,6 +1053,7 @@ const burger=document.querySelector('.nav-burger'),navmenu=document.getElementBy
 if(burger&&navmenu){
   const setMenu=o=>{navmenu.classList.toggle('open',o);burger.setAttribute('aria-expanded',o?'true':'false')};
   burger.addEventListener('click',()=>setMenu(!navmenu.classList.contains('open')));
+  new MutationObserver(()=>burger.setAttribute('aria-label',burger.getAttribute('aria-expanded')==='true'?'Закрыть меню':'Открыть меню')).observe(burger,{attributes:true,attributeFilter:['aria-expanded']});
   navmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&navmenu.classList.contains('open')){setMenu(false);burger.focus()}});
   document.addEventListener('click',e=>{if(navmenu.classList.contains('open')&&!e.target.closest('nav'))setMenu(false)});
