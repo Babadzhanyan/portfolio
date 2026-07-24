@@ -86,7 +86,7 @@ section{padding:var(--s9) 0}
 .plate :focus-visible{outline-color:#fff}
 .skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;z-index:80}
 .skip:focus{left:0}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.js .reveal,.js .reveal.in{opacity:1;transform:none;transition:none}.btn,.slide,.case,.frame{transition:none}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.js .reveal,.js .reveal.in{opacity:1;transform:none;transition:none}.btn,.slide,.case,.frame{display:flex;flex-direction:column;padding:0;transition:none}}
 @media print{.js .reveal{opacity:1;transform:none}}
 
 /* glossary tooltips */
@@ -173,7 +173,7 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 
 /* about-short */
 .ab-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:var(--s7);align-items:start}
-.ab-grid img{border-radius:20px;width:100%;max-height:520px;object-fit:cover;object-position:center 20%}
+.ab-grid img{background:#E9EDE9;border-radius:20px;width:100%;max-height:520px;object-fit:cover;object-position:center 20%}
 .ab-grid .bio p{margin-bottom:var(--s3);font-size:var(--fs-body)}
 .ab-grid .bio .lead-line{font-size:var(--fs-h3);font-weight:600;line-height:1.4}
 
@@ -182,7 +182,8 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:28px}
 .stat .idx{color:var(--accent-inv);margin-bottom:14px}
 .stat b{display:block;font-family:var(--disp);font-weight:800;font-size:var(--fs-num);line-height:1.05;letter-spacing:-.02em;color:#fff}
-.stat span{display:block;margin-top:10px;font-size:var(--fs-sm);color:var(--muted-inv);line-height:1.45}
+.stat{display:flex;flex-direction:column}
+.stat span{display:block;margin-top:auto;padding-top:10px;font-size:var(--fs-sm);color:var(--muted-inv);line-height:1.45}
 .stat b .t{display:inline;margin:0;font-size:inherit;color:inherit;line-height:inherit}
 
 /* deep cases */
@@ -191,25 +192,49 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .case:hover{border-color:var(--accent);box-shadow:0 12px 32px rgba(18,75,56,.08);transform:translateY(-2px)}
 .case .big{font-family:var(--disp);font-weight:800;font-size:var(--fs-num);letter-spacing:-.02em;line-height:1;color:var(--accent)}
 .case .big-lab{display:block;font-family:var(--text);font-size:var(--fs-sm);color:var(--muted);font-weight:600;letter-spacing:0;line-height:1.2;margin-bottom:4px}
-.case-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.case-tags button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-family:var(--text);font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:border-color .15s,color .15s}
-.case-tags button:hover{border-color:var(--accent);color:var(--accent)}
-.case-tags button.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.case.tag-hide{display:none}
+.case-mat{margin-top:14px;display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper);cursor:pointer;text-align:left;font-family:var(--text);transition:border-color .15s}
+.case-mat:hover{border-color:var(--accent)}
+.case-mat img{width:64px;height:48px;object-fit:cover;object-position:center top;border-radius:6px;border:1px solid var(--line);background:#F4F5F2;flex:0 0 auto}
+.case-mat span{font-size:13.5px;font-weight:600;color:var(--accent);line-height:1.35}
+
+/* аккордеон направлений */
+.area{border:1px solid var(--line);border-radius:16px;background:var(--card);margin-top:14px;overflow:hidden}
+.area>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:18px;padding:24px 28px;transition:background .15s}
+.area>summary::-webkit-details-marker{display:none}
+.area>summary:hover{background:#F4F6F4}
+.area-head{flex:1;min-width:0}
+.area-head h3{font-size:22px;line-height:1.25}
+.area-head p{font-size:var(--fs-sm);color:var(--muted);margin-top:5px}
+.area-meta{color:var(--accent);font-size:11px;letter-spacing:.06em;flex:0 0 auto}
+.area-x{font-family:var(--disp);font-weight:800;font-size:24px;color:var(--accent);flex:0 0 auto;transition:transform .2s;line-height:1}
+.area[open] .area-x{transform:rotate(45deg)}
+.area[open]>summary{border-bottom:1px solid var(--line)}
+.area-body{padding:8px 28px 30px}
+.area-body .cases-grid{margin-top:20px}
+.area-body .deals-grid,.area-body .work-grid{margin-top:14px}
+.area-res{margin-top:30px;display:grid;grid-template-columns:1fr 1.4fr;gap:var(--s6);align-items:start;border-top:1px solid var(--line);padding-top:24px}
+.area-srok{display:block;margin-top:12px;color:var(--accent);font-size:11px;letter-spacing:.06em}
+@media(max-width:900px){.area-res{grid-template-columns:1fr;gap:var(--s5)}}
+@media(max-width:768px){
+  .area>summary{padding:18px 20px;flex-wrap:wrap;gap:10px}
+  .area-meta{order:3;width:100%;padding-left:0}
+  .area-body{padding:4px 20px 24px}
+}
 .case .what{font-weight:600;font-size:var(--fs-body);margin:12px 0 4px}
 .case .role-line{color:var(--muted);margin-top:8px;display:block;font-family:var(--text);font-size:15px;text-transform:none;letter-spacing:0}
 .case .term{color:var(--accent);font-family:var(--mono);font-size:12px;letter-spacing:.05em;margin:8px 0 2px;display:block}
 .case .cb{border-left:2px solid var(--line);padding:2px 0 2px 14px;margin-top:14px}
 .case .cb .mono{color:var(--accent);display:block;margin-bottom:5px}
 .case .cb p{font-size:var(--fs-sm);color:var(--muted)}
-.case .cb.res{border-left:2px solid var(--accent);padding-left:14px;border-top:none;margin-top:auto;padding-top:14px}
+.case .cb.res{border-left:2px solid var(--accent);padding-left:14px;border-top:none;margin-top:14px;padding-top:2px}
 .case .cb.res p{color:var(--ink);font-weight:600}
 .cta-line{margin-top:28px;font-size:16px}
 .cta-line a{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
 
 /* deals tombstones */
 .deals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.deal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+.deal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column}
+.deal .st{margin-top:auto}
 .deal .role{color:var(--accent);display:block;margin-bottom:14px}
 .deal .sum{font-family:var(--disp);font-weight:800;font-size:var(--fs-num);letter-spacing:-.02em;line-height:1;color:var(--accent)}
 .deal p{font-size:var(--fs-sm);color:var(--muted);margin:10px 0 14px}
@@ -224,6 +249,7 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .frame-bar{height:34px;background:#F1F3F1;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
 .frame img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center top;background:#F4F5F2}
+.frame .cap{margin-top:auto}
 .frame .cap{display:block;padding:14px;color:var(--ink);font-size:15px;text-transform:none;letter-spacing:0;font-family:var(--text)}
 .work-note{margin-top:24px;color:var(--muted);font-size:15px}
 .more{margin-top:16px}
@@ -239,10 +265,10 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .shot figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,245,243,.85);margin-top:10px}
 
 /* practice */
-.practice{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 32px}
+.practice{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:26px 32px}
 .practice li{list-style:none;border-top:2px solid var(--line);padding-top:14px}
 .practice li b{display:block;font-family:var(--disp);font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.1;color:var(--accent);margin-bottom:6px}
-.practice li span{font-size:var(--fs-sm);color:var(--muted);line-height:1.45;display:block}
+.practice li span{font-size:var(--fs-sm);color:var(--muted);line-height:1.45;display:block;overflow-wrap:anywhere}
 @media(max-width:1000px){.practice{grid-template-columns:repeat(2,1fr)}}
 
 /* directions */
@@ -252,13 +278,13 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 @media(max-width:900px){.dir{grid-template-columns:1fr}.dir-cols{grid-template-columns:1fr;gap:var(--s5)}}
 .svc-ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
 .svc-ul li{font-size:13.5px;line-height:1.35;padding:7px 14px;border:1px solid rgba(18,75,56,.28);border-radius:999px;color:var(--ink)}
-.dir details.svc-more{margin-top:2px}
-.dir details.svc-more>summary{cursor:pointer;list-style:none;color:var(--accent);font-size:var(--fs-sm);font-weight:600;padding:6px 0}
-.dir details.svc-more>summary::-webkit-details-marker{display:none}
-.dir details.svc-more>summary::after{content:" +"}
-.dir details.svc-more[open]>summary::after{content:" –"}
-.dir details.svc-more .svc-ul{margin-top:6px}
-.dir details.svc-more .dir-list{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}
+details.svc-more{margin-top:2px}
+details.svc-more>summary{cursor:pointer;list-style:none;color:var(--accent);font-size:var(--fs-sm);font-weight:600;padding:6px 0}
+details.svc-more>summary::-webkit-details-marker{display:none}
+details.svc-more>summary::after{content:" +"}
+details.svc-more[open]>summary::after{content:" –"}
+details.svc-more .svc-ul{margin-top:6px}
+details.svc-more .dir-list{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}
 .icp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4)}
 .icp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;position:relative}
 .icp .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;margin-bottom:14px}
@@ -285,7 +311,7 @@ section[id],.case[id]{scroll-margin-top:80px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 18px;font-size:var(--fs-sm)}
 .chip b{font-weight:600}
 
-.plate-in{padding:var(--s9) 0}
+.plate-in{padding-block:var(--s9)}
 .mt,.deals-grid,.steps,.faq,.practice,.work-grid,.eyebrow-sub{margin-top:var(--s8)}
 .dir:first-of-type{margin-top:var(--s6)}
 .dir:last-of-type{border-bottom:1px solid var(--line)}
@@ -298,7 +324,7 @@ section[id],.case[id]{scroll-margin-top:80px}
 
 /* steps: визуальный таймлайн */
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative}
-.steps::before{content:"";position:absolute;top:19px;left:4%;right:4%;height:2px;background:var(--line)}
+.steps::before{content:"";position:absolute;top:19px;left:20px;right:calc(20% - 24px);height:2px;background:var(--line)}
 .step{position:relative}
 .step .n{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 0 0 6px var(--paper)}
 .step h3{font-size:16px;margin:14px 0 6px;line-height:1.3}
@@ -314,7 +340,7 @@ section[id],.case[id]{scroll-margin-top:80px}
 }
 
 /* faq */
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);align-items:start}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
 .faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 28px;transition:border-color .15s}
 .faq details[open]{border-color:var(--accent)}
 .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:600;font-size:var(--fs-h3);line-height:1.3;padding:22px 0}
@@ -326,11 +352,12 @@ section[id],.case[id]{scroll-margin-top:80px}
 
 /* cta */
 .cta-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--s7);align-items:start}
+.cta-inner>*{min-width:0}
 
 .cta-inner .lead{color:var(--muted-inv);font-size:var(--fs-lead);margin-bottom:var(--s6);max-width:var(--measure)}
 .cta-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
 .cta-note{font-size:var(--fs-sm);color:var(--muted-inv)}
-.cta-contact{font-size:var(--fs-body);line-height:1.9;color:var(--muted-inv)}
+.cta-contact{font-size:var(--fs-body);line-height:1.9;color:var(--muted-inv);overflow-wrap:anywhere}
 .cta-contact a{color:#fff;font-weight:600;border-bottom:1px solid var(--accent-inv)}
 
 /* footer */
@@ -413,7 +440,7 @@ body:has(#workModal[open]){overflow:hidden}
   .ab-grid,  .cta-inner{grid-template-columns:1fr}
   .shot img{width:calc(100vw - 48px);max-width:420px;height:auto;aspect-ratio:4/3;object-fit:cover}
   .shot figcaption{max-width:calc(100vw - 48px);white-space:normal}
-      .plate-in{padding:var(--s7) 0 var(--s6)}
+      .plate-in{padding-block:var(--s7) var(--s6)}
   #mcta{display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(18,75,56,.96);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
   #mcta .btn{flex:1}
   #mcta .ibtn{background:var(--plate-card);border-color:var(--line-inv);color:var(--accent-inv);flex:0 0 auto}
@@ -423,7 +450,9 @@ body:has(#workModal[open]){overflow:hidden}
   .logos .lg:last-of-type{grid-template-columns:1fr}
   .logos .cap{grid-column:1/-1;flex:none;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:2px}
   .wordmark{font-size:15px;white-space:normal}
-  .wordmark.serif{font-size:16.5px}
+  .wordmark.serif{font-size:14px;white-space:nowrap}
+  .hero-proof{flex-direction:column;gap:8px}
+  .hero-proof i,.hero-proof i:first-child{border-left:2px solid var(--accent);padding-left:14px}
   .hero-ctas .btn{width:100%}
   .hero-ctas .ibtn{display:none}
   .cta-ctas .btn{flex:1 1 100%}
@@ -439,6 +468,7 @@ body:has(#workModal[open]){overflow:hidden}
   h2{margin-bottom:18px}
   footer{padding-bottom:150px}
 }
+@media(max-width:379px){.practice{grid-template-columns:1fr}}
 @media(max-width:359px){
   nav .wrap{gap:10px;padding:0 14px}
   .nav-cta{padding:9px 12px;font-size:13px}
@@ -460,11 +490,10 @@ body:has(#workModal[open]){overflow:hidden}
   <div class="wrap">
     <a class="logo" href="#top">КБ</a>
     <div class="nav-links" id="navmenu">
-      <a href="#icp">Задачи</a>
-      <a href="#cases">Кейсы</a>
-      <a href="#work">Примеры материалов</a>
-      <a href="#how">Как работаю</a>
       <a href="#about">Обо мне</a>
+      <a href="#icp">Задачи</a>
+      <a href="#cases">Кейсы и услуги</a>
+      <a href="#how">Как работаю</a>
       <a href="#faq">Вопросы</a>
     </div>
     <a class="btn nav-cta" data-ev="cta" data-ch="telegram" data-loc="nav" href="https://t.me/kostya_younker">Обсудить задачу</a>
@@ -506,9 +535,38 @@ body:has(#workModal[open]){overflow:hidden}
   </div>
 </div>
 
+<section id="about">
+  <div class="wrap">
+    <div class="mono eyebrow">/01 – Обо мне</div>
+    <h2 class="reveal">Кто ведёт ваш проект</h2>
+    <div class="ab-grid mt">
+      <img class="reveal" src="img/f-conf.jpg" width="675" height="900" decoding="async" alt="Константин Бабаджанян выступает на деловой конференции">
+      <div class="bio reveal">
+        <p class="lead-line">Меня зовут Константин. Отвечаю лично: постановка задачи, анализ, модель, выводы и защита решения</p>
+        <p>2,5 года в консалтинге – McKinsey CIS и Yakov &amp; Partners (ex-McKinsey CIS). Затем коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в прямом подчинении генеральному директору. Инженер МГТУ им. Н.Э. Баумана, обучил 300+ сотрудников телеком-компании по своей программе бизнес-анализа</p>
+        <p>Отраслевую, юридическую и налоговую экспертизу подключаю по задаче, роли согласуем заранее. Ответственный один – я</p>
+        <p class="bio-note" style="color:var(--muted)">Вне работы – тайский бокс и шахматы: голова считает лучше после движения</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="plate">
+    <div class="wrap plate-in">
+      <div class="stats-grid">
+        <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в консалтинге и индустрии</span></div>
+        <div class="stat reveal"><div class="mono idx">/02</div><b>6</b><span>проектов по сделкам: 2 одобрены комитетами, 3 – до документов и закрытия</span></div>
+        <div class="stat reveal"><div class="mono idx">/03</div><b>7</b><span>отраслей: FMCG, промышленность, банки, телеком, реклама, девелопмент, ПО</span></div>
+        <div class="stat reveal"><div class="mono idx">/04</div><b>300+</b><span>сотрудников обучено бизнес-анализу по моей программе</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="icp">
   <div class="wrap">
-    <div class="mono eyebrow">/01 – С какой задачей вы пришли</div>
+    <div class="mono eyebrow">/02 – С какой задачей вы пришли</div>
     <h2 class="reveal">Начинаем не с названия услуги, а с решения, которое нужно принять</h2>
     <div class="icp-grid mt">
       <div class="icp reveal"><div class="num">/01</div><h3>Покупаете или продаёте бизнес</h3><p>Нужно понять цену, риски, структуру сделки и позицию на переговорах</p><span class="icp-f">На выходе: модель сделки, сценарии, коммерческие условия</span><a class="icp-link" href="#case-lbo">Смотреть кейс сделки →</a></div>
@@ -522,17 +580,19 @@ body:has(#workModal[open]){overflow:hidden}
 
 <section id="cases">
   <div class="wrap">
-    <div class="mono eyebrow">/02 – Кейсы</div>
-    <h2 class="reveal">Тезисы проходят комитеты, стратегии – советы директоров</h2>
-    <div class="case-tags reveal" id="caseTags">
-      <button type="button" class="on" data-f="all">Все</button>
-      <button type="button" data-f="deal">Сделки</button>
-      <button type="button" data-f="strategy">Стратегия</button>
-      <button type="button" data-f="sales">Продажи</button>
-      <button type="button" data-f="opex">Эффективность</button>
-    </div>
-    <div class="cases-grid mt">
-      <div class="case reveal" id="case-lbo" data-t="deal">
+    <div class="mono eyebrow">/03 – Кейсы и услуги</div>
+    <h2 class="reveal">Четыре направления: внутри кейсы, сделки, материалы и состав работ</h2>
+    <p class="svc-note reveal" style="margin-top:12px">Раскройте направление – внутри кейсы с результатами, примеры материалов и что входит в работу</p>
+
+    <details class="area reveal" id="area-deal" open>
+      <summary>
+        <div class="area-head"><h3>Сделки и M&amp;A</h3><p>Коммерческая и финансовая часть сделки – от оценки до согласованных условий</p></div>
+        <span class="mono area-meta">2 кейса / 4 сделки / 5 материалов</span>
+        <span class="area-x" aria-hidden="true">+</span>
+      </summary>
+      <div class="area-body">
+        <div class="cases-grid">
+<div class="case reveal" id="case-lbo" data-t="deal">
         <div class="big"><span class="big-lab">Одобрено двумя комитетами – стоимость актива</span>~$16 млн</div>
         <div class="what">Покупка молочного актива на кредитные деньги</div>
         <span class="mono role-line">Личная роль: коммерческая проверка, <span class="t" tabindex="0" aria-describedby="tip" data-d="LBO (leveraged buyout) – покупка бизнеса в основном на заёмные деньги">LBO</span>- и кредитная модели</span>
@@ -540,8 +600,46 @@ body:has(#workModal[open]){overflow:hidden}
         <div class="cb"><span class="mono">Запрос</span><p>Молочный актив с проблемной историей – покупать ли и по какой цене</p></div>
         <div class="cb"><span class="mono">Что сделал</span><p>Коммерческая проверка, модели сделки и кредита, оценка стоимости синергий</p></div>
         <div class="cb res"><span class="mono">Результат</span><p>Тезис сделки одобрен инвестиционным и кредитным комитетами</p></div>
+        <button type="button" class="case-mat" data-case="lbo" aria-haspopup="dialog"><img src="img/w-2.jpg" width="64" height="48" loading="lazy" decoding="async" alt=""><span>Материал по кейсу: модель для кредитного комитета →</span></button>
       </div>
-      <div class="case reveal" id="case-strategy" data-t="strategy">
+<div class="case reveal" id="case-cosmetics" data-t="deal">
+        <div class="big"><span class="big-lab">Решение покупателя одобрено – стоимость</span>~$25 млн</div>
+        <div class="what">Покупка контроля 50%+1 в косметическом бренде</div>
+        <span class="mono role-line">Личная роль: оценка, финмодель и структура сделки (buy-side)</span>
+        <span class="term">Срок: 2–4 недели (оценка и проверка)</span>
+        <div class="cb"><span class="mono">Запрос</span><p>Купить контроль в растущем бренде – по какой цене и с какой защитой</p></div>
+        <div class="cb"><span class="mono">Что сделал</span><p>Оценка и финмодель, проверка бизнеса, структура: часть цены привязана к будущим результатам</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>Решение покупателя одобрено; сделка не закрыта</p></div>
+        <button type="button" class="case-mat" data-case="car" aria-haspopup="dialog"><img src="img/g/car-2.jpg" width="64" height="48" loading="lazy" decoding="async" alt=""><span>Методика: 5 проверок модели продавца →</span></button>
+      </div>
+        </div>
+        <div class="mono eyebrow eyebrow-sub" style="margin-top:28px">Ещё сделки</div>
+        <div class="deals-grid">
+      <div class="deal reveal"><span class="mono role">Продажа / полный цикл</span><div class="sum">~$2 млн</div><p>Продажа бренда инвестору: полный пакет – от соглашения о неразглашении до договора купли-продажи</p><span class="mono st">Документы доведены до проекта договора</span></div>
+      <div class="deal reveal"><span class="mono role">Привлечение капитала</span><div class="sum">30 млн руб</div><p>Fashion-бренд на Wildberries: инвестиция в капитал за долю 20% – основные условия, корпоративный договор, финмодель</p><span class="mono st open">Структура согласована сторонами, сделка в работе</span></div>
+      <div class="deal reveal"><span class="mono role">Продажа / сопровождение</span><div class="sum">Отель, Сочи</div><p>Сопровождение продажи отеля, включая оценку стоимости строительства</p><span class="mono st">Сделка сопровождена</span></div>
+      <div class="deal reveal"><span class="mono role">Привлечение капитала</span><div class="sum">$0,5 млн</div><p>Раунд для DeFi-проекта (США): материалы и сопровождение</p><span class="mono st">Раунд привлечён</span></div>
+    </div>
+        <div class="mono eyebrow eyebrow-sub" style="margin-top:28px">Материалы</div>
+        <div class="work-grid" style="margin-top:14px">
+          <button type="button" class="frame reveal" data-case="ts" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-6.jpg" width="745" height="1053" loading="lazy" decoding="async" alt=""><span class="cap mono">Соглашение об условиях сделки / шаблон</span></button>
+          <button type="button" class="frame reveal" data-case="pantea" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-3.jpg" width="1100" height="619" loading="lazy" decoding="async" alt=""><span class="cap mono">Дек инвест-кейса / PE-фонд</span></button>
+          <button type="button" class="frame reveal" data-case="pantea" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-4.jpg" width="1100" height="619" loading="lazy" decoding="async" alt=""><span class="cap mono">Резюме для инвесткомитета / экономика фонда</span></button>
+        </div>
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки – материалы для решения</p><span class="mono area-srok">Срок: от 2 недель (оценка) до 3–6 месяцев (полный цикл)</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul><ul class="dir-list"><li>Названа цена – проверить её нечем</li><li>Покупка или продажа тянется без структуры</li><li>Документы не отражают договорённости</li><li>К продаже не готовы: нет финмодели, структуры и документов</li></ul></details></div></div>
+      </div>
+    </details>
+
+    <details class="area reveal" id="area-strategy">
+      <summary>
+        <div class="area-head"><h3>Стратегия и рост</h3><p>Куда расти дальше: новые продукты, сегменты и направления</p></div>
+        <span class="mono area-meta">3 кейса / 1 материал</span>
+        <span class="area-x" aria-hidden="true">+</span>
+      </summary>
+      <div class="area-body">
+        <div class="cases-grid">
+<div class="case reveal" id="case-strategy" data-t="strategy">
         <div class="big"><span class="big-lab">Одобрено советом директоров – цель</span>3× <span class="t" tabindex="0" aria-describedby="tip" data-d="EBITDA – прибыль до вычета процентов, налогов и амортизации; грубая мера операционной прибыли бизнеса">EBITDA</span></div>
         <div class="what">ГЛОНАСС – стратегия диверсификации</div>
         <span class="mono role-line">Личная роль: руководитель офиса трансформации, подчинение гендиректору</span>
@@ -550,15 +648,7 @@ body:has(#workModal[open]){overflow:hidden}
         <div class="cb"><span class="mono">Что сделал</span><p>Офис трансформации с нуля, 4 стратегические сессии, venture-портфель $80 млн+ – 3 инициативы вынесены на инвесткомитет</p></div>
         <div class="cb res"><span class="mono">Результат</span><p>Стратегия защищена перед советом директоров и Министром транспорта; цель – 3× EBITDA</p></div>
       </div>
-      <div class="case reveal" id="case-sales" data-t="sales">
-        <div class="big"><span class="big-lab">Расчётный потенциал</span>до $30 млн/год</div>
-        <div class="what">Яндекс – программа эффективности продаж для 70+ человек</div>
-        <span class="mono role-line">Личная роль: дизайн программы и перестройка клиентских баз</span>
-        <div class="cb"><span class="mono">Запрос</span><p>Выручка команд росла медленнее возможного – найти резервы без роста штата</p></div>
-        <div class="cb"><span class="mono">Что сделал</span><p>Программа эффективности для 70+ человек, перестройка клиентских баз сегмента – 6 тимлидов, 36 менеджеров</p></div>
-        <div class="cb res"><span class="mono">Результат</span><p>Расчётный потенциал: программа – до $30 млн/год, перестройка баз – ещё +5% по сегменту</p></div>
-      </div>
-      <div class="case reveal" id="case-growth" data-t="strategy">
+<div class="case reveal" id="case-growth" data-t="strategy">
         <div class="big"><span class="big-lab">Одобрено акционерами – цель к 2030</span>$24 → $120 млн</div>
         <div class="what">B2B SaaS – целевая модель роста</div>
         <span class="mono role-line">Личная роль: бенчмарк, сегментация и речевая аналитика; стратегия – с партнёрами ex-McKinsey</span>
@@ -566,33 +656,9 @@ body:has(#workModal[open]){overflow:hidden}
         <div class="cb"><span class="mono">Запрос</span><p>Компании на ~700 сотрудников нужен план кратного роста и ответ на ИИ-сдвиг рынка</p></div>
         <div class="cb"><span class="mono">Что сделал</span><p>Корпоративная, коммерческая и функциональные стратегии, пересборка продукта под ИИ</p></div>
         <div class="cb res"><span class="mono">Результат</span><p>Акционеры одобрили целевую модель роста с $24 до $120 млн к 2030</p></div>
+        <button type="button" class="case-mat" data-case="saas" aria-haspopup="dialog"><img src="img/w-1.jpg" width="64" height="48" loading="lazy" decoding="async" alt=""><span>Материал по кейсу: мини-дек стратегии →</span></button>
       </div>
-      <div class="case reveal" id="case-cosmetics" data-t="deal">
-        <div class="big"><span class="big-lab">Решение покупателя одобрено – стоимость</span>~$25 млн</div>
-        <div class="what">Покупка контроля 50%+1 в косметическом бренде</div>
-        <span class="mono role-line">Личная роль: оценка, финмодель и структура сделки (buy-side)</span>
-        <span class="term">Срок: 2–4 недели (оценка и проверка)</span>
-        <div class="cb"><span class="mono">Запрос</span><p>Купить контроль в растущем бренде – по какой цене и с какой защитой</p></div>
-        <div class="cb"><span class="mono">Что сделал</span><p>Оценка и финмодель, проверка бизнеса, структура: часть цены привязана к будущим результатам</p></div>
-        <div class="cb res"><span class="mono">Результат</span><p>Решение покупателя одобрено; сделка не закрыта</p></div>
-      </div>
-      <div class="case reveal" id="case-bank" data-t="opex">
-        <div class="big"><span class="big-lab">Управленческий контур банка $120 млн+</span>22 вертикали</div>
-        <div class="what">KPI-каскад и план-факт для руководства банка</div>
-        <span class="mono role-line">Личная роль: в составе команды McKinsey CIS</span>
-        <div class="cb"><span class="mono">Запрос</span><p>Банку нужен управляемый рост: цели и контроль исполнения по всем направлениям</p></div>
-        <div class="cb"><span class="mono">Что сделал</span><p>Каскад показателей по 22 вертикалям, расчётные модели план-факта для C-level</p></div>
-        <div class="cb res"><span class="mono">Результат</span><p>Рабочий инструмент план-факта для руководства по 22 вертикалям</p></div>
-      </div>
-      <div class="case reveal" id="case-steel" data-t="opex">
-        <div class="big"><span class="big-lab">Актив $1 млрд – темп выпуска</span>+10%</div>
-        <div class="what">Программа эффективности на сталеплавильном производстве</div>
-        <span class="mono role-line">Личная роль: диагностика на площадке и программа мероприятий</span>
-        <div class="cb"><span class="mono">Запрос</span><p>Темп выпуска ниже возможного – найти резервы без крупных вложений</p></div>
-        <div class="cb"><span class="mono">Что сделал</span><p>Диагностика на производственной площадке, программа роста темпа выпуска</p></div>
-        <div class="cb res"><span class="mono">Результат</span><p>+10% к темпу выпуска, расчётный эффект ~$3 млн прибыли в год</p></div>
-      </div>
-      <div class="case reveal" id="case-taxi" data-t="strategy">
+<div class="case reveal" id="case-taxi" data-t="strategy">
         <div class="big"><span class="big-lab">Запуск с нуля</span>Таксопарк</div>
         <div class="what">Бизнес собран и запущен под ключ</div>
         <span class="mono role-line">Личная роль: экономика, операционная модель, продукт</span>
@@ -600,83 +666,96 @@ body:has(#workModal[open]){overflow:hidden}
         <div class="cb"><span class="mono">Что сделал</span><p>Экономика парка, система мотивации водителей, приложение</p></div>
         <div class="cb res"><span class="mono">Результат</span><p>Таксопарк запущен под ключ</p></div>
       </div>
-    </div>
-    <div class="mono eyebrow eyebrow-sub">Ещё из практики</div>
-    <ul class="practice reveal">
-      <li><b>ОАЭ</b><span>стратегия устойчивого развития эмирата – в составе команды McKinsey</span></li>
-      <li><b>10–30%</b><span>эффект в 10+ проектах эффективности: девелопмент, промышленность, банк из топ-3 РФ</span></li>
-      <li><b>−$1 млн/год</b><span>расчётный эффект системы мотивации на 500 человек</span></li>
-      <li><b>+10 п.п.</b><span>к марже клиента: всероссийский опрос сельхозпроизводителей и цепочки поставок</span></li>
-      <li><b>7 функций</b><span>модели численности для топ-1 девелопера РФ</span></li>
-      <li><b>+13 п.п.</b><span>точность прогноза спроса в рекламном бизнесе</span></li>
-      <li><b>10 000</b><span>звонков – рабочий прототип речевой аналитики, мультиагентные ИИ-пайплайны</span></li>
-      <li><b>+$2,8 млн/год</b><span>расчётный эффект в продажах медийной рекламы Яндекса</span></li>
-      <li><b>$5 млн+/год</b><span>сервисная модель, построенная в проектах эффективности</span></li>
-      <li><b>~$8 млн</b><span>контракт клиента: real-time аналитика для топ-1 газеты Казахстана</span></li>
-    </ul>
+        </div>
+        <div class="mono eyebrow eyebrow-sub" style="margin-top:28px">Ещё из практики</div>
+        <ul class="practice" style="margin-top:14px">
+          <li><b>ОАЭ</b><span>стратегия устойчивого развития эмирата – в составе команды McKinsey</span></li>
+          <li><b>~$8 млн</b><span>контракт клиента: real-time аналитика для топ-1 газеты Казахстана</span></li>
+        </ul>
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта – для решения собственников или совета директоров</p><span class="mono area-srok">Срок: около 3 месяцев</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul><ul class="dir-list"><li>Рост упёрся в потолок, непонятно куда дальше</li><li>Гипотез много – плана, за который проголосуют, нет</li><li>Нужен новый продукт или направление, но неясно какое</li><li>Решения о развитии принимаются без цифр</li></ul></details></div></div>
+      </div>
+    </details>
+
+    <details class="area reveal" id="area-sales">
+      <summary>
+        <div class="area-head"><h3>Продажи и выручка</h3><p>Больше выручки с той же клиентской базы: воронка, покрытие, конверсия</p></div>
+        <span class="mono area-meta">1 кейс</span>
+        <span class="area-x" aria-hidden="true">+</span>
+      </summary>
+      <div class="area-body">
+        <div class="cases-grid">
+<div class="case reveal" id="case-sales" data-t="sales">
+        <div class="big"><span class="big-lab">Расчётный потенциал</span>до $30 млн/год</div>
+        <div class="what">Яндекс – программа эффективности продаж для 70+ человек</div>
+        <span class="mono role-line">Личная роль: дизайн программы и перестройка клиентских баз</span>
+        <div class="cb"><span class="mono">Запрос</span><p>Выручка команд росла медленнее возможного – найти резервы без роста штата</p></div>
+        <div class="cb"><span class="mono">Что сделал</span><p>Программа эффективности для 70+ человек, перестройка клиентских баз сегмента – 6 тимлидов, 36 менеджеров</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>Расчётный потенциал: программа – до $30 млн/год, перестройка баз – ещё +5% по сегменту</p></div>
+      </div>
+        </div>
+                <div class="mono eyebrow eyebrow-sub" style="margin-top:28px">Ещё из практики</div>
+        <ul class="practice" style="margin-top:14px">
+          <li><b>+13 п.п.</b><span>точность прогноза спроса в рекламном бизнесе</span></li>
+          <li><b>10 000</b><span>звонков – рабочий прототип речевой аналитики, мультиагентные ИИ-пайплайны</span></li>
+          <li><b>+$2,8 млн/год</b><span>расчётный эффект в продажах медийной рекламы Яндекса</span></li>
+        </ul>
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера эффекта</p><span class="mono area-srok">Срок: 4–8 недель</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul><ul class="dir-list"><li>Продавцы заняты всем, кроме продаж</li><li>Клиентские базы поделены по привычке</li><li>Конверсия падает, а причины отвала никто не считал</li><li>Решения принимаются по ощущениям, а не по данным воронки</li></ul></details></div></div>
+      </div>
+    </details>
+
+    <details class="area reveal" id="area-opex">
+      <summary>
+        <div class="area-head"><h3>Операционная эффективность</h3><p>Больше прибыли без роста выручки: себестоимость, процессы, численность</p></div>
+        <span class="mono area-meta">2 кейса</span>
+        <span class="area-x" aria-hidden="true">+</span>
+      </summary>
+      <div class="area-body">
+        <div class="cases-grid">
+<div class="case reveal" id="case-bank" data-t="opex">
+        <div class="big"><span class="big-lab">Управленческий контур банка $120 млн+</span>22 вертикали</div>
+        <div class="what">KPI-каскад и план-факт для руководства банка</div>
+        <span class="mono role-line">Личная роль: в составе команды McKinsey CIS</span>
+        <div class="cb"><span class="mono">Запрос</span><p>Банку нужен управляемый рост: цели и контроль исполнения по всем направлениям</p></div>
+        <div class="cb"><span class="mono">Что сделал</span><p>Каскад показателей по 22 вертикалям, расчётные модели план-факта для C-level</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>Рабочий инструмент план-факта для руководства по 22 вертикалям</p></div>
+      </div>
+<div class="case reveal" id="case-steel" data-t="opex">
+        <div class="big"><span class="big-lab">Актив $1 млрд – темп выпуска</span>+10%</div>
+        <div class="what">Программа эффективности на сталеплавильном производстве</div>
+        <span class="mono role-line">Личная роль: диагностика на площадке и программа мероприятий</span>
+        <div class="cb"><span class="mono">Запрос</span><p>Темп выпуска ниже возможного – найти резервы без крупных вложений</p></div>
+        <div class="cb"><span class="mono">Что сделал</span><p>Диагностика на производственной площадке, программа роста темпа выпуска</p></div>
+        <div class="cb res"><span class="mono">Результат</span><p>+10% к темпу выпуска, расчётный эффект ~$3 млн прибыли в год</p></div>
+      </div>
+        </div>
+                <div class="mono eyebrow eyebrow-sub" style="margin-top:28px">Ещё из практики</div>
+        <ul class="practice" style="margin-top:14px">
+          <li><b>10–30%</b><span>эффект в 10+ проектах эффективности: девелопмент, промышленность, банк из топ-3 РФ</span></li>
+          <li><b>−$1 млн/год</b><span>расчётный эффект системы мотивации на 500 человек</span></li>
+          <li><b>7 функций</b><span>модели численности для топ-1 девелопера РФ</span></li>
+          <li><b>$5 млн+/год</b><span>сервисная модель, построенная в проектах эффективности</span></li>
+          <li><b>+10 п.п.</b><span>к марже клиента: всероссийский опрос сельхозпроизводителей и цепочки поставок</span></li>
+        </ul>
+        <div class="area-res"><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Модель эффектов (база, цель, мероприятия), ответственные и план запуска</p><span class="mono area-srok">Срок: 6–12 недель</span></div>
+        <div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul><ul class="dir-list"><li>Выручка растёт, прибыль – нет</li><li>Затраты раздуты, где именно – неясно</li><li>Численность росла быстрее задач</li><li>Изменения буксуют без выделенного руководителя</li></ul></details></div></div>
+      </div>
+    </details>
+
+    <p class="work-note reveal">Материалы обезличены: имена и данные клиентов закрыты NDA. Полные версии и живые проекты показываю на созвоне</p>
+    
     <p class="cta-line reveal">Узнали свою ситуацию? <a href="https://t.me/kostya_younker">Напишите – подскажу, какой из кейсов ближе к вашей задаче</a></p>
   </div>
 </section>
 
 
-<section id="work">
-  <div class="wrap">
-    <div class="mono eyebrow">/03 – Примеры работ</div>
-    <h2 class="reveal">Как выглядит материал для решения</h2>
-    <div class="work-grid">
-      <button type="button" class="frame reveal" data-case="saas" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-1.jpg" width="1100" height="688" loading="lazy" decoding="async" alt=""><span class="cap mono">Мини-дек / стратегия B2B SaaS</span></button>
-      <button type="button" class="frame reveal" data-case="lbo" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-2.jpg" width="1053" height="407" loading="lazy" decoding="async" alt=""><span class="cap mono">Модель сделки / кредитный комитет</span></button>
-      <button type="button" class="frame reveal" data-case="car" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/g/car-2.jpg" width="1000" height="1250" loading="lazy" decoding="async" alt=""><span class="cap mono">Авторская аналитика / проверка модели продавца</span></button>
-    </div>
-    <details class="more"><summary class="mono">Показать ещё 3 материала</summary>
-    <div class="work-grid" style="margin-top:14px">
-      <button type="button" class="frame reveal" data-case="pantea" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-3.jpg" width="1100" height="619" loading="lazy" decoding="async" alt=""><span class="cap mono">Дек инвест-кейса / PE-фонд</span></button>
-      <button type="button" class="frame reveal" data-case="pantea" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-4.jpg" width="1100" height="619" loading="lazy" decoding="async" alt=""><span class="cap mono">Резюме для инвесткомитета / экономика фонда</span></button>
-      <button type="button" class="frame reveal" data-case="ts" aria-haspopup="dialog"><span class="frame-bar">Открыть материал</span><img src="img/w-6.jpg" width="745" height="1053" loading="lazy" decoding="async" alt=""><span class="cap mono">Соглашение об условиях сделки / шаблон</span></button>
-    </div>
-    </details>
-    <p class="work-note reveal">Материалы обезличены: имена и данные клиентов закрыты NDA. Полные версии и живые проекты показываю на созвоне</p>
-  </div>
-</section>
 
-<section id="deals">
-  <div class="wrap">
-    <div class="mono eyebrow">/04 – Другие проекты</div>
-    <h2 class="reveal">Ещё сделки – от продажи бренда до привлечения капитала</h2>
-    <div class="deals-grid">
-      <div class="deal reveal"><span class="mono role">Продажа / полный цикл</span><div class="sum">~$2 млн</div><p>Продажа бренда инвестору: полный пакет – от соглашения о неразглашении до договора купли-продажи</p><span class="mono st">Документы доведены до проекта договора</span></div>
-      <div class="deal reveal"><span class="mono role">Привлечение капитала</span><div class="sum">30 млн руб</div><p>Fashion-бренд на Wildberries: инвестиция в капитал за долю 20% – основные условия, корпоративный договор, финмодель</p><span class="mono st open">Структура согласована сторонами, сделка в работе</span></div>
-      <div class="deal reveal"><span class="mono role">Продажа / сопровождение</span><div class="sum">Отель, Сочи</div><p>Сопровождение продажи отеля, включая оценку стоимости строительства</p><span class="mono st">Сделка сопровождена</span></div>
-      <div class="deal reveal"><span class="mono role">Привлечение капитала</span><div class="sum">$0,5 млн</div><p>Раунд для DeFi-проекта (США): материалы и сопровождение</p><span class="mono st">Раунд привлечён</span></div>
-    </div>
-  </div>
-</section>
 
-<section id="products">
-  <div class="wrap">
-    <div class="mono eyebrow">/05 – Направления и услуги</div>
-    <h2 class="reveal">Четыре направления – когда обращаются, что входит, что на выходе</h2>
-
-    <div class="dir reveal">
-      <div class="dir-side"><div class="dir-head"><h3>Стратегия и рост</h3><p>Куда расти дальше: новые продукты, сегменты и направления</p><span class="mono">Срок: около 3 месяцев</span></div><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта – для решения собственников или совета директоров</p></div></div><div class="dir-cols"><div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul><ul class="dir-list"><li>Рост упёрся в потолок, непонятно куда дальше</li><li>Гипотез много – плана, за который проголосуют, нет</li><li>Нужен новый продукт или направление, но неясно какое</li><li>Решения о развитии принимаются без цифр</li></ul></details></div></div></div>
-
-    <div class="dir reveal">
-      <div class="dir-side"><div class="dir-head"><h3>Сделки и M&amp;A</h3><p>Коммерческая и финансовая часть сделки – от оценки до согласованных условий; юридическую редакцию ведёт профильный специалист</p><span class="mono">Срок: от 2 недель (оценка) до 3–6 месяцев (полный цикл)</span></div><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки – материалы для решения</p></div></div><div class="dir-cols"><div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul><ul class="dir-list"><li>Названа цена – проверить её нечем</li><li>Покупка или продажа тянется без структуры</li><li>Документы не отражают договорённости</li><li>К продаже не готовы: нет финмодели, структуры и документов</li></ul></details></div></div></div>
-
-    <div class="dir reveal">
-      <div class="dir-side"><div class="dir-head"><h3>Продажи и выручка</h3><p>Больше выручки с той же клиентской базы: воронка, покрытие и конверсия под контролем</p><span class="mono">Типичный срок: 4–8 недель</span></div><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера эффекта</p></div></div><div class="dir-cols"><div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul><ul class="dir-list"><li>Продавцы заняты всем, кроме продаж</li><li>Клиентские базы поделены по привычке</li><li>Конверсия падает, а причины отвала никто не считал</li><li>Решения принимаются по ощущениям, а не по данным воронки</li></ul></details></div></div></div>
-
-    <div class="dir reveal">
-      <div class="dir-side"><div class="dir-head"><h3>Операционная эффективность</h3><p>Больше прибыли без роста выручки: себестоимость, процессы, численность; ИИ – вместо ручной работы</p><span class="mono">Типичный срок: 6–12 недель</span></div><div class="dir-res"><span class="mono dir-lab">Результат</span><p>Модель эффектов (база, цель, мероприятия), ответственные и план запуска</p></div></div><div class="dir-cols"><div><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul><details class="svc-more"><summary>Ещё услуги и когда обращаются</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul><ul class="dir-list"><li>Выручка растёт, прибыль – нет</li><li>Затраты раздуты, где именно – неясно</li><li>Численность росла быстрее задач</li><li>Изменения буксуют без выделенного руководителя</li></ul></details></div></div></div>
-
-    <p class="svc-note reveal">Состав материалов фиксируем в предложении – под задачу</p>
-    <p class="cta-line reveal">Не нашли свою задачу? <a href="https://t.me/kostya_younker">Опишите – предложу, с чего начать</a></p>
-  </div>
-</section>
 
 <section id="how">
   <div class="wrap">
-    <div class="mono eyebrow">/06 – Как устроена работа</div>
+    <div class="mono eyebrow">/04 – Как устроена работа</div>
     <h2 class="reveal">Старт за один созвон, формат – под задачу</h2>
     <div class="steps">
       <div class="step reveal"><div class="n">01</div><h3>Короткое сообщение</h3><p>2–3 строки <a href="https://t.me/kostya_younker">в Телеграм</a>: бизнес, масштаб, решение</p></div>
@@ -694,46 +773,19 @@ body:has(#workModal[open]){overflow:hidden}
   </div>
 </section>
 
-<section id="about">
-  <div class="wrap">
-    <div class="mono eyebrow">/07 – Обо мне</div>
-    <h2 class="reveal">Кто ведёт ваш проект</h2>
-    <div class="ab-grid mt">
-      <img class="reveal" src="img/f-conf.jpg" width="675" height="900" loading="lazy" decoding="async" alt="Константин Бабаджанян выступает на деловой конференции">
-      <div class="bio reveal">
-        <p class="lead-line">Меня зовут Константин. Отвечаю лично: постановка задачи, анализ, модель, выводы и защита решения</p>
-        <p>2,5 года в консалтинге – McKinsey CIS и Yakov &amp; Partners (ex-McKinsey CIS). Затем коммерческая трансформация в Яндекс Рекламе и офис трансформации ГЛОНАСС в прямом подчинении генеральному директору. Инженер МГТУ им. Н.Э. Баумана, обучил 300+ сотрудников телеком-компании по своей программе бизнес-анализа</p>
-        <p>Отраслевую, юридическую и налоговую экспертизу подключаю по задаче, роли согласуем заранее. Ответственный один – я</p>
-        <p class="bio-note" style="color:var(--muted)">Вне работы – тайский бокс и шахматы: голова считает лучше после движения</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section style="padding-top:0">
-  <div class="plate">
-    <div class="wrap plate-in">
-      <div class="stats-grid">
-        <div class="stat reveal"><div class="mono idx">/01</div><b>20+</b><span>проектов в консалтинге и индустрии</span></div>
-        <div class="stat reveal"><div class="mono idx">/02</div><b>6</b><span>проектов по сделкам: 2 одобрены комитетами, 3 доведены до документов или закрытия, 1 в работе</span></div>
-        <div class="stat reveal"><div class="mono idx">/03</div><b>7</b><span>отраслей: FMCG, промышленность, банки, телеком, реклама, девелопмент, ПО</span></div>
-        <div class="stat reveal"><div class="mono idx">/04</div><b>300+</b><span>сотрудников обучено бизнес-анализу по моей программе</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <section id="field">
   <div class="plate">
     <div class="plate-in">
       <div class="wrap">
-        <div class="mono eyebrow">/08 – В полях</div>
+        <div class="mono eyebrow">/05 – В полях</div>
         <h2 class="reveal">Работаю там, где создаётся стоимость</h2>
       </div>
       <div class="strip">
-        <figure class="shot"><img src="img/f-plant.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
-        <figure class="shot"><img src="img/f-roof.jpg" width="673" height="900" loading="lazy" decoding="async" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
+        <figure class="shot"><img src="img/f-plant.jpg" width="1200" height="900" decoding="async" alt="Сталеплавильный цех"><figcaption>Сталеплавильный цех / проект эффективности</figcaption></figure>
+        <figure class="shot"><img src="img/f-roof.jpg" width="673" height="900" decoding="async" alt="Промышленный комбинат"><figcaption>Комбинат / диагностика на месте</figcaption></figure>
       </div>
     </div>
   </div>
@@ -741,7 +793,7 @@ body:has(#workModal[open]){overflow:hidden}
 
 <section id="faq">
   <div class="wrap">
-    <div class="mono eyebrow">/09 – Вопросы</div>
+    <div class="mono eyebrow">/06 – Вопросы</div>
     <h2 class="reveal">Что спрашивают до старта</h2>
     <div class="faq">
       <details><summary>Когда этот формат подходит, а когда лучше большая фирма</summary><p>Мой формат – прямой доступ к старшему исполнителю и конкретное решение. Большая фирма лучше, когда нужны международная команда, масштабная полевая работа или её бренд как фактор. Не подходит – скажу до старта</p></details>
@@ -861,7 +913,7 @@ let wmX=0,wmDrag=false;
 wmTrack.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch'){wmX=e.clientX;wmDrag=true}});
 wmTrack.addEventListener('pointerup',e=>{if(!wmDrag)return;wmDrag=false;const dx=e.clientX-wmX;if(Math.abs(dx)>40)wmGo(wmIdx+(dx<0?1:-1))});
 workModal.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();wmGo(wmIdx+1)}else if(e.key==='ArrowLeft'){e.preventDefault();wmGo(wmIdx-1)}});
-document.querySelectorAll('button.frame[data-case]').forEach(f=>f.addEventListener('click',()=>{
+document.querySelectorAll('button[data-case]').forEach(f=>f.addEventListener('click',()=>{
   const d=WORKS[f.dataset.case];if(!d)return;
   wmOpener=f;
   wmTitle.textContent=d.t;
@@ -910,28 +962,16 @@ onScroll();
 // аналитика: no-op каркас. События собираются только если задан window.__track. Внешних запросов и cookies нет
 const track=(n,p)=>{try{if(typeof window.__track==='function')window.__track(n,p)}catch(e){}};
 document.querySelectorAll('[data-ev]').forEach(el=>el.addEventListener('click',()=>track('cta_click',{channel:el.dataset.ch||'',placement:el.dataset.loc||''})));
-document.querySelectorAll('button.frame[data-case]').forEach(f=>f.addEventListener('click',()=>track('work_sample_open',{sample_id:f.dataset.case})));
+document.querySelectorAll('button[data-case]').forEach(f=>f.addEventListener('click',()=>track('work_sample_open',{sample_id:f.dataset.case})));
 document.querySelectorAll('.faq details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)track('faq_open',{faq_id:(d.querySelector('summary')||{}).textContent||''})}));
 const _sd={25:0,50:0,75:0,90:0};
 addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100;[25,50,75,90].forEach(m=>{if(!_sd[m]&&p>=m){_sd[m]=1;track('scroll_depth',{depth:m})}})},{passive:true});
 // возврат фокуса на карточку-инициатор после закрытия модалки
 workModal.addEventListener('close',()=>{if(wmOpener){wmOpener.focus();wmOpener=null}});
 // якорный переход: целевая секция видна сразу, без ожидания reveal-анимации
-function revealNow(el){if(el)el.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'))}
+function revealNow(el){if(!el)return;let p=el.closest('details');while(p){p.open=true;p=p.parentElement&&p.parentElement.closest('details')}el.classList.add('in');el.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'))}
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const h=a.getAttribute('href');if(h&&h.length>1)revealNow(document.querySelector(h))}));
 if(location.hash&&location.hash.length>1)revealNow(document.querySelector(location.hash));
-// фильтр кейсов по тегам
-const tagBar=document.getElementById('caseTags');
-if(tagBar){
-  const caseEls=[...document.querySelectorAll('.cases-grid .case')];
-  tagBar.addEventListener('click',e=>{
-    const b=e.target.closest('button[data-f]');if(!b)return;
-    [...tagBar.children].forEach(x=>x.classList.toggle('on',x===b));
-    const f=b.dataset.f;
-    caseEls.forEach(c=>{const show=f==='all'||c.dataset.t===f;c.classList.toggle('tag-hide',!show);if(show)c.classList.add('in')});
-    track('case_filter',{tag:f});
-  });
-}
 // мобильное меню: доступное, с Escape и возвратом фокуса
 const burger=document.querySelector('.nav-burger'),navmenu=document.getElementById('navmenu');
 if(burger&&navmenu){
