@@ -221,8 +221,16 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .case-mat span{font-size:13.5px;font-weight:600;color:var(--accent);line-height:1.35}
 
 /* блок услуг */
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.svc-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+.svc-grid{display:block}
+.svc-card{background:transparent;border:none;border-top:1px solid var(--line);border-radius:0;padding:32px 0;display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--s6);align-items:start}
+.svc-card:last-child{border-bottom:1px solid var(--line)}
+.svc-card>h3{grid-column:1;font-size:22px;margin-bottom:8px}
+.svc-card>.svc-when{grid-column:1;grid-row:2;margin-bottom:0}
+.svc-card>.svc-res{grid-column:2;grid-row:1/span 2;margin-bottom:0}
+.svc-card>.dir-lab,.svc-card>.svc-ul,.svc-card>.svc-more{grid-column:2}
+.svc-card>.dir-lab{margin-top:18px}
+@media(max-width:900px){.svc-card{grid-template-columns:1fr;gap:var(--s4)}
+ .svc-card>h3,.svc-card>.svc-when,.svc-card>.svc-res,.svc-card>.dir-lab,.svc-card>.svc-ul,.svc-card>.svc-more{grid-column:1;grid-row:auto}}
 .svc-card h3{font-size:20px;margin-bottom:8px}
 .svc-when{font-size:var(--fs-sm);color:var(--muted);margin-bottom:16px}
 .svc-res{border-left:2px solid var(--accent);padding-left:14px;margin-bottom:18px}
@@ -233,7 +241,7 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 @media(max-width:900px){.svc-grid{grid-template-columns:1fr}}
 #icp{background:rgba(18,75,56,.035);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 #services{background:#F4F6F4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-#services .svc-card{background:#fff}
+
 
 /* избранные результаты */
 .res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:var(--s6)}
@@ -554,10 +562,9 @@ body:has(#workModal[open]){overflow:hidden}
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-copy">
-      <div class="mono eyebrow">Стратегия, сделки и рост прибыли для собственников и CEO</div>
-      <div class="mono" style="color:var(--muted);margin-bottom:18px">Константин Бабаджанян / <span class="t" tabindex="0" aria-describedby="tip" data-d="McKinsey &amp; Company – крупнейшая в мире компания стратегического консалтинга: помогает владельцам и руководителям принимать ключевые решения">ex-McKinsey</span></div>
+      <div class="mono eyebrow">Константин Бабаджанян / <span class="t" tabindex="0" aria-describedby="tip" data-d="McKinsey &amp; Company – крупнейшая в мире компания стратегического консалтинга: помогает владельцам и руководителям принимать ключевые решения">ex-McKinsey</span></div>
       <h1>Помогаю принимать решения, от которых зависит стоимость бизнеса</h1>
-      <p class="lead">Проверяю сделки, собираю стратегию роста, нахожу резервы прибыли – с финансовой моделью, планом действий и личным ведением</p>
+      <p class="lead">Для собственников и CEO: проверяю сделки, собираю стратегию роста, нахожу резервы прибыли – с финансовой моделью, планом действий и личным ведением</p>
       <div class="hero-ctas">
         <a class="btn lg" data-ev="cta" data-ch="telegram" data-loc="hero" href="https://t.me/kostya_younker"><svg><use href="#i-tg"/></svg><span>Обсудить задачу<span class="hide-sm"> в Telegram</span></span></a>
         <a class="btn ghost" href="#cases">Посмотреть результаты</a>
@@ -867,8 +874,8 @@ body:has(#workModal[open]){overflow:hidden}
 <section id="services">
   <div class="wrap">
     <div class="mono eyebrow">/05 – Что могу взять на себя</div>
-    <h2 class="reveal">Четыре направления работы</h2>
-    <p class="svc-note reveal" style="margin-top:12px">Состав работ, результат и ориентир по сроку. Кейсы по каждому направлению – выше</p>
+    <h2 class="reveal">Что беру на себя</h2>
+    <p class="svc-note reveal" style="margin-top:12px">Состав работ, результат и срок по каждому направлению. Кейсы – выше</p>
     <div class="svc-grid mt">
       <div class="svc-card reveal">
         <h3>Сделки и M&amp;A</h3>
