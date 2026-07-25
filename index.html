@@ -227,27 +227,7 @@ nav .wrap{display:flex;align-items:center;gap:22px;height:64px}
 .case-mat img{width:64px;height:48px;object-fit:cover;object-position:center top;border-radius:6px;border:1px solid var(--line);background:#F4F5F2;flex:0 0 auto}
 .case-mat span{font-size:13.5px;font-weight:600;color:var(--accent);line-height:1.35}
 
-/* блок услуг */
-.svc-grid{display:block}
-.svc-card{background:transparent;border:none;border-top:1px solid var(--line);border-radius:0;padding:32px 0;display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--s6);align-items:start}
-.svc-card:last-child{border-bottom:1px solid var(--line)}
-.svc-card>h3{grid-column:1;font-size:22px;margin-bottom:8px}
-.svc-card>.svc-when{grid-column:1;grid-row:2;margin-bottom:0}
-.svc-card>.svc-res{grid-column:2;grid-row:1/span 2;margin-bottom:0}
-.svc-card>.dir-lab,.svc-card>.svc-ul,.svc-card>.svc-more{grid-column:2}
-.svc-card>.dir-lab{margin-top:18px}
-@media(max-width:900px){.svc-card{grid-template-columns:1fr;gap:var(--s4)}
- .svc-card>h3,.svc-card>.svc-when,.svc-card>.svc-res,.svc-card>.dir-lab,.svc-card>.svc-ul,.svc-card>.svc-more{grid-column:1;grid-row:auto}}
-.svc-card h3{font-size:20px;margin-bottom:8px}
-.svc-when{font-size:var(--fs-sm);color:var(--muted);margin-bottom:16px}
-.svc-res{border-left:2px solid var(--accent);padding-left:14px;margin-bottom:18px}
-.svc-res .dir-lab{display:block;margin-bottom:5px}
-.svc-res p{font-size:var(--fs-sm)}
-.svc-res .area-srok{display:block;margin-top:8px;color:var(--accent);font-size:11px;letter-spacing:.06em;font-family:var(--mono)}
-.svc-card>.dir-lab{display:block;margin-bottom:10px}
-@media(max-width:900px){.svc-grid{grid-template-columns:1fr}}
 #icp{background:rgba(18,75,56,.035);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-#services{background:#F4F6F4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
 
 /* избранные результаты */
@@ -383,13 +363,6 @@ body:has(#workModal[open]) #mcta{display:none}
 @media(max-width:900px){.dir{grid-template-columns:1fr}.dir-cols{grid-template-columns:1fr;gap:var(--s5)}}
 .svc-ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
 .svc-ul li{font-size:13.5px;line-height:1.35;padding:7px 14px;border:1px solid rgba(18,75,56,.28);border-radius:999px;color:var(--ink)}
-details.svc-more{margin-top:2px}
-details.svc-more>summary{cursor:pointer;list-style:none;color:var(--accent);font-size:var(--fs-sm);font-weight:600;padding:12px 0;min-height:44px;display:flex;align-items:center;gap:6px}
-details.svc-more>summary::-webkit-details-marker{display:none}
-details.svc-more>summary::after{content:" +"}
-details.svc-more[open]>summary::after{content:" –"}
-details.svc-more .svc-ul{margin-top:6px}
-details.svc-more .dir-list{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}
 .icp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4)}
 .icp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;position:relative}
 .icp .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;margin-bottom:14px}
@@ -676,7 +649,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки</p><span class="mono area-srok">Срок: от 2 недель (оценка) до 3-6 месяцев</span></div>
-        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul></details></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-lbo" data-t="deal">
@@ -722,7 +695,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта</p><span class="mono area-srok">Срок: около 3 месяцев</span></div>
-        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul></details></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-strategy" data-t="strategy">
@@ -789,7 +762,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера</p><span class="mono area-srok">Срок: 4-8 недель</span></div>
-        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul></details></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-sales" data-t="sales">
@@ -836,7 +809,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Модель эффектов, ответственные и план запуска</p><span class="mono area-srok">Срок: 6-12 недель</span></div>
-        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul></details></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-steel" data-t="opex">
