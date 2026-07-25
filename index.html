@@ -291,6 +291,8 @@ body:has(#workModal[open]) #mcta{display:none}
 .jobs[open] .jobs-pill{opacity:.6}
 .jobs[open] .jobs-chev{transform:rotate(-135deg);margin-bottom:0;margin-top:6px}
 .jobs-body{padding:8px 28px 30px}
+.jobs-includes{margin:20px 0 4px}
+.jobs-includes .dir-lab{display:block;margin-bottom:10px}
 .jobs-body .cases-grid{margin-top:18px}
 @media(max-width:900px){
   .jobs>summary{grid-template-columns:1fr auto;gap:14px;padding:20px 20px}
@@ -382,7 +384,7 @@ body:has(#workModal[open]) #mcta{display:none}
 .svc-ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
 .svc-ul li{font-size:13.5px;line-height:1.35;padding:7px 14px;border:1px solid rgba(18,75,56,.28);border-radius:999px;color:var(--ink)}
 details.svc-more{margin-top:2px}
-details.svc-more>summary{cursor:pointer;list-style:none;color:var(--accent);font-size:var(--fs-sm);font-weight:600;padding:12px 0;min-height:44px;display:flex;align-items:center}
+details.svc-more>summary{cursor:pointer;list-style:none;color:var(--accent);font-size:var(--fs-sm);font-weight:600;padding:12px 0;min-height:44px;display:flex;align-items:center;gap:6px}
 details.svc-more>summary::-webkit-details-marker{display:none}
 details.svc-more>summary::after{content:" +"}
 details.svc-more[open]>summary::after{content:" –"}
@@ -596,7 +598,6 @@ body:has(#workModal[open]){overflow:hidden}
     <div class="nav-links" id="navmenu">
       <a href="#about">Обо мне</a>
       <a href="#icp">Задачи и кейсы</a>
-      <a href="#services">Услуги</a>
       <a href="#how">Как работаю</a>
       <a href="#faq">Вопросы</a>
     </div>
@@ -633,6 +634,7 @@ body:has(#workModal[open]){overflow:hidden}
       <img class="reveal" src="img/f-conf.jpg" width="675" height="900" decoding="async" alt="Константин Бабаджанян выступает на деловой конференции">
       <div class="bio reveal">
         <p class="lead-line">Меня зовут Константин. Беру задачу целиком – от первого разбора цифр до защиты решения перед теми, кто его принимает</p>
+        <div class="edge-note reveal">Отличие простое: ядро анализа и защиту решения делаю сам, а не передаю младшей команде. Вы получаете расчёт, за который отвечает один человек</div>
         <p class="team-note">Когда задаче нужны дополнительные компетенции, подключаю рыночных экспертов – партнёров ex-McKinsey, команды ex-BCG / ex-Bain / ex-EY, а также отраслевых, юридических и налоговых специалистов. Состав и роли согласуем на старте</p>
         <div class="ab-logos reveal">
       <div class="lg"><span class="cap">Работал</span><span class="lgw">
@@ -646,9 +648,6 @@ body:has(#workModal[open]){overflow:hidden}
     </div>
       </div>
     </div>
-    
-  
-    <div class="edge-note reveal">Отличие простое: ядро анализа и защиту решения делаю сам, а не передаю младшей команде. Вы получаете расчёт, за который отвечает один человек</div>
     <div class="mono eyebrow eyebrow-sub" style="margin-top:var(--s6)">Ключевые цифры</div>
     <div class="stats-light">
         <div class="stat reveal"><b>20+</b><span>проектов лично провёл – в консалтинге и внутри компаний</span></div>
@@ -677,6 +676,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки</p><span class="mono area-srok">Срок: от 2 недель (оценка) до 3-6 месяцев</span></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul></details></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-lbo" data-t="deal">
@@ -722,6 +722,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта</p><span class="mono area-srok">Срок: около 3 месяцев</span></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul></details></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-strategy" data-t="strategy">
@@ -788,6 +789,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера</p><span class="mono area-srok">Срок: 4-8 недель</span></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul></details></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-sales" data-t="sales">
@@ -834,6 +836,7 @@ body:has(#workModal[open]){overflow:hidden}
         </summary>
         <div class="jobs-body">
 <div class="area-top"><span class="mono dir-lab">Результат</span><p>Модель эффектов, ответственные и план запуска</p><span class="mono area-srok">Срок: 6-12 недель</span></div>
+        <div class="jobs-includes"><span class="mono dir-lab">Что входит</span><ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul><details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul></details></div>
         
         <div class="cases-grid">
       <div class="case reveal" id="case-steel" data-t="opex">
@@ -902,44 +905,7 @@ body:has(#workModal[open]){overflow:hidden}
 
 
 
-<section id="services">
-  <div class="wrap">
-    <div class="mono eyebrow">Услуги</div>
-    <h2 class="reveal">Что беру на себя</h2>
-    <p class="svc-note reveal" style="margin-top:12px">Состав работ, результат и срок по каждому направлению. Кейсы – выше</p>
-    <div class="svc-grid mt">
-      <div class="svc-card reveal">
-        <h3>Сделки и M&amp;A</h3>
-        <div class="svc-res"><span class="mono dir-lab">Результат</span><p>Оценка, финансовая модель, сценарии и коммерческая структура сделки – материалы для решения</p><span class="mono area-srok">Срок: от 2 недель (оценка) до 3-6 месяцев (полный цикл)</span></div>
-        <span class="mono dir-lab">Что входит</span>
-        <ul class="svc-ul"><li>Оценка бизнеса: доходный и сравнительный подходы</li><li>Финансовая модель сделки</li><li>Коммерческая проверка бизнеса</li><li>Структурирование: основные условия, договор купли-продажи, корпоративный договор</li></ul>
-        <details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Поиск и отбор целей для покупки</li><li>Инвестиционная записка и обоснование сделки</li><li>Подготовка к продаже: тизер, меморандум, комната данных</li><li>Расчёт синергий и план интеграции</li><li>Поддержка в переговорах</li></ul></details>
-      </div>
-      <div class="svc-card reveal">
-        <h3>Стратегия и рост</h3>
-        <div class="svc-res"><span class="mono dir-lab">Результат</span><p>Целевая модель, экономика направлений, приоритеты и дорожная карта – для решения собственников или совета директоров</p><span class="mono area-srok">Срок: около 3 месяцев</span></div>
-        <span class="mono dir-lab">Что входит</span>
-        <ul class="svc-ul"><li>Корпоративная стратегия</li><li>Продуктовая стратегия и диверсификация</li><li>Запуск новых направлений</li><li>Дорожная карта и каскад целей</li></ul>
-        <details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Функциональные и ИТ-стратегии</li><li>Коммерческая стратегия</li><li>Конкурентный анализ и бенчмаркинг</li><li>Анализ рынка и оценка объёма</li><li>Стратегические сессии и фасилитация</li></ul></details>
-      </div>
-      <div class="svc-card reveal">
-        <h3>Продажи и выручка</h3>
-        <div class="svc-res"><span class="mono dir-lab">Результат</span><p>Карта потерь выручки, изменения в базе и воронке, пилот и методика замера эффекта</p><span class="mono area-srok">Срок: 4-8 недель</span></div>
-        <span class="mono dir-lab">Что входит</span>
-        <ul class="svc-ul"><li>Диагностика воронки и карта потерь выручки</li><li>Программа эффективности продаж</li><li>Сегментация и перестройка клиентской базы</li><li>Пилот на одном канале с замером эффекта</li></ul>
-        <details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Модель покрытия и нормативы нагрузки</li><li>Коммерческая политика: цены, скидки, условия</li><li>Речевая аналитика звонков и контроль качества</li><li>Показатели и мотивация коммерческого блока</li><li>Панель коммерческих показателей</li></ul></details>
-      </div>
-      <div class="svc-card reveal">
-        <h3>Операционная эффективность</h3>
-        <div class="svc-res"><span class="mono dir-lab">Результат</span><p>Модель эффектов (база, цель, мероприятия), ответственные и план запуска</p><span class="mono area-srok">Срок: 6-12 недель</span></div>
-        <span class="mono dir-lab">Что входит</span>
-        <ul class="svc-ul"><li>Диагностика операционной эффективности</li><li>Расчёт целевой численности и нормирование</li><li>Программа снижения затрат</li><li>Модель эффектов: база, цель, мероприятия</li></ul>
-        <details class="svc-more"><summary>Ещё услуги направления</summary><ul class="svc-ul"><li>Оптимизация процессов и оргструктуры</li><li>Офис трансформации и контроль эффектов</li><li>Автоматизация процессов и внедрение ИИ</li><li>Карта применимости ИИ с оценкой эффекта</li><li>Управленческая отчётность и панели</li></ul></details>
-      </div>
-    </div>
-    <p class="cta-line reveal">Не нашли свою задачу? <a href="https://t.me/kostya_younker">Опишите – предложу, с чего начать</a></p>
-  </div>
-</section>
+
 
 <section id="how">
   <div class="wrap">
