@@ -220,11 +220,6 @@
       if (item.open) track("project_open", { project: item.id });
     });
   });
-  document.querySelectorAll("details.other-work").forEach((item) => {
-    item.addEventListener("toggle", () => {
-      if (item.open) track("other_work_open", { service: item.closest("details.service")?.id || "" });
-    });
-  });
   document.querySelectorAll(".faq details").forEach((item, index) => {
     item.addEventListener("toggle", () => {
       if (item.open) track("faq_open", { item: index + 1 });
