@@ -60,12 +60,16 @@
   const menuButton = document.querySelector(".nav-menu");
   const menu = document.getElementById("navmenu");
   if (menuButton && menu) {
-    const setMenu = (open) => {
+    const setMenu = (open, focusFirst = false) => {
       menu.classList.toggle("open", open);
       menuButton.setAttribute("aria-expanded", String(open));
       menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+      if (open && focusFirst) menu.querySelector("a")?.focus();
     };
-    menuButton.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+    menuButton.addEventListener("click", () => {
+      const open = !menu.classList.contains("open");
+      setMenu(open, open);
+    });
     menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
     document.addEventListener("click", (event) => {
       if (menu.classList.contains("open") && !event.target.closest(".site-nav")) setMenu(false);
