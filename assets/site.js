@@ -87,7 +87,12 @@
 
   const openHashTarget = (scrollToTarget = false) => {
     if (!window.location.hash || window.location.hash.length < 2) return;
-    const target = document.querySelector(window.location.hash);
+    let target = null;
+    try {
+      target = document.querySelector(window.location.hash);
+    } catch (_) {
+      return;
+    }
     if (!target) return;
     let disclosure = target.matches("details")
       ? target
@@ -200,9 +205,11 @@
 
   const track = (name, properties) => {
     try {
-      if (typeof window.__track === "function") window.__track(name, properties);
+      const viewport = window.innerWidth <= 390 ? "mobile_narrow" : window.innerWidth <= 768 ? "mobile" : window.innerWidth <= 1024 ? "tablet" : "desktop";
+      const eventProperties = { ...properties, viewport };
+      if (typeof window.__track === "function") window.__track(name, eventProperties);
       window.dispatchEvent(new CustomEvent("portfolio:track", {
-        detail: { name, properties }
+        detail: { name, properties: eventProperties }
       }));
     } catch (_) {
       // Аналитика является необязательным подключаемым слоем
