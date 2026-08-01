@@ -23,39 +23,40 @@
     revealItems.forEach((item) => item.classList.add("in"));
   }
 
-  const progress = document.getElementById("progress");
   const contact = document.getElementById("contact");
   const navLinks = [...document.querySelectorAll(".nav-links a[href^='#']")];
   const navSections = navLinks
     .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
     .filter((item) => item.section);
-  let scrollFrame = 0;
 
-  const updateScrollState = () => {
-    const page = document.documentElement;
-    const available = Math.max(1, page.scrollHeight - page.clientHeight);
-    if (progress) progress.style.transform = `scaleX(${page.scrollTop / available})`;
-
-    const marker = page.scrollTop + 96;
-    let current = null;
-    navSections.forEach((item) => {
-      if (item.section.offsetTop <= marker) current = item;
-    });
-    if (contact && contact.offsetTop <= marker) current = null;
+  const setActiveNav = (activeLink = null) => {
     navLinks.forEach((link) => {
-      const active = current && current.link === link;
+      const active = activeLink === link;
       link.classList.toggle("active", Boolean(active));
       if (active) link.setAttribute("aria-current", "location");
       else link.removeAttribute("aria-current");
     });
-    scrollFrame = 0;
   };
 
-  window.addEventListener("scroll", () => {
-    if (scrollFrame) return;
-    scrollFrame = window.requestAnimationFrame(updateScrollState);
-  }, { passive: true });
-  updateScrollState();
+  if ("IntersectionObserver" in window && navSections.length) {
+    const navState = new Map();
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => navState.set(entry.target, entry.isIntersecting));
+      if (contact && navState.get(contact)) {
+        setActiveNav();
+        return;
+      }
+      let current = null;
+      navSections.forEach((item) => {
+        if (navState.get(item.section)) current = item;
+      });
+      setActiveNav(current?.link || null);
+    }, { threshold: 0, rootMargin: "-88px 0px -68% 0px" });
+    navSections.forEach((item) => navObserver.observe(item.section));
+    if (contact) navObserver.observe(contact);
+  } else {
+    setActiveNav();
+  }
 
   const menuButton = document.querySelector(".nav-menu");
   const menu = document.getElementById("navmenu");
@@ -193,7 +194,9 @@
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") hideTooltip();
   });
-  window.addEventListener("scroll", hideTooltip, { passive: true });
+  window.addEventListener("wheel", hideTooltip, { passive: true });
+  window.addEventListener("touchmove", hideTooltip, { passive: true });
+  window.addEventListener("scrollend", hideTooltip, { passive: true });
 
   const track = (name, properties) => {
     try {
@@ -214,12 +217,55 @@
       });
     });
   });
-  document.querySelectorAll("details.service").forEach((item) => {
+
+  const serviceDisclosures = [...document.querySelectorAll("details.service")];
+  const projectDisclosures = [...document.querySelectorAll("details.project-row")];
+  const firstService = serviceDisclosures[0] || null;
+  const firstServiceSummary = firstService?.querySelector("summary") || null;
+  let serviceGuideStart = 0;
+  let serviceGuideEnd = 0;
+  let serviceGuideLocked = false;
+
+  const stopServiceGuide = () => {
+    serviceGuideLocked = true;
+    window.clearTimeout(serviceGuideStart);
+    window.clearTimeout(serviceGuideEnd);
+    firstService?.classList.remove("is-guided");
+  };
+
+  serviceDisclosures.forEach((item) => {
+    const summary = item.querySelector("summary");
+    summary?.addEventListener("pointerdown", stopServiceGuide, { once: true });
+    summary?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") stopServiceGuide();
+    });
     item.addEventListener("toggle", () => {
-      if (item.open) track("service_open", { service: item.id });
+      if (item.open) {
+        stopServiceGuide();
+        track("service_open", { service: item.id });
+      }
     });
   });
-  document.querySelectorAll("details.project-row").forEach((item) => {
+
+  if (firstServiceSummary && "IntersectionObserver" in window) {
+    const servicesViewObserver = new IntersectionObserver((entries) => {
+      const visible = entries.some((entry) => entry.isIntersecting);
+      if (!visible) return;
+      track("services_view", { services: serviceDisclosures.length, projects: projectDisclosures.length });
+      servicesViewObserver.disconnect();
+      if (reduceMotion || serviceGuideLocked || firstService.open) return;
+      serviceGuideStart = window.setTimeout(() => {
+        if (serviceGuideLocked || firstService.open) return;
+        firstService.classList.add("is-guided");
+        serviceGuideEnd = window.setTimeout(() => {
+          firstService.classList.remove("is-guided");
+        }, 1450);
+      }, 320);
+    }, { threshold: 0.82 });
+    servicesViewObserver.observe(firstServiceSummary);
+  }
+
+  projectDisclosures.forEach((item) => {
     item.addEventListener("toggle", () => {
       if (item.open) track("project_open", { project: item.id });
     });

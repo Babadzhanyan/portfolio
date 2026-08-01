@@ -74,6 +74,10 @@ h2{font-size:var(--h2-size);line-height:1.12}
 .js.reveal-ready .reveal.in{opacity:1;transform:none}
 
 #progress{position:fixed;z-index:80;top:0;left:0;width:100%;height:2px;background:var(--forest);transform:scaleX(0);transform-origin:left center}
+@supports(animation-timeline:scroll()){
+  #progress{animation:page-progress linear both;animation-timeline:scroll();animation-range:0 100%}
+  @keyframes page-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
 .icon-sprite{position:absolute}
 
 .site-nav{position:sticky;z-index:70;top:0;background:rgba(250,250,247,.93);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
@@ -90,6 +94,7 @@ h2{font-size:var(--h2-size);line-height:1.12}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:16px 24px;border:1px solid transparent;border-radius:999px;background:var(--forest);color:#fff;font-family:var(--text);font-size:16px;font-weight:600;line-height:1.1;transition:transform .15s ease,background .15s ease,border-color .15s ease}
 .btn:hover{background:var(--forest-deep);transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
 .btn svg{width:18px;height:18px;flex:0 0 auto}
 .btn.large{min-height:58px;padding:18px 30px;font-size:17px;font-weight:700}
 .btn.ghost{border-color:var(--forest);background:transparent;color:var(--forest)}
@@ -134,15 +139,21 @@ h2{font-size:var(--h2-size);line-height:1.12}
 .service-item{padding:0}
 .service{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;transition:border-color .16s ease,box-shadow .16s ease}
 .service[open]{border-color:rgba(18,75,56,.34);box-shadow:0 10px 30px rgba(18,75,56,.06)}
-.service>summary{display:grid;grid-template-columns:minmax(0,1fr) 18px;gap:24px;align-items:center;min-height:116px;padding:24px 30px;background:var(--forest);color:#fff;list-style:none;cursor:pointer;transition:background-color .15s ease}
+.service>summary{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;min-height:124px;padding:25px 28px 25px 30px;overflow:hidden;background:var(--forest);color:#fff;list-style:none;cursor:pointer;transition:background-color .15s ease}
 .service>summary::-webkit-details-marker{display:none}
 .service>summary:focus-visible{outline:3px solid #fff;outline-offset:-6px;border-radius:17px}
+.service>summary:active .service-action{transform:scale(.98)}
+.service>summary::after{content:"";position:absolute;inset:5px;border:1px solid rgba(255,255,255,.7);border-radius:13px;opacity:0;pointer-events:none}
 .service-summary{display:block;min-width:0}
 .service-kicker{display:block;margin-bottom:7px;color:rgba(247,250,248,.68);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
 .service-title{display:block;font-family:var(--display);font-size:clamp(20px,2.2vw,25px);font-weight:800;line-height:1.22;letter-spacing:-.018em}
 .service-problem{display:block;max-width:760px;margin-top:7px;color:var(--white-muted);font-size:var(--small-size);line-height:1.45}
-.service-chevron{width:12px;height:12px;margin:0;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg);transform-origin:center;transition:transform .16s ease}
-.service[open] .service-chevron{margin:0;transform:rotate(-135deg)}
+.service-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 16px;border:1px solid rgba(255,255,255,.72);border-radius:999px;background:#fff;color:var(--forest);font-size:13.5px;font-weight:600;line-height:1;white-space:nowrap;transition:transform .2s cubic-bezier(.16,1,.3,1),background-color .15s ease}
+.service-action-close{display:none}
+.service[open] .service-action-open{display:none}
+.service[open] .service-action-close{display:inline}
+.service-chevron{width:9px;height:9px;margin-top:-3px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transform-origin:center;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.service[open] .service-chevron{margin-top:3px;transform:rotate(-135deg)}
 .service-panel{padding:0 30px 30px;border-top:0;background:#fff}
 .service-products{display:grid;grid-template-columns:180px minmax(0,1fr);gap:28px;padding:24px 0}
 .service-products h4{padding-top:8px;color:var(--muted);font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
@@ -214,8 +225,29 @@ h2{font-size:var(--h2-size);line-height:1.12}
 
 @media(hover:hover){
   .service>summary:hover{background:var(--forest-deep)}
+  .service>summary:hover .service-action{transform:translateX(-3px)}
+  .service>summary:hover .service-chevron{transform:translateX(2px) rotate(45deg)}
+  .service[open]>summary:hover .service-chevron{transform:translateX(2px) rotate(-135deg)}
   .project-row>summary:hover{background:#F4F6F3}
+  .project-row>summary:hover .project-chevron{transform:translateY(2px) rotate(45deg)}
+  .project-row[open]>summary:hover .project-chevron{transform:translateY(-2px) rotate(-135deg)}
   .faq summary:hover{background:#F4F6F3}
+}
+
+@media(prefers-reduced-motion:no-preference){
+  .js.reveal-ready .service-item:nth-child(2){transition-delay:.05s}
+  .js.reveal-ready .service-item:nth-child(3){transition-delay:.1s}
+  .js.reveal-ready .service-item:nth-child(4){transition-delay:.15s}
+  .service.is-guided>summary::after{animation:service-guide-ring 1.35s cubic-bezier(.16,1,.3,1) both}
+  .service.is-guided .service-action{animation:service-guide-action 1.35s cubic-bezier(.16,1,.3,1) both}
+  @keyframes service-guide-ring{
+    0%,100%{opacity:0}
+    32%,68%{opacity:1}
+  }
+  @keyframes service-guide-action{
+    0%,100%{transform:translateX(0)}
+    38%,66%{transform:translateX(-6px)}
+  }
 }
 
 .contact-shell{margin-inline:12px;border-radius:28px;background:var(--forest);color:var(--white)}
@@ -252,8 +284,7 @@ h2{font-size:var(--h2-size);line-height:1.12}
 }
 
 @media(max-width:900px){
-  .service>summary{grid-template-columns:minmax(0,1fr) 18px}
-  .service-chevron{grid-column:2;grid-row:1;align-self:center;margin-top:0}
+  .service>summary{gap:22px}
   .project-row>summary{grid-template-columns:minmax(0,1.1fr) minmax(250px,.9fr) 18px;gap:24px}
   .steps{grid-template-columns:1fr;gap:0}
   .steps::before{top:4%;right:auto;bottom:4%;left:19px;width:2px;height:auto}
@@ -302,14 +333,16 @@ h2{font-size:var(--h2-size);line-height:1.12}
   .stats{gap:10px;margin-top:32px}
   .stat{min-height:154px;padding:18px 16px}
   .service-stack{margin-top:32px}
-  .service>summary{min-height:0;padding:21px 19px;gap:12px}
+  .service>summary{grid-template-columns:minmax(0,1fr);min-height:0;padding:21px 19px 18px;gap:17px}
   .service-title{font-size:20px}
   .service-problem{font-size:14px}
+  .service-action{width:100%;min-height:44px;justify-content:space-between;padding:12px 15px;border-color:rgba(255,255,255,.8);font-size:13.5px}
   .service-panel{padding:0 16px 20px}
   .service-products{grid-template-columns:1fr;gap:11px;padding:20px 0}
   .service-products h4{padding-top:0}
-  .service-product-list{gap:7px}
-  .service-product-list li{padding:7px 12px;font-size:13px}
+  .service-product-list{flex-wrap:nowrap;gap:7px;overflow-x:auto;margin-inline:-16px;padding:0 16px 8px;scroll-padding-left:16px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .service-product-list::-webkit-scrollbar{display:none}
+  .service-product-list li{max-width:none;flex:0 0 auto;padding:7px 12px;font-size:13px;white-space:nowrap;scroll-snap-align:start}
   .service-projects{padding-top:22px}
   .service-projects-header h4{font-size:19px}
   .project-row>summary{grid-template-columns:minmax(0,1fr) 18px;gap:12px;min-height:72px;padding:18px 16px}
@@ -344,8 +377,8 @@ h2{font-size:var(--h2-size);line-height:1.12}
   .hero-eyebrow::after,.hero-separator{display:none}
   .stats{grid-template-columns:1fr}
   .stat{min-height:126px}
-  .service>summary{gap:10px}
-  .service-kicker{min-height:18px;margin-bottom:9px;padding-right:24px}
+  .service>summary{gap:16px}
+  .service-kicker{min-height:18px;margin-bottom:9px}
   .field-shell,.contact-shell{margin-inline:10px}
 }
 
@@ -354,6 +387,7 @@ h2{font-size:var(--h2-size);line-height:1.12}
   .service>summary{padding:18px 15px}
   .service-title{font-size:19px}
   .service-problem{font-size:13px;line-height:1.42;overflow-wrap:anywhere}
+  .service-action{padding-inline:13px;font-size:13px}
   .project-row>summary,.project-row--compact>summary{padding-inline:14px}
   .project-panel{padding-inline:14px}
   .project-kicker{font-size:10px;letter-spacing:.04em}
