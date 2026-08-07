@@ -85,6 +85,8 @@
     }, { passive: true });
   }
 
+  let caseHook = null;
+
   const openHashTarget = (scrollToTarget = false) => {
     if (!window.location.hash || window.location.hash.length < 2) return;
     let target = null;
@@ -94,6 +96,10 @@
       return;
     }
     if (!target) return;
+    if (target.classList.contains("case-card") && caseHook) {
+      caseHook(target, scrollToTarget);
+      return;
+    }
     let disclosure = target.matches("details")
       ? target
       : target.closest("details");
@@ -225,58 +231,150 @@
     });
   });
 
-  const serviceDisclosures = [...document.querySelectorAll("details.service")];
-  const projectDisclosures = [...document.querySelectorAll("details.project-row")];
-  const firstService = serviceDisclosures[0] || null;
-  const firstServiceSummary = firstService?.querySelector("summary") || null;
-  let serviceGuideStart = 0;
-  let serviceGuideEnd = 0;
-  let serviceGuideLocked = false;
+  const streamTabs = [...document.querySelectorAll(".stream-tab")];
+  const streamPanels = new Map(
+    [...document.querySelectorAll(".stream-panel")].map((panel) => [panel.id.replace("stream-", ""), panel])
+  );
 
-  const stopServiceGuide = () => {
-    serviceGuideLocked = true;
-    window.clearTimeout(serviceGuideStart);
-    window.clearTimeout(serviceGuideEnd);
-    firstService?.classList.remove("is-guided");
+  const selectStream = (slug, { focusTab = false, silent = false } = {}) => {
+    if (!streamPanels.has(slug)) return;
+    streamTabs.forEach((tab) => {
+      const active = tab.dataset.stream === slug;
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focusTab) tab.focus();
+      if (active) tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
+    streamPanels.forEach((panel, key) => {
+      const active = key === slug;
+      panel.hidden = !active;
+      panel.classList.toggle("is-active", active);
+    });
+    if (!silent) track("stream_select", { stream: slug });
   };
 
-  serviceDisclosures.forEach((item) => {
-    const summary = item.querySelector("summary");
-    summary?.addEventListener("pointerdown", stopServiceGuide, { once: true });
-    summary?.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") stopServiceGuide();
-    });
-    item.addEventListener("toggle", () => {
-      if (item.open) {
-        stopServiceGuide();
-        track("service_open", { service: item.id });
-      }
+  streamTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => selectStream(tab.dataset.stream));
+    tab.addEventListener("keydown", (event) => {
+      const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+      let next = null;
+      if (step) next = streamTabs[(index + step + streamTabs.length) % streamTabs.length];
+      else if (event.key === "Home") next = streamTabs[0];
+      else if (event.key === "End") next = streamTabs[streamTabs.length - 1];
+      if (!next) return;
+      event.preventDefault();
+      selectStream(next.dataset.stream, { focusTab: true });
     });
   });
 
-  if (firstServiceSummary && "IntersectionObserver" in window) {
-    const servicesViewObserver = new IntersectionObserver((entries) => {
-      const visible = entries.some((entry) => entry.isIntersecting);
-      if (!visible) return;
-      track("services_view", { services: serviceDisclosures.length, projects: projectDisclosures.length });
-      servicesViewObserver.disconnect();
-      if (reduceMotion || serviceGuideLocked || firstService.open) return;
-      serviceGuideStart = window.setTimeout(() => {
-        if (serviceGuideLocked || firstService.open) return;
-        firstService.classList.add("is-guided");
-        serviceGuideEnd = window.setTimeout(() => {
-          firstService.classList.remove("is-guided");
-        }, 1450);
-      }, 320);
-    }, { threshold: 0.82 });
-    servicesViewObserver.observe(firstServiceSummary);
+  if (streamTabs.length && "IntersectionObserver" in window) {
+    const streamsViewObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      track("services_view", { streams: streamTabs.length, cases: document.querySelectorAll(".case-card").length });
+      streamsViewObserver.disconnect();
+    }, { threshold: 0.4 });
+    streamsViewObserver.observe(streamTabs[0]);
   }
 
-  projectDisclosures.forEach((item) => {
-    item.addEventListener("toggle", () => {
-      if (item.open) track("project_open", { project: item.id });
+  const modal = document.getElementById("caseModal");
+  const cases = [...document.querySelectorAll(".case-card")];
+
+  if (modal && cases.length) {
+    const inner = modal.querySelector(".case-modal-inner");
+    const slots = {
+      stream: modal.querySelector(".case-modal-stream"),
+      kicker: modal.querySelector(".case-modal-kicker"),
+      title: modal.querySelector(".case-modal-title"),
+      context: modal.querySelector(".case-modal-context"),
+      claims: modal.querySelector(".case-modal-claims"),
+      facts: modal.querySelector(".case-modal-facts")
+    };
+    const prevButton = modal.querySelector("[data-case-nav='prev']");
+    const nextButton = modal.querySelector("[data-case-nav='next']");
+    let opener = null;
+    let current = null;
+
+    const streamOf = (card) => card.closest(".stream-panel")?.id.replace("stream-", "") || "";
+    const siblings = (card) => [...(card.closest(".case-grid")?.querySelectorAll(".case-card") || [])];
+    const labelOf = (slug) => document.querySelector(`.stream-tab[data-stream="${slug}"] .stream-tab-name`)?.textContent.trim() || "";
+
+    const fill = (card) => {
+      current = card;
+      const slug = streamOf(card);
+      slots.stream.textContent = labelOf(slug);
+      slots.kicker.textContent = card.querySelector(".case-kicker")?.textContent.trim() || "";
+      slots.title.textContent = card.querySelector(".case-title")?.textContent.trim() || "";
+      slots.context.textContent = card.querySelector(".case-context")?.textContent.trim() || "";
+      const claims = card.querySelector(".claim-stack");
+      slots.claims.innerHTML = claims ? claims.innerHTML : "";
+      slots.claims.hidden = !claims;
+      const facts = card.querySelector(".project-facts");
+      slots.facts.innerHTML = facts ? facts.innerHTML : "";
+      const list = siblings(card);
+      const index = list.indexOf(card);
+      prevButton.disabled = index <= 0;
+      nextButton.disabled = index < 0 || index >= list.length - 1;
+      if (inner) inner.scrollTop = 0;
+      try {
+        history.replaceState(null, "", `#${card.id}`);
+      } catch (_) {
+        // Адресная строка не критична для работы окна
+      }
+    };
+
+    const openCase = (card, scrollToStream = false) => {
+      const slug = streamOf(card);
+      if (slug) selectStream(slug, { silent: true });
+      if (scrollToStream) {
+        document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+      if (!modal.open) {
+        opener = document.activeElement;
+        modal.showModal();
+      }
+      fill(card);
+      track("case_open", { case: card.id, stream: slug });
+      modal.querySelector(".case-modal-close")?.focus();
+    };
+    caseHook = openCase;
+
+    cases.forEach((card) => {
+      const summary = card.querySelector("summary");
+      summary?.addEventListener("click", (event) => {
+        event.preventDefault();
+        openCase(card);
+      });
     });
-  });
+
+    const step = (delta) => {
+      if (!current) return;
+      const list = siblings(current);
+      const next = list[list.indexOf(current) + delta];
+      if (next) openCase(next);
+    };
+    prevButton?.addEventListener("click", () => step(-1));
+    nextButton?.addEventListener("click", () => step(1));
+
+    modal.querySelector(".case-modal-close")?.addEventListener("click", () => modal.close());
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) modal.close();
+    });
+    modal.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") step(-1);
+      if (event.key === "ArrowRight") step(1);
+    });
+    modal.addEventListener("close", () => {
+      try {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      } catch (_) {
+        // Адресная строка не критична для работы окна
+      }
+      if (opener && document.contains(opener)) opener.focus();
+      opener = null;
+      current = null;
+    });
+  }
+
   document.querySelectorAll(".faq details").forEach((item, index) => {
     item.addEventListener("toggle", () => {
       if (item.open) track("faq_open", { item: index + 1 });
