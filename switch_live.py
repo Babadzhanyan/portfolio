@@ -33,6 +33,7 @@ def main(domain):
             continue
         text = original = path.read_text(encoding="utf-8")
         text = text.replace(OLD, new)
+        text = text.replace('"/portfolio/', '"/')  # корневые пути со страницы 404
         if path.name not in KEEP_NOINDEX:
             text = re.sub(r'\s*<meta name="robots" content="noindex,\s*nofollow">\n?', "\n", text, count=1)
         if text != original:
