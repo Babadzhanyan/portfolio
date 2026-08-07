@@ -983,3 +983,97 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
   .about-picture{grid-column:1;grid-row:3}
 }
 .about-head h2{font-size:clamp(1.75rem,1.6vw + 1.15rem,2.375rem)}
+
+/* ============================================================
+   POLISH v3. Арт-дирекшн проход поверх RESTYLE v2.
+   Только каскад, откат = удаление хвоста.
+   ============================================================ */
+
+/* --- hero: фото занимает колонку целиком, композиция плотнее --- */
+@media(min-width:1001px){
+  .hero-grid{grid-template-columns:1.15fr .85fr;gap:var(--s-16)}
+  .hero-visual{align-items:flex-end;justify-content:flex-end}
+  .hero-visual picture{max-width:none;width:100%}
+  .hero-visual img{width:100%;height:auto;aspect-ratio:4/5;object-position:50% 18%}
+  .hero h1{font-size:clamp(2.375rem,2.1vw + 1.7rem,3.625rem)}
+}
+
+/* --- полоса направлений: описания начинаются на одной линии --- */
+@media(min-width:901px){
+  .offer-name{min-height:calc(2*var(--lh-h3)*var(--fs-h3))}
+}
+
+/* --- витрина кейсов: 2 колонки, без пустых ячеек --- */
+.case-grid{grid-auto-rows:auto}
+@media(min-width:769px){
+  .case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .case-kicker,.case-context{max-width:56ch}
+  .case-card .claim-stack{flex-direction:row;flex-wrap:wrap;gap:var(--s-3) var(--s-8)}
+  .case-card .claim{flex:0 0 auto}
+  /* стрим из 5 кейсов: первый (featured) растянут на всю ширину */
+  .case-grid>li:first-child:nth-last-child(5){grid-column:1/-1}
+  .case-grid>li:first-child:nth-last-child(5) .case-card summary{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(240px,34%);
+    grid-template-rows:auto auto 1fr auto;
+    grid-template-areas:"kicker claims" "title claims" "context claims" "more claims";
+    column-gap:var(--s-12)
+  }
+  .case-grid>li:first-child:nth-last-child(5) .case-kicker{grid-area:kicker}
+  .case-grid>li:first-child:nth-last-child(5) .case-title{grid-area:title}
+  .case-grid>li:first-child:nth-last-child(5) .case-context{grid-area:context;flex:none}
+  .case-grid>li:first-child:nth-last-child(5) .case-more{grid-area:more}
+  .case-grid>li:first-child:nth-last-child(5) .case-card .claim-stack{
+    grid-area:claims;flex-direction:column;flex-wrap:nowrap;align-content:start;
+    gap:var(--s-4);margin-top:0;padding:0 0 0 var(--s-8);border-top:0;border-left:1px solid var(--line)
+  }
+}
+
+/* --- чипы направлений на мобильном: текст не режется --- */
+@media(max-width:768px){
+  .stream-tab{white-space:normal;text-align:left;min-width:0;gap:var(--s-3)}
+  .stream-tab .stream-tab-name{min-width:0}
+}
+
+/* --- фотолента: три кадра заполняют ряд без пустого края --- */
+@media(min-width:900px){
+  .field-shot:nth-child(1){width:auto;flex:254 1 0}
+  .field-shot:nth-child(2){width:auto;flex:507 1 0}
+  .field-shot:nth-child(3){width:auto;flex:284 1 0}
+}
+
+/* --- форматы: описания на одной линии --- */
+@media(min-width:601px){
+  .format strong{min-height:2.6em}
+}
+
+/* --- «Обо мне»: портрет заполняет колонку до низа текста --- */
+@media(min-width:1001px){
+  .about-picture{align-self:stretch}
+  .about-picture img{height:100%;aspect-ratio:auto;object-position:50% 24%}
+}
+
+/* --- футер: ссылки в строку, плотнее --- */
+.footer-links{display:flex;flex-wrap:wrap;gap:2px var(--s-6);justify-content:flex-end;max-width:52ch}
+.footer .wrap{align-items:center}
+.footer a,.footer-links a{padding-block:var(--s-2)}
+@media(max-width:768px){
+  .footer-links{justify-content:flex-start;max-width:none}
+}
+
+/* --- мобильная типографика и отступы --- */
+@media(max-width:600px){
+  .hero h1{font-size:clamp(2rem,8.8vw,2.375rem)}
+}
+@media(max-width:560px){
+  .offer-grid a,.offer-grid li:first-child a,.offer-grid li:nth-child(3) a{padding-inline:0}
+}
+@media(max-width:768px){
+  .hero-visual img{aspect-ratio:4/3;object-position:50% 25%}
+}
+
+/* --- карточки кейсов: один фон для всех, иерархия только контентом --- */
+.case-card--featured{background:var(--surface)}
+@media(hover:hover){
+  .case-card--featured:hover{background:var(--forest-50)}
+}
