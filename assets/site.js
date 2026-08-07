@@ -171,7 +171,7 @@
   const mobileCta = document.querySelector(".mobile-cta");
   const heroCta = document.querySelector("[data-placement='hero']");
   if (mobileCta && "IntersectionObserver" in window) {
-    const blockers = [heroCta, contact].filter(Boolean);
+    const blockers = [heroCta, contact, document.querySelector(".footer")].filter(Boolean);
     const blockerState = new Map(blockers.map((element) => {
       const box = element.getBoundingClientRect();
       return [element, box.bottom > 0 && box.top < window.innerHeight];
@@ -427,8 +427,8 @@
       share.addEventListener("click", () => {
         const url = window.location.href;
         const copying = navigator.clipboard?.writeText(url);
-        if (copying) copying.then(() => report("Ссылка скопирована"), () => report(url));
-        else report(url);
+        if (copying) copying.then(() => report("Ссылка скопирована"), () => report("Скопируйте адрес из строки браузера"));
+        else report("Скопируйте адрес из строки браузера");
       });
     }
 
