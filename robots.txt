@@ -1,0 +1,6 @@
+# Сайт закрыт от индексации до переезда на собственный домен.
+# После покупки домена запустить: python3 switch_live.py babadzhanyan.com
+User-agent: *
+Disallow: /
+
+Sitemap: https://babadzhanyan.github.io/portfolio/sitemap.xml
