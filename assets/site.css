@@ -1251,3 +1251,117 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .brand-logo--yandex{height:26px}
 .brand-logo--yakov{height:32px}
 .brand-word{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:0}
+
+/* ============================================================
+   FINAL v4. Финальный визуальный слой по фидбэку заказчика:
+   минимализм, без рамок, скругления 16px, карточки = фон + тень.
+   Только каскад, откат = удаление хвоста.
+   ============================================================ */
+:root{
+  --r-card:16px;
+  --shadow-card:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+  --shadow-card-hover:0 12px 32px rgba(16,24,40,.10);
+  --shadow-chip:0 1px 2px rgba(16,24,40,.06);
+}
+
+/* --- 1. фотографии: один радиус 16 --- */
+.hero-visual img{border-radius:var(--r-card)}
+.about-photo{border-radius:var(--r-card)}
+.field-shot img{border-radius:var(--r-card)}
+.field-shot figcaption{border-top:0;padding-top:0}
+.post-figure img{border:0;border-radius:var(--r-card);box-shadow:var(--shadow-card)}
+
+/* --- 2. плита цифр: воздух вместо таблицы --- */
+.evidence-ledger{gap:var(--s-6) var(--s-8);background:transparent;border:0;border-top:1px solid var(--line)}
+.evidence-item{background:transparent;border:0;padding:var(--s-6) 0 0}
+.evidence-item strong{overflow-wrap:normal;hyphens:none}
+@media(max-width:768px){
+  .evidence .wrap{padding-inline:var(--pad)}
+  .evidence-ledger{padding-inline:0}
+  .evidence-item,.evidence-item:first-child,.evidence-item:last-child,
+  .evidence-item:nth-child(3),.evidence-item:nth-child(4),
+  .evidence-item:nth-child(odd){border:0;padding:var(--s-4) 0 0}
+}
+
+/* --- 3. полоса направлений: карточки на тени --- */
+.offer-grid{gap:14px;background:transparent;border-top:0}
+.offer-grid li{border:0;border-radius:var(--r-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden;transition:box-shadow var(--t-fast) var(--ease)}
+.offer-grid a,.offer-grid li:first-child a,.offer-grid li:nth-child(3) a{padding:var(--s-6)}
+.offer-grid a:hover{background:transparent}
+@media(hover:hover){.offer-grid li:hover{box-shadow:var(--shadow-card-hover)}}
+.offer-grid a:focus-visible{border-radius:var(--r-card)}
+.offer-mark{border:0;background:var(--forest-50)}
+@media(hover:hover){.offer-grid a:hover .offer-mark{background:var(--forest)}}
+
+/* --- 4. карточки кейсов: белая карточка + мягкая тень --- */
+.case-grid{gap:16px;background:transparent;border:0}
+.case-card{outline:0;border:0;border-radius:var(--r-card);background:var(--surface);box-shadow:var(--shadow-card);transition:box-shadow .18s var(--ease)}
+.case-card--featured{background:var(--surface)}
+@media(hover:hover){
+  .case-card:hover,.case-card--featured:hover{background:var(--surface);box-shadow:var(--shadow-card-hover)}
+}
+
+/* --- 5. чипы: pill, без рамок --- */
+.stream-tab{border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow-chip)}
+.stream-tab[aria-selected="true"]{background:var(--forest);box-shadow:var(--shadow-chip)}
+.stream-products li{border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow-chip);padding:6px 14px}
+.stream-head{border-bottom:0}
+.stream-head-products{border-left:0;padding-left:0}
+@media(max-width:960px){.stream-head-products{border-top:0;padding-top:0}}
+@media(max-width:768px){
+  .stream-tabs{gap:var(--s-2);background:transparent;border:0}
+  .stream-tab{border:0;background:var(--surface)}
+  .stream-tab[aria-selected="true"]{background:var(--forest)}
+}
+
+/* --- 6. как устроена работа: воздух вместо линеек --- */
+.steps{gap:var(--s-8) var(--s-6);background:transparent;border-block:0}
+.step,.step:first-child{background:transparent;border:0;padding:0}
+#how .step,#how .format,#how .formats-label{background:transparent}
+.formats{gap:var(--s-6) var(--s-8);background:transparent}
+.format,.format:nth-child(even){background:transparent;border:0;padding:0}
+.artifacts{border-top:0;gap:var(--s-6) var(--s-8)}
+.artifacts li{border-bottom:0;padding:0}
+@media(max-width:900px){.steps{gap:var(--s-6)}}
+
+/* --- 7. волосяные линии: один вес, без дублей --- */
+#services,#faq{border-block:0}
+.js.scrolled .site-nav{border-bottom-color:transparent}
+.post-list{border-top-color:var(--line)}
+.post-list li{border-bottom-color:var(--line)}
+.post-rule{background:var(--line)}
+.career .path-list{border-top-color:var(--line)}
+.career .career-summary{gap:var(--s-8);background:transparent;border-block:0;border-top:1px solid var(--line)}
+.career .career-summary div{background:transparent;padding:var(--s-6) 0 0}
+.notfound-links{border-top-color:var(--line)}
+
+/* --- 8. модалка и её контролы --- */
+.case-modal-inner{border-radius:20px}
+.case-modal-close,.case-modal-nav button{border:0;border-radius:50%;background:var(--surface);box-shadow:var(--shadow-chip)}
+.case-modal-share{border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow-chip)}
+.case-modal-inner .project-facts{border:0;border-radius:var(--r-card);background:var(--surface);box-shadow:var(--shadow-chip)}
+@media(max-width:700px){.case-modal-inner{border-radius:0}}
+
+/* --- 9. навыки и карточки внутренних страниц --- */
+.career .skill-grid{gap:14px}
+.career .skill-card{outline:0;border:0;border-radius:var(--r-card);background:var(--surface);box-shadow:var(--shadow-card)}
+.post-checklist{border:0;border-radius:var(--r-card);background:var(--surface);box-shadow:var(--shadow-card)}
+.post-callout{border-left:0;border-radius:var(--r-card);padding:var(--s-6) var(--s-8)}
+
+/* --- 10. кнопки и мелкие контролы без рамок --- */
+.btn.ghost{border-color:transparent;background:var(--forest-50);color:var(--forest)}
+.btn.ghost:hover{background:var(--forest-100)}
+.btn.ghost-light{border-color:transparent;background:rgba(255,255,255,.12);color:#fff}
+.btn.ghost-light:hover{border-color:transparent;background:rgba(255,255,255,.2)}
+.nav-linkedin{border:0;background:var(--surface);box-shadow:var(--shadow-chip)}
+.nav-linkedin:hover{color:var(--forest)}
+.lang-toggle{border:0;background:var(--surface);box-shadow:var(--shadow-chip)}
+.link-arrow span{border:0;border-radius:50%;background:var(--forest-50)}
+.link-arrow:hover span{background:var(--forest-100)}
+
+/* --- 11. логотипы на /career/: оптическое выравнивание --- */
+.brand-row{align-items:center;gap:12px 40px}
+.brand-logo{height:26px}
+.brand-logo--yakov{height:44px}
+.brand-logo--yandex{height:16px}
+.brand-word{font-size:15px}
