@@ -318,6 +318,7 @@
   });
 
   const streamTabList = document.querySelector(".stream-tabs");
+  if (streamTabList) streamTabList.scrollLeft = 0;
   streamTabs.forEach((tab, index) => tab.style.setProperty("--i", String(index)));
 
   if (streamTabList && "IntersectionObserver" in window) {
