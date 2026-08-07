@@ -725,3 +725,10 @@ html{scrollbar-gutter:stable}
   .offer-what{font-size:13.5px}
 }
 @media(prefers-reduced-motion:reduce){.offer-grid a,.offer-mark,.offer-mark::before{transition:none}}
+
+/* ---------- статус в плите цифр ---------- */
+.evidence-status{display:inline-block;margin-bottom:12px;padding-left:10px;border-left:2px solid var(--case-line);color:#68756E;font-family:var(--text);font-size:12px;font-weight:500;line-height:1.3}
+.evidence-status[data-status="achieved"]{border-left-color:var(--forest)}
+.evidence-status[data-status="approved"]{border-left-color:#7A9587}
+.evidence-item strong{overflow-wrap:break-word;hyphens:none}
+@media(max-width:768px){.evidence-status{margin-bottom:8px;font-size:11px}}
