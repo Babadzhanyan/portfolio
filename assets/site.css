@@ -1077,3 +1077,149 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 @media(hover:hover){
   .case-card--featured:hover{background:var(--forest-50)}
 }
+
+/* ============================================================
+   POLISH v3 inner. Внутренние страницы: лента блога, лонгрид,
+   путь, 404. Только каскад, откат = удаление хвоста.
+   Лендинг не трогает: .path-* скоупен на body.career,
+   404 – на .notfound-links.
+   ============================================================ */
+
+/* --- общий контейнер блога --- */
+.post-wrap{width:min(var(--w-page),100%);margin-inline:auto;padding-inline:var(--pad)}
+
+/* --- лента блога --- */
+.blog-head{max-width:none;padding:var(--s-16) 0 0}
+.blog-head h1{max-width:20ch;font-size:var(--fs-h1);font-weight:var(--w-display);line-height:var(--lh-h1);letter-spacing:var(--ls-h1)}
+.blog-head .section-lead{margin-top:var(--s-4);max-width:var(--m-lead);font-size:var(--fs-lead);line-height:var(--lh-lead)}
+.post-list{margin-top:var(--s-12);border-top:1px solid var(--line-strong)}
+.post-list li{border-bottom:1px solid var(--line-strong)}
+.post-list a{grid-template-columns:200px minmax(0,1fr) 44px;gap:var(--s-2) var(--s-12);align-items:start;padding:var(--s-12) 0}
+.post-list-date{padding-top:7px;font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--w-label);letter-spacing:0;text-transform:uppercase;color:var(--muted)}
+.post-list a>span:last-child{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.post-list-tag{order:-1;margin:0 0 var(--s-3);padding:0;border-radius:0;background:transparent;font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--w-label);letter-spacing:0;text-transform:uppercase;color:var(--forest)}
+.post-list-title{font-size:clamp(1.5rem,1.13vw+1.235rem,2.25rem);font-weight:var(--w-display);line-height:1.14;letter-spacing:var(--ls-h2);transition:color var(--t-fast) var(--ease)}
+.post-list-sub{margin-top:var(--s-4);max-width:58ch;font-size:var(--fs-small);line-height:var(--lh-small);color:var(--muted)}
+.post-list a::after{content:"";justify-self:end;align-self:center;width:12px;height:12px;border-top:2px solid var(--forest);border-right:2px solid var(--forest);transform:rotate(45deg);transition:transform var(--t-fast) var(--ease)}
+@media(hover:hover){
+  .post-list a:hover .post-list-title{color:var(--forest)}
+  .post-list a:hover::after{transform:translateX(6px) rotate(45deg)}
+}
+.post-list~.post-foot{max-width:none;margin:var(--s-16) 0 0;border-top:0;padding-top:0}
+
+/* --- лонгрид: рама. Единая колонка 39rem: ch на разных кеглях
+   давал разъезд левых кромок --- */
+.post{--m-post:39rem}
+.post-crumbs{max-width:var(--m-post);padding-top:var(--s-8);font-size:var(--fs-label);letter-spacing:0}
+.post-crumbs a{transition:color var(--t-fast) var(--ease)}
+.post-crumbs a:hover{color:var(--forest)}
+.post-header{max-width:var(--m-post);padding-top:var(--s-6)}
+.post-header h1{font-size:clamp(2rem,1.9vw+1.55rem,3.25rem);line-height:1.1;letter-spacing:var(--ls-h2)}
+.post-meta{margin-top:var(--s-4);gap:var(--s-2) var(--s-6);font-size:var(--fs-label);letter-spacing:0}
+.post-standfirst{max-width:var(--m-post);margin-top:var(--s-6);font-size:var(--fs-lead);line-height:var(--lh-lead)}
+.post-rule{max-width:var(--m-post);margin-top:var(--s-8);background:var(--line-strong)}
+
+/* --- лонгрид: набор --- */
+.post-body{max-width:var(--m-post);padding-bottom:var(--s-6);font-size:var(--fs-body);line-height:1.7}
+.post-body>*{margin-top:var(--s-6)}
+.post-body>*:first-child{margin-top:var(--s-8)}
+.post-body h2{margin-top:var(--s-16);font-size:clamp(1.375rem,.7vw+1.2rem,1.75rem);font-weight:var(--w-display);line-height:1.2;letter-spacing:var(--ls-h3)}
+.post-body h2+p{margin-top:var(--s-4)}
+.post-body h3{margin-top:var(--s-8);font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3)}
+.post-body li{margin-top:var(--s-2);padding-left:24px}
+.post-body ol>li{padding-left:32px}
+.post-body ol>li::before{top:4px;font-size:var(--fs-label);font-weight:var(--w-label)}
+.post-body table{font-size:var(--fs-small)}
+.post-body thead th{background:transparent;border-bottom:1px solid var(--line-strong);color:var(--muted);font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--w-label);letter-spacing:0}
+.post-body th,.post-body td{padding:var(--s-3) var(--s-4) var(--s-3) 0}
+.post-body th:last-child,.post-body td:last-child{padding-right:0}
+.post-body tbody tr:last-child td{border-bottom:0;border-top:1px solid var(--line-strong)}
+.post-table{margin-inline:0;padding-inline:0}
+.post-callout{border-radius:0;border-left:3px solid var(--forest);background:var(--forest-50);padding:var(--s-6)}
+.post-checklist{border-radius:0;border:1px solid var(--line-strong);background:var(--surface);padding:var(--s-8)}
+.post-checklist>.mono{margin-bottom:var(--s-3);color:var(--muted);font-size:var(--fs-label);font-weight:var(--w-label)}
+
+/* --- лонгрид: хвост --- */
+.post-foot{max-width:var(--m-post);margin-top:var(--s-16);border-top:1px solid var(--line-strong);padding-top:var(--s-8)}
+.post-foot h2{max-width:24ch;font-size:var(--fs-h3);font-weight:var(--w-display);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+.post-foot p{margin-top:var(--s-3);max-width:52ch;font-size:var(--fs-small);line-height:var(--lh-small)}
+.post-foot .btn{margin-top:var(--s-6)}
+.post-related{max-width:var(--m-post);margin-top:var(--s-12);padding-bottom:var(--s-8)}
+.post-related-title{font-size:var(--fs-label);letter-spacing:0}
+.post-related ul{margin-top:var(--s-3)}
+.post-related li{border-top:1px solid var(--line);padding:var(--s-4) 0}
+.post-related a{display:block;max-width:56ch;font-size:var(--fs-body);font-weight:var(--w-h3);line-height:1.4;transition:color var(--t-fast) var(--ease)}
+
+/* --- путь: рама страницы --- */
+.career .wordmark.mono-mark{letter-spacing:0}
+.career .post-crumbs{max-width:none;margin:0 0 var(--s-6);padding-top:var(--s-8)}
+.career .career-brands{gap:var(--s-3) var(--s-8);margin-top:var(--s-8)}
+.career .career-summary{grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:var(--s-8);border-block:1px solid var(--line-strong);background:var(--line-strong)}
+.career .career-summary div{padding:var(--s-6) var(--s-6) var(--s-8);border-left:0;background:var(--paper)}
+.career .career-summary strong{font-family:var(--display);font-size:var(--fs-metric);font-weight:var(--w-display);line-height:var(--lh-metric);letter-spacing:var(--ls-metric)}
+.career .career-summary span{margin-top:var(--s-4);max-width:30ch;font-size:var(--fs-small);line-height:var(--lh-small)}
+.career .career-award{margin-top:var(--s-8);font-size:var(--fs-small);line-height:var(--lh-small)}
+
+/* --- путь: хронология как реестр --- */
+.career .path-list{margin-top:var(--s-8);border-top:1px solid var(--line-strong)}
+.career .path-list::before{display:none}
+.career .path-item{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 var(--s-12);padding:var(--s-8) 0;border-bottom:1px solid var(--line)}
+.career .path-item:last-child{padding-bottom:var(--s-8)}
+.career .path-item::before{display:none}
+.career .path-when{grid-column:1;padding-top:6px;font-size:var(--fs-label);letter-spacing:0;color:var(--muted)}
+.career .path-item--key .path-when{color:var(--forest)}
+.career .path-what,.career .path-where,.career .path-note,.career .path-cases{grid-column:2}
+.career .path-what{margin-top:0;font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+.career .path-where{margin-top:var(--s-1);font-size:var(--fs-small);color:var(--muted)}
+.career .path-note{margin-top:var(--s-3);max-width:62ch;font-size:var(--fs-small);line-height:var(--lh-small)}
+.career .path-cases{margin-top:var(--s-3);max-width:62ch;font-size:var(--fs-small);line-height:var(--lh-small)}
+
+/* --- путь: навыки и резюме --- */
+.career .skill-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:var(--s-8)}
+.career .skill-card{outline:1px solid var(--line-strong);border:0;background:var(--surface);padding:var(--s-6)}
+.career .skill-label{font-size:var(--fs-label);letter-spacing:0}
+.career .skill-card p{margin-top:var(--s-3);font-size:var(--fs-small);line-height:var(--lh-small)}
+.career .path-cv{margin-top:var(--s-8);gap:var(--s-3)}
+
+/* --- 404 --- */
+.notfound-links{display:grid;max-width:56ch;margin-top:var(--s-12);border-top:1px solid var(--line-strong)}
+.notfound-links a{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);padding:var(--s-4) 0;border-bottom:1px solid var(--line);font-family:var(--display);font-size:var(--fs-h3);font-weight:var(--w-h3);letter-spacing:var(--ls-h3);color:var(--ink);transition:color var(--t-fast) var(--ease)}
+.notfound-links a::after{content:"";flex:0 0 auto;width:10px;height:10px;border-top:2px solid var(--forest);border-right:2px solid var(--forest);transform:rotate(45deg)}
+.notfound-links a:hover{color:var(--forest)}
+
+/* --- мобильные --- */
+@media(max-width:900px){
+  .career .path-item{grid-template-columns:150px minmax(0,1fr);gap:0 var(--s-6)}
+  .post-list a{grid-template-columns:150px minmax(0,1fr) 32px;gap:var(--s-2) var(--s-6)}
+}
+@media(max-width:700px){
+  .blog-head{padding-top:var(--s-12)}
+  .post-list{margin-top:var(--s-8)}
+  .post-list a{grid-template-columns:minmax(0,1fr);gap:0;padding:var(--s-8) 0}
+  .post-list a::after{display:none}
+  .post-list-date{padding-top:0;order:1;margin-top:var(--s-4)}
+  .post-list a>span:last-child{display:contents}
+  .post-list a{display:flex;flex-direction:column;align-items:flex-start}
+  .post-list-tag{margin-bottom:var(--s-3)}
+  .post-list-sub{margin-top:var(--s-3)}
+  .post-crumbs,.post-header{padding-top:var(--s-6)}
+  .post-table{margin-inline:calc(-1*var(--pad));padding-inline:var(--pad)}
+  .post-body h2{margin-top:var(--s-12)}
+  .post-foot{margin-top:var(--s-12)}
+}
+@media(max-width:768px){
+  .career .path-list{margin-top:var(--s-6)}
+  .career .path-item{grid-template-columns:minmax(0,1fr);gap:0;padding:var(--s-6) 0}
+  .career .path-when,.career .path-what,.career .path-where,.career .path-note,.career .path-cases{grid-column:1}
+  .career .path-when{padding-top:0}
+  .career .path-what{margin-top:var(--s-2)}
+  .career .career-summary{grid-template-columns:1fr}
+  .career .career-summary div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:var(--s-4);align-items:baseline;padding:var(--s-4) var(--s-4) var(--s-4) 0}
+  .career .career-summary strong{font-size:var(--fs-metric-s)}
+  .career .career-summary span{margin-top:0;max-width:none}
+  .career .skill-grid{grid-template-columns:1fr}
+  .career .path-cv .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .post-list-title,.post-list a::after,.post-crumbs a,.post-related a,.notfound-links a{transition:none}
+}
