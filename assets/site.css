@@ -955,3 +955,31 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
   .stream-head{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
   .stream-head-products{padding-left:0;padding-top:var(--s-6);border-left:0;border-top:1px solid var(--line-strong)}
 }
+
+/* --- форматы работы: один ряд, заголовок над описанием --- */
+.formats-head{margin-top:var(--s-16);font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+.formats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:var(--s-6);padding:0;list-style:none;background:var(--line-strong);border-top:0}
+.format{display:flex;flex-direction:column;gap:var(--s-2);padding:var(--s-6) var(--s-4);border:0;background:var(--surface);font-size:var(--fs-small)}
+.format strong{font-family:var(--text);font-size:var(--fs-body);font-weight:var(--w-strong);line-height:1.3;letter-spacing:0}
+.format span{color:var(--muted);font-size:var(--fs-small);line-height:var(--lh-small)}
+.format:nth-child(even){padding-right:var(--s-4);border-right:0}
+.formats-label{display:none}
+@media(max-width:600px){
+  .formats{grid-template-columns:1fr}
+  .format{padding:var(--s-4)}
+}
+
+/* --- «Обо мне»: заголовок над фото, текст занимает правую колонку целиком --- */
+.about-grid{grid-template-rows:auto 1fr;column-gap:var(--s-12);row-gap:var(--s-8);margin-top:var(--s-8)}
+.about-head{grid-column:1;grid-row:1;min-width:0}
+.about-head h2{max-width:none}
+.about-picture{grid-column:1;grid-row:2}
+.about-copy{grid-column:2;grid-row:1/3}
+.about-intro{max-width:var(--m-prose);font-size:var(--fs-lead);font-weight:500;line-height:var(--lh-lead)}
+@media(max-width:1000px){
+  .about-grid{grid-template-rows:auto auto auto;row-gap:var(--s-6)}
+  .about-head{grid-column:1;grid-row:1}
+  .about-copy{grid-column:1;grid-row:2}
+  .about-picture{grid-column:1;grid-row:3}
+}
+.about-head h2{font-size:clamp(1.75rem,1.6vw + 1.15rem,2.375rem)}
