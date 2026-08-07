@@ -55,7 +55,6 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
-  <div id="progress" aria-hidden="true"></div>
 
   <svg class="icon-sprite" width="0" height="0" aria-hidden="true">
     <symbol id="icon-telegram" viewBox="0 0 24 24"><path fill="currentColor" d="m20.7 3.3-17.8 6.9c-.8.3-.8 1.1-.1 1.3l4.4 1.4 1.7 5.2c.2.6.9.7 1.3.3l2.4-2.3 4.6 3.4c.5.3 1.1.1 1.2-.5l3-14.6c.2-.8-.5-1.4-1.3-1.1zM8.4 12.9l8.6-5.4c.2-.1.4.1.2.3l-7 6.5-.3 3-1.5-4.4z"/></symbol>
@@ -65,6 +64,7 @@
     <symbol id="icon-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 5.5a2.44 2.44 0 1 1-4.88 0 2.44 2.44 0 0 1 4.88 0ZM2.4 8.9h4.3V21H2.4V8.9Zm7 0h4.1v1.65h.06c.57-1.03 1.96-2.12 4.04-2.12 4.32 0 5.12 2.7 5.12 6.2V21h-4.28v-5.5c0-1.31-.02-3-1.86-3-1.87 0-2.15 1.42-2.15 2.9V21H9.4V8.9Z"/></symbol>
   </svg>
 
+  <div id="navsentinel" aria-hidden="true"></div>
   <nav class="site-nav" aria-label="Разделы сайта">
     <div class="wrap">
       <a class="logo" href="#top" aria-label="КБ, в начало">КБ</a>
@@ -114,7 +114,7 @@
 
     <section class="evidence" id="evidence" aria-label="Ключевой опыт">
       <div class="wrap">
-        <section class="evidence-ledger reveal" aria-label="Ключевой опыт, горизонтальная прокрутка на мобильном" tabindex="0">
+        <section class="evidence-ledger reveal" data-stagger aria-label="Ключевой опыт">
           <div class="evidence-item"><strong>20+</strong><span>проектов для клиентов и внутри компаний</span></div>
           <div class="evidence-item"><strong>6+ лет</strong><span>в стратегии, сделках и изменениях внутри компаний</span></div>
           <div class="evidence-item"><strong>CEO-1</strong><span>руководил офисом трансформации в прямом подчинении CEO</span></div>
@@ -125,6 +125,7 @@
 
     <section class="section" id="about">
       <div class="wrap">
+        <div class="eyebrow">Обо мне</div>
         <h2 class="reveal">Сам веду анализ, расчёты и обсуждение решения</h2>
         <div class="about-grid">
           <picture class="about-picture reveal">
@@ -133,7 +134,23 @@
           </picture>
           <div class="about-copy reveal">
             <p class="about-intro">Работаю напрямую с собственником или руководством: разбираю задачу, считаю варианты и готовлю материалы для решения</p>
-            <p class="owner-note">После решения помогаю команде запустить изменения и настроить контроль результата</p>
+            <ol class="reasons">
+              <li>
+                <span class="reason-num">01</span>
+                <strong>Считаю сам, а не раздаю аналитикам</strong>
+                <p>Финансовую модель, оценку и проверку данных веду лично. На созвоне отвечаю за каждую цифру без обращения к команде</p>
+              </li>
+              <li>
+                <span class="reason-num">02</span>
+                <strong>Работал не только со стороны консультанта</strong>
+                <p>Собрал офис трансформации с нуля в компании с выручкой более 10 млрд ₽, команда 5 человек, прямое подчинение генеральному директору. В Яндекс Рекламе вёл программу изменений, затронувшую более 70 сотрудников</p>
+              </li>
+              <li>
+                <span class="reason-num">03</span>
+                <strong>Довожу до запуска, а не до презентации</strong>
+                <p>После решения помогаю команде запустить изменения и настроить контроль результата</p>
+              </li>
+            </ol>
             <p class="team-note">Для отраслевых, юридических и налоговых вопросов подключаю профильных специалистов. Состав и бюджет согласуем заранее</p>
 
             <div class="profile-credentials">
@@ -162,11 +179,12 @@
 
     <section class="section" id="services">
       <div class="wrap">
-        <div class="mono eyebrow">Проекты из практики</div>
+        <div class="eyebrow">Проекты из практики</div>
         <h2 class="reveal">Восемнадцать проектов, сгруппированных по задаче, которую они решали</h2>
         <p class="section-lead reveal">Выберите направление. Нажмите на карточку, чтобы увидеть задачу, мою роль, что сделал и результат</p>
 
-        <div class="stream-tabs reveal" role="tablist" aria-label="Направления работы">
+        <p class="stream-tabs-hint reveal">Четыре направления. Нажмите на своё</p>
+        <div class="stream-tabs" data-rail role="tablist" aria-label="Направления работы">
         <button class="stream-tab" type="button" role="tab" id="tab-deals" aria-controls="stream-deals" aria-selected="true" tabindex="0" data-stream="deals">
           <span class="stream-tab-name">Сделки и инвестиции</span><span class="stream-tab-count">4</span>
         </button>
@@ -586,10 +604,10 @@
     <section class="section" id="field">
       <div class="field-shell dark-surface">
         <div class="wrap field-head">
-          <div class="mono eyebrow light">Как выглядит работа</div>
+          <div class="eyebrow light">Как выглядит работа</div>
           <h2 class="reveal">Работаю вместе с руководителями и командами на месте</h2>
         </div>
-        <section class="field-strip" aria-label="Фотографии с проектов, горизонтальная прокрутка" tabindex="0">
+        <section class="field-strip" data-rail aria-label="Фотографии с проектов, горизонтальная прокрутка" tabindex="0">
           <figure class="field-shot">
             <picture>
               <source type="image/avif" srcset="img/f-demo-508.avif 508w, img/f-demo-801.avif 801w" sizes="(max-width: 899px) min(100vw - 72px, 420px), 254px">
@@ -617,8 +635,20 @@
 
     <section class="section" id="how">
       <div class="wrap">
+        <div class="eyebrow">Как устроена работа</div>
         <h2 class="reveal">Начинаем с короткого сообщения</h2>
-        <div class="steps reveal">
+        <h3 class="artifacts-head reveal">После проекта у вас остаются материалы, с которыми можно принимать решение</h3>
+        <p class="artifacts-lead reveal">Состав зависит от задачи, согласуем до старта</p>
+        <ul class="artifacts reveal">
+          <li><strong>Финансовая модель</strong>Дисконтированные денежные потоки, покупка с долговым финансированием, операционная модель. С раскрытыми допущениями, которые можно пересчитать самостоятельно</li>
+          <li><strong>Оценка и диапазон цены</strong>Доходный и сравнительный методы, сценарии, чувствительность к ключевым допущениям</li>
+          <li><strong>Материалы для решения</strong>Меморандум для собственника или инвестора</li>
+          <li><strong>Стратегия на 3–5 лет</strong>Корпоративная и функциональные части, экономика новых направлений, обоснование для инвестиционного комитета</li>
+          <li><strong>План изменений</strong>Цели, ответственные, показатели и система мотивации</li>
+          <li><strong>Короткий расчёт</strong>Ответ на один вопрос, если полный проект не нужен</li>
+        </ul>
+
+        <div class="steps reveal" data-stagger>
           <div class="step"><div class="step-number">01</div><h3>Короткое сообщение</h3><p>2–3 строки <a href="https://t.me/kostya_younker">в Telegram</a>: бизнес, масштаб, главный вопрос</p></div>
           <div class="step"><div class="step-number">02</div><h3>Созвон 30 минут</h3><p>Разберём задачу, доступные данные и первый шаг. Разговор конфиденциальный</p></div>
           <div class="step"><div class="step-number">03</div><h3>Предложение</h3><p>Фиксирую объём, материалы, роли, срок и цену</p></div>
@@ -638,6 +668,7 @@
     <section class="section" id="faq">
       <div class="wrap faq-layout">
         <div class="faq-heading">
+          <div class="eyebrow">До старта</div>
           <h2 class="reveal">Что спрашивают до старта</h2>
           <p>Коротко о формате, цене, команде и работе с данными</p>
         </div>
@@ -670,6 +701,7 @@
       <div class="contact-shell dark-surface">
         <div class="wrap contact-inner">
           <div>
+            <div class="eyebrow light">Контакт</div>
             <h2 class="reveal">Обсудим решение, которое вам нужно принять</h2>
             <p class="contact-lead">Короткого сообщения достаточно, чтобы подготовиться к первому разговору</p>
             <div class="contact-actions">
@@ -692,9 +724,23 @@
 
   <footer class="footer">
     <div class="wrap">
-      <div>ИП Бабаджанян Константин Сергеевич / ИНН 772482469459 / ОГРНИП 326774600502903</div>
-      <div><a href="blog/index.html">Блог</a> / <a href="en/index.html" hreflang="en">English</a> / <a href="oferta.html">Оферта</a> / <a href="privacy.html">Политика обработки персональных данных</a></div>
-      <div>© 2026 / Москва</div>
+      <div>
+        <div class="footer-mark">Константин Бабаджанян</div>
+        <p class="footer-line">Сделки, стратегия, рост выручки и маржинальности. Ключевую работу веду лично</p>
+      </div>
+      <nav class="footer-links" aria-label="Дополнительные страницы">
+        <a href="career/index.html">Путь и резюме</a>
+        <a href="blog/index.html">Блог</a>
+        <a href="en/index.html" hreflang="en">English</a>
+        <a href="oferta.html">Оферта</a>
+        <a href="privacy.html">Политика обработки персональных данных</a>
+      </nav>
+      <div class="footer-legal">
+        <span>ИП Бабаджанян Константин Сергеевич</span>
+        <span>ИНН 772482469459</span>
+        <span>ОГРНИП 326774600502903</span>
+        <span>© 2026 / Москва</span>
+      </div>
     </div>
   </footer>
 
@@ -714,6 +760,8 @@
       <dl class="project-facts case-modal-facts"></dl>
       <div class="case-modal-foot">
         <p class="case-modal-note">Названия клиентов под соглашением о конфиденциальности. Детали разберу на созвоне</p>
+        <button type="button" class="case-modal-share">Скопировать ссылку</button>
+        <span class="sr-only" id="shareStatus" role="status"></span>
         <div class="case-modal-nav">
           <button type="button" data-case-nav="prev" aria-label="Предыдущий проект направления">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M15 5 8 12l7 7"/></svg>

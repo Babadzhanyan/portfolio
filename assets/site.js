@@ -3,7 +3,10 @@
 
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const revealItems = [...document.querySelectorAll(".reveal")];
+  const revealItems = [...document.querySelectorAll(".reveal,[data-stagger]")];
+  document.querySelectorAll("[data-stagger]").forEach((group) => {
+    [...group.children].forEach((child, index) => child.style.setProperty("--i", String(Math.min(index, 5))));
+  });
 
   if (!reduceMotion && "IntersectionObserver" in window && revealItems.length) {
     root.classList.add("reveal-ready");
@@ -58,6 +61,40 @@
     setActiveNav();
   }
 
+  const navSentinel = document.getElementById("navsentinel");
+  if (navSentinel && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      root.classList.toggle("scrolled", !entry.isIntersecting);
+    }, { threshold: 0 }).observe(navSentinel);
+  } else {
+    root.classList.add("scrolled");
+  }
+
+  const rails = [...document.querySelectorAll("[data-rail]")];
+  if (rails.length) {
+    const syncRail = (node) => {
+      const max = node.scrollWidth - node.clientWidth;
+      const ratio = max > 4 ? node.scrollLeft / max : -1;
+      node.dataset.edge = ratio < 0 ? "none" : ratio < 0.02 ? "start" : ratio > 0.98 ? "end" : "mid";
+    };
+    let railPending = false;
+    const syncAllRails = () => {
+      railPending = false;
+      rails.forEach(syncRail);
+    };
+    const queueRails = () => {
+      if (railPending) return;
+      railPending = true;
+      window.requestAnimationFrame(syncAllRails);
+    };
+    rails.forEach((node) => node.addEventListener("scroll", queueRails, { passive: true }));
+    window.addEventListener("resize", queueRails, { passive: true });
+    syncAllRails();
+  }
+
+  // iOS не применяет :active к элементам без обработчика касания
+  document.addEventListener("touchstart", () => {}, { passive: true });
+
   const menuButton = document.querySelector(".nav-menu");
   const menu = document.getElementById("navmenu");
   if (menuButton && menu) {
@@ -86,9 +123,14 @@
   }
 
   let caseHook = null;
+  let streamHook = null;
 
   const openHashTarget = (scrollToTarget = false) => {
     if (!window.location.hash || window.location.hash.length < 2) return;
+    if (window.location.hash.startsWith("#stream-") && streamHook) {
+      streamHook(window.location.hash.slice(8), scrollToTarget);
+      return;
+    }
     let target = null;
     try {
       target = document.querySelector(window.location.hash);
@@ -253,8 +295,16 @@
     if (!silent) track("stream_select", { stream: slug });
   };
 
+  streamHook = (slug, doScroll) => {
+    selectStream(slug, { silent: true });
+    if (doScroll) document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
+  };
+
   streamTabs.forEach((tab, index) => {
-    tab.addEventListener("click", () => selectStream(tab.dataset.stream));
+    tab.addEventListener("click", () => {
+      root.classList.add("streams-armed");
+      selectStream(tab.dataset.stream);
+    });
     tab.addEventListener("keydown", (event) => {
       const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
       let next = null;
@@ -267,13 +317,19 @@
     });
   });
 
-  if (streamTabs.length && "IntersectionObserver" in window) {
+  const streamTabList = document.querySelector(".stream-tabs");
+  streamTabs.forEach((tab, index) => tab.style.setProperty("--i", String(index)));
+
+  if (streamTabList && "IntersectionObserver" in window) {
     const streamsViewObserver = new IntersectionObserver((entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
+      streamTabList.classList.add("is-cued");
       track("services_view", { streams: streamTabs.length, cases: document.querySelectorAll(".case-card").length });
       streamsViewObserver.disconnect();
-    }, { threshold: 0.4 });
-    streamsViewObserver.observe(streamTabs[0]);
+    }, { threshold: 0.35 });
+    streamsViewObserver.observe(streamTabList);
+  } else if (streamTabList) {
+    streamTabList.classList.add("is-cued");
   }
 
   const modal = document.getElementById("caseModal");
@@ -354,6 +410,26 @@
     };
     prevButton?.addEventListener("click", () => step(-1));
     nextButton?.addEventListener("click", () => step(1));
+
+    const share = modal.querySelector(".case-modal-share");
+    const shareStatus = document.getElementById("shareStatus");
+    if (share) {
+      const shareLabel = share.textContent;
+      const report = (message) => {
+        share.textContent = message;
+        if (shareStatus) shareStatus.textContent = message;
+        window.setTimeout(() => {
+          share.textContent = shareLabel;
+          if (shareStatus) shareStatus.textContent = "";
+        }, 1800);
+      };
+      share.addEventListener("click", () => {
+        const url = window.location.href;
+        const copying = navigator.clipboard?.writeText(url);
+        if (copying) copying.then(() => report("Ссылка скопирована"), () => report(url));
+        else report(url);
+      });
+    }
 
     modal.querySelector(".case-modal-close")?.addEventListener("click", () => modal.close());
     modal.addEventListener("click", (event) => {
