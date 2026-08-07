@@ -1236,7 +1236,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
   .lang-toggle:hover .lang-opt{color:var(--muted)}
 }
 .lang-toggle:focus-visible{outline:3px solid var(--forest);outline-offset:3px}
-@media(max-width:560px){.lang-toggle{display:none}}
+
 @media(prefers-reduced-motion:reduce){.lang-knob,.lang-opt{transition:none}}
 
 /* ---------- плита на 5 плиток и логотипы ---------- */
@@ -1444,3 +1444,17 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .evidence-status{grid-row:1;align-self:start;margin-bottom:0}
 .evidence-item strong{grid-row:2}
 .evidence-item>span:last-child{grid-row:3;margin-top:0;padding-top:var(--s-4)}
+
+/* тумблер языка виден и на мобиле; на самых узких прячем LinkedIn-иконку, не язык */
+@media(max-width:560px){
+  .lang-toggle{display:inline-flex}
+  .nav-linkedin{display:none}
+}
+
+/* шов плита→about и композиция секции about */
+#about{padding-top:clamp(64px,7vw,104px)}
+@media(min-width:1001px){
+  .about-copy{padding-top:calc(20px + var(--gap-eyebrow))}
+}
+/* словомарка ГЛОНАСС в строке опыта – один вес с соседями */
+.wordmark.mono-mark{font-family:var(--text);font-size:15px;font-weight:600;letter-spacing:0;color:#1A1D1A}
