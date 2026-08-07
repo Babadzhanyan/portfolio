@@ -24,9 +24,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://babadzhanyan.github.io/portfolio/og-cover-v3.jpg">
   <link rel="preload" as="image" type="image/avif" href="../img/kostya-hero-conf-673.avif" imagesrcset="../img/kostya-hero-conf-480.avif 480w, ../img/kostya-hero-conf-673.avif 673w" imagesizes="(max-width: 768px) calc(100vw - 40px), 465px" fetchpriority="high">
-  <link rel="stylesheet" href="../assets/site.css?v=20260807.1">
+  <link rel="stylesheet" href="../assets/site.css?v=20260807.2">
   <script>document.documentElement.classList.add("js")</script>
-  <script defer src="../assets/site.js?v=20260807.1"></script>
+  <script defer src="../assets/site.js?v=20260807.2"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -155,194 +155,365 @@
     <section class="section" id="work">
       <div class="wrap">
         <div class="mono eyebrow">Selected work</div>
-        <h2 class="reveal">Eight projects where the number changed the decision</h2>
-        <p class="section-lead reveal">Client names are withheld under confidentiality unless already public. Figures are stated with their status: delivered, calculated or approved</p>
-        <ol class="project-list">
+        <h2 class="reveal">Eighteen projects, grouped by the question they answered</h2>
+        <p class="section-lead reveal">Pick a stream. Open a card to see the question, my role, what I did and the outcome. Client names are withheld under confidentiality unless already public</p>
+
+        <div class="stream-tabs reveal" role="tablist" aria-label="Streams of work">
+        <button class="stream-tab" type="button" role="tab" id="tab-deals" aria-controls="stream-deals" aria-selected="true" tabindex="0" data-stream="deals">
+          <span class="stream-tab-name">Deals &amp; investment</span><span class="stream-tab-count">4</span>
+        </button>
+        <button class="stream-tab" type="button" role="tab" id="tab-strategy" aria-controls="stream-strategy" aria-selected="false" tabindex="-1" data-stream="strategy">
+          <span class="stream-tab-name">Growth strategy</span><span class="stream-tab-count">5</span>
+        </button>
+        <button class="stream-tab" type="button" role="tab" id="tab-revenue" aria-controls="stream-revenue" aria-selected="false" tabindex="-1" data-stream="revenue">
+          <span class="stream-tab-name">Revenue growth</span><span class="stream-tab-count">4</span>
+        </button>
+        <button class="stream-tab" type="button" role="tab" id="tab-efficiency" aria-controls="stream-efficiency" aria-selected="false" tabindex="-1" data-stream="efficiency">
+          <span class="stream-tab-name">Margin</span><span class="stream-tab-count">5</span>
+        </button>
+        </div>
+
+        <div class="stream-stack reveal">
+      <section class="stream-panel is-active" id="stream-deals" role="tabpanel" aria-labelledby="tab-deals">
+        <div class="stream-head">
+          <div class="stream-head-copy">
+            <strong class="stream-title">Prepare and run the transaction</strong>
+            <p class="stream-problem">You are buying or selling an asset, or raising investment</p>
+          </div>
+          <div class="stream-head-products">
+            <div class="mono stream-products-label">What it covers</div>
+            <ul class="stream-products">
+            <li>Business valuation</li>
+            <li>Deal financial model</li>
+            <li>Commercial due diligence</li>
+            <li>LBO model</li>
+            <li>Deal structure and terms</li>
+            <li>Acquisition target search</li>
+            <li>Sale readiness</li>
+            <li>Investor materials</li>
+            <li>Negotiation support</li>
+            </ul>
+          </div>
+        </div>
+        <ol class="case-grid" aria-label="4 projects in Deals &amp; investment">
           <li>
-            <details class="project-row project-row--featured">
+            <details class="case-card case-card--featured" id="case-fmcg-buy-side">
               <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">Buy-side / dairy manufacturing / 100% stake / anonymised</span>
-                  <strong class="project-title">Acquisition of a dairy plant</strong>
-                  <span class="project-context">Led commercial due diligence and the leveraged buyout model</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Project scale">
-                  <span class="claim"><span class="claim-badge">Scale</span><span>c. $16M EV</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
+                <span class="case-kicker">Buy-side / dairy manufacturing / 100% of the business / anonymised</span>
+                <strong class="case-title">Acquisition of a dairy plant</strong>
+                <span class="case-context">Led commercial due diligence and the leveraged buyout model for a 100% stake</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim"><span class="claim-badge">Scale</span><span>c. $16M EV</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
               </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Test the economics of the plant, set the purchase price and build a workable deal structure</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Led the financial and commercial workstream alongside an ex-BCG engagement manager</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Ran commercial due diligence, built the LBO and operating models, valued the cash flows and quantified production, procurement and logistics synergies</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Took the financial and commercial workstream to a complete acquisition structure for a 100% stake at c. $16M EV</dd></div>
-                </dl>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Test the economics of the plant, set the purchase price and build a workable deal structure</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Led the financial and commercial workstream alongside an ex-BCG engagement manager</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Ran commercial due diligence, built the LBO and operating models, valued the cash flows and quantified production, procurement and logistics synergies</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Took the financial and commercial workstream to a complete acquisition structure for a 100% stake at c. $16M EV</dd></div></dl>
               </div>
             </details>
           </li>
           <li>
-            <details class="project-row project-row--compact">
+            <details class="case-card" id="case-consumer-buy-side">
               <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">Buy-side / cosmetics brand / 50%+1 control / anonymised</span>
-                  <strong class="project-title">Valuation of a consumer brand acquisition</strong>
-                  <span class="project-context">Commercial diligence, scenario valuation and consideration tied to future results</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Project scale">
-                  <span class="claim"><span class="claim-badge">Scale</span><span>RUB 1–1.5bn</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
+                <span class="case-kicker">Buy-side / cosmetics brand / 50%+1 control / RUB 1–1.5bn / anonymised</span>
+                <strong class="case-title">Valuation of a consumer brand acquisition</strong>
+                <span class="case-context">Commercial diligence, scenario valuation and consideration tied to future results</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
               </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Establish the value range for a controlling stake and test the seller's forecast</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Led commercial diligence, the financial model and the buy-side valuation</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Normalised earnings for one-off items, built a scenario model, valued the business on income and market approaches and structured a 50%+1 purchase with part of the price contingent on future performance</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Delivered a RUB 1–1.5bn value range and the buyer's negotiating position</dd></div>
-                </dl>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Establish the value range for a controlling stake and test the seller forecast</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Led commercial diligence, the financial model and the buy-side valuation</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Normalised earnings for one-off items, built a scenario model, valued the business on income and market approaches and structured a 50%+1 purchase with part of the price contingent on future performance</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Delivered a RUB 1–1.5bn value range and the buyer negotiating position</dd></div></dl>
               </div>
             </details>
           </li>
           <li>
-            <details class="project-row project-row--compact">
+            <details class="case-card" id="case-apparel-sell-side">
               <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">Sell-side / apparel brand on a marketplace / anonymised</span>
-                  <strong class="project-title">Sale of an apparel brand to a strategic investor</strong>
-                  <span class="project-context">Ran the sell-side process end to end, from investor search to closing</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Project scale">
-                  <span class="claim"><span class="claim-badge">Scale</span><span>c. $2M EV</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
+                <span class="case-kicker">Sell-side / apparel brand on a marketplace / c. $2M EV / anonymised</span>
+                <strong class="case-title">Sale of an apparel brand to a strategic investor</strong>
+                <span class="case-context">Ran the sell-side process end to end, from investor search to closing</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
               </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Prepare the brand for sale, find a strategic investor and run the transaction process</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Ran the entire process on the seller's side</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Prepared the investment materials and valuation, sourced the strategic investor, negotiated terms with both sides and coordinated the NDA, term sheet, shareholders' agreement and share purchase agreement</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Transaction closed with a strategic investor at c. $2M</dd></div>
-                </dl>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Prepare the brand for sale, find a strategic investor and run the transaction process</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Ran the entire process on the seller side</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Prepared the investment materials and valuation, sourced the strategic investor, negotiated terms with both sides and coordinated the NDA, term sheet, shareholders agreement and share purchase agreement</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Transaction closed with a strategic investor at c. $2M</dd></div></dl>
               </div>
             </details>
           </li>
           <li>
-            <details class="project-row project-row--featured">
+            <details class="case-card" id="case-hotel-valuation">
               <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">In-house / federal technology operator, revenue above RUB 10bn / CEO-1</span>
-                  <strong class="project-title">Five-fold corporate growth strategy</strong>
-                  <span class="project-context">Built the transformation office from scratch and owned the strategy end to end</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Result status">
-                  <span class="claim" data-status="approved"><span class="claim-badge">Approved</span><span>Board and Minister of Transport</span></span>
-                  <span class="claim" data-status="target"><span class="claim-badge">Target</span><span>5× revenue</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
+                <span class="case-kicker">Sell-side / hotel real estate / Sochi</span>
+                <strong class="case-title">Valuation of a hotel asset in Sochi</strong>
+                <span class="case-context">Valuation and the financial pack for negotiations with the buyer</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
               </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Define where the next order of magnitude of revenue comes from and secure funding for it</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Head of the transformation office, reporting directly to the CEO, team of five</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Built the market and portfolio analysis, the financial model behind the R&amp;D budget and the initiative roadmap, then ran the approval process through the board</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Strategy approved unanimously by the board and presented to the Minister of Transport; the R&amp;D budget was approved in full</dd></div>
-                </dl>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details class="project-row project-row--featured">
-              <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">In-house / Yandex Ads / business unit of c. $1.2bn revenue / 2023–2024</span>
-                  <strong class="project-title">Commercial transformation of the sales model</strong>
-                  <span class="project-context">Redesigned the commercial process across a 500-strong sales organisation</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Result status">
-                  <span class="claim" data-status="achieved"><span class="claim-badge">Delivered</span><span>+$2.8M annual revenue</span></span>
-                  <span class="claim" data-status="achieved"><span class="claim-badge">Delivered</span><span>+27 pp forecast accuracy</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Find where revenue was being lost in the commercial process and rebuild it</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Led the change programme with a core team of ten, affecting more than 70 people</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Rebuilt the sales model and the planning methodology, then ran the rollout with the commercial leadership</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>$2.8M of additional annual revenue, confirmed in reporting, and demand forecast accuracy up by 27 percentage points</dd></div>
-                </dl>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details class="project-row project-row--compact">
-              <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">Yakov &amp; Partners / steel / plant with revenue above $1bn / on site</span>
-                  <strong class="project-title">Output growth at a steel asset</strong>
-                  <span class="project-context">Diagnosed the losses and set up daily tracking of the initiative portfolio</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Result status">
-                  <span class="claim" data-status="achieved"><span class="claim-badge">Delivered</span><span>+10% annual output run rate</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Stabilise production and raise output within the available budget</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Ran the analytical workstream on site and managed two analysts</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Built the production driver tree, launched daily reporting and a project office, assembled the initiative portfolio and ran three working sessions with production leadership</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Output run rate up 10% year on year, with daily reporting to the shareholders</dd></div>
-                </dl>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details class="project-row project-row--compact">
-              <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">Client project / B2B SaaS / shift to an AI-native product / anonymised</span>
-                  <strong class="project-title">Product strategy for an AI-native transition</strong>
-                  <span class="project-context">Defined where the product should move and what it changes in the economics</span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Decide whether to rebuild the product around AI and what that does to unit economics</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Ran the strategy and the financial case with the founders</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Mapped the competitive shift, sized the addressable segments, modelled pricing and margin under the new architecture and built the initiative roadmap</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Strategy adopted by the founders as the basis for the product roadmap</dd></div>
-                </dl>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details class="project-row project-row--compact">
-              <summary>
-                <span class="project-summary-main">
-                  <span class="project-kicker">Client projects / real estate, industry and finance, including units of a top-3 Russian bank / teams of up to 3</span>
-                  <strong class="project-title">Seven workforce benchmarking and sizing projects</strong>
-                  <span class="project-context">Compared productivity and calculated required headcount by function</span>
-                </span>
-                <span class="claim-stack" role="group" aria-label="Result status">
-                  <span class="claim" data-status="calculated"><span class="claim-badge">Calculated</span><span>10–30% optimisation potential</span></span>
-                </span>
-                <span class="project-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="project-panel">
-                <dl class="project-facts">
-                  <div class="fact fact--task"><dt>Question</dt><dd>Establish whether headcount matches the actual workload and where the gap sits</dd></div>
-                  <div class="fact fact--role"><dt>My role</dt><dd>Led the benchmarking practice, running teams of up to three analysts</dd></div>
-                  <div class="fact fact--action"><dt>What I did</dt><dd>Built internal and external benchmarks by function, measured process workload and modelled the required headcount</dd></div>
-                  <div class="fact fact--result"><dt>Outcome</dt><dd>Optimisation potential of 10–30% identified across the portfolio, with roughly $1M of annual savings realised by clients</dd></div>
-                </dl>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Establish the value of the asset and prepare the seller position for negotiations</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Ran the valuation and built the financial position of the seller</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Valued the asset including construction cost and prepared the financial materials for the buyer</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>The client received the valuation and the materials to negotiate on</dd></div></dl>
               </div>
             </details>
           </li>
         </ol>
-        <p class="section-lead reveal">The Russian version of the site carries the full set of 18 projects. <a href="../index.html#services">Open it</a></p>
+      </section>
+      <section class="stream-panel" id="stream-strategy" role="tabpanel" aria-labelledby="tab-strategy" hidden>
+        <div class="stream-head">
+          <div class="stream-head-copy">
+            <strong class="stream-title">Decide where to grow next</strong>
+            <p class="stream-problem">You are choosing which markets, products and projects deserve money and team time</p>
+          </div>
+          <div class="stream-head-products">
+            <div class="mono stream-products-label">What it covers</div>
+            <ul class="stream-products">
+            <li>Corporate strategy</li>
+            <li>Diversification strategy</li>
+            <li>Market research</li>
+            <li>New market assessment</li>
+            <li>Customer segmentation</li>
+            <li>New business launch</li>
+            <li>Financial model of the plan</li>
+            <li>Strategy sessions</li>
+            <li>Implementation roadmap</li>
+            </ul>
+          </div>
+        </div>
+        <ol class="case-grid" aria-label="5 projects in Growth strategy">
+          <li>
+            <details class="case-card case-card--featured" id="case-glonass-strategy">
+              <summary>
+                <span class="case-kicker">In-house / federal technology operator with revenue above RUB 10bn / CEO-1</span>
+                <strong class="case-title">Five-year diversification strategy</strong>
+                <span class="case-context">Choice of new growth areas and a single financial model for the company</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="approved"><span class="claim-badge">Approved</span><span>Five-year strategy</span></span><span class="claim" data-status="target"><span class="claim-badge">Target</span><span>Triple EBITDA in five years</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Decide which new businesses to fund and how to build them into the five-year plan</dd></div><div class="fact fact--role"><dt>My role</dt><dd>CEO-1 and head of the transformation office, accountable for corporate strategy and new business launches</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Built the financial model, ran four strategy sessions, assembled the corporate and functional strategies and prepared the financial case for three new businesses. For satellite communications I ran a nationwide B2B study of connectivity demand in the forestry industry across remote territories</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Five-year strategy approved, three new businesses taken to the investment committee. Target is to triple EBITDA in five years</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card case-card--featured" id="case-b2b-saas">
+              <summary>
+                <span class="case-kicker">Client project / B2B SaaS / shift to an AI-native product / anonymised</span>
+                <strong class="case-title">Five-year growth strategy for a B2B SaaS company</strong>
+                <span class="case-context">Market research, customer segmentation and analysis of 10 000 customer conversations</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="approved"><span class="claim-badge">Approved</span><span>By the shareholders</span></span><span class="claim" data-status="calculated"><span class="claim-badge">Calculated</span><span>+10–15 pp conversion</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Rebuild the product and the commercial model around AI and around the real reasons customers say no</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Led the AI product benchmark, the market segmentation and the speech analytics</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Studied more than ten international cases, ran more than five expert interviews, segmented the market and built a prototype analysing 10 000 calls from scratch</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Five-year strategy approved by the shareholders. The analysis surfaced seven reasons for refusal and a calculated conversion upside of 10–15 percentage points</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-middle-east-sustainability">
+              <summary>
+                <span class="case-kicker">McKinsey &amp; Company project / public sector / Middle East</span>
+                <strong class="case-title">National sustainability strategy</strong>
+                <span class="case-context">Strategic priorities and investment areas at country level</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Define sustainability priorities and build the basis for investment decisions</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Part of the McKinsey CIS team, built the analytical workstream of the strategy</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Analysed development priorities and prepared the material behind the target model and the investment decisions</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>The analytical workstream became part of the final client strategy</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-regional-transport-strategy">
+              <summary>
+                <span class="case-kicker">McKinsey &amp; Company project / transport / Russia</span>
+                <strong class="case-title">Analytics for a national transport strategy</strong>
+                <span class="case-context">Throughput, fleet renewal and regional transport access</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Build the analytical basis for decisions on developing the transport system</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Part of the McKinsey CIS team, owned individual analytical workstreams of the transport strategy</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Analysed airport throughput, fleet renewal scenarios and regulatory options, and designed a flexible-route pilot concept for the Moscow region</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>The analysis and the pilot concept went into the transport strategy materials</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-taxi-launch-model">
+              <summary>
+                <span class="case-kicker">Independent project / urban mobility</span>
+                <strong class="case-title">Financial and operating model for a taxi fleet launch</strong>
+                <span class="case-context">Unit economics of a ride, driver incentives and application requirements</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Test the economics of the venture and define the operating model for launch</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Ran the economic and operational work alongside the founder</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Modelled the economics of a ride and of the fleet, designed the driver incentive system and defined the requirements for the application</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Delivered the financial model and the decision pack for launch</dd></div></dl>
+              </div>
+            </details>
+          </li>
+        </ol>
+      </section>
+      <section class="stream-panel" id="stream-revenue" role="tabpanel" aria-labelledby="tab-revenue" hidden>
+        <div class="stream-head">
+          <div class="stream-head-copy">
+            <strong class="stream-title">Grow revenue</strong>
+            <p class="stream-problem">You want more revenue through product, sales, pricing, the customer base or output</p>
+          </div>
+          <div class="stream-head-products">
+            <div class="mono stream-products-label">What it covers</div>
+            <ul class="stream-products">
+            <li>Revenue growth strategy</li>
+            <li>Product strategy</li>
+            <li>Market research</li>
+            <li>Customer and demand research</li>
+            <li>Customer base segmentation</li>
+            <li>Account portfolio rebalancing</li>
+            <li>Sales channel development</li>
+            <li>Key account programmes</li>
+            <li>Sales forecasting</li>
+            <li>Production output growth</li>
+            </ul>
+          </div>
+        </div>
+        <ol class="case-grid" aria-label="4 projects in Revenue growth">
+          <li>
+            <details class="case-card case-card--featured" id="case-yandex-sales">
+              <summary>
+                <span class="case-kicker">In-house / Yandex Ads / business unit of c. $1.2bn revenue / 2023–2024</span>
+                <strong class="case-title">Commercial transformation of sales at Yandex Ads</strong>
+                <span class="case-context">Rebalanced account portfolios, trained the teams and launched new formats for key advertisers</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="achieved"><span class="claim-badge">Delivered</span><span>+$2.8M in sales</span></span><span class="claim" data-status="achieved"><span class="claim-badge">Delivered</span><span>130% of plan against 115%</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Raise sales and embed what works across the whole commercial team</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Project manager in Yandex internal consulting, led individual workstreams of a programme reaching more than 70 people</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Ran a nationwide sales audit. With six team leads and 36 managers I reallocated accounts by industry and e-commerce, rebalanced the portfolios and built and ran the training programme. Launched intensives for 60 key accounts, regular campaign reviews and a new forecasting process</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Display advertising sales up $2.8M a year. In the programme for 60 key accounts plan delivery reached 130% against 115% in the control group</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card case-card--featured" id="case-steel-transformation">
+              <summary>
+                <span class="case-kicker">Yakov &amp; Partners project / steel / plant with revenue above $1bn / on site</span>
+                <strong class="case-title">Output growth at a steel asset</strong>
+                <span class="case-context">Diagnosed the losses and set up daily tracking of the initiative portfolio on site</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="achieved"><span class="claim-badge">Delivered</span><span>+10% annual output run rate</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Stabilise production and raise output within the available budget</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Ran the Yakov &amp; Partners analytical workstream on site and managed two analysts</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Built the production driver tree, launched daily reporting and a project office, assembled the initiative portfolio and ran three working sessions with production leadership</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Annual output run rate up by 100 thousand tonnes, or 10%</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card case-card--featured" id="case-video-streaming-product-strategy">
+              <summary>
+                <span class="case-kicker">Analytical project within McKinsey Business Diving / Okko / La vie en Case</span>
+                <strong class="case-title">Product strategy for a video streaming service</strong>
+                <span class="case-context">Market study, 133 users surveyed, 11 initiatives with the economics calculated</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="calculated"><span class="claim-badge">Calculated</span><span>RUB 10.3bn revenue</span></span><span class="claim" data-status="calculated"><span class="claim-badge">Calculated</span><span>NPV RUB 940M</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Grow the audience, revenue per user and retention of Okko</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Built the video streaming product strategy inside the La vie en Case team</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Studied the market and the customer journey, took part in surveying 133 respondents and in designing 11 initiatives across advertising, search, recommendations, pricing and communications</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>The team modelled a scenario worth RUB 10.3bn of revenue, NPV of RUB 940M, a 27% return and a 16-month payback</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-kazakhstan-media-bi">
+              <summary>
+                <span class="case-kicker">Contract project / media holding / Kazakhstan</span>
+                <strong class="case-title">Sales management dashboard for a media holding</strong>
+                <span class="case-context">Sales, metrics and customer segments in one management view</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Consolidate scattered data and give leadership one view of commercial results</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Built the business intelligence solution single-handedly for the management team</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Assembled the data model and Power BI reporting across sales, metrics and customer segments</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Leadership received a single dashboard for regular sales control</dd></div></dl>
+              </div>
+            </details>
+          </li>
+        </ol>
+      </section>
+      <section class="stream-panel" id="stream-efficiency" role="tabpanel" aria-labelledby="tab-efficiency" hidden>
+        <div class="stream-head">
+          <div class="stream-head-copy">
+            <strong class="stream-title">Improve margin</strong>
+            <p class="stream-problem">You want to cut cost, fix processes and raise productivity</p>
+          </div>
+          <div class="stream-head-products">
+            <div class="mono stream-products-label">What it covers</div>
+            <ul class="stream-products">
+            <li>Cost reduction</li>
+            <li>Procurement and distribution</li>
+            <li>Process optimisation</li>
+            <li>Internal benchmarking</li>
+            <li>Headcount sizing models</li>
+            <li>Incentive systems</li>
+            <li>KPIs and reporting</li>
+            <li>Change project office</li>
+            <li>Automation and AI</li>
+            </ul>
+          </div>
+        </div>
+        <ol class="case-grid" aria-label="5 projects in Margin">
+          <li>
+            <details class="case-card case-card--featured" id="case-agri-market-model">
+              <summary>
+                <span class="case-kicker">Yakov &amp; Partners project / consumer market / market research</span>
+                <strong class="case-title">New distribution channel model for margin growth</strong>
+                <span class="case-context">Nationwide demand study and a comparison of supply from China and Poland</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="calculated"><span class="claim-badge">Calculated</span><span>Up to +10 pp margin</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Understand demand and pick the supply and distribution channel with the better economics</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Designed the research and owned the data analysis</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Designed and ran a nationwide consumer survey, studied supply chains from China and Poland and compared the operating model options</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>The team designed a distribution channel model with a calculated margin upside of up to 10 percentage points</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card case-card--featured" id="case-developer-workforce">
+              <summary>
+                <span class="case-kicker">Client projects / real estate, industry and finance, including units of a top-3 Russian bank / teams of up to 3</span>
+                <strong class="case-title">Seven workforce benchmarking and sizing projects</strong>
+                <span class="case-context">Productivity comparison and required headcount calculated by function</span>
+                <span class="claim-stack" role="group" aria-label="Project outcome"><span class="claim" data-status="calculated"><span class="claim-badge">Calculated</span><span>10–30% optimisation potential</span></span></span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Establish target headcount by function and find where productivity diverges</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Led seven internal benchmarking and headcount projects, managing teams of up to three</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Ran workload analysis and time studies, compared output per employee and built driver models for sales, occupancy, production, accounting, facilities and other functions</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Clients received target headcount, calculators and digitalisation roadmaps; calculated optimisation potential of 10–30% depending on the function</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-glonass-incentives">
+              <summary>
+                <span class="case-kicker">In-house / GLONASS / 500 employees</span>
+                <strong class="case-title">Incentive system rolled out to 500 employees</strong>
+                <span class="case-context">Quarterly metrics linking team results, individual contribution and bonus size</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Tie bonuses to company goals and to what people actually contributed</dd></div><div class="fact fact--role"><dt>My role</dt><dd>As head of the transformation office, ran the project jointly with the HR director</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Designed and rolled out the quarterly metric system, the bonus calculation rules and one process for reviewing results</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>The system covered 500 employees and cut annual cost by roughly $1M</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-uzbek-bank-kpi">
+              <summary>
+                <span class="case-kicker">McKinsey &amp; Company project / leading bank in Uzbekistan / 22 business lines</span>
+                <strong class="case-title">Performance metrics for 22 business lines</strong>
+                <span class="case-context">Metrics across 22 business lines and regular plan-versus-actual control</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Connect the bank goals to business line metrics and to one management cycle</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Part of the McKinsey CIS team, owned the metric system and the plan control models</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Linked the metrics of 22 business lines to the bank goals and built Excel models for plan-versus-actual control</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>Bank leadership received one system of metrics and delivery control</dd></div></dl>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="case-card" id="case-telecom-analyst-training">
+              <summary>
+                <span class="case-kicker">Corporate training / major telecom operator</span>
+                <strong class="case-title">Training programme for 300+ corporate analysts</strong>
+                <span class="case-context">Hands-on business analysis course for the operator employees</span>
+                <span class="case-more"><span class="case-more-label">Open the brief</span><span class="case-more-mark" aria-hidden="true"></span></span>
+              </summary>
+              <div class="case-body">
+                <dl class="project-facts"><div class="fact fact--task"><dt>Question</dt><dd>Give analysts one approach and working tools for project work</dd></div><div class="fact fact--role"><dt>My role</dt><dd>Designed and ran the training programme</dd></div><div class="fact fact--action"><dt>What I did</dt><dd>Built the course structure, prepared the materials and the exercises and delivered the sessions</dd></div><div class="fact fact--result"><dt>Outcome</dt><dd>More than 300 employees completed the programme</dd></div></dl>
+              </div>
+            </details>
+          </li>
+        </ol>
+      </section>
+        </div>
       </div>
     </section>
 
@@ -457,6 +628,31 @@
   <div class="mobile-cta">
     <a class="btn" href="https://t.me/kostya_younker"><svg aria-hidden="true"><use href="#icon-telegram"/></svg>Discuss your case</a>
   </div>
+  <dialog class="case-modal" id="caseModal" aria-labelledby="caseModalTitle">
+    <div class="case-modal-inner">
+      <button class="case-modal-close" type="button" aria-label="Close the project brief">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="case-modal-stream"></div>
+      <span class="case-modal-kicker"></span>
+      <h2 class="case-modal-title" id="caseModalTitle"></h2>
+      <p class="case-modal-context"></p>
+      <div class="case-modal-claims claim-stack" role="group" aria-label="Project outcome" hidden></div>
+      <dl class="project-facts case-modal-facts"></dl>
+      <div class="case-modal-foot">
+        <p class="case-modal-note">Client names are held under confidentiality. I can go through the detail on a call</p>
+        <div class="case-modal-nav">
+          <button type="button" data-case-nav="prev" aria-label="Previous project in this stream">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M15 5 8 12l7 7"/></svg>
+          </button>
+          <button type="button" data-case-nav="next" aria-label="Next project in this stream">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="m9 5 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <div id="tip" aria-hidden="true"></div>
 </body>
 </html>
