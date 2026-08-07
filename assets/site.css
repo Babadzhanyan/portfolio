@@ -46,7 +46,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:88px;font-synthesis:none}
-html,body{overflow-x:clip}
+html,body{overflow-x:clip;max-width:100%}
 body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:var(--body-size);line-height:1.6;text-rendering:optimizeLegibility}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -62,7 +62,7 @@ h2{font-size:var(--h2-size);line-height:1.12}
 .eyebrow::after{content:"";height:1px;flex:1;background:var(--line)}
 .eyebrow.light{color:var(--white)}
 .eyebrow.light::after{background:var(--line-dark)}
-.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.sr-only{position:absolute!important;left:0!important;top:auto!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
 .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--forest);color:#fff;padding:12px 20px;border-radius:0 0 10px 0}
 .skip-link:focus{left:0}
 :focus-visible{outline:3px solid var(--forest);outline-offset:3px;border-radius:5px}
@@ -361,7 +361,7 @@ h2{font-size:var(--h2-size);line-height:1.12}
   .hero-visual img{width:100%;height:auto;max-height:none;aspect-ratio:16/10;object-position:50% 20%}
   .evidence{padding-top:30px;padding-bottom:0}
   .evidence .wrap{padding-inline:0}
-  .evidence-ledger{grid-template-columns:repeat(4,minmax(238px,76vw));overflow-x:auto;padding-inline:20px;scroll-padding-left:20px;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .evidence-ledger{min-width:0;position:relative;grid-template-columns:repeat(4,minmax(238px,76vw));overflow-x:auto;padding-inline:20px;scroll-padding-left:20px;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .evidence-ledger::-webkit-scrollbar{display:none}
   .evidence-item{min-height:136px;padding:21px 20px;scroll-snap-align:start}
   .evidence-item:first-child{border-left:1px solid var(--line)}
@@ -379,9 +379,9 @@ h2{font-size:var(--h2-size);line-height:1.12}
   .service-problem{font-size:14px}
   .service-action{width:100%;min-height:44px;justify-content:space-between;padding:12px 15px;border-color:rgba(255,255,255,.8);font-size:13.5px}
   .service-panel{padding:0 16px 20px}
-  .service-products{grid-template-columns:1fr;gap:11px;padding:20px 0}
+  .service-products{grid-template-columns:minmax(0,1fr);gap:11px;padding:20px 0}
   .service-products h4{padding-top:0}
-  .service-product-list{flex-wrap:nowrap;gap:7px;overflow-x:auto;margin-inline:-16px;padding:0 16px 8px;scroll-padding-left:16px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .service-product-list{min-width:0;flex-wrap:nowrap;gap:7px;overflow-x:auto;margin-inline:-16px;padding:0 16px 8px;scroll-padding-left:16px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .service-product-list::-webkit-scrollbar{display:none}
   .service-product-list li{max-width:none;flex:0 0 auto;padding:7px 12px;font-size:13px;white-space:nowrap;scroll-snap-align:start}
   .service-projects{padding-top:22px}
