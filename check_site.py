@@ -4,6 +4,7 @@
 Запуск: python3 check_site.py
 Ноль на выходе – можно деплоить. Любая строка ДЕФЕКТ – чинить до пуша.
 """
+import json
 import re
 import sys
 from collections import Counter
@@ -71,6 +72,32 @@ for page in PAGES:
             break
 if len(versions) > 1:
     note(f"ДЕФЕКТ версии ассетов расходятся: {sorted(versions)}")
+declared_version = json.loads(read("version.json"))["assets"]
+if versions != {declared_version}:
+    note(f"ДЕФЕКТ version.json {declared_version} против data-v {sorted(versions)}")
+for page in PAGES:
+    html = read(page)
+    if "v-reload" not in html:
+        note(f"ДЕФЕКТ {page}: нет самопроверки свежести")
+    elif html.count("v-reload") != 2:
+        note(f"ДЕФЕКТ {page}: самопроверка вставлена дважды")
+    if f'data-v="{declared_version}"' not in html:
+        note(f"ДЕФЕКТ {page}: data-v не совпадает с version.json")
+
+CAREER_BLOCKS = {"path-item", "path-cases", "path-note", "path-what", "path-where",
+                 "path-when", "skill-card", "skill-label", "brand-item", "brand-logo", "cv-head"}
+def career_shape(html):
+    counts = Counter()
+    for m in re.finditer(r'class="([^"]+)"', html):
+        for cls in m.group(1).split():
+            if cls in CAREER_BLOCKS:
+                counts[cls] += 1
+    return counts
+ru_career = career_shape(read("career/index.html"))
+en_career = career_shape(read("en/career/index.html"))
+for key in sorted(set(ru_career) | set(en_career)):
+    if ru_career.get(key, 0) != en_career.get(key, 0):
+        note(f"ДЕФЕКТ путь, блок {key}: RU {ru_career.get(key, 0)}, EN {en_career.get(key, 0)}")
 
 for sentence_start in re.findall(r"(?:^|[.!?]\s|>)(I\s)", read("en/index.html")):
     note("ДЕФЕКТ английская версия: предложение начинается с «I»")

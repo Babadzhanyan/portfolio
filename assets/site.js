@@ -221,12 +221,14 @@
   };
 
   document.addEventListener("pointerover", (event) => {
+    if (event.target.closest && event.target.closest("#tip")) return;
     if (event.pointerType && event.pointerType !== "mouse") return;
     const owner = event.target.closest(".tooltip-term");
     if (owner) positionTooltip(owner);
     else if (tooltipOwner) hideTooltip();
   });
   document.addEventListener("focusin", (event) => {
+    if (event.target.closest && event.target.closest("#tip")) return;
     const owner = event.target.closest(".tooltip-term");
     if (owner) positionTooltip(owner);
     else hideTooltip();

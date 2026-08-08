@@ -244,6 +244,7 @@ p,li,dd{text-wrap:pretty}
 
 .mobile-cta{display:none}
 #tip{position:fixed;z-index:90;max-width:min(300px,84vw);padding:10px 13px;border-radius:10px;background:var(--forest);box-shadow:0 10px 30px rgba(18,75,56,.25);color:var(--white);font-size:13px;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .12s ease}
+#tip.show{pointer-events:auto}
 #tip.show{opacity:1}
 .tooltip-term{border-bottom:1px dotted var(--forest);cursor:help}
 .wordmark.tooltip-term{border-bottom:1px solid var(--line);text-decoration-line:underline;text-decoration-style:dotted;text-decoration-color:var(--forest);text-underline-offset:4px}
@@ -350,7 +351,7 @@ p,li,dd{text-wrap:pretty}
   .field-head{padding-top:58px}
   .formats{grid-template-columns:1fr;margin-top:38px}
   .formats-label{grid-row:auto;padding:18px 0 14px}
-  .format,.format:nth-child(even){grid-template-columns:1fr;gap:5px;padding:17px 0;border-right:0}
+  .format,.format:nth-child(even){grid-template-columns:1fr;padding:17px 0;border-right:0}
   .faq-layout{gap:30px}
   .faq-heading p{margin-top:12px}
   .faq summary{min-height:60px;padding:17px 0;font-size:17px}
@@ -780,8 +781,8 @@ html{scrollbar-gutter:stable}
 /* --- блок 1. база --- */
 body{font-size:var(--fs-body);line-height:var(--lh-body);letter-spacing:0;text-rendering:auto}
 .wrap{width:min(var(--w-page),100%);margin-inline:auto;padding-inline:var(--pad)}
-h1{max-width:none;font-size:var(--fs-h1);font-weight:var(--w-display);line-height:var(--lh-h1);letter-spacing:var(--ls-h1);text-wrap:balance;overflow-wrap:break-word}
-h2{font-size:var(--fs-h2);font-weight:var(--w-display);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);text-wrap:balance;overflow-wrap:break-word}
+h1{max-width:none;font-size:var(--fs-h1);font-weight:var(--w-display);line-height:var(--lh-h1);letter-spacing:var(--ls-h1);text-wrap:balance}
+h2{font-size:var(--fs-h2);font-weight:var(--w-display);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);text-wrap:balance}
 h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
 .section>.wrap>h2{max-width:var(--m-h2)}
 .evidence-item strong,.claim>span:last-child,.step-number,.reason-num{font-variant-numeric:tabular-nums lining-nums}
@@ -1503,7 +1504,7 @@ h2,h3,.formats-head{break-after:avoid}
 .evidence-item strong{overflow-wrap:break-word;hyphens:none}
 
 /* 12. offer-name переполнял колонку на узком десктопе. */
-.offer-name{overflow-wrap:break-word;text-wrap:balance}
+.offer-name{text-wrap:pretty}
 
 /* 13-15. Колонки двухколоночных секций стартуют на одной оптической линии. */
 .stream-products-label{margin-top:-5px}
@@ -1560,8 +1561,6 @@ h2,h3,.formats-head{break-after:avoid}
 @media(max-width:600px){.evidence-ledger{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- карта отраслей ---------- */
-.ind-name{font-family:var(--text);font-size:var(--fs-small);font-weight:600;color:var(--ink)}
-.ind-n{flex:0 0 auto;font-family:var(--display);font-size:20px;font-weight:var(--w-display);line-height:1;color:var(--forest);font-variant-numeric:tabular-nums}
 .ind-note{margin-top:var(--s-6);max-width:var(--m-note);color:var(--muted);font-size:var(--fs-small)}
 #industries{background:var(--surface)}
 
@@ -1615,7 +1614,13 @@ h2,h3,.formats-head{break-after:avoid}
 .credential-values .wordmark{white-space:normal;overflow-wrap:anywhere}
 
 /* чипы стримов на 360: длинное слово наезжало на счётчик */
-@media(max-width:768px){.stream-tab .stream-tab-name{overflow-wrap:anywhere;hyphens:auto}}
+/* на узком экране «Трансформация» не влезала в чип и рвалась посреди слова:
+   ужимаем поля и кегль, чтобы слово помещалось целиком */
+@media(max-width:768px){.stream-tab .stream-tab-name{overflow-wrap:normal;hyphens:none}}
+@media(max-width:430px){
+  .stream-tab{padding-inline:12px;gap:8px}
+  .stream-tab .stream-tab-name{font-size:14px;letter-spacing:-.01em}
+}
 
 /* ряды карточек: заголовок в две строки не сдвигает соседей */
 /* subgrid здесь схлопывает ряды – держим высоту заголовка явным резервом */
@@ -1686,3 +1691,33 @@ h2,h3,.formats-head{break-after:avoid}
 
 /* фото: нейтральная подложка вместо тёмной заливки, пока кадр грузится */
 .field-shot picture,.field-shot img{background:var(--surface-2)}
+
+/* ---------- FIX v9: переносы и выравнивание рядов ---------- */
+
+/* короткие блоки без висячих строк */
+.field-shot figcaption,.reasons p,.reasons strong,.faq p,.faq summary,
+.about-intro,.contact-lead,.cv-head,.edge-grid p,.formats-note,.path-what{text-wrap:balance}
+/* сноска отраслей: balance ставил разрыв после предлога, pretty – нет */
+.ind-note{text-wrap:pretty}
+
+/* ряды карточек: заголовок в две строки не сдвигает описание соседей */
+@media(min-width:769px){.case-title{min-height:2lh}}
+@media(min-width:901px){.step h3{min-height:2lh}}
+@media(min-width:769px) and (max-width:999px){.career .skill-label{min-height:3lh}}
+@media(min-width:769px) and (max-width:900px){.case-kicker{min-height:calc(3 * 1.5 * var(--fs-small))}}
+
+/* отрасли: подчёркивание только при наведении, в покое список читается типографикой */
+.ind-item{border-bottom:1px solid transparent}
+.ind-item:hover,.ind-item:focus-visible{border-bottom-color:var(--forest)}
+@media(max-width:430px){.ind-list{flex-direction:column;align-items:flex-start;gap:16px}}
+
+/* «проекты периода»: запятая не остаётся одна на строке */
+.path-cases a:not(:last-of-type)::after{content:","}
+
+/* заголовок пяти шагов держит тот же отступ, что и заголовок форматов */
+.steps-head{margin-top:var(--s-16)}
+/* подсказки на логотипах: подчёркивание только при наведении, иначе оно
+   висит по-разному из-за разного свободного низа в SVG */
+.brand-logo.tooltip-term,.brand-word.tooltip-term{text-decoration:none;border-bottom:1px solid transparent}
+.brand-logo.tooltip-term:hover,.brand-word.tooltip-term:hover,
+.brand-logo.tooltip-term:focus-visible,.brand-word.tooltip-term:focus-visible{border-bottom-color:var(--forest)}
