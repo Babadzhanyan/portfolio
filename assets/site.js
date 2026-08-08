@@ -19,9 +19,6 @@
     }, { threshold: 0.05, rootMargin: "0px 0px 180px 0px" });
 
     revealItems.forEach((item) => revealObserver.observe(item));
-    window.setTimeout(() => {
-      revealItems.forEach((item) => item.classList.add("in"));
-    }, 2200);
   } else {
     revealItems.forEach((item) => item.classList.add("in"));
   }
@@ -166,7 +163,6 @@
     openHashTarget(true);
     window.setTimeout(() => openHashTarget(true), 320);
   }, { once: true });
-  openHashTarget(false);
 
   const mobileCta = document.querySelector(".mobile-cta");
   const heroCta = document.querySelector("[data-placement='hero']");
@@ -177,7 +173,7 @@
       return [element, box.bottom > 0 && box.top < window.innerHeight];
     }));
     const updateMobileCta = () => {
-      mobileCta.classList.toggle("hide", [...blockerState.values()].some(Boolean));
+      mobileCta.classList.toggle("hide", window.innerHeight < 520 || [...blockerState.values()].some(Boolean));
     };
     const mobileCtaObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => blockerState.set(entry.target, entry.isIntersecting));
@@ -199,6 +195,11 @@
     tooltip.setAttribute("aria-hidden", "false");
     tooltip.style.left = "0px";
     tooltip.style.top = "0px";
+    tooltipOwner = owner;
+    requestAnimationFrame(() => place(owner));
+  };
+  const place = (owner) => {
+    if (!tooltip || tooltipOwner !== owner) return;
     const ownerBox = owner.getBoundingClientRect();
     const tipWidth = tooltip.offsetWidth;
     const tipHeight = tooltip.offsetHeight;
@@ -207,7 +208,6 @@
     if (top < 8) top = ownerBox.bottom + 10;
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${Math.min(top, window.innerHeight - tipHeight - 8)}px`;
-    tooltipOwner = owner;
   };
   const hideTooltip = () => {
     if (tooltip) {
@@ -249,7 +249,10 @@
   });
   window.addEventListener("wheel", hideTooltip, { passive: true });
   window.addEventListener("touchmove", hideTooltip, { passive: true });
-  window.addEventListener("scrollend", hideTooltip, { passive: true });
+  window.addEventListener("scrollend", () => {
+    if (tooltipOwner === document.activeElement) { place(tooltipOwner); return; }
+    hideTooltip();
+  }, { passive: true });
 
   const track = (name, properties) => {
     try {
@@ -349,6 +352,7 @@
     const prevButton = modal.querySelector("[data-case-nav='prev']");
     const nextButton = modal.querySelector("[data-case-nav='next']");
     let opener = null;
+    let modalPushed = false;
     let current = null;
 
     const streamOf = (card) => card.closest(".stream-panel")?.id.replace("stream-", "") || "";
@@ -367,13 +371,20 @@
       slots.claims.hidden = !claims;
       const facts = card.querySelector(".project-facts");
       slots.facts.innerHTML = facts ? facts.innerHTML : "";
+      slots.facts.querySelectorAll("[id]").forEach((node) => {
+        const old = node.id;
+        node.id = `m-${old}`;
+        slots.facts.querySelectorAll(`[aria-describedby="${old}"]`)
+          .forEach((ref) => ref.setAttribute("aria-describedby", `m-${old}`));
+      });
       const list = siblings(card);
       const index = list.indexOf(card);
       prevButton.disabled = index <= 0;
       nextButton.disabled = index < 0 || index >= list.length - 1;
       if (inner) inner.scrollTop = 0;
       try {
-        history.replaceState(null, "", `#${card.id}`);
+        if (modalPushed) history.replaceState(null, "", `#${card.id}`);
+        else { history.pushState(null, "", `#${card.id}`); modalPushed = true; }
       } catch (_) {
         // Адресная строка не критична для работы окна
       }
@@ -381,17 +392,26 @@
 
     const openCase = (card, scrollToStream = false) => {
       const slug = streamOf(card);
+      const fresh = !modal.open;
       if (slug) selectStream(slug, { silent: true });
       if (scrollToStream) {
         document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
       }
       if (!modal.open) {
-        opener = document.activeElement;
+        opener = document.activeElement === document.body
+          ? card.querySelector("summary")
+          : document.activeElement;
         modal.showModal();
       }
+      const wasOpen = !fresh;
       fill(card);
       track("case_open", { case: card.id, stream: slug });
-      modal.querySelector(".case-modal-close")?.focus();
+      if (wasOpen) {
+        slots.title.tabIndex = -1;
+        slots.title.focus();
+      } else {
+        modal.querySelector(".case-modal-close")?.focus();
+      }
     };
     caseHook = openCase;
 
@@ -437,10 +457,14 @@
       if (event.target === modal) modal.close();
     });
     modal.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowLeft") step(-1);
-      if (event.key === "ArrowRight") step(1);
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      if (event.target.closest("a[href],button:not([disabled])")) return;
+      event.preventDefault();
+      step(event.key === "ArrowLeft" ? -1 : 1);
     });
+    window.addEventListener("popstate", () => { if (modal.open) modal.close(); });
     modal.addEventListener("close", () => {
+      modalPushed = false;
       try {
         history.replaceState(null, "", window.location.pathname + window.location.search);
       } catch (_) {

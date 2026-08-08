@@ -99,7 +99,7 @@ p,li,dd{text-wrap:pretty}
 .icon-sprite{position:absolute}
 #services,#work,#faq{background:rgba(18,75,56,.035);border-block:1px solid var(--line)}
 
-.site-nav{position:sticky;z-index:70;top:0;background:rgba(250,250,247,.93);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.site-nav{position:sticky;z-index:70;top:0;background:var(--paper);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
 .site-nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
 .logo{flex:0 0 auto;min-width:0;font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:var(--tr-s);color:var(--ink);white-space:nowrap}
 .logo-short{display:none}
@@ -525,7 +525,7 @@ p,li,dd{text-wrap:pretty}
 .case-modal{border:0;padding:0;margin:auto;background:transparent;max-width:min(760px,calc(100vw - 32px));width:100%;max-height:calc(100vh - 48px);overflow:visible}
 .case-modal::backdrop{background:rgba(11,55,41,.44)}
 .case-modal-inner{background:var(--paper);color:var(--ink);border-radius:14px;overflow-y:auto;max-height:calc(100vh - 48px);padding:34px 36px 36px;position:relative}
-.case-modal-close{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--case-line);background:#fff;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:0}
+.case-modal-close{position:sticky;top:0;float:right;margin:-8px -8px -38px 0;width:38px;height:38px;z-index:3;border-radius:50%;border:1px solid var(--case-line);background:#fff;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:0}
 .case-modal-close:hover{color:var(--forest);border-color:var(--forest)}
 .case-modal-close:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
 .case-modal-stream{font-family:var(--mono);font-size:var(--label-size);letter-spacing:0;text-transform:uppercase;color:var(--forest)}
@@ -839,7 +839,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .stream-tabs{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-inline:0;padding-inline:0;padding-bottom:0;margin-top:var(--s-8);border-bottom:0;overflow:visible}
 .stream-tab{min-height:48px;padding:var(--s-3) var(--s-4);border:1px solid var(--line-strong);border-radius:0;background:var(--surface);font-size:var(--fs-small);font-weight:500;color:var(--muted)}
 .stream-tab[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:var(--on-forest)}
-.stream-tab-count{min-width:auto;height:auto;padding:0;border-radius:0;background:transparent;color:inherit;opacity:.62;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.stream-tab-count{min-width:auto;height:auto;padding:0;border-radius:0;background:transparent;color:var(--muted);opacity:1;font-family:var(--mono);font-variant-numeric:tabular-nums}
 .stream-tab[aria-selected="true"] .stream-tab-count{background:transparent;color:inherit}
 
 .stream-head{margin-top:var(--s-8);padding-bottom:var(--s-8);border-bottom:1px solid var(--line-strong)}
@@ -1384,7 +1384,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
   .brand-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4) var(--s-6);align-items:center;justify-items:start}
   .brand-item{min-width:0;max-width:100%}
   .brand-logo{height:20px;max-width:100%}
-  .brand-logo--yakov{height:34px}
+  .brand-logo--yakov{height:46px}
   .brand-logo--yandex{height:13px}
   .brand-word{font-size:16px;white-space:nowrap}
 }
@@ -1417,7 +1417,8 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 
 /* --- 10. тач-цели @мобильный: инлайн-ссылки «проекты периода» --- */
 @media(max-width:768px){
-  .path-cases a{padding-block:13px}
+  .path-cases{line-height:2.1}
+  .path-cases a{display:inline-block}
 }
 
 /* --- 11. ритм между контакт-секцией и футером --- */
@@ -1432,7 +1433,7 @@ h2,h3,.formats-head{break-after:avoid}
 /* плита: слот статуса ровно той же высоты, что реальный статус (22px + 12px отступ) */
 .evidence-item:not(:has(.evidence-status))::before{content:"\00a0";display:block;height:22px;margin-bottom:12px}
 /* плита: жёсткая сетка рядов – статус/число/подпись, числа всегда на одной линии */
-.evidence-item{display:grid;grid-template-rows:34px auto 1fr;align-content:start}
+.evidence-item{display:grid;grid-template-rows:auto auto 1fr;align-content:start}
 .evidence-item::before{content:none}
 .evidence-status{grid-row:1;align-self:start;margin-bottom:0}
 .evidence-item strong{grid-row:2}
@@ -1490,7 +1491,6 @@ h2,h3,.formats-head{break-after:avoid}
 
 /* 1+12. Карточки без метрики: CTA снова прижат к низу.
    Правило 1396 гасило margin-top:auto и давало до 169px дыры. */
-.case-card summary:not(:has(.claim-stack)) .case-context{flex:1 1 auto}
 .case-card summary:not(:has(.claim-stack)) .case-more{margin-top:auto;padding-top:var(--s-6)}
 
 /* 3-8. Разъезд заголовков в ряду: кикер занимает две строки всегда,
@@ -1529,7 +1529,7 @@ h2,h3,.formats-head{break-after:avoid}
   .brand-logo--yandex{height:17px}
 }
 /* 15. FAQ: первый вопрос на одной линии с рубрикой левой колонки */
-@media(min-width:961px){.faq{margin-top:-24px}}
+
 
 /* шапка стрима после снятия подзаголовка: одна колонка, без пустого столбца */
 .stream-head{grid-template-columns:minmax(0,1fr);gap:var(--s-6);padding-bottom:var(--s-6)}
@@ -1595,3 +1595,80 @@ h2,h3,.formats-head{break-after:avoid}
 .format strong{overflow-wrap:break-word;text-wrap:balance}
 .format span{min-width:0;overflow-wrap:break-word}
 .format-term{margin-top:auto;align-self:start}
+
+/* ==================== FIX v8: сводный проход фронтенд + UX + доступность ==================== */
+
+/* плита: три плитки – три колонки, пустых слотов нет */
+.evidence-ledger{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:960px){.evidence-ledger{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .evidence-item:nth-child(3){grid-column:1/-1}}
+@media(max-width:390px){.evidence-ledger{grid-template-columns:1fr}
+  .evidence-item:nth-child(3){grid-column:auto}}
+
+/* карта отраслей: 11 позиций – последняя занимает пустой слот */
+.ind-map::after{content:"";background:var(--paper)}
+@media(max-width:600px){.ind-map::after{display:none}}
+
+/* образование в блоке «обо мне» переполняло колонку на 1001–1071 */
+.credential-values .wordmark{white-space:normal;overflow-wrap:anywhere}
+
+/* чипы стримов на 360: длинное слово наезжало на счётчик */
+@media(max-width:768px){.stream-tab .stream-tab-name{overflow-wrap:anywhere;hyphens:auto}}
+
+/* ряды карточек: заголовок в две строки не сдвигает соседей */
+/* subgrid здесь схлопывает ряды – держим высоту заголовка явным резервом */
+@media(min-width:601px){
+  .format strong,.edge-grid .edge-alt{display:block;min-height:2lh}
+}
+/* на планшете четыре колонки рвут подписи сроков – идём в две */
+@media(min-width:601px) and (max-width:1000px){.formats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* кикер кейса: высота зарезервирована, текст не обрезается */
+@media(min-width:769px){
+  .case-kicker{display:block;-webkit-line-clamp:none;overflow:visible;min-height:calc(2 * 1.5 * var(--fs-small))}
+}
+
+/* career: подписи навыков на одной линии, карточки живут по контенту */
+.career .skill-label{min-height:2lh}
+
+
+/* career: логотипы по оптическому центру, единая высота */
+.brand-row{align-items:center}
+.brand-item{align-items:center}
+.brand-logo{height:22px}
+.brand-logo--yakov{height:46px}
+.brand-logo--yandex{height:19px}
+.brand-word{top:0;font-size:16px;line-height:22px;font-weight:600}
+@media(max-width:560px){.brand-logo{height:19px}.brand-logo--yakov{height:40px}.brand-logo--yandex{height:16px}}
+
+/* переключатель языка: тач-цель 44px без изменения вида */
+.lang-toggle{position:relative}
+.lang-toggle::after{content:"";position:absolute;inset:-7px -4px}
+
+/* модалка кейса: кнопка закрытия видна при любой прокрутке */
+.case-modal-inner{padding-top:26px}
+
+/* контакт: оптический сдвиг заголовка снимается там же, где схлопывается сетка */
+@media(max-width:1000px){.message-brief-title{margin-top:0}}
+.stream-products-label{margin-top:0}
+
+/* FAQ: плюс не расширяет строку в раскрытом состоянии */
+.faq summary::after{display:inline-block;width:1em;text-align:center}
+
+
+/* блог: таблица и список ссылок укладываются в узкий экран */
+.post-list a>span{min-width:0}
+@media(max-width:400px){.post-table{padding-inline:12px}.post-table td{overflow-wrap:anywhere}}
+
+/* фотополоса: конец полосы достижим клавишей End */
+.field-strip{scroll-snap-type:x proximity}
+
+/* печать: стримы и резюме проектов выходят на бумагу */
+@media print{
+  .stream-panel,.stream-panel[hidden]{display:block!important}
+  .case-card .case-body,.case-card details>*{display:block!important}
+  .stream-tabs,.mobile-cta,.site-nav{display:none!important}
+}
+
+.case-modal-title:focus{outline:none}
+.case-modal-title:focus-visible{outline:2px solid var(--forest);outline-offset:4px}
