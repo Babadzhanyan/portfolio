@@ -1533,3 +1533,12 @@ h2,h3,.formats-head{break-after:avoid}
 }
 /* 15. FAQ: первый вопрос на одной линии с рубрикой левой колонки */
 @media(min-width:961px){.faq{margin-top:-24px}}
+
+/* шапка стрима после снятия подзаголовка: одна колонка, без пустого столбца */
+.stream-head{grid-template-columns:minmax(0,1fr);gap:var(--s-6);padding-bottom:var(--s-6)}
+.stream-head-products{padding-left:0;border-left:0}
+.stream-title{display:block;margin-bottom:var(--s-2)}
+@media(min-width:961px){
+  .stream-head{grid-template-columns:minmax(0,1fr);gap:var(--s-4)}
+  .stream-head-products{padding-top:0;border-top:0}
+}
