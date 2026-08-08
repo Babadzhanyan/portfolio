@@ -97,7 +97,7 @@ p,li,dd{text-wrap:pretty}
 .js.reveal-ready [data-stagger].in>*{opacity:1;transform:none}
 
 .icon-sprite{position:absolute}
-#services,#work,#faq{background:rgba(18,75,56,.035);border-block:1px solid var(--line)}
+#services,#faq{background:rgba(18,75,56,.035);border-block:1px solid var(--line)}
 
 .site-nav{position:sticky;z-index:70;top:0;background:var(--paper);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
 .site-nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
@@ -164,7 +164,7 @@ p,li,dd{text-wrap:pretty}
 .credential-row>.mono{padding-top:11px;color:var(--muted);font-size:10.5px}
 .credential-values{display:flex;flex-wrap:wrap;gap:7px 20px}
 
-#services,#work{border-block:1px solid var(--line);background:rgba(18,75,56,.035)}
+#services{border-block:1px solid var(--line);background:rgba(18,75,56,.035)}
 
 .claim-stack{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:7px}
 .claim{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:8px;padding-left:12px;border-left:2px solid #C7D6CD;color:var(--ink);font-size:13px;line-height:1.4}
@@ -790,7 +790,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .hero-lead{max-width:var(--m-lead);font-size:var(--fs-lead);line-height:var(--lh-lead)}
 
 /* --- блок 2. ритм фона --- */
-#services,#work,#faq{background:var(--surface-2);border-block:1px solid var(--line-strong)}
+#services,#faq{background:var(--surface-2);border-block:1px solid var(--line-strong)}
 #about,#how{background:var(--surface)}
 .eyebrow{margin-bottom:var(--s-6)}
 .eyebrow::after{flex:0 0 40px;background:var(--line-strong)}
@@ -1319,7 +1319,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 @media(max-width:900px){.steps{gap:var(--s-6)}}
 
 /* --- 7. волосяные линии: один вес, без дублей --- */
-#services,#work,#faq{border-block:0}
+#services,#faq{border-block:0}
 .js.scrolled .site-nav{border-bottom-color:transparent}
 .post-list{border-top-color:var(--line)}
 .post-list li{border-bottom-color:var(--line)}
@@ -1560,13 +1560,10 @@ h2,h3,.formats-head{break-after:avoid}
 @media(max-width:600px){.evidence-ledger{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- карта отраслей ---------- */
-.ind-map{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;margin:var(--s-8) 0 0;padding:0;background:var(--line)}
-.ind-map li{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-4);padding:var(--s-4) var(--s-4) var(--s-4) 0;background:var(--paper)}
 .ind-name{font-family:var(--text);font-size:var(--fs-small);font-weight:600;color:var(--ink)}
 .ind-n{flex:0 0 auto;font-family:var(--display);font-size:20px;font-weight:var(--w-display);line-height:1;color:var(--forest);font-variant-numeric:tabular-nums}
 .ind-note{margin-top:var(--s-6);max-width:var(--m-note);color:var(--muted);font-size:var(--fs-small)}
 #industries{background:var(--surface)}
-@media(max-width:600px){.ind-map{grid-template-columns:minmax(0,1fr)}.ind-map li{padding-left:0}}
 
 /* тег срока: без обрезки и без слипания */
 .format-term{white-space:normal;max-width:100%;overflow-wrap:break-word}
@@ -1606,8 +1603,6 @@ h2,h3,.formats-head{break-after:avoid}
   .evidence-item:nth-child(3){grid-column:auto}}
 
 /* карта отраслей: 11 позиций – последняя занимает пустой слот */
-.ind-map::after{content:"";background:var(--paper)}
-@media(max-width:600px){.ind-map::after{display:none}}
 
 /* образование в блоке «обо мне» переполняло колонку на 1001–1071 */
 .credential-values .wordmark{white-space:normal;overflow-wrap:anywhere}
@@ -1672,3 +1667,15 @@ h2,h3,.formats-head{break-after:avoid}
 
 .case-modal-title:focus{outline:none}
 .case-modal-title:focus-visible{outline:2px solid var(--forest);outline-offset:4px}
+
+/* ---------- отрасли: типографический список с подсказками ---------- */
+.ind-list{list-style:none;display:flex;flex-wrap:wrap;gap:20px 36px;margin:var(--s-8) 0 0;padding:0}
+.ind-list li{margin:0;min-width:0}
+.ind-item{display:inline-flex;align-items:baseline;gap:7px;max-width:100%;font-family:var(--display);font-size:clamp(17px,1.35vw,21px);font-weight:var(--w-display);letter-spacing:var(--ls-h3);line-height:1.25;color:var(--ink);cursor:help;padding-bottom:4px;border-bottom:1px dotted var(--line-strong)}
+.ind-item:hover,.ind-item:focus-visible{color:var(--forest);border-bottom-color:var(--forest)}
+.ind-item:focus-visible{outline:2px solid var(--forest);outline-offset:4px;border-radius:2px}
+.ind-n{flex:0 0 auto;align-self:flex-start;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--forest);font-variant-numeric:tabular-nums;line-height:1.1}
+@media(max-width:600px){.ind-list{gap:16px 24px}.ind-item{font-size:16px}}
+
+/* фото: нейтральная подложка вместо тёмной заливки, пока кадр грузится */
+.field-shot picture,.field-shot img{background:var(--surface-2)}

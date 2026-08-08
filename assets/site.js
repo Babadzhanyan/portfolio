@@ -204,8 +204,10 @@
     const tipWidth = tooltip.offsetWidth;
     const tipHeight = tooltip.offsetHeight;
     const left = Math.min(Math.max(8, ownerBox.left), window.innerWidth - tipWidth - 8);
-    let top = ownerBox.top - tipHeight - 10;
+    const below = owner.dataset.tipPlacement === "below";
+    let top = below ? ownerBox.bottom + 10 : ownerBox.top - tipHeight - 10;
     if (top < 8) top = ownerBox.bottom + 10;
+    if (top + tipHeight > window.innerHeight - 8) top = Math.max(8, ownerBox.top - tipHeight - 10);
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${Math.min(top, window.innerHeight - tipHeight - 8)}px`;
   };
