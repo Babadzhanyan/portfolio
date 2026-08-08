@@ -119,6 +119,22 @@ missing = sorted(used - declared)
 if missing:
     note(f"ДЕФЕКТ переменные без объявления: {missing}")
 
+# внутренние ссылки и якоря
+for page in [p for p in ROOT.rglob("*.html") if ".git" not in p.parts]:
+    html = page.read_text(encoding="utf-8")
+    for href in re.findall(r'href="([^"]+)"', html):
+        if href.startswith(("http", "mailto:", "data:", "/")):
+            continue
+        path, _, frag = href.partition("#")
+        path = path.split("?")[0]
+        target = (page.parent / path).resolve() if path else page.resolve()
+        rel = page.relative_to(ROOT)
+        if not target.exists():
+            note(f"ДЕФЕКТ {rel}: ссылка в никуда {href}")
+        elif frag and f'id="{frag}"' not in target.read_text(encoding="utf-8"):
+            note(f"ДЕФЕКТ {rel}: нет якоря {href}")
+
+
 if defects:
     print("\n".join(defects))
     print(f"\nвсего дефектов: {len(defects)}")
