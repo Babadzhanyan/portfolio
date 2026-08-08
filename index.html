@@ -31,9 +31,9 @@
   <meta name="twitter:image" content="https://babadzhanyan.github.io/portfolio/og-cover-v5.jpg">
   <link rel="preload" as="image" type="image/avif" href="img/kostya-hero-conf-673.avif" imagesrcset="img/kostya-hero-conf-480.avif 480w, img/kostya-hero-conf-673.avif 673w" imagesizes="(max-width: 768px) calc(100vw - 40px), 465px" fetchpriority="high">
   <link rel="preload" as="font" type="font/woff2" href="fonts/Manrope-700-cyrillic.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/site.css?v=20260808.12">
+  <link rel="stylesheet" href="assets/site.css?v=20260808.14">
   <script>document.documentElement.classList.add("js")</script>
-  <script defer src="assets/site.js?v=20260808.12"></script>
+  <script defer src="assets/site.js?v=20260808.14"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -810,5 +810,19 @@
   </dialog>
 
   <div id="tip" aria-hidden="true"></div>
+  <script data-v="20260808.14">
+  (function(){
+    var tag=document.currentScript, here=tag&&tag.dataset.v;
+    var link=document.querySelector('link[rel="stylesheet"][href*="site.css"]');
+    if(!here||!link) return;
+    var root=link.href.replace(/assets\/site\.css.*$/,"");
+    fetch(root+"version.json",{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
+      if(!d||!d.assets||d.assets===here) return;
+      if(sessionStorage.getItem("v-reload")===d.assets) return;
+      sessionStorage.setItem("v-reload",d.assets);
+      location.reload();
+    }).catch(function(){});
+  })();
+  </script>
 </body>
 </html>

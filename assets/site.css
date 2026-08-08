@@ -1573,23 +1573,30 @@ h2,h3,.formats-head{break-after:avoid}
 .brand-word.tooltip-term{border-bottom:1px dotted var(--line-strong)}
 .brand-logo.tooltip-term:focus-visible,.brand-word.tooltip-term:focus-visible{outline:3px solid var(--forest);outline-offset:4px}
 
-/* ---------- переносы: короткие абзацы выравниваются по строкам ---------- */
-.section-lead,.hero-note,.team-note,.formats-note,.contact-refs,.contact-note,.ind-note,
-.case-context,.case-kicker,.edge-grid p,.reasons p,.step p,.artifacts li,.format span,
-.offer-what,.stream-title,.evidence-item>span:last-child,.path-note,.skill-card p,
-.post-standfirst,.post-list-sub{text-wrap:balance}
-.about-intro,.faq p,.project-facts dd,.post-body p,.post-body li{text-wrap:pretty}
+/* ---------- переносы ----------
+   balance – только для заголовков и коротких подписей в две-три строки.
+   На абзацах он выравнивает длину строк и рвёт фразу после предлога,
+   поэтому весь текст-в-строку идёт через pretty: он лечит висячие слова
+   и не двигает остальные переносы. */
+.offer-what,.stream-title,.evidence-item>span:last-child,
+.hero-note,.contact-note,.ind-note,.team-note,.contact-refs,.path-note,
+.section-lead,.case-context,.case-kicker,.post-standfirst,.post-list-sub,
+.step p,.format span,.artifacts li{text-wrap:balance}
+.edge-grid p,.reasons p,.formats-note,.skill-card p,
+.about-intro,.faq p,.project-facts dd,.post-body p,.post-body li,
+.credential-values .wordmark,.footer-legal span{text-wrap:pretty}
+/* однострочная подпись под hero: английская длиннее русской, даём ей полную строку */
+.hero-note{max-width:58ch}
 
 /* лишняя линия над «Что написать» в тёмном блоке */
 .message-brief{border-top:0}
 /* последние висячие строки на мобильном */
-@media(max-width:600px){
-  .credential-values .wordmark,.footer-legal span{text-wrap:balance}
-}
+
 /* форматы: устойчивая колонка без subgrid, заголовки переносятся внутри своей колонки */
 .formats{align-items:stretch}
 .format{display:flex;flex-direction:column;gap:var(--s-2);min-width:0}
 .format strong{overflow-wrap:break-word;text-wrap:balance}
+.format span{text-wrap:pretty}
 .format span{min-width:0;overflow-wrap:break-word}
 .format-term{margin-top:auto;align-self:start}
 
