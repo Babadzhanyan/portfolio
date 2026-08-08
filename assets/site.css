@@ -1721,3 +1721,8 @@ h2,h3,.formats-head{break-after:avoid}
 .brand-logo.tooltip-term,.brand-word.tooltip-term{text-decoration:none;border-bottom:1px solid transparent}
 .brand-logo.tooltip-term:hover,.brand-word.tooltip-term:hover,
 .brand-logo.tooltip-term:focus-visible,.brand-word.tooltip-term:focus-visible{border-bottom-color:var(--forest)}
+
+/* ---------- как оформляется работа ---------- */
+.docs-head{margin-top:var(--s-16);font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+.docs-list .link-arrow{margin-top:var(--s-2)}
+.docs-list li{display:flex;flex-direction:column;align-items:flex-start}
