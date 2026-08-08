@@ -1401,8 +1401,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 
 /* --- 7. форматы работы: выравнивание рядами грида, без min-height --- */
 @media(min-width:601px){
-  .formats{grid-template-rows:auto auto auto}
-  .format{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-row:span 3;gap:var(--s-2);align-content:start}
+  .format{display:flex;flex-direction:column;gap:var(--s-2)}
   .format strong{min-height:0}
 }
 
@@ -1576,3 +1575,23 @@ h2,h3,.formats-head{break-after:avoid}
 .brand-logo.tooltip-term,.brand-word.tooltip-term{cursor:help}
 .brand-word.tooltip-term{border-bottom:1px dotted var(--line-strong)}
 .brand-logo.tooltip-term:focus-visible,.brand-word.tooltip-term:focus-visible{outline:3px solid var(--forest);outline-offset:4px}
+
+/* ---------- переносы: короткие абзацы выравниваются по строкам ---------- */
+.section-lead,.hero-note,.team-note,.formats-note,.contact-refs,.contact-note,.ind-note,
+.case-context,.case-kicker,.edge-grid p,.reasons p,.step p,.artifacts li,.format span,
+.offer-what,.stream-title,.evidence-item>span:last-child,.path-note,.skill-card p,
+.post-standfirst,.post-list-sub{text-wrap:balance}
+.about-intro,.faq p,.project-facts dd,.post-body p,.post-body li{text-wrap:pretty}
+
+/* лишняя линия над «Что написать» в тёмном блоке */
+.message-brief{border-top:0}
+/* последние висячие строки на мобильном */
+@media(max-width:600px){
+  .credential-values .wordmark,.footer-legal span{text-wrap:balance}
+}
+/* форматы: устойчивая колонка без subgrid, заголовки переносятся внутри своей колонки */
+.formats{align-items:stretch}
+.format{display:flex;flex-direction:column;gap:var(--s-2);min-width:0}
+.format strong{overflow-wrap:break-word;text-wrap:balance}
+.format span{min-width:0;overflow-wrap:break-word}
+.format-term{margin-top:auto;align-self:start}
