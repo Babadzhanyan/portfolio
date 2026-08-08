@@ -1542,3 +1542,18 @@ h2,h3,.formats-head{break-after:avoid}
   .stream-head{grid-template-columns:minmax(0,1fr);gap:var(--s-4)}
   .stream-head-products{padding-top:0;border-top:0}
 }
+
+/* ---------- сроки форматов, референсы, блок отстройки ---------- */
+.format-term{margin-top:auto;padding-top:var(--s-3);color:var(--forest);font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0}
+.formats-note{margin-top:var(--s-6);max-width:var(--m-prose);color:var(--muted);font-size:var(--fs-small);line-height:var(--lh-small)}
+.contact-refs{margin-top:var(--s-3);max-width:var(--m-note);color:var(--on-forest-muted);font-size:var(--fs-small);line-height:var(--lh-small)}
+
+.edge-grid{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-6);margin:var(--s-8) 0 0;padding:0}
+.edge-grid li{padding-top:var(--s-4);border-top:2px solid var(--forest)}
+.edge-alt{display:block;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0;text-transform:uppercase;color:var(--forest)}
+.edge-grid p{margin-top:var(--s-3);color:var(--muted);font-size:var(--fs-small);line-height:var(--lh-small)}
+@media(max-width:960px){.edge-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-4)}}
+/* CV отделён от витрины услуг: явный адресат */
+.cv-head{margin-top:var(--s-16);font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+.cv-note{margin-top:var(--s-2);color:var(--muted);font-size:var(--fs-small)}
+.path-cv{margin-top:var(--s-6)}
