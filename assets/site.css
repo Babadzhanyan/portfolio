@@ -1559,3 +1559,20 @@ h2,h3,.formats-head{break-after:avoid}
 /* плита из двух плиток после удаления результатов-дублей */
 .evidence-ledger{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:600px){.evidence-ledger{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- карта отраслей ---------- */
+.ind-map{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;margin:var(--s-8) 0 0;padding:0;background:var(--line)}
+.ind-map li{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-4);padding:var(--s-4) var(--s-4) var(--s-4) 0;background:var(--paper)}
+.ind-name{font-family:var(--text);font-size:var(--fs-small);font-weight:600;color:var(--ink)}
+.ind-n{flex:0 0 auto;font-family:var(--display);font-size:20px;font-weight:var(--w-display);line-height:1;color:var(--forest);font-variant-numeric:tabular-nums}
+.ind-note{margin-top:var(--s-6);max-width:var(--m-note);color:var(--muted);font-size:var(--fs-small)}
+#industries{background:var(--surface)}
+@media(max-width:600px){.ind-map{grid-template-columns:minmax(0,1fr)}.ind-map li{padding-left:0}}
+
+/* тег срока: без обрезки и без слипания */
+.format-term{white-space:normal;max-width:100%;overflow-wrap:break-word}
+.formats{row-gap:var(--s-8)}
+/* логотипы и словомарки с подсказкой: курсор и фокус */
+.brand-logo.tooltip-term,.brand-word.tooltip-term{cursor:help}
+.brand-word.tooltip-term{border-bottom:1px dotted var(--line-strong)}
+.brand-logo.tooltip-term:focus-visible,.brand-word.tooltip-term:focus-visible{outline:3px solid var(--forest);outline-offset:4px}
