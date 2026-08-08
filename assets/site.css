@@ -497,7 +497,7 @@ p,li,dd{text-wrap:pretty}
 .stream-panel[hidden]{display:none}
 .stream-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start;margin-top:var(--gap-sub);padding-bottom:30px;border-bottom:1px solid var(--line)}
 .stream-title{display:block;font-family:var(--display);font-weight:800;font-size:clamp(22px,2.2vw,28px);line-height:1.16;letter-spacing:-.015em}
-.stream-problem{margin-top:10px;color:var(--muted);font-size:var(--body-size);line-height:1.55;max-width:46ch}
+
 .stream-products-label{font-size:var(--label-size);letter-spacing:0;text-transform:uppercase;color:var(--muted)}
 .stream-products{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
 .stream-products li{border:1px solid var(--line);border-radius:6px;padding:6px 11px;font-size:var(--small-size);color:var(--ink);background:#fff}
@@ -631,7 +631,7 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 .artifacts{list-style:none;margin-top:var(--gap-sub);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-top:1px solid var(--line)}
 .artifacts li{padding:20px 24px 22px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:var(--small-size);line-height:1.55}
 .artifacts li strong{display:block;margin-bottom:6px;color:var(--ink);font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:var(--tr-xs)}
-.artifacts-head{margin-top:var(--gap-block);font-size:var(--h3-size);font-weight:700;line-height:1.24;letter-spacing:var(--tr-s)}
+
 .artifacts-lead{margin-top:8px;color:var(--muted);font-size:var(--small-size)}
 
 .reasons{list-style:none;display:grid;gap:26px;margin-top:22px}
@@ -671,7 +671,7 @@ html{scrollbar-gutter:stable}
 
 /* ---------- проявление чипов направлений ---------- */
 .stream-tabs{position:relative}
-.stream-tabs-hint{display:block;margin-top:var(--gap-block);margin-bottom:14px;color:var(--muted);font-size:var(--small-size)}
+
 .stream-tab{position:relative}
 .js .stream-tab{transition:color var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),background-color var(--t-fast) var(--ease),transform var(--t-mid) var(--ease),opacity var(--t-mid) var(--ease)}
 .stream-tabs.is-cued .stream-tab{transition-delay:calc(var(--i,0)*70ms)}
@@ -695,7 +695,7 @@ html{scrollbar-gutter:stable}
 
 /* ---------- полоса направлений сразу под первым экраном ---------- */
 .offer-band{padding-block:var(--gap-block) 0}
-.offer-band-lead{color:var(--muted);font-size:var(--small-size)}
+
 .offer-grid{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
 .offer-grid li{min-width:0;border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
 .offer-grid li:first-child{border-left:0}
@@ -843,9 +843,9 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .stream-tab[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:var(--on-forest)}
 .stream-tab-count{min-width:auto;height:auto;padding:0;border-radius:0;background:transparent;color:inherit;opacity:.62;font-family:var(--mono);font-variant-numeric:tabular-nums}
 .stream-tab[aria-selected="true"] .stream-tab-count{background:transparent;color:inherit}
-.stream-tabs-hint{display:none}
+
 .stream-head{margin-top:var(--s-8);padding-bottom:var(--s-8);border-bottom:1px solid var(--line-strong)}
-.stream-problem{margin-top:var(--s-3);max-width:46ch;color:var(--muted)}
+
 .stream-products li{border-radius:0;border-color:var(--line-strong);background:var(--surface)}
 .stream-title{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
 .stream-products-label{letter-spacing:0}
@@ -862,7 +862,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .formats{margin-top:var(--s-12)}
 .format,.formats-label{padding:var(--s-6) var(--s-4)}
 .format strong,.artifacts li strong{font-family:var(--text);font-size:var(--fs-body);font-weight:var(--w-strong);letter-spacing:0}
-.artifacts-head{font-size:var(--fs-h3);max-width:34ch}
+
 .offer-name{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
 .offer-what{font-size:var(--fs-small);line-height:var(--lh-small)}
 
@@ -1429,7 +1429,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 /* --- 12. печать: значения не режутся, заголовки не сиротеют --- */
 @media print{
   .case-card .claim>span:last-child{font-size:18px;line-height:1.2}
-  h2,h3,.formats-head,.artifacts-head{break-after:avoid}
+h2,h3,.formats-head{break-after:avoid}
   .js.reveal-ready [data-stagger]>*{opacity:1;transform:none;transition:none}
 }
 /* плита: слот статуса ровно той же высоты, что реальный статус (22px + 12px отступ) */
