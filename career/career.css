@@ -74,3 +74,41 @@ body.career{--paper:#fff;--ink:#1a1a1a;--muted:#666;--forest:#124b38;--line:#e5e
 @media(max-width:768px){.career .wrap{padding-inline:22px}.career .section{padding-block:34px}.career .career-intro{padding-top:34px}.career h1{font-size:36px}.career h2{font-size:25px}.career .section-lead{font-size:20px}.career .career-role{font-size:16px}.career .career-meta{display:block;font-size:14px}.career .career-meta p+p{margin-top:10px}.career .brand-row{margin-top:28px;display:flex;flex-wrap:wrap;gap:24px}.career .brand-item{width:auto;flex:0 0 auto}.career .brand-logo{max-width:135px}.career .career-current{margin-top:26px;padding:22px 0}.career .career-current h2{font-size:20px}.career .career-actions .btn{width:auto;flex:0 1 auto}.career .case-heading{font-size:21px}.career .case-body p,.career .path-note{font-size:17px}.career .path-what{font-size:21px}.career .contact-inner{padding-block:30px 34px}.career .contact-actions .btn{width:auto}.career .contact-actions{align-items:flex-start;flex-direction:column}.career .site-nav .wrap{padding-inline:22px}.career .nav-cta{margin-left:auto}.career .nav-linkedin{display:none}.career .footer-legal{gap:8px 16px}}
 @media(max-width:390px){.career .wrap{padding-inline:18px}.career h1{font-size:32px}.career .career-actions{gap:12px}.career .career-actions .btn{width:100%}.career .brand-logo{max-width:125px}.career .case-heading{font-size:20px}}
 @media print{.career .site-nav,.career .brand-row,.career .career-actions,.career #contact,.career .footer{display:none}.career .wrap{width:auto;max-width:none;padding:0}.career .section{padding:18px 0}.career h1{font-size:25pt}.career h2{font-size:18pt}.career .case-heading,.career .path-what{font-size:14pt}.career .section-lead,.career .path-note,.career .case-body p{font-size:11pt}.career .career-case,.career .path-item{break-inside:avoid}.career .career-case summary::after{display:none}.career .career-case:not([open]) .case-body{display:block}.career .career-case summary{padding-right:0}}
+
+/* Схемы раскрывают этапы работы; график сравнивает выполнение плана */
+body.career.refined .career-intro{padding-top:42px;padding-bottom:32px}
+body.career.refined .section{padding-block:56px}
+body.career.refined .career-current{margin-top:28px;padding-block:22px}
+body.career.refined .case-list{margin-top:30px}
+body.career.refined .career-case>summary{padding-block:26px}
+body.career.refined .career-case>summary:focus-visible,body.career.refined .career-proof-step>summary:focus-visible{outline:2px solid var(--forest);outline-offset:4px}
+body.career.refined .case-body{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:28px 48px;max-width:100%;padding-bottom:34px;align-items:start}
+body.career.refined .career-case-copy,body.career.refined .career-proof{min-width:0}
+body.career.refined .career-case-copy p{font-size:17px;line-height:1.55}
+body.career.refined .career-proof{margin:0;padding-top:2px;font-size:16px;color:var(--ink);overflow-wrap:anywhere}
+body.career.refined .career-proof figcaption{margin-bottom:20px;font-size:18px;line-height:1.35;font-weight:600;color:var(--forest)}
+body.career.refined .career-proof-flow{display:grid;gap:0;list-style:none;margin:0;padding:0;counter-reset:career-proof-step}
+body.career.refined .career-proof-flow>li{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;min-width:0;padding-top:0;padding-bottom:10px;counter-increment:career-proof-step}
+body.career.refined .career-proof-flow>li::before{content:counter(career-proof-step);display:block;width:24px;height:24px;margin-top:10px;border:1px solid var(--forest);color:var(--forest);font-size:14px;line-height:22px;text-align:center;background:#fff;z-index:1;box-sizing:border-box}
+body.career.refined .career-proof-flow>li:not(:last-child)::after{content:"";position:absolute;top:34px;bottom:0;left:11px;border-left:1px solid var(--line)}
+body.career.refined .career-proof-step{min-width:0;margin:0;padding:0;border:0}
+body.career.refined .career-proof-step>summary{position:relative;display:block;cursor:pointer;list-style:none;margin:0;min-height:44px;box-sizing:border-box;padding:10px 25px 10px 0;font-size:17px;line-height:1.4;font-weight:600;color:var(--ink)}
+body.career.refined .career-proof-step>summary::-webkit-details-marker{display:none}
+body.career.refined .career-proof-step>summary::after{content:"+";position:absolute;right:2px;top:9px;color:var(--forest);font-size:20px;font-weight:400}
+body.career.refined .career-proof-step[open]>summary::after{content:"−"}
+body.career.refined .career-proof-step p{margin:8px 0 0;font-size:15px;line-height:1.5;color:var(--muted)}
+body.career.refined .career-proof .career-proof-caption{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--muted)}
+body.career.refined .career-comparison-axis{display:flex;justify-content:space-between;font-size:12px;line-height:1.4;color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--line)}
+body.career.refined .career-comparison-row{margin-top:16px}
+body.career.refined .career-comparison-row .career-comparison-label{display:flex;justify-content:space-between;gap:12px;margin:0 0 7px;font-size:15px;line-height:1.4}
+body.career.refined .career-comparison-track{width:100%;height:14px;background:var(--line);overflow:hidden}
+body.career.refined .career-comparison-fill{display:block;width:var(--bar-value);max-width:100%;height:100%;background:var(--forest);transform-origin:left}
+body.career.refined .career-comparison-fill--control{background:var(--muted)}
+body.career.refined .career-comparison-note{margin-top:22px}
+body.career.refined .career-comparison-note>summary{font-size:16px;font-weight:600}
+body.career.refined .career-section-note{max-width:680px;font-size:16px}
+
+@media(max-width:768px){body.career.refined .section{padding-block:38px}body.career.refined .career-intro{padding-top:32px}body.career.refined .case-body{grid-template-columns:minmax(0,1fr);gap:28px;padding-bottom:30px}body.career.refined .career-case>summary{padding-block:23px}body.career.refined .career-proof{max-width:520px}body.career.refined .career-proof figcaption{font-size:18px;margin-bottom:18px}body.career.refined .career-proof-flow>li{padding-bottom:8px}}
+@media(max-width:390px){body.career.refined .career-proof-step>summary{font-size:16px}body.career.refined .career-proof-flow>li{gap:10px}body.career.refined .career-comparison-row .career-comparison-label{font-size:14px}body.career.refined .career-comparison-axis{font-size:12px}}
+@media(prefers-reduced-motion:reduce){body.career.refined .career-comparison-fill{transition:none;transform:none}}
+@media print{body.career.refined .case-body{grid-template-columns:1fr 1fr;gap:18pt}body.career.refined .career-proof-step>summary::after{display:none}body.career.refined .career-proof-step>p{display:block}body.career.refined .career-comparison-fill{transition:none;transform:none}}
