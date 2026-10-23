@@ -36,7 +36,7 @@ HOME_BLOCKS = {"ind-list": 1, "artifacts": 2, "steps": 1, "formats": 1,
                "evidence-ledger": 1, "field-strip": 1,
                "field-shot": 3, "faq": 1, "case-grid": 4, "stream-tabs": 1,
                "stream-panel": 4, "reasons": 1, "contact-inner": 1,
-               "profile-credentials": 1, "case-card": 18, "claim": 14,
+               "profile-credentials": 1, "case-card": 18, "claim": 13,
                "project-facts": 19}
 
 defects = []

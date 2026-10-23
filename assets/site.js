@@ -115,7 +115,7 @@
       menuButton.focus();
     });
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) setMenu(false);
+      if (getComputedStyle(menuButton).display === "none") setMenu(false);
     }, { passive: true });
   }
 

@@ -75,7 +75,7 @@ body.career{--paper:#fff;--ink:#1a1a1a;--muted:#666;--forest:#124b38;--line:#e5e
 @media(max-width:390px){.career .wrap{padding-inline:18px}.career h1{font-size:32px}.career .career-actions{gap:12px}.career .career-actions .btn{width:100%}.career .brand-logo{max-width:125px}.career .case-heading{font-size:20px}}
 @media print{.career .site-nav,.career .brand-row,.career .career-actions,.career #contact,.career .footer{display:none}.career .wrap{width:auto;max-width:none;padding:0}.career .section{padding:18px 0}.career h1{font-size:25pt}.career h2{font-size:18pt}.career .case-heading,.career .path-what{font-size:14pt}.career .section-lead,.career .path-note,.career .case-body p{font-size:11pt}.career .career-case,.career .path-item{break-inside:avoid}.career .career-case summary::after{display:none}.career .career-case:not([open]) .case-body{display:block}.career .career-case summary{padding-right:0}}
 
-/* Схемы раскрывают этапы работы; график сравнивает выполнение плана */
+/* Схемы раскрывают подтверждённые направления работы */
 body.career.refined .career-intro{padding-top:42px;padding-bottom:32px}
 body.career.refined .section{padding-block:56px}
 body.career.refined .career-current{margin-top:28px;padding-block:22px}
@@ -98,14 +98,6 @@ body.career.refined .career-proof-step>summary::after{content:"+";position:absol
 body.career.refined .career-proof-step[open]>summary::after{content:"−"}
 body.career.refined .career-proof-step p{margin:8px 0 0;font-size:15px;line-height:1.5;color:var(--muted)}
 body.career.refined .career-proof .career-proof-caption{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--muted)}
-body.career.refined .career-comparison-axis{display:flex;justify-content:space-between;font-size:12px;line-height:1.4;color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--line)}
-body.career.refined .career-comparison-row{margin-top:16px}
-body.career.refined .career-comparison-row .career-comparison-label{display:flex;justify-content:space-between;gap:12px;margin:0 0 7px;font-size:15px;line-height:1.4}
-body.career.refined .career-comparison-track{width:100%;height:14px;background:var(--line);overflow:hidden}
-body.career.refined .career-comparison-fill{display:block;width:var(--bar-value);max-width:100%;height:100%;background:var(--forest);transform-origin:left}
-body.career.refined .career-comparison-fill--control{background:var(--muted)}
-body.career.refined .career-comparison-note{margin-top:22px}
-body.career.refined .career-comparison-note>summary{font-size:16px;font-weight:600}
 body.career.refined .career-section-note{max-width:680px;font-size:16px}
 
 @media(max-width:768px){body.career.refined .section{padding-block:38px}body.career.refined .career-intro{padding-top:32px}body.career.refined .case-body{grid-template-columns:minmax(0,1fr);gap:28px;padding-bottom:30px}body.career.refined .career-case>summary{padding-block:23px}body.career.refined .career-proof{max-width:520px}body.career.refined .career-proof figcaption{font-size:18px;margin-bottom:18px}body.career.refined .career-proof-flow>li{padding-bottom:8px}}
