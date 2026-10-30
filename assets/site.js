@@ -92,13 +92,15 @@
   // iOS не применяет :active к элементам без обработчика касания
   document.addEventListener("touchstart", () => {}, { passive: true });
 
+  const english = document.documentElement.lang.startsWith("en");
+
   const menuButton = document.querySelector(".nav-menu");
   const menu = document.getElementById("navmenu");
   if (menuButton && menu) {
     const setMenu = (open, focusFirst = false) => {
       menu.classList.toggle("open", open);
       menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+      menuButton.setAttribute("aria-label", english ? (open ? "Close menu" : "Open menu") : (open ? "Закрыть меню" : "Открыть меню"));
       if (open && focusFirst) menu.querySelector("a")?.focus();
     };
     menuButton.addEventListener("click", () => {
@@ -135,6 +137,16 @@
       return;
     }
     if (!target) return;
+    if (target.dataset.caseTarget) {
+      target = document.getElementById(target.dataset.caseTarget) || target;
+      if (target.classList.contains("case-card")) history.replaceState(null, "", `#${target.id}`);
+    }
+    if (target.classList.contains("company-anchor")) {
+      streamHook?.(null, false);
+      document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
+      return;
+    }
+    if (target.id === "services") streamHook?.(null, false);
     if (target.classList.contains("case-card") && caseHook) {
       caseHook(target, scrollToTarget);
       return;
@@ -167,7 +179,7 @@
   const mobileCta = document.querySelector(".mobile-cta");
   const heroCta = document.querySelector("[data-placement='hero']");
   if (mobileCta && "IntersectionObserver" in window) {
-    const blockers = [heroCta, contact, document.querySelector(".footer")].filter(Boolean);
+    const blockers = [heroCta, contact, document.querySelector(".footer"), document.querySelector(".stream-tabs"), document.getElementById("industries")].filter(Boolean);
     const blockerState = new Map(blockers.map((element) => {
       const box = element.getBoundingClientRect();
       return [element, box.bottom > 0 && box.top < window.innerHeight];
@@ -280,68 +292,160 @@
     });
   });
 
-  const streamTabs = [...document.querySelectorAll(".stream-tab")];
-  const streamPanels = new Map(
-    [...document.querySelectorAll(".stream-panel")].map((panel) => [panel.id.replace("stream-", ""), panel])
-  );
-
-  const selectStream = (slug, { focusTab = false, silent = false } = {}) => {
-    if (!streamPanels.has(slug)) return;
-    streamTabs.forEach((tab) => {
-      const active = tab.dataset.stream === slug;
-      tab.setAttribute("aria-selected", String(active));
-      tab.tabIndex = active ? 0 : -1;
-      if (active && focusTab) tab.focus();
-      if (active) tab.scrollIntoView({ block: "nearest", inline: "nearest" });
-    });
-    streamPanels.forEach((panel, key) => {
-      const active = key === slug;
-      panel.hidden = !active;
-      panel.classList.toggle("is-active", active);
-    });
-    if (!silent) track("stream_select", { stream: slug });
+  const cases = [...document.querySelectorAll(".case-card")];
+  const careerPage = document.body.classList.contains("career");
+  const controls = document.querySelector(".catalogue-controls");
+  const industryPanel = document.getElementById("industries");
+  const industryToggle = document.querySelector(".industry-mobile-toggle");
+  const mobileFilters = matchMedia("(max-width: 900px)");
+  const closeIndustries = () => industryToggle?.setAttribute("aria-expanded", "false");
+  const placeIndustries = () => {
+    if (!controls || !industryPanel) return;
+    (mobileFilters.matches ? controls : document.querySelector(".catalogue-layout")).append(industryPanel);
+    closeIndustries();
   };
-
-  streamHook = (slug, doScroll) => {
-    selectStream(slug, { silent: true });
-    if (doScroll) document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
-  };
-
-  streamTabs.forEach((tab, index) => {
-    tab.addEventListener("click", () => {
-      root.classList.add("streams-armed");
-      selectStream(tab.dataset.stream);
-    });
-    tab.addEventListener("keydown", (event) => {
-      const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
-      let next = null;
-      if (step) next = streamTabs[(index + step + streamTabs.length) % streamTabs.length];
-      else if (event.key === "Home") next = streamTabs[0];
-      else if (event.key === "End") next = streamTabs[streamTabs.length - 1];
-      if (!next) return;
-      event.preventDefault();
-      selectStream(next.dataset.stream, { focusTab: true });
-    });
+  placeIndustries();
+  mobileFilters.addEventListener("change", placeIndustries);
+  industryToggle?.addEventListener("click", () => {
+    industryToggle.setAttribute("aria-expanded", String(industryToggle.getAttribute("aria-expanded") !== "true"));
   });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && industryToggle?.getAttribute("aria-expanded") === "true") {
+      closeIndustries();
+      industryToggle.focus();
+    }
+  });
+  document.addEventListener("click", event => {
+    if (mobileFilters.matches && !controls?.contains(event.target)) closeIndustries();
+  });
+  const topNavigation = document.querySelector(".site-nav");
+  if (topNavigation) new ResizeObserver(([entry]) => {
+    document.documentElement.style.setProperty("--nav-height", `${entry.target.getBoundingClientRect().height}px`);
+  }).observe(topNavigation);
+  const streamTabs = [...document.querySelectorAll(".stream-tab")];
+  const industryInputs = [...document.querySelectorAll("input[data-industry]")];
+  const catalogue = document.getElementById("services");
+  const results = document.getElementById("catalogueResults");
+  const count = document.getElementById("catalogueCount");
+  const empty = document.getElementById("catalogueEmpty");
+  const selectedAreas = new Set();
+  const selectedIndustries = new Set();
+  const tags = (card, key) => (card.dataset[key] || "").split(" ").filter(Boolean);
+  const intersects = (selection, values) => !selection.size || values.some(value => selection.has(value));
+  const visibleCases = () => cases.filter(card => !card.hidden);
 
-  const streamTabList = document.querySelector(".stream-tabs");
-  if (streamTabList) streamTabList.scrollLeft = 0;
-  streamTabs.forEach((tab, index) => tab.style.setProperty("--i", String(index)));
+  const writeFilters = (mode, preserveHash = false) => {
+    const url = new URL(location.href);
+    url.searchParams.delete("company");
+    for (const [key, values] of [["areas", [...selectedAreas]], ["industries", [...selectedIndustries]]]) {
+      if (values.length) url.searchParams.set(key, values.join(","));
+      else url.searchParams.delete(key);
+    }
+    if (!preserveHash) url.hash = "services";
+    if (url.href !== location.href) history[mode + "State"](null, "", url);
+  };
 
-  if (streamTabList && "IntersectionObserver" in window) {
-    const streamsViewObserver = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      streamTabList.classList.add("is-cued");
-      track("services_view", { streams: streamTabs.length, cases: document.querySelectorAll(".case-card").length });
-      streamsViewObserver.disconnect();
-    }, { threshold: 0.35 });
-    streamsViewObserver.observe(streamTabList);
-  } else if (streamTabList) {
-    streamTabList.classList.add("is-cued");
-  }
+  const applyFilters = (mode = null, preserveHash = false) => {
+    const chosen = selectedAreas.size > 0 || selectedIndustries.size > 0;
+    catalogue?.classList.toggle("has-selection", chosen);
+    if (results) results.hidden = !chosen;
+    cases.forEach(card => {
+      card.hidden = !careerPage && (!chosen || !intersects(selectedAreas, tags(card, "categories")) || !intersects(selectedIndustries, tags(card, "industries")));
+      if (!careerPage) card.parentElement.hidden = card.hidden;
+    });
+    streamTabs.forEach(tab => {
+      tab.setAttribute("aria-pressed", String(selectedAreas.has(tab.dataset.stream)));
+      const matches = cases.filter(card => tags(card, "categories").includes(tab.dataset.stream) && intersects(selectedIndustries, tags(card, "industries"))).length;
+      tab.querySelector(".stream-tab-count").textContent = matches;
+    });
+    industryInputs.forEach(input => {
+      input.checked = selectedIndustries.has(input.dataset.industry);
+      const matches = cases.filter(card => tags(card, "industries").includes(input.dataset.industry) && intersects(selectedAreas, tags(card, "categories"))).length;
+      input.closest("label").querySelector(".industry-count").textContent = matches;
+    });
+    if (industryToggle) {
+      const selection = industryToggle.querySelector(".industry-selected-count");
+      selection.textContent = selectedIndustries.size ? String(selectedIndustries.size) : "";
+    }
+    const total = visibleCases().length;
+    if (count) count.textContent = (english ? "Matching cases: " : "Найдено кейсов: ") + total;
+    if (empty) empty.hidden = total > 0;
+    if (mode) {
+      writeFilters(mode, preserveHash);
+      if (mode === "push" && catalogue && controls) requestAnimationFrame(() => {
+        if (controls.getBoundingClientRect().top < (topNavigation?.getBoundingClientRect().bottom || 0)) {
+          catalogue.scrollIntoView({ behavior: "instant", block: "start" });
+        }
+      });
+    }
+  };
+
+  const readFilters = () => {
+    const url = new URL(location.href);
+    selectedAreas.clear();
+    selectedIndustries.clear();
+    (url.searchParams.get("areas") || "").split(",").forEach(value => {
+      if (streamTabs.some(tab => tab.dataset.stream === value)) selectedAreas.add(value);
+    });
+    (url.searchParams.get("industries") || "").split(",").forEach(value => {
+      if (industryInputs.some(input => input.dataset.industry === value)) selectedIndustries.add(value);
+    });
+    if (url.hash.startsWith("#stream-")) {
+      selectedAreas.clear();
+      selectedIndustries.clear();
+      const slug = url.hash.slice(8);
+      if (streamTabs.some(tab => tab.dataset.stream === slug)) selectedAreas.add(slug);
+    }
+    applyFilters();
+  };
+
+  const ensureCaseVisible = card => {
+    if (careerPage || !card.hidden) return;
+    selectedAreas.clear();
+    selectedIndustries.clear();
+    selectedAreas.add(tags(card, "categories")[0]);
+    applyFilters("replace", true);
+  };
+
+  streamTabs.forEach(tab => tab.addEventListener("click", () => {
+    const slug = tab.dataset.stream;
+    if (selectedAreas.has(slug)) selectedAreas.delete(slug);
+    else selectedAreas.add(slug);
+    applyFilters("push");
+    track("stream_select", { stream: [...selectedAreas].join(",") });
+  }));
+  industryInputs.forEach(input => input.addEventListener("change", () => {
+    if (input.checked) selectedIndustries.add(input.dataset.industry);
+    else selectedIndustries.delete(input.dataset.industry);
+    applyFilters("push");
+    track("industry_select", { industry: [...selectedIndustries].join(",") });
+  }));
+  const resetFilters = () => {
+    selectedAreas.clear();
+    selectedIndustries.clear();
+    applyFilters("push");
+    streamTabs[0]?.focus();
+  };
+  document.querySelector("[data-reset-filters]")?.addEventListener("click", resetFilters);
+  document.querySelectorAll('.nav-links a[href="#services"]').forEach(link => link.addEventListener("click", event => {
+    event.preventDefault();
+    resetFilters();
+    catalogue?.scrollIntoView({ behavior: "instant", block: "start" });
+  }));
+  streamHook = (slug, doScroll) => {
+    if (slug === null) readFilters();
+    else {
+      selectedAreas.clear();
+      selectedIndustries.clear();
+      if (streamTabs.some(tab => tab.dataset.stream === slug)) selectedAreas.add(slug);
+      applyFilters();
+    }
+    if (doScroll) catalogue?.scrollIntoView({ behavior: "instant", block: "start" });
+  };
+  readFilters();
+  window.addEventListener("popstate", readFilters);
 
   const modal = document.getElementById("caseModal");
-  const cases = [...document.querySelectorAll(".case-card")];
 
   if (modal && cases.length) {
     const inner = modal.querySelector(".case-modal-inner");
@@ -356,25 +460,32 @@
     const prevButton = modal.querySelector("[data-case-nav='prev']");
     const nextButton = modal.querySelector("[data-case-nav='next']");
     let opener = null;
-    let modalPushed = false;
     let current = null;
+    let returnUrl = window.location.pathname + window.location.search;
 
-    const streamOf = (card) => card.closest(".stream-panel")?.id.replace("stream-", "") || "";
-    const siblings = (card) => [...(card.closest(".case-grid")?.querySelectorAll(".case-card") || [])];
-    const labelOf = (slug) => document.querySelector(`.stream-tab[data-stream="${slug}"] .stream-tab-name`)?.textContent.trim() || "";
+    const streamOf = (card) => tags(card, "categories")[0] || "";
+    const siblings = () => visibleCases();
+    const labelOf = (slug) => document.querySelector(`.stream-tab[data-stream="${slug}"] .stream-tab-name`)?.textContent.trim() || ({
+      strategy: english ? "Strategy and growth" : "Стратегия и рост",
+      transformation: english ? "Transformation" : "Трансформация",
+      efficiency: english ? "Operational efficiency" : "Операционная эффективность",
+      deals: english ? "Deals and investment" : "Сделки и инвестиции"
+    }[slug] || "");
 
-    const fill = (card) => {
+    const fill = (card, addHistoryEntry) => {
       current = card;
       const slug = streamOf(card);
-      slots.stream.textContent = labelOf(slug);
+      slots.stream.textContent = tags(card, "categories").map(labelOf).join(" / ");
       slots.kicker.textContent = card.querySelector(".case-kicker")?.textContent.trim() || "";
       slots.title.textContent = card.querySelector(".case-title")?.textContent.trim() || "";
-      slots.context.textContent = card.querySelector(".case-context")?.textContent.trim() || "";
+      slots.context.textContent = "";
+      slots.context.hidden = true;
       const claims = card.querySelector(".claim-stack");
       slots.claims.innerHTML = claims ? claims.innerHTML : "";
       slots.claims.hidden = !claims;
       const facts = card.querySelector(".project-facts");
       slots.facts.innerHTML = facts ? facts.innerHTML : "";
+      slots.facts.classList.toggle("project-facts--star", Boolean(facts?.classList.contains("project-facts--star")));
       slots.facts.querySelectorAll("[id]").forEach((node) => {
         const old = node.id;
         node.id = `m-${old}`;
@@ -387,28 +498,34 @@
       nextButton.disabled = index < 0 || index >= list.length - 1;
       if (inner) inner.scrollTop = 0;
       try {
-        if (modalPushed) history.replaceState(null, "", `#${card.id}`);
-        else { history.pushState(null, "", `#${card.id}`); modalPushed = true; }
+        if (window.location.hash !== `#${card.id}`) {
+          if (addHistoryEntry) history.pushState(null, "", `#${card.id}`);
+          else history.replaceState(null, "", `#${card.id}`);
+        }
       } catch (_) {
         // Адресная строка не критична для работы окна
       }
     };
 
     const openCase = (card, scrollToStream = false) => {
+      if (modal.open && current === card) return;
       const slug = streamOf(card);
       const fresh = !modal.open;
-      if (slug) selectStream(slug, { silent: true });
+      ensureCaseVisible(card);
+      if (!careerPage) writeFilters("replace", true);
       if (scrollToStream) {
         document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
       }
       if (!modal.open) {
+        returnUrl = window.location.pathname + window.location.search + (careerPage ? window.location.hash : "#services");
+        if (careerPage && returnUrl.includes("#case-")) returnUrl = window.location.pathname + window.location.search + "#projects";
         opener = document.activeElement === document.body
           ? card.querySelector("summary")
           : document.activeElement;
         modal.showModal();
       }
       const wasOpen = !fresh;
-      fill(card);
+      fill(card, fresh);
       track("case_open", { case: card.id, stream: slug });
       if (wasOpen) {
         slots.title.tabIndex = -1;
@@ -418,6 +535,19 @@
       }
     };
     caseHook = openCase;
+    // Прямые ссылки раскрывают ту же краткую карточку на текущей странице.
+    if (location.hash.startsWith("#case-")) openHashTarget(false);
+
+    document.querySelectorAll("a[href^='#case-']").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const target = document.getElementById(link.getAttribute("href").slice(1));
+        const card = target?.dataset.caseTarget ? document.getElementById(target.dataset.caseTarget) : target;
+        if (!card?.classList.contains("case-card")) return;
+        event.preventDefault();
+        openCase(card);
+      });
+    });
 
     cases.forEach((card) => {
       const summary = card.querySelector("summary");
@@ -451,33 +581,46 @@
       share.addEventListener("click", () => {
         const url = window.location.href;
         const copying = navigator.clipboard?.writeText(url);
-        if (copying) copying.then(() => report("Ссылка скопирована"), () => report("Скопируйте адрес из строки браузера"));
-        else report("Скопируйте адрес из строки браузера");
+        if (copying) copying.then(() => report(english ? "Link copied" : "Ссылка скопирована"), () => report(english ? "Copy the address from your browser" : "Скопируйте адрес из строки браузера"));
+        else report(english ? "Copy the address from your browser" : "Скопируйте адрес из строки браузера");
       });
     }
 
-    modal.querySelector(".case-modal-close")?.addEventListener("click", () => modal.close());
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) modal.close();
-    });
     modal.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       if (event.target.closest("a[href],button:not([disabled])")) return;
       event.preventDefault();
       step(event.key === "ArrowLeft" ? -1 : 1);
     });
-    window.addEventListener("popstate", () => { if (modal.open) modal.close(); });
-    modal.addEventListener("close", () => {
-      modalPushed = false;
+    const closeCase = () => {
+      if (!modal.open) return;
       try {
-        history.replaceState(null, "", window.location.pathname + window.location.search);
+        if (current && window.location.hash === `#${current.id}`) {
+          history.replaceState(null, "", returnUrl);
+        }
       } catch (_) {
         // Адресная строка не критична для работы окна
       }
-      if (opener && document.contains(opener)) opener.focus();
+      const focusTarget = opener?.getClientRects().length
+        ? opener
+        : document.querySelector(`.stream-tab[data-stream="${current ? streamOf(current) : "strategy"}"]`);
+      modal.close();
       opener = null;
       current = null;
+      focusTarget?.focus();
+    };
+    modal.addEventListener("cancel", event => {
+      event.preventDefault();
+      closeCase();
     });
+    modal.querySelector(".case-modal-close")?.addEventListener("click", () => closeCase());
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeCase();
+    });
+    window.addEventListener("popstate", () => {
+      if (modal.open && !cases.some((card) => window.location.hash === `#${card.id}`)) closeCase();
+    });
+
   }
 
   document.querySelectorAll(".faq details").forEach((item, index) => {
