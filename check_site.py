@@ -191,7 +191,7 @@ def check_cases(page, doc):
         if (len(fields) < 4 or any(not field.has_class(cls)
                                   for field, cls in zip(fields[:4], ordered))):
             note(f"Дефект {page}: кейс {case_id} требует порядок ситуация, задача, действия, результат")
-        for cls in ordered + ("fact--artifacts",):
+        for cls in ordered + ("fact--artifacts", "fact--team"):
             matches = [node for node in fields if node.has_class(cls)]
             if len(matches) != 1:
                 note(f"Дефект {page}: кейс {case_id} требует единственное поле {cls}")
@@ -200,6 +200,25 @@ def check_cases(page, doc):
                 values = [node for node in matches[0].children if node.tag == tag]
                 if len(values) != 1 or not values[0].text():
                     note(f"Дефект {page}: поле {cls} кейса {case_id} требует заполненный {tag}")
+        own_role = [node for node in nodes if node.has_class("case-team-own")]
+        if len(own_role) != 1 or not any(node.tag == "p" and node.text() for node in own_role[0].children):
+            note(f"Дефект {page}: кейс {case_id} требует собственную ответственность автора")
+        material_lists = [node for node in nodes if node.has_class("case-artifact-list--detailed")]
+        if len(material_lists) != 1:
+            note(f"Дефект {page}: кейс {case_id} требует подробный состав материалов")
+        else:
+            for material in material_lists[0].children:
+                if material.tag != "li":
+                    continue
+                content = list(material.descendants())
+                if not any(node.tag == "strong" and node.text() for node in content):
+                    note(f"Дефект {page}: материал кейса {case_id} требует название")
+                if not any(node.tag == "p" and node.text() for node in content):
+                    note(f"Дефект {page}: материал кейса {case_id} требует описание")
+        for person in [node for node in nodes if node.has_class("team-person")]:
+            kinds = [kind for kind in ("execution", "expertise", "client", "decision") if person.has_class("team-person--" + kind)]
+            if len(kinds) != 1:
+                note(f"Дефект {page}: участник кейса {case_id} требует единственную категорию")
     return cards, aliases
 
 
@@ -462,6 +481,13 @@ if "--self-check" in sys.argv:
         detects("потеря отрасли кейса", home, ru, 'data-industries="manufacturing"', 'data-industries="missing"', "требует отрасли из каталога")
         detects("потеря поля ситуации", home, ru, 'class="fact fact--situation"', 'class="fact fact--removed"', "единственное поле fact--situation")
         detects("потеря материалов заказчика", home, ru, 'class="fact fact--artifacts"', 'class="fact fact--removed"', "единственное поле fact--artifacts")
+        detects("потеря команды проекта", home, ru, 'class="fact fact--team"', 'class="fact fact--removed"', "единственное поле fact--team")
+        detects("потеря собственной роли", home, ru, 'class="case-team-own"', 'class="removed-role"', "собственную ответственность автора")
+        detects("потеря подробных материалов", home, ru, 'case-artifact-list case-artifact-list--detailed', 'case-artifact-list', "подробный состав материалов")
+        material_description = re.search(r'(<div class="artifact-copy"><strong>.*?</strong>)<p>.*?</p>', ru, re.S)
+        if not material_description:
+            raise AssertionError("Самопроверка требует описание материала")
+        detects("пустое описание материала", home, ru, material_description.group(0), material_description.group(1) + '<p></p>', "требует описание")
         detects("потеря блока структуры кейса", home, ru, 'project-facts project-facts--star', 'project-facts', "единый блок project-facts--star")
         situation_title = re.search(r'<div class="fact fact--situation">(<dt>.*?</dt>)', ru, re.S)
         if not situation_title:

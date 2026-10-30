@@ -921,3 +921,48 @@ body.career.refined .skill-card>.skill-label{display:flex;align-items:center;gap
  .refined .proof-org{grid-template-columns:1fr;gap:26px}
  .refined .proof-org li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-18px;transform:translateX(-50%) rotate(135deg)}
 }
+
+/* Материалы раскрывают содержание, участники показывают вклад и взаимодействие */
+.refined .case-modal-inner .project-facts.project-facts--star>.fact--team{grid-column:1 / -1;padding:8px 0 0;background:transparent}
+.refined .case-artifact-list.case-artifact-list--detailed{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.refined .case-artifact-list--detailed li{padding:16px;gap:12px}
+.refined .case-artifact-list--detailed>li:last-child:nth-child(odd){grid-column:1 / -1}
+.refined .artifact-copy{min-width:0}
+.refined .artifact-copy>strong{display:block;font-size:16px;line-height:1.4}
+.refined .artifact-copy>p{margin:6px 0 0;font-size:15px;line-height:1.5;color:var(--muted)}
+.refined .case-team-own{padding:16px 18px;border-radius:10px;background:var(--group-surface)}
+.refined .case-team-own>strong{font-size:13px;line-height:1.4;color:var(--muted)}
+.refined .case-team-own>p{margin:6px 0 0;font-size:16px;line-height:1.5}
+.refined .case-team-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:10px 0 0;padding:0}
+.refined .team-person{padding:16px 18px;border-radius:10px;background:var(--group-surface)}
+.refined .team-person:last-child:nth-child(odd){grid-column:1 / -1}
+.refined .team-person--expertise{background:var(--selected-surface)}
+.refined .team-kind{display:block;margin-bottom:6px;font-size:13px;line-height:1.4;color:var(--muted)}
+.refined .team-person>strong{display:block;font-size:16px;line-height:1.4}
+.refined .team-person>p{margin:6px 0 0;font-size:15px;line-height:1.5;color:var(--muted)}
+.refined .case-connections{margin-top:16px}
+.refined .case-connections h4{margin:0 0 10px;font-size:14px;line-height:1.4;font-weight:600;color:var(--forest)}
+.refined .case-connections ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.refined .case-connections li{display:grid;gap:5px;padding:14px 16px;border-radius:10px;background:var(--selected-surface);font-size:15px;line-height:1.45}
+.refined .case-connections li:last-child:nth-child(odd){grid-column:1 / -1}
+.refined .case-connections li>span{color:var(--muted)}
+.refined .collaboration-network{margin-top:32px;padding:24px;border-radius:14px;background:var(--group-surface)}
+.refined .collaboration-network h3{margin:0;font-size:24px;line-height:1.3}
+.refined .collaboration-network>p{max-width:none;margin:10px 0 0;font-size:17px;line-height:1.5;color:var(--muted)}
+.refined .collaboration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.refined .collaboration-proof{display:flex;flex-direction:column;gap:8px;min-width:0;padding:20px;border-radius:12px;background:#fff;color:var(--ink);text-decoration:none}
+.refined .collaboration-firm{font-size:22px;line-height:1.2;font-weight:600;color:var(--forest)}
+.refined .collaboration-proof>strong{font-size:16px;line-height:1.4}
+.refined .collaboration-proof>span:not(.collaboration-firm):not(.collaboration-open){font-size:15px;line-height:1.45;color:var(--muted)}
+.refined .collaboration-open{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:8px;font-size:14px;line-height:1.4;font-weight:600;color:var(--forest)}
+.refined .collaboration-open>span{font-size:22px;line-height:1}
+.refined .collaboration-proof:hover{background:var(--selected-surface)}
+.refined .collaboration-proof:focus-visible{outline:3px solid var(--forest);outline-offset:3px}
+@media(max-width:800px){.refined .collaboration-grid{grid-template-columns:1fr}.refined .collaboration-proof{padding:18px}}
+@media(max-width:600px){
+ .refined .case-artifact-list.case-artifact-list--detailed,.refined .case-team-list,.refined .case-connections ul{grid-template-columns:1fr}
+ .refined .case-artifact-list--detailed li,.refined .case-team-own,.refined .team-person{padding:16px}
+ .refined .collaboration-network{padding:20px;margin-top:24px}
+ .refined .collaboration-network h3{font-size:22px}
+ .refined .collaboration-network>p{font-size:16px}
+}
