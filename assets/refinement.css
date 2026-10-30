@@ -1009,3 +1009,11 @@ body.career.refined .skill-card>.skill-label{display:flex;align-items:center;gap
 .refined .case-modal-inner{flex:1 1 auto;min-height:0;max-height:none;border-radius:0;padding-top:8px}
 .refined .case-modal-title{margin-top:0;padding-right:0}
 @media(max-width:600px){.refined .case-modal-head{padding:12px 18px 8px;gap:12px}}
+
+
+
+/* Панель отраслей сохраняет место до нижнего края экрана */
+@media(max-width:900px){.refined.portfolio #services #industries{max-height:min(48dvh,340px,var(--industry-available-height,340px))}}
+
+/* Фильтры сразу принимают выбранное состояние */
+.refined.portfolio #services .stream-tab{transition:box-shadow 140ms ease,border-color 140ms ease!important}

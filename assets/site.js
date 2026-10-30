@@ -314,7 +314,38 @@
   const industryPanel = document.getElementById("industries");
   const industryToggle = document.querySelector(".industry-mobile-toggle");
   const mobileFilters = matchMedia("(max-width: 900px)");
-  const closeIndustries = () => industryToggle?.setAttribute("aria-expanded", "false");
+  let industryFitFrame = 0;
+  let industryPositionAdjusted = false;
+  const mobileIndustriesOpen = () => mobileFilters.matches && industryPanel && industryToggle?.getAttribute("aria-expanded") === "true";
+  const queueIndustryFit = () => {
+    if (!mobileIndustriesOpen() || industryFitFrame) return;
+    industryFitFrame = requestAnimationFrame(() => {
+      industryFitFrame = 0;
+      if (!mobileIndustriesOpen()) return;
+      const viewport = window.visualViewport;
+      const bottom = viewport ? viewport.offsetTop + viewport.height : innerHeight;
+      let available = bottom - industryPanel.getBoundingClientRect().top - 12;
+      if (available < 120 && !industryPositionAdjusted) {
+        industryPositionAdjusted = true;
+        window.scrollBy({ top: 120 - available, behavior: "instant" });
+        available = bottom - industryPanel.getBoundingClientRect().top - 12;
+      }
+      industryPanel.style.setProperty("--industry-available-height", `${Math.max(0, Math.floor(available))}px`);
+    });
+  };
+  const resetIndustryFit = () => {
+    industryPositionAdjusted = false;
+    queueIndustryFit();
+  };
+  const closeIndustries = () => {
+    industryPositionAdjusted = false;
+    industryToggle?.setAttribute("aria-expanded", "false");
+    industryPanel?.style.removeProperty("--industry-available-height");
+  };
+  window.addEventListener("scroll", queueIndustryFit, { passive: true });
+  window.addEventListener("resize", resetIndustryFit, { passive: true });
+  window.visualViewport?.addEventListener("resize", resetIndustryFit, { passive: true });
+  window.visualViewport?.addEventListener("scroll", queueIndustryFit, { passive: true });
   const placeIndustries = () => {
     if (!controls || !industryPanel) return;
     (mobileFilters.matches ? controls : document.querySelector(".catalogue-layout")).append(industryPanel);
@@ -324,6 +355,7 @@
   mobileFilters.addEventListener("change", placeIndustries);
   industryToggle?.addEventListener("click", () => {
     industryToggle.setAttribute("aria-expanded", String(industryToggle.getAttribute("aria-expanded") !== "true"));
+    resetIndustryFit();
   });
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && industryToggle?.getAttribute("aria-expanded") === "true") {
@@ -394,6 +426,7 @@
         }
       });
     }
+    resetIndustryFit();
   };
 
   const readFilters = () => {
