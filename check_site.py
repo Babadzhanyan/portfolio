@@ -215,6 +215,12 @@ def check_cases(page, doc):
                     note(f"Дефект {page}: материал кейса {case_id} требует название")
                 if not any(node.tag == "p" and node.text() for node in content):
                     note(f"Дефект {page}: материал кейса {case_id} требует описание")
+                components = [node for node in content if node.has_class("artifact-components")]
+                if len(components) != 1 or not any(node.tag == "li" and node.text() for node in components[0].children):
+                    note(f"Дефект {page}: материал кейса {case_id} требует состав")
+                purpose = [node for node in content if node.has_class("artifact-purpose")]
+                if len(purpose) != 1 or not any(part.strip() for part in purpose[0].parts):
+                    note(f"Дефект {page}: материал кейса {case_id} требует описание применения")
         for person in [node for node in nodes if node.has_class("team-person")]:
             kinds = [kind for kind in ("execution", "expertise", "client", "decision") if person.has_class("team-person--" + kind)]
             if len(kinds) != 1:
@@ -484,10 +490,12 @@ if "--self-check" in sys.argv:
         detects("потеря команды проекта", home, ru, 'class="fact fact--team"', 'class="fact fact--removed"', "единственное поле fact--team")
         detects("потеря собственной роли", home, ru, 'class="case-team-own"', 'class="removed-role"', "собственную ответственность автора")
         detects("потеря подробных материалов", home, ru, 'case-artifact-list case-artifact-list--detailed', 'case-artifact-list', "подробный состав материалов")
-        material_description = re.search(r'(<div class="artifact-copy"><strong>.*?</strong>)<p>.*?</p>', ru, re.S)
+        material_description = re.search(r'<p class="artifact-purpose">.*?</p>', ru, re.S)
         if not material_description:
             raise AssertionError("Самопроверка требует описание материала")
-        detects("пустое описание материала", home, ru, material_description.group(0), material_description.group(1) + '<p></p>', "требует описание")
+        detects("пустое описание материала", home, ru, material_description.group(0), '<p class="artifact-purpose"></p>', "требует описание")
+        detects("потеря состава материала", home, ru, 'class="artifact-components"', 'class="removed-components"', "требует состав")
+        detects("потеря применения материала", home, ru, 'class="artifact-purpose"', 'class="removed-purpose"', "требует описание применения")
         detects("потеря блока структуры кейса", home, ru, 'project-facts project-facts--star', 'project-facts', "единый блок project-facts--star")
         situation_title = re.search(r'<div class="fact fact--situation">(<dt>.*?</dt>)', ru, re.S)
         if not situation_title:
