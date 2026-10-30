@@ -996,3 +996,6 @@ body.career.refined .skill-card>.skill-label{display:flex;align-items:center;gap
  .refined .team-kind{grid-column:1;grid-row:auto;justify-self:start;margin:0}
  .refined .team-person>strong,.refined .team-person>p{grid-column:1}
 }
+
+/* Числа сохраняют единицы измерения в одной строке */
+.refined .fact--result strong{white-space:nowrap}
