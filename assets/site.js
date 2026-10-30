@@ -293,6 +293,22 @@
   });
 
   const cases = [...document.querySelectorAll(".case-card")];
+  // Язык сохраняет фильтры и адрес текущего раздела
+  if (cases.length) document.querySelectorAll(".lang-toggle a[hreflang], a[data-language-switch]").forEach(link => {
+    const destination = link.getAttribute("href");
+    const syncLanguageTarget = () => {
+      const target = new URL(destination, location.href);
+      const current = new URL(location.href);
+      ["v", "areas", "industries"].forEach(key => {
+        if (current.searchParams.has(key)) target.searchParams.set(key, current.searchParams.get(key));
+      });
+      target.hash = current.hash;
+      link.href = target.href;
+    };
+    ["click", "auxclick", "contextmenu"].forEach(event => link.addEventListener(event, syncLanguageTarget));
+    syncLanguageTarget();
+  });
+
   const careerPage = document.body.classList.contains("career");
   const controls = document.querySelector(".catalogue-controls");
   const industryPanel = document.getElementById("industries");

@@ -999,3 +999,13 @@ body.career.refined .skill-card>.skill-label{display:flex;align-items:center;gap
 
 /* Числа сохраняют единицы измерения в одной строке */
 .refined .fact--result strong{white-space:nowrap}
+
+/* Шапка проекта отделяет управление от области чтения */
+.refined .case-modal[open]{display:flex;flex-direction:column;overflow:hidden;background:#fff;border-radius:14px}
+.refined .case-modal-head{flex:none;display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:16px;align-items:start;padding:16px 28px 8px;background:#fff}
+.refined .case-modal-head :is(.case-modal-stream,.case-modal-kicker){max-width:none;padding-right:0}
+.refined .case-modal-head .case-modal-kicker{margin-top:4px}
+.refined .case-modal-head .case-modal-close{position:static;float:none;margin:0;width:48px;height:48px}
+.refined .case-modal-inner{flex:1 1 auto;min-height:0;max-height:none;border-radius:0;padding-top:8px}
+.refined .case-modal-title{margin-top:0;padding-right:0}
+@media(max-width:600px){.refined .case-modal-head{padding:12px 18px 8px;gap:12px}}
