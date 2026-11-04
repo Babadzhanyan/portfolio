@@ -247,7 +247,7 @@
   });
   document.addEventListener("click", (event) => {
     const owner = event.target.closest(".tooltip-term");
-    if (!owner) {
+    if (!owner || event.target.closest("a[href]")) {
       hideTooltip();
       return;
     }
