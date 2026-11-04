@@ -1726,3 +1726,18 @@ h2,h3,.formats-head{break-after:avoid}
 .docs-head{margin-top:var(--s-16);font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
 .docs-list .link-arrow{margin-top:var(--s-2)}
 .docs-list li{display:flex;flex-direction:column;align-items:flex-start}
+
+/* Reading rhythm: documents, contact feedback and one-time section arrivals */
+body.refined .site-nav .nav-utility{display:flex;align-items:center;gap:10px;margin-left:auto;flex:0 0 auto}
+body.refined .site-nav .nav-resume-utility{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 12px;border-radius:9px;background:#eef4f0;color:var(--forest);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+body.refined .site-nav .nav-resume-utility svg{width:19px;height:19px;flex:0 0 19px;fill:none;stroke:currentColor;stroke-width:1.6}
+body.refined .site-nav .nav-resume-utility:is(:hover,:focus-visible){background:#dcece2;color:#0b3c2c}
+body.refined .site-nav .nav-links a:is(:hover,:focus-visible,.active){color:var(--forest);background:#eaf2ed;border-radius:6px}
+body.refined .site-nav .nav-links a:focus-visible,body.refined .site-nav .nav-resume-utility:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+body.refined.career .career-contact-email:is(:hover,:focus-visible),body.refined.career .contact-link:is(:hover,:focus-visible){background:#e6f0ea;color:#0b3c2c;border-radius:6px;outline-offset:4px}
+body.refined [data-reveal]{opacity:1;transform:none}
+body.refined [data-reveal].reading-arrived{animation:reading-arrival .48s ease-out both!important}
+@keyframes reading-arrival{from{opacity:.55;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){body.refined .site-nav .wrap{gap:10px}body.refined .site-nav .nav-menu{margin-left:0}body.refined .site-nav .nav-utility .lang-toggle{margin-left:0}}
+@media(max-width:600px){body.refined .site-nav .nav-resume-utility{font-size:0;padding:0;width:40px;min-height:40px}body.refined .site-nav .nav-utility{gap:5px}body.refined .site-nav .lang-toggle{height:40px;padding:2px}body.refined .site-nav .lang-opt{width:31px;height:34px}body.refined .site-nav .nav-menu{width:38px;min-width:38px}body.refined .site-nav .wrap{gap:6px}}
+@media(prefers-reduced-motion:reduce){body.refined [data-reveal].reading-arrived{animation:none!important}}

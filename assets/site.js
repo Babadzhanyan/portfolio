@@ -23,6 +23,18 @@
     revealItems.forEach((item) => item.classList.add("in"));
   }
 
+  const readingItems = [...document.querySelectorAll("[data-reveal]")];
+  if (!reduceMotion && "IntersectionObserver" in window && readingItems.length) {
+    const readingObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("reading-arrived");
+        readingObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -4% 0px" });
+    readingItems.forEach((item) => readingObserver.observe(item));
+  }
+
   const contact = document.getElementById("contact");
   const navLinks = [...document.querySelectorAll(".nav-links a[href^='#']")];
   const navSections = navLinks
@@ -38,24 +50,34 @@
     });
   };
 
-  if ("IntersectionObserver" in window && navSections.length) {
-    const navState = new Map();
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => navState.set(entry.target, entry.isIntersecting));
-      if (contact && navState.get(contact)) {
-        setActiveNav();
-        return;
-      }
+  if (navSections.length) {
+    let navPending = false;
+    const updateActiveNav = () => {
+      navPending = false;
+      const navHeight = document.querySelector(".site-nav")?.getBoundingClientRect().height || 64;
+      const anchor = Math.max(navHeight + 28, (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) + 4);
       let current = null;
       navSections.forEach((item) => {
-        if (navState.get(item.section)) current = item;
+        if (item.section.getBoundingClientRect().top <= anchor) current = item;
       });
+      const contactItem = navSections.find((item) => item.section === contact);
+      const atEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+      if (contactItem && atEnd && contact.getBoundingClientRect().top < window.innerHeight) current = contactItem;
       setActiveNav(current?.link || null);
-    }, { threshold: 0, rootMargin: "-88px 0px -68% 0px" });
-    navSections.forEach((item) => navObserver.observe(item.section));
-    if (contact) navObserver.observe(contact);
-  } else {
-    setActiveNav();
+    };
+    const queueActiveNav = () => {
+      if (navPending) return;
+      navPending = true;
+      window.requestAnimationFrame(updateActiveNav);
+    };
+    window.addEventListener("scroll", queueActiveNav, { passive: true });
+    window.addEventListener("resize", queueActiveNav, { passive: true });
+    window.addEventListener("load", queueActiveNav, { once: true });
+    window.addEventListener("hashchange", queueActiveNav);
+    window.addEventListener("pageshow", queueActiveNav);
+    document.fonts?.ready.then(queueActiveNav);
+    navLinks.forEach((link) => link.addEventListener("click", () => setActiveNav(link)));
+    updateActiveNav();
   }
 
   const navSentinel = document.getElementById("navsentinel");
