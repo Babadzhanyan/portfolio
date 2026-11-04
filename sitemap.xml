@@ -1,9 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://babadzhanyan.github.io/portfolio/</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://babadzhanyan.github.io/portfolio/blog/</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://babadzhanyan.github.io/portfolio/blog/proverka-prognoza-prodavtsa/</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://babadzhanyan.github.io/portfolio/career/</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://babadzhanyan.github.io/portfolio/en/</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://babadzhanyan.github.io/portfolio/en/career/</loc><lastmod>2026-08-07</lastmod></url>
+<?xml version='1.0' encoding='utf-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/career/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/career/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/career/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/career/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/en/career/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/career/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/career/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/career/" />
+  </url>
 </urlset>

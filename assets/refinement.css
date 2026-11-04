@@ -678,7 +678,7 @@ body.refined.career .skill-card{padding-block:20px}
 .refined.portfolio #services.has-selection .stream-tab{grid-template-rows:auto;align-items:center;gap:10px;min-height:56px;padding:12px 14px;border-radius:8px}
 .refined.portfolio #services.has-selection .stream-tab-name{grid-column:1;grid-row:1;font-size:16px;line-height:1.25}
 .refined.portfolio #services.has-selection .stream-tab-count{align-self:center;color:inherit}
-.refined.portfolio #services.has-selection .stream-tab-icon,.refined.portfolio #services.has-selection .stream-tab-intro,.refined.portfolio #services.has-selection .stream-tab-action{display:none}
+.refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tab-icon,.refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tab-intro,.refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tab-action{display:none}
 .refined.portfolio #services.has-selection .stream-tab[aria-current="location"]{background:var(--forest);color:#fff}
 @media(hover:hover) and (pointer:fine){.refined.portfolio #services .stream-tab:hover{background:#e9eeeb;color:var(--forest);border-color:var(--forest);box-shadow:0 4px 12px rgb(20 78 59 / 12%);transform:translateY(-2px)}.refined.portfolio #services.has-selection .stream-tab[aria-current="location"]:hover{background:var(--forest);color:#fff}}
 @media(max-width:1023px){.refined.portfolio #services .stream-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.refined.portfolio #services .stream-tab{min-height:212px;padding:20px}.refined.portfolio #services .stream-tab-name{font-size:19px}}
@@ -1017,3 +1017,49 @@ body.career.refined .skill-card>.skill-label{display:flex;align-items:center;gap
 
 /* Фильтры сразу принимают выбранное состояние */
 .refined.portfolio #services .stream-tab{transition:box-shadow 140ms ease,border-color 140ms ease!important}
+
+
+/* Названия компаний ведут к первоисточнику */
+.refined .company-link{color:inherit;font:inherit;text-decoration:underline;text-decoration-color:rgb(18 75 56 / 30%);text-decoration-thickness:1px;text-underline-offset:3px}
+.refined .company-link:hover{color:var(--forest);text-decoration-color:currentColor}
+.refined .company-link:focus-visible,.refined .company-brand:focus-visible{outline:2px solid var(--forest);outline-offset:4px;border-radius:3px}
+.refined .company-brand{display:inline-flex;align-items:center;max-width:100%;padding:6px 0;margin:4px 0 10px;text-decoration:none}
+.refined .company-brand img{display:block;width:132px;height:20px;max-width:100%;object-fit:contain;filter:brightness(0)}
+.refined .industry-actions{display:none}
+
+/* На телефоне фильтры оставляют место для проектов */
+@media(max-width:900px){
+ .refined.portfolio #services:is(.has-selection,.industry-choosing) .catalogue-controls{padding:8px;margin:-8px -8px 12px;top:calc(var(--nav-height,64px) + 4px)}
+ .refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tabs{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#bac9bf transparent;padding:2px 1px 5px;scroll-padding:4px}
+ .refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tab{display:flex;flex:0 0 auto;width:auto;min-width:0;min-height:40px;padding:8px 12px;gap:8px;align-items:center;justify-content:space-between;border-radius:8px}
+ .refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tab-name{white-space:nowrap;font-size:13px;line-height:1.3;overflow-wrap:normal}
+ .refined.portfolio #services:is(.has-selection,.industry-choosing) .stream-tab-count{font-size:12px;line-height:1.3}
+ .refined.portfolio #services:is(.has-selection,.industry-choosing) .industry-mobile-toggle{min-height:38px;margin-top:5px;padding:7px 10px;font-size:13px}
+ .refined.portfolio #services .industry-mobile-toggle[aria-expanded="true"]~#industries{display:flex;flex-direction:column;gap:0}
+ .refined.portfolio #services #industries{overflow:hidden;padding:12px;max-height:min(52dvh,360px,var(--industry-available-height,360px));box-shadow:0 12px 32px rgb(18 47 35 / 16%)}
+ .refined.portfolio #services #industries fieldset{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 2px 2px;scrollbar-width:thin}
+ .refined.portfolio #services #industries .industry-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .refined.portfolio #services #industries .industry-option{min-height:44px;align-content:center}
+ .refined.portfolio .industry-actions{display:block;flex:none;padding-top:10px;background:#f1f5f2}
+ .refined.portfolio .industry-apply{display:block;width:100%;min-height:44px;border:0;border-radius:8px;padding:10px 14px;background:var(--forest);color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+ .refined.portfolio .industry-apply:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+}
+
+/* Список отраслей прокручивается внутри собственной области */
+@media(max-width:900px){
+ .refined.portfolio #services #industries .industry-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:0 2px 2px}
+ .refined.portfolio #services #industries fieldset{min-height:auto;overflow:visible;padding:0}
+ .refined.portfolio .industry-actions{position:relative;z-index:1;background:#f1f5f2}
+}
+
+
+/* Мандат задаёт контекст, результаты раскрывают личный вклад */
+.refined.career .path-mandate{grid-column:2 / -1;min-width:0;margin:10px 0 0;padding:12px 14px;background:#edf3ef;border-radius:8px;font-size:15px;line-height:1.5;color:var(--ink)}
+.refined.career .path-mandate>strong{font-weight:600;color:var(--forest)}
+.refined.career .path-note .path-outcomes{display:grid;gap:10px;list-style:none;padding:0;margin:12px 0 0}
+.refined.career .path-note .path-outcomes>li{position:relative;padding-left:16px;font-size:16px;line-height:1.5}
+.refined.career .path-note .path-outcomes>li::before{content:"";position:absolute;left:0;top:.65em;width:4px;height:4px;border-radius:1px;background:var(--forest)}
+@media(max-width:700px){.refined.career .path-mandate{grid-column:1 / -1;font-size:14px;padding:12px}.refined.career .path-note .path-outcomes>li{font-size:15px}}
+
+.refined.career .brand-link{display:inline-flex;align-items:center;max-width:100%;color:inherit;text-decoration:none}
+.refined.career .brand-link:focus-visible{outline:2px solid var(--forest);outline-offset:5px;border-radius:3px}

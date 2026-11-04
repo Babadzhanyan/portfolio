@@ -313,6 +313,7 @@
   const controls = document.querySelector(".catalogue-controls");
   const industryPanel = document.getElementById("industries");
   const industryToggle = document.querySelector(".industry-mobile-toggle");
+  const industryApply = industryPanel?.querySelector("[data-apply-industries]");
   const mobileFilters = matchMedia("(max-width: 900px)");
   let industryFitFrame = 0;
   let industryPositionAdjusted = false;
@@ -324,10 +325,19 @@
       if (!mobileIndustriesOpen()) return;
       const viewport = window.visualViewport;
       const bottom = viewport ? viewport.offsetTop + viewport.height : innerHeight;
-      let available = bottom - industryPanel.getBoundingClientRect().top - 12;
-      if (available < 120 && !industryPositionAdjusted) {
+      const navigation = document.querySelector(".site-nav")?.getBoundingClientRect();
+      const filterTop = controls?.getBoundingClientRect().top;
+      if (filterTop < (navigation?.bottom || 0) + 4 && !industryPositionAdjusted) {
         industryPositionAdjusted = true;
-        window.scrollBy({ top: 120 - available, behavior: "instant" });
+        window.scrollBy({ top: filterTop - (navigation?.bottom || 0) - 4, behavior: "instant" });
+      }
+      let available = bottom - industryPanel.getBoundingClientRect().top - 12;
+      const navigationHeight = navigation?.height || 0;
+      const filterHeight = controls?.getBoundingClientRect().height || 0;
+      const minimum = Math.min(300, Math.max(0, bottom - navigationHeight - filterHeight - 24));
+      if (available < minimum && !industryPositionAdjusted) {
+        industryPositionAdjusted = true;
+        window.scrollBy({ top: minimum - available, behavior: "instant" });
         available = bottom - industryPanel.getBoundingClientRect().top - 12;
       }
       industryPanel.style.setProperty("--industry-available-height", `${Math.max(0, Math.floor(available))}px`);
@@ -341,6 +351,7 @@
     industryPositionAdjusted = false;
     industryToggle?.setAttribute("aria-expanded", "false");
     industryPanel?.style.removeProperty("--industry-available-height");
+    controls?.closest("#services")?.classList.remove("industry-choosing");
   };
   window.addEventListener("scroll", queueIndustryFit, { passive: true });
   window.addEventListener("resize", resetIndustryFit, { passive: true });
@@ -354,7 +365,9 @@
   placeIndustries();
   mobileFilters.addEventListener("change", placeIndustries);
   industryToggle?.addEventListener("click", () => {
-    industryToggle.setAttribute("aria-expanded", String(industryToggle.getAttribute("aria-expanded") !== "true"));
+    const opening = industryToggle.getAttribute("aria-expanded") !== "true";
+    industryToggle.setAttribute("aria-expanded", String(opening));
+    controls?.closest("#services")?.classList.toggle("industry-choosing", opening);
     resetIndustryFit();
   });
   document.addEventListener("keydown", event => {
@@ -365,6 +378,14 @@
   });
   document.addEventListener("click", event => {
     if (mobileFilters.matches && !controls?.contains(event.target)) closeIndustries();
+  });
+  industryApply?.addEventListener("click", () => {
+    closeIndustries();
+    industryToggle?.focus({ preventScroll: true });
+    if (!results?.hidden) requestAnimationFrame(() => {
+      const offset = (topNavigation?.getBoundingClientRect().height || 0) + (controls?.getBoundingClientRect().height || 0) + 24;
+      window.scrollTo({ top: Math.max(0, scrollY + results.getBoundingClientRect().top - offset), behavior: "instant" });
+    });
   });
   const topNavigation = document.querySelector(".site-nav");
   if (topNavigation) new ResizeObserver(([entry]) => {
@@ -416,11 +437,16 @@
       selection.textContent = selectedIndustries.size ? String(selectedIndustries.size) : "";
     }
     const total = visibleCases().length;
+    if (industryApply) {
+      const forms = total % 10 === 1 && total % 100 !== 11 ? "кейс" : total % 10 >= 2 && total % 10 <= 4 && !(total % 100 >= 12 && total % 100 <= 14) ? "кейса" : "кейсов";
+      industryApply.textContent = chosen ? (english ? `Show ${total} cases` : `Показать ${total} ${forms}`) : (english ? "Done" : "Готово");
+    }
+    if (industryToggle) industryToggle.title = [...industryInputs].filter(input => input.checked).map(input => input.closest("label").querySelector("span").textContent).join(", ");
     if (count) count.textContent = (english ? "Matching cases: " : "Найдено кейсов: ") + total;
     if (empty) empty.hidden = total > 0;
     if (mode) {
       writeFilters(mode, preserveHash);
-      if (mode === "push" && catalogue && controls) requestAnimationFrame(() => {
+      if (mode === "push" && catalogue && controls && !mobileIndustriesOpen()) requestAnimationFrame(() => {
         if (controls.getBoundingClientRect().top < (topNavigation?.getBoundingClientRect().bottom || 0)) {
           catalogue.scrollIntoView({ behavior: "instant", block: "start" });
         }
@@ -525,8 +551,8 @@
       current = card;
       const slug = streamOf(card);
       slots.stream.textContent = tags(card, "categories").map(labelOf).join(" / ");
-      slots.kicker.textContent = card.querySelector(".case-kicker")?.textContent.trim() || "";
-      slots.title.textContent = card.querySelector(".case-title")?.textContent.trim() || "";
+      slots.kicker.replaceChildren(...[...(card.querySelector(".case-kicker")?.childNodes || [])].map(node => node.cloneNode(true)));
+      slots.title.replaceChildren(...[...(card.querySelector(".case-title")?.childNodes || [])].map(node => node.cloneNode(true)));
       slots.context.textContent = "";
       slots.context.hidden = true;
       const claims = card.querySelector(".claim-stack");
@@ -601,6 +627,7 @@
     cases.forEach((card) => {
       const summary = card.querySelector("summary");
       summary?.addEventListener("click", (event) => {
+        if (event.target.closest("a[href]")) return;
         event.preventDefault();
         openCase(card);
       });
