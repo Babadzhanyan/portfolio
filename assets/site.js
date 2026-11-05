@@ -646,6 +646,17 @@
       });
     });
 
+    // Related case links are cloned into the dialog with the case content.
+    modal.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href^='#case-']");
+      if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const target = document.getElementById(link.getAttribute("href").slice(1));
+      const card = target?.dataset.caseTarget ? document.getElementById(target.dataset.caseTarget) : target;
+      if (!card?.classList.contains("case-card")) return;
+      event.preventDefault();
+      openCase(card);
+    });
+
     cases.forEach((card) => {
       const summary = card.querySelector("summary");
       summary?.addEventListener("click", (event) => {
