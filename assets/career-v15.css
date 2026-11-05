@@ -151,6 +151,8 @@ body.career.refined .case-library[hidden]{display:none!important}
  body.career.refined .career-document{padding:18px}
  body.career.refined .career-contact{padding:20px}
 }
+body.career.refined .career-partner-delivery{margin:12px 0 0;max-width:none;font-size:16px;line-height:1.5;text-wrap:wrap}
+body.career.refined .path-what{text-wrap:wrap}
 @media(prefers-reduced-motion:reduce){
  body.career.refined .career-project-card,body.career.refined .career-project-links a{transition:none}
  body.career.refined [data-reveal]{opacity:1;transform:none}

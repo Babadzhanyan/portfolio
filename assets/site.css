@@ -900,7 +900,7 @@ h3,h4{font-size:var(--fs-h3);font-weight:var(--w-h3);line-height:var(--lh-h3);le
 .field-strip{gap:var(--s-4);margin-top:var(--s-8);padding:8px max(var(--pad),calc((100% - var(--w-page))/2 + var(--pad))) var(--s-12);scroll-padding-left:max(var(--pad),calc((100% - var(--w-page))/2 + var(--pad)));scrollbar-width:none}
 .field-strip::-webkit-scrollbar{display:none}
 .field-shot img{border-radius:0;height:clamp(300px,32vw,420px);filter:contrast(1.04)}
-.field-shot figcaption{max-width:34ch;margin-top:var(--s-3);padding-top:10px;border-top:1px solid var(--on-forest-line);color:var(--on-forest-2);font-size:var(--fs-small);line-height:var(--lh-small)}
+.field-shot figcaption{max-width:none;margin-top:var(--s-3);padding-top:10px;border-top:1px solid var(--on-forest-line);color:var(--on-forest-2);font-size:var(--fs-small);line-height:var(--lh-small);text-wrap:wrap;white-space:normal;overflow-wrap:normal}
 .js.scrolled .site-nav{box-shadow:var(--shadow-nav)}
 .site-nav::after{display:none}
 .lang-switch,.skill-card,.link-arrow span,.stream-products li{border-radius:0;border-color:var(--line-strong)}
@@ -1695,7 +1695,7 @@ h2,h3,.formats-head{break-after:avoid}
 /* ---------- FIX v9: переносы и выравнивание рядов ---------- */
 
 /* короткие блоки без висячих строк */
-.field-shot figcaption,.reasons p,.reasons strong,.faq p,.faq summary,
+.reasons p,.reasons strong,.faq p,.faq summary,
 .about-intro,.contact-lead,.cv-head,.edge-grid p,.formats-note,.path-what{text-wrap:balance}
 /* сноска отраслей: balance ставил разрыв после предлога, pretty – нет */
 .ind-note{text-wrap:pretty}
