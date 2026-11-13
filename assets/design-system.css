@@ -2,10 +2,11 @@
 @font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SourceSansPro-Regular.ttf") format("truetype")}
 @font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/SourceSansPro-Semibold.ttf") format("truetype")}
 body.design-system{
-  --paper:#fff;--surface:#fff;--ink:#1a1a1a;--muted:#52677d;
-  --accent:#f2aa00;--accent-soft:#fff3d1;--support:#6e8ca8;--forest:#003c72;--forest-deep:#003c72;--line:#d7e1ea;--line-strong:#d7e1ea;
-  --group-surface:#edf3f8;--selected-surface:#fff3d1;--case-soft:#edf3f8;--surface-2:#edf3f8;
-  --forest-50:#edf3f8;--forest-100:#fff3d1;--case-line:#d7e1ea;
+  --paper:#fff;--surface:#fff;--ink:#1a1a1a;--muted:#526059;
+  --accent:#124b38;--accent-soft:#edf4ef;--support:#6b8677;--forest:#124b38;--forest-deep:#0b3729;--line:#dce3dd;--line-strong:#c2d0c7;
+  --group-surface:#edf4ef;--selected-surface:#dce9e1;--case-soft:#edf4ef;--surface-2:#f5f7f5;
+  --forest-50:#edf4ef;--forest-100:#dce9e1;--case-line:#c2d0c7;
+  --on-accent:#fff;--on-accent-muted:#dce9e1;--accent-hover:#0b3729;
   --text:"Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --display:var(--text);--mono:var(--text);
   --radius-control:6px;--radius-group:8px;--radius-layer:10px;
@@ -30,7 +31,7 @@ body.design-system h2{font-size:24px;line-height:1.25}
 body.design-system h3{font-size:18px;line-height:1.3}
 body.design-system .wrap,body.design-system .post-wrap{width:min(var(--w-page),100%);max-width:var(--w-page);padding-inline:var(--pad)}
 body.design-system .section{padding-block:var(--section-space)}
-html.js.reveal-ready body.design-system .reveal,html.js.reveal-ready body.design-system [data-stagger]>*{opacity:1;transform:none}
+html.js.reveal-ready body.refined.design-system .reveal,html.js.reveal-ready body.refined.design-system [data-stagger]>*{opacity:1!important;transform:none!important;transition:none!important}
 body.design-system :is(.hero h1,.home-reading h2,.section>.wrap>h2,.section-lead,.post-foot h2){max-width:none}
 body.design-system .numbered-heading{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:baseline}
 body.design-system .section-number{color:var(--muted);font-size:14px;line-height:1.4;font-weight:400;font-variant-numeric:tabular-nums}
@@ -56,7 +57,8 @@ body.design-system .nav-language-link:is(:hover,:focus-visible){text-decoration:
 body.design-system .nav-resume-utility:is(:hover,:focus-visible){color:var(--forest);text-decoration:none;text-underline-offset:5px}
 body.design-system .btn,body.design-system .btn.large{min-height:46px;padding:12px 20px;border-radius:var(--radius-control);font-size:16px;font-weight:600;box-shadow:none;transform:none}
 body.design-system .btn:hover,body.design-system .btn:active{transform:none;box-shadow:none;text-decoration:none;text-underline-offset:4px}
-body.design-system :is(.hero-actions,.career-actions)>.btn:first-child,body.design-system .site-nav .nav-cta{background:var(--accent);color:var(--ink)}
+body.design-system :is(.hero-actions,.career-actions)>.btn:first-child,body.design-system .site-nav .nav-cta{background:var(--accent);color:var(--on-accent)}
+body.design-system :is(.hero-actions,.career-actions)>.btn:first-child:hover,body.design-system .site-nav .nav-cta:hover{background:var(--accent-hover);color:var(--on-accent)}
 body.design-system .lang-toggle{border-radius:var(--radius-group);background:var(--group-surface)}
 body.design-system .lang-opt{border-radius:var(--radius-control)}
 body.design-system :is(.footer,.footer-legal){border:0}
@@ -102,7 +104,7 @@ body.refined.portfolio.design-system #services .stream-tab[aria-pressed="true"]{
 body.refined.portfolio.design-system #services.has-selection .stream-tab{min-height:50px;padding:10px 12px;gap:8px;border-radius:var(--radius-control)}
 body.refined.portfolio.design-system #services.has-selection .stream-tab-name{font-size:15px;overflow-wrap:normal}
 body.refined.portfolio.design-system #services .catalogue-controls{border-radius:var(--radius-group)}
-body.refined.portfolio.design-system #services.has-selection .catalogue-controls{box-shadow:0 4px 12px rgb(0 60 114 / 8%)}
+body.refined.portfolio.design-system #services.has-selection .catalogue-controls{box-shadow:0 4px 12px rgb(18 75 56 / 8%)}
 body.refined.portfolio.design-system #services .industry-filter{padding:18px 12px;border-radius:var(--radius-group);background:var(--group-surface)}
 body.refined.portfolio.design-system #services .industry-filter legend{padding-inline:6px;font-size:17px}
 body.refined.portfolio.design-system .industry-hint{margin:6px 6px 14px;color:var(--muted)}
@@ -198,7 +200,7 @@ body.career.refined.design-system .career-project-card:hover{box-shadow:none;bac
 body.career.refined.design-system .career-project-title{font-size:22px;line-height:1.25}
 body.career.refined.design-system .career-proof-flow :is(span,strong),body.career.refined.design-system .career-proof-pair strong{border-radius:var(--radius-control)}
 body.career.refined.design-system .career-proof-pair strong{font-size:22px}
-body.career.refined.design-system .career-proof-bars i{height:7px;border-radius:2px;background:#6e8ca8}
+body.career.refined.design-system .career-proof-bars i{height:7px;border-radius:2px;background:var(--support)}
 body.career.refined.design-system .career-proof-bars i.career-bar-primary{background:var(--forest)}
 body.career.refined.design-system .path-list{gap:0;margin-top:28px}
 body.career.refined.design-system .path-item{grid-template-columns:140px minmax(0,1fr);gap:28px;padding:0 0 32px;background:transparent;border-radius:0}
@@ -281,7 +283,7 @@ body.design-system .example-bars{display:grid;gap:18px;margin-top:24px}
 body.design-system .example-bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;font-size:15px}
 body.design-system .example-bar-row strong{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}
 body.design-system .example-bar-track{grid-column:1/-1;height:8px}
-body.design-system .example-bar{height:100%;width:var(--value);background:#6e8ca8;border-radius:2px}
+body.design-system .example-bar{height:100%;width:var(--value);background:var(--support);border-radius:2px}
 body.design-system .example-bar-row:last-child .example-bar{background:var(--forest)}
 body.design-system .example-impact{display:flex;gap:12px 24px;flex-wrap:wrap;margin:24px 0 0;padding-top:18px;border-top:0}
 body.design-system .example-impact>div{display:grid;gap:4px;flex:1 1 180px}
@@ -310,13 +312,13 @@ body.design-system.notfound-page .notfound-links a{padding:18px 20px;border:0;bo
 
 /* Карточки ссылок используют тот же шрифт, цвет и фотографию */
 body.design-system.og-page{width:1200px;height:630px;margin:0}
-body.design-system.og-page .card{width:1200px;height:630px;display:grid;grid-template-columns:720px 480px;background:#fff;overflow:hidden}
+body.design-system.og-page .card{width:1200px;height:630px;display:grid;grid-template-columns:720px 480px;background:var(--group-surface);overflow:hidden}
 body.design-system.og-page .stripe{display:none}
 body.design-system.og-page .left{width:auto;padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
 body.design-system.og-page .eyebrow{font-family:var(--text);font-size:22px;line-height:1.4;letter-spacing:0;text-transform:none;color:var(--muted)}
-body.design-system.og-page .title{font-family:var(--text);font-weight:600;font-size:44px;line-height:1.15;letter-spacing:0;color:var(--ink);margin:20px 0}
+body.design-system.og-page .title{font-family:var(--text);font-weight:600;font-size:44px;line-height:1.15;letter-spacing:0;color:var(--forest);margin:20px 0}
 body.design-system.og-page .sub{font-family:var(--text);font-size:23px;line-height:1.4;color:var(--muted);max-width:none}
-body.design-system.og-page .logos{display:grid;grid-template-columns:max-content max-content;gap:6px 24px;font-family:var(--text);font-size:19px;line-height:1.5;letter-spacing:0;text-transform:none;color:var(--forest)}
+body.design-system.og-page .logos{display:grid;grid-template-columns:max-content max-content;gap:6px 24px;font-family:var(--text);font-size:19px;line-height:1.5;letter-spacing:0;text-transform:none;color:var(--ink)}
 body.design-system.og-page .photo{width:480px;height:630px;padding:24px 24px 24px 0}
 body.design-system.og-page .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;border-radius:var(--radius-group)}
 
@@ -455,7 +457,7 @@ body.design-system.og-page .photo img{width:100%;height:100%;object-fit:cover;ob
  body.refined.portfolio.design-system #services .stream-tab{animation:none!important;transition:none!important;transform:none!important}
 }
 
-/* R39: structure carries the evidence, retaining existing controls with the approved blue and amber palette */
+/* Структура связывает опыт, личный вклад и результат */
 body.design-system .evidence-icon{display:block;flex:none;width:24px;height:24px;color:var(--forest)}
 body.design-system .evidence-label{display:block;color:var(--muted);font-size:14px;line-height:1.35;font-weight:600}
 body.refined.portfolio.design-system .hero-lead{max-width:38em;font-size:20px;line-height:1.45}
@@ -514,7 +516,7 @@ body.career.refined.design-system .career-project-outcome{font-size:16px;line-he
 body.career.refined.design-system .career-proof-flow{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-top:12px;padding:0 0 0 16px}
 body.career.refined.design-system .career-proof-flow>*{position:relative;max-width:100%;padding:9px 13px;border-radius:8px;font-size:15px;line-height:1.3}
 body.career.refined.design-system .career-proof-flow>span+span,body.career.refined.design-system .career-proof-flow>strong{margin-top:14px}
-body.career.refined.design-system .career-proof-flow>*+*::before{content:"";position:absolute;top:-14px;left:18px;height:14px;width:1px;background:#6e8ca8}
+body.career.refined.design-system .career-proof-flow>*+*::before{content:none;display:none}
 body.career.refined.design-system .career-proof-bars{gap:12px;margin-top:14px}
 body.career.refined.design-system .career-proof-bars>div{position:relative;padding-bottom:0;font-size:15px}
 body.career.refined.design-system .career-proof-bars i{height:10px}
@@ -669,3 +671,28 @@ body.design-system :is(.post-rule,.accent-rule,.section-rule){display:none}
 body.refined.portfolio.design-system .decision-route>li+li::before{content:none;display:none}
 
 body.refined.portfolio.design-system :is(.practice-example-links>a,.decision-route>li>a):hover,body.career.refined.design-system .career-result-row:hover{background:var(--selected-surface);border-radius:var(--radius-control)}
+
+/* Зелёный завершает маршрут от знакомства к разговору */
+body.refined.portfolio.design-system .hero .eyebrow{color:var(--forest)}
+body.refined.portfolio.design-system .home-reading-contact .contact-shell,
+body.career.refined.design-system .career-contact{background:var(--forest);color:var(--on-accent)}
+body.refined.portfolio.design-system #contact .contact-inner h2,
+body.career.refined.design-system #contact .career-contact h2{color:var(--on-accent)}
+body.design-system #contact .section-number{color:inherit}
+body.refined.portfolio.design-system #contact .contact-inner .eyebrow,
+body.refined.portfolio.design-system .home-reading-contact .contact-prompt,
+body.refined.portfolio.design-system .home-reading-contact-copy small,
+body.career.refined.design-system #contact .career-contact .contact-lead{color:var(--on-accent-muted)}
+body.refined.portfolio.design-system .home-reading-contact-link{background:rgb(255 255 255 / 10%);color:var(--on-accent)}
+body.refined.portfolio.design-system .home-reading-contact-link:hover{background:rgb(255 255 255 / 18%);color:var(--on-accent)}
+body.career.refined.design-system #contact .career-contact .contact-actions .btn{background:var(--on-accent);color:var(--forest)}
+body.career.refined.design-system #contact .career-contact .contact-actions .btn:hover{background:var(--selected-surface);color:var(--forest)}
+body.career.refined.design-system #contact .career-contact .contact-email{color:var(--on-accent)}
+body.career.refined.design-system #contact .career-contact .contact-email:is(:hover,:focus-visible){background:rgb(255 255 255 / 14%);color:var(--on-accent)}
+body.refined.portfolio.design-system .home-reading-contact :focus-visible,
+body.career.refined.design-system .career-contact a:focus-visible{outline-color:var(--on-accent)}
+@media print{
+ body.refined.portfolio.design-system .home-reading-contact .contact-shell,
+ body.career.refined.design-system .career-contact{background:#fff;color:var(--ink)}
+ body.design-system #contact :is(h2,p,a,small,.eyebrow){color:var(--ink)!important}
+}
