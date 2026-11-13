@@ -461,7 +461,7 @@
     const total = visibleCases().length;
     if (industryApply) {
       const forms = total % 10 === 1 && total % 100 !== 11 ? "кейс" : total % 10 >= 2 && total % 10 <= 4 && !(total % 100 >= 12 && total % 100 <= 14) ? "кейса" : "кейсов";
-      industryApply.textContent = chosen ? (english ? `Show ${total} cases` : `Показать ${total} ${forms}`) : (english ? "Done" : "Готово");
+      industryApply.textContent = chosen ? (english ? `Show ${total} ${total === 1 ? "case" : "cases"}` : `Показать ${total} ${forms}`) : (english ? "Done" : "Готово");
     }
     if (industryToggle) industryToggle.title = [...industryInputs].filter(input => input.checked).map(input => input.closest("label").querySelector("span").textContent).join(", ");
     if (count) count.textContent = (english ? "Matching cases: " : "Найдено кейсов: ") + total;
@@ -526,7 +526,7 @@
   document.querySelector("[data-reset-filters]")?.addEventListener("click", resetFilters);
   document.querySelectorAll('.nav-links a[href="#services"]').forEach(link => link.addEventListener("click", event => {
     event.preventDefault();
-    resetFilters();
+    applyFilters("replace");
     catalogue?.scrollIntoView({ behavior: "instant", block: "start" });
   }));
   streamHook = (slug, doScroll) => {
