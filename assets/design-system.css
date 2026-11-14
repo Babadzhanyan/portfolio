@@ -330,7 +330,8 @@ body.design-system.og-page .photo img{width:100%;height:100%;object-fit:cover;ob
 }
 @media(max-width:900px){
  body.design-system .site-nav .wrap{gap:16px}
- body.design-system .nav-links{top:55px;gap:0}
+ body.design-system .nav-links{top:55px;gap:0;border-bottom:0}
+ body.design-system .site-nav .nav-links a{border-bottom:0}
  body.refined.portfolio.design-system #services .catalogue-layout{display:block}
  body.refined.portfolio.design-system #services .industry-filter{padding:12px}
  body.refined.portfolio.design-system #services:is(.has-selection,.industry-choosing) .stream-tab{min-height:44px;padding:8px 12px}

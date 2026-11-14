@@ -123,13 +123,27 @@
       menu.classList.toggle("open", open);
       menuButton.setAttribute("aria-expanded", String(open));
       menuButton.setAttribute("aria-label", english ? (open ? "Close menu" : "Open menu") : (open ? "Закрыть меню" : "Открыть меню"));
-      if (open && focusFirst) menu.querySelector("a")?.focus();
+      if (open && focusFirst) menu.querySelector("a")?.focus({ preventScroll: true });
     };
     menuButton.addEventListener("click", () => {
       const open = !menu.classList.contains("open");
       setMenu(open, open);
     });
-    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", event => {
+      if (!menu.classList.contains("open") || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const hash = link.getAttribute("href");
+      const section = hash?.startsWith("#") && document.getElementById(hash.slice(1));
+      setMenu(false);
+      if (!section) return;
+      event.preventDefault();
+      if (location.hash !== hash) history.pushState(null, "", hash);
+      requestAnimationFrame(() => {
+        // Transfer focus before scrolling, including when returning to the same hash on iOS.
+        if (!section.hasAttribute("tabindex")) section.tabIndex = -1;
+        section.focus({ preventScroll: true });
+        section.scrollIntoView({ behavior: "instant", block: "start" });
+      });
+    }));
     document.addEventListener("click", (event) => {
       if (menu.classList.contains("open") && !event.target.closest(".site-nav")) setMenu(false);
     });
@@ -425,6 +439,29 @@
   const intersects = (selection, values) => !selection.size || values.some(value => selection.has(value));
   const visibleCases = () => cases.filter(card => !card.hidden);
 
+  const streamRow = streamTabs[0]?.parentElement;
+  let renderedAreaSelection = "";
+  const revealSelectedArea = () => {
+    if (!streamRow || streamRow.scrollWidth <= streamRow.clientWidth) return;
+    const lastSelected = [...selectedAreas].pop();
+    const tab = streamTabs.find(item => item.dataset.stream === lastSelected);
+    if (!tab) return;
+    const rowBounds = streamRow.getBoundingClientRect();
+    const tabBounds = tab.getBoundingClientRect();
+    if (tabBounds.left < rowBounds.left || tabBounds.right > rowBounds.right) {
+      // Scroll only the direction selector, keeping the page and the user's focus in place.
+      streamRow.scrollLeft += (tabBounds.left + tabBounds.right - rowBounds.left - rowBounds.right) / 2;
+    }
+  };
+  if (streamRow) {
+    let previousWidth = streamRow.clientWidth;
+    new ResizeObserver(() => {
+      if (streamRow.clientWidth === previousWidth) return;
+      previousWidth = streamRow.clientWidth;
+      revealSelectedArea();
+    }).observe(streamRow);
+  }
+
   const writeFilters = (mode, preserveHash = false) => {
     const url = new URL(location.href);
     url.searchParams.delete("company");
@@ -466,6 +503,11 @@
     if (industryToggle) industryToggle.title = [...industryInputs].filter(input => input.checked).map(input => input.closest("label").querySelector("span").textContent).join(", ");
     if (count) count.textContent = (english ? "Matching cases: " : "Найдено кейсов: ") + total;
     if (empty) empty.hidden = total > 0;
+    const areaSelection = [...selectedAreas].join(",");
+    if (areaSelection !== renderedAreaSelection) {
+      renderedAreaSelection = areaSelection;
+      revealSelectedArea();
+    }
     if (mode) {
       writeFilters(mode, preserveHash);
       if (mode === "push" && catalogue && controls && !mobileIndustriesOpen()) requestAnimationFrame(() => {
@@ -525,6 +567,7 @@
   };
   document.querySelector("[data-reset-filters]")?.addEventListener("click", resetFilters);
   document.querySelectorAll('.nav-links a[href="#services"]').forEach(link => link.addEventListener("click", event => {
+    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     applyFilters("replace");
     catalogue?.scrollIntoView({ behavior: "instant", block: "start" });
