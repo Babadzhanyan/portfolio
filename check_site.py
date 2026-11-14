@@ -38,7 +38,8 @@ CASE_IDS = {
     "case-bank-lean-construction", "case-development-financial-model",
     "case-warehouse-sublease-model", "case-bakery-distributor-bi",
     "case-mos-product-funnel", "case-defi-fundraising",
-    "case-boutique-competitive-research",
+    "case-boutique-competitive-research", "case-ai-recruitment",
+    "case-it-pricing-benchmark", "case-nationwide-price-monitoring",
 }
 ALIASES = {
     "case-rocket-infra": "case-rocket-data",
@@ -59,7 +60,19 @@ ALIASES = {
     "case-rocket-vet-analytics": "case-rocket-vet-forms",
     "case-rocket-1c-advisory": "case-rocket-ai-1c",
     "case-rocket-legal-ai": "case-rocket-ai-1c",
-    "case-rocket-pricing": "case-rocket-online",
+    "case-rocket-pricing": "case-nationwide-price-monitoring",
+}
+CAREER_HIGHLIGHTS = {
+    "case-glonass-office", "case-yandex-client-development",
+    "case-steel-transformation", "case-b2b-saas",
+}
+CAREER_STAGE_CASES = {
+    "experience-independent": {"case-apparel-sell-side", "case-fmcg-buy-side", "case-developer-workforce"},
+    "experience-glonass": {"case-glonass-strategy", "case-glonass-incentives"},
+    "experience-yandex": {"case-yandex-client-portfolios"},
+    "experience-yakov": {"case-agri-market-model"},
+    "experience-mckinsey": {"case-uzbek-bank-kpi", "case-middle-east-sustainability"},
+    "experience-early": {"case-development-financial-model", "case-telecom-analyst-training"},
 }
 HOME_SECTIONS = {"about", "services", "field", "how", "faq", "contact"}
 
@@ -157,13 +170,13 @@ def named(node, doc):
 def check_cases(page, doc):
     cards = doc.classes("case-card")
     found = {card.attrs.get("id") for card in cards}
-    if len(cards) != 42 or found != CASE_IDS:
-        note(f"Дефект {page}: каталог требует 42 кейса, получено {len(cards)}, "
+    if len(cards) != len(CASE_IDS) or found != CASE_IDS:
+        note(f"Дефект {page}: каталог требует {len(CASE_IDS)} кейсов, получено {len(cards)}, "
              f"требуются {sorted(CASE_IDS - found)}, лишние {sorted(found - CASE_IDS, key=str)}")
     aliases = doc.classes("case-alias")
     actual_aliases = {node.attrs.get("id"): node.attrs.get("data-case-target") for node in aliases}
-    if len(aliases) != 19 or actual_aliases != ALIASES:
-        note(f"Дефект {page}: исторические адреса требуют 19 согласованных переходов к кейсам")
+    if len(aliases) != len(ALIASES) or actual_aliases != ALIASES:
+        note(f"Дефект {page}: исторические адреса требуют {len(ALIASES)} согласованных переходов к кейсам")
     for card in cards:
         case_id = card.attrs.get("id", "кейс")
         categories = set(card.attrs.get("data-categories", "").split())
@@ -353,15 +366,27 @@ def check_career(page, html):
     doc = Document(html)
     required = {"main", "navmenu", "profile", "projects", "path", "skills", "contact", "resume",
                 "case-glonass", "case-yandex", "case-ai", "case-steel"}
-    stages = {"experience-" + name for name in ("independent", "glonass", "yandex", "yakov", "mckinsey", "early")}
+    stages = set(CAREER_STAGE_CASES)
     require_ids(page, doc, required | stages)
     path_items = doc.classes("path-item")
     if len(path_items) != 6 or {node.attrs.get("id") for node in path_items} != stages:
         note(f"Дефект {page}: карьера требует шесть этапов опыта")
     for stage in path_items:
-        for cls in ("path-what", "path-where", "path-when", "path-note"):
-            if not any(node.has_class(cls) and node.text() for node in stage.descendants()):
-                note(f"Дефект {page}: этап {stage.attrs.get('id')} требует заполненный элемент {cls}")
+        stage_id = stage.attrs.get("id")
+        nodes = list(stage.descendants())
+        for cls in ("path-what", "path-where", "path-when"):
+            if not any(node.has_class(cls) and node.text() for node in nodes):
+                note(f"Дефект {page}: этап {stage_id} требует заполненный элемент {cls}")
+        if not any(node.has_class("path-mandate") and any(part.strip() for part in node.parts) for node in nodes):
+            note(f"Дефект {page}: этап {stage_id} требует описание мандата")
+        rows = [node for node in nodes if node.has_class("career-result-row")]
+        row_cases = [row.attrs.get("href", "").removeprefix("#") for row in rows]
+        if len(row_cases) != len(set(row_cases)) or set(row_cases) != CAREER_STAGE_CASES.get(stage_id):
+            note(f"Дефект {page}: этап {stage_id} требует выбранные примеры действий и результатов")
+        for row in rows:
+            if row.tag != "a" or any(not any(node.has_class(cls) and node.text() for node in row.children)
+                                     for cls in ("career-action-copy", "career-result-copy")):
+                note(f"Дефект {page}: этап {stage_id} требует действие и результат в каждой ссылке на кейс")
     skills = doc.classes("skill-card")
     if len(skills) != 3:
         note(f"Дефект {page}: карьера требует три карточки навыков, получено {len(skills)}")
@@ -373,8 +398,7 @@ def check_career(page, html):
     libraries = doc.classes("case-library")
     if (len(libraries) != 1 or "hidden" not in libraries[0].attrs
             or any(not node.within(libraries[0]) for node in cards + aliases)):
-        note(f"Дефект {page}: карьера требует скрытую библиотеку всех 42 кейсов и 19 исторических адресов")
-    linked = set()
+        note(f"Дефект {page}: карьера требует скрытую библиотеку всех {len(CASE_IDS)} кейсов и {len(ALIASES)} исторических адресов")
     for link in doc.elements:
         href = link.attrs.get("href", "")
         if link.tag != "a" or "#case-" not in href:
@@ -384,9 +408,16 @@ def check_career(page, html):
         if (not href.startswith("#case-") or canonical not in CASE_IDS
                 or link.attrs.get("aria-haspopup") != "dialog"):
             note(f"Дефект {page}: ссылка {href} требует окно проекта на текущей странице")
-        linked.add(canonical)
-    if CASE_IDS - linked:
-        note(f"Дефект {page}: этапы карьеры требуют ссылки на кейсы {sorted(CASE_IDS - linked)}")
+    highlights = doc.classes("career-project-card")
+    if (len(highlights) != len(CAREER_HIGHLIGHTS)
+            or {link.attrs.get("href", "").removeprefix("#") for link in highlights} != CAREER_HIGHLIGHTS
+            or any(link.tag != "a" or not named(link, doc) for link in highlights)):
+        note(f"Дефект {page}: карьера требует четыре выбранных проекта")
+    all_projects = doc.classes("career-all-projects")
+    if (len(all_projects) != 1 or all_projects[0].tag != "a"
+            or all_projects[0].attrs.get("href") != "../index.html#services"
+            or str(len(CASE_IDS)) not in all_projects[0].text().split()):
+        note(f"Дефект {page}: карьера требует переход в полный каталог своей языковой версии")
 
 
 for page in ("career/index.html", "en/career/index.html"):
@@ -477,13 +508,16 @@ if "--self-check" in sys.argv:
         home = lambda source: check_home("index.html", source)
         career = lambda source: check_career("career/index.html", source)
         career_html = read("career/index.html")
-        detects("потеря кейса", home, ru, 'class="case-card', 'class="removed-card', "получено 41")
+        detects("потеря кейса", home, ru, 'class="case-card', 'class="removed-card', f"получено {len(CASE_IDS) - 1}")
         detects("потеря адреса кейса", home, ru, 'id="case-fmcg-buy-side"', 'id="removed-case"', "case-fmcg-buy-side")
         detects("потеря направления", home, ru, 'data-stream="strategy"', 'data-removed="strategy"', "четыре направления")
         detects("исключительный выбор направления", home, ru, 'aria-pressed="false"', 'aria-selected="false"', "кнопку множественного выбора")
         detects("исключительный выбор отрасли", home, ru, 'type="checkbox"', 'type="radio"', "именованный флажок")
-        detects("расхождение счётчика", home, ru, 'class="stream-tab-count">15', 'class="stream-tab-count">999', "счётчик направления strategy")
-        detects("потеря исторического адреса", home, ru, 'data-case-target="case-rocket-data"', 'data-case-target="missing"', "19 согласованных переходов")
+        strategy_count = re.search(r'data-stream="strategy"[^>]*>.*?(class="stream-tab-count">\d+)', ru, re.S)
+        if not strategy_count:
+            raise AssertionError("Самопроверка требует счётчик направления strategy")
+        detects("расхождение счётчика", home, ru, strategy_count.group(1), 'class="stream-tab-count">999', "счётчик направления strategy")
+        detects("потеря исторического адреса", home, ru, 'data-case-target="case-rocket-data"', 'data-case-target="missing"', f"{len(ALIASES)} согласованных переходов")
         detects("потеря отрасли кейса", home, ru, 'data-industries="manufacturing"', 'data-industries="missing"', "требует отрасли из каталога")
         detects("потеря поля ситуации", home, ru, 'class="fact fact--situation"', 'class="fact fact--removed"', "единственное поле fact--situation")
         detects("потеря материалов заказчика", home, ru, 'class="fact fact--artifacts"', 'class="fact fact--removed"', "единственное поле fact--artifacts")
@@ -512,6 +546,11 @@ if "--self-check" in sys.argv:
         detects("нарушение порядка полей", home, ru, first_fields.group(0),
                 first_fields.group(2) + first_fields.group(1), "требует порядок ситуация, задача, действия, результат")
         detects("потеря этапа карьеры", career, career_html, 'class="path-item ', 'class="removed-item ', "шесть этапов")
+        detects("потеря мандата", career, career_html, 'class="path-mandate"', 'class="removed-mandate"', "описание мандата")
+        detects("потеря результата", career, career_html, 'class="career-result-copy"', 'class="removed-result"', "действие и результат")
+        detects("потеря выбранной ссылки этапа", career, career_html, 'class="career-result-row"', 'class="removed-row"', "выбранные примеры")
+        detects("потеря выбранного проекта", career, career_html, 'class="career-project-card"', 'class="removed-card"', "четыре выбранных проекта")
+        detects("потеря перехода в полный каталог", career, career_html, '../index.html#services', '../index.html#contact', "полный каталог")
         detects("потеря карточки навыков", career, career_html, 'class="skill-card', 'class="removed-skill', "три карточки навыков")
         detects("видимая библиотека", career, career_html, 'class="case-library" hidden="True"', 'class="case-library"', "скрытую библиотеку")
         detects("переход с карьеры на другую страницу", career, career_html, 'href="#case-glonass-office"', 'href="../#case-glonass-office"', "на текущей странице")
@@ -540,7 +579,7 @@ if defects:
     print(f"\nПроверка выявила дефекты: {len(defects)}")
     sys.exit(1)
 
-print(f"Проверка подтвердила структуру четырёх страниц: по 42 кейса и 19 исторических адресов, "
+print(f"Проверка подтвердила структуру четырёх страниц: по {len(CASE_IDS)} кейсов и {len(ALIASES)} исторических адресов, "
       f"каждый кейс содержит ситуацию, задачу, действия, результат и материалы заказчика, "
       f"главные страницы содержат 4 направления и 10 отраслей, карьера содержит 6 этапов и 3 карточки навыков, "
       f"версия ассетов {declared_version}")
