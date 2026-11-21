@@ -160,6 +160,18 @@ def require_ids(page, doc, required):
         note(f"Дефект {page}: требуются идентификаторы {missing}")
 
 
+def check_section_headings(page, doc):
+    for heading in doc.elements:
+        if heading.tag != "h2":
+            continue
+        if heading.has_class("numbered-heading") or any(
+            node.has_class("section-number") or
+            (node.attrs.get("aria-hidden") == "true" and node.text().strip().isdigit())
+            for node in heading.descendants()
+        ):
+            note(f"Дефект {page}: декоративный номер раздела в заголовке {heading.text()}")
+
+
 def named(node, doc):
     if node.attrs.get("aria-label", "").strip() or node.text():
         return True
@@ -265,6 +277,7 @@ def check_dialog(page, doc):
 
 def check_home(page, html):
     doc = Document(html)
+    check_section_headings(page, doc)
     sections = {node.attrs.get("id") for node in doc.elements if node.tag == "section"}
     missing = sorted(HOME_SECTIONS - sections)
     if missing:
@@ -364,6 +377,7 @@ for page in PAGES:
 
 def check_career(page, html):
     doc = Document(html)
+    check_section_headings(page, doc)
     required = {"main", "navmenu", "profile", "projects", "path", "skills", "contact", "resume",
                 "case-glonass", "case-yandex", "case-ai", "case-steel"}
     stages = set(CAREER_STAGE_CASES)
@@ -508,6 +522,11 @@ if "--self-check" in sys.argv:
         home = lambda source: check_home("index.html", source)
         career = lambda source: check_career("career/index.html", source)
         career_html = read("career/index.html")
+        title_span = '<span class="section-title-text">'
+        for label, checker, source in (("главная", home, ru), ("резюме", career, career_html)):
+            detects(f"номер раздела ({label})", checker, source, title_span,
+                    '<span aria-hidden="true" class="section-number">3</span>' + title_span,
+                    "декоративный номер раздела")
         detects("потеря кейса", home, ru, 'class="case-card', 'class="removed-card', f"получено {len(CASE_IDS) - 1}")
         detects("потеря адреса кейса", home, ru, 'id="case-fmcg-buy-side"', 'id="removed-case"', "case-fmcg-buy-side")
         detects("потеря направления", home, ru, 'data-stream="strategy"', 'data-removed="strategy"', "четыре направления")
