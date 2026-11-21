@@ -18,7 +18,7 @@
 body.design-system { --title-face: "Source Serif 4", Georgia, serif; }
 body.editorial-site #top.hero h1,
 body.editorial-site #profile h1,
-body.editorial-site main h2.numbered-heading .section-title-text,
+body.editorial-site main h2 > .section-title-text,
 body.editorial-site #caseModal #caseModalTitle,
 body.design-system:is(.editorial,.legal-page,.notfound-page) h1,
 body.design-system.editorial main h2 {
@@ -32,18 +32,14 @@ body.editorial-site #profile h1 {
   font-size: clamp(36px, 4.35vw, 65px);
   line-height: 1.085;
 }
-body.editorial-site main h2.numbered-heading .section-title-text {
+body.editorial-site main h2 > .section-title-text {
+  display: block;
   font-size: clamp(28px, 3vw, 43px);
   line-height: 1.12;
 }
 body.editorial-site #caseModal #caseModalTitle {
   font-size: clamp(26px, 2.55vw, 37px);
   line-height: 1.13;
-}
-body.editorial-site .numbered-heading > .section-number {
-  align-self: baseline;
-  font-family: var(--text);
-  font-variant-numeric: tabular-nums;
 }
 @media (max-width: 540px) {
   body.editorial-site #top.hero h1, body.editorial-site #profile h1 {

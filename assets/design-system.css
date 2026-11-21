@@ -33,9 +33,6 @@ body.design-system .wrap,body.design-system .post-wrap{width:min(var(--w-page),1
 body.design-system .section{padding-block:var(--section-space)}
 html.js.reveal-ready body.refined.design-system .reveal,html.js.reveal-ready body.refined.design-system [data-stagger]>*{opacity:1!important;transform:none!important;transition:none!important}
 body.design-system :is(.hero h1,.home-reading h2,.section>.wrap>h2,.section-lead,.post-foot h2){max-width:none}
-body.design-system .numbered-heading{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:baseline}
-body.design-system .section-number{color:var(--muted);font-size:14px;line-height:1.4;font-weight:400;font-variant-numeric:tabular-nums}
-body.design-system .section-title-text{min-width:0}
 body.design-system .section-lead{font-size:18px;line-height:1.5;margin-top:12px}
 body.design-system .eyebrow{font-size:14px;color:var(--muted);margin-bottom:10px;text-transform:none}
 body.design-system .eyebrow::after{display:none}
@@ -419,7 +416,6 @@ body.design-system.og-page .photo img{width:100%;height:100%;object-fit:cover;ob
  body.career.refined.design-system .skill-label{margin-bottom:16px}
 }
 @media(max-width:600px){
- body.design-system .numbered-heading{grid-template-columns:18px minmax(0,1fr);gap:10px}
  body.refined.portfolio.design-system #services .stream-tab{min-height:196px;padding:16px;gap:10px}
  body.refined.portfolio.design-system #services .stream-tab-name{font-size:18px}
  body.refined.portfolio.design-system #services .stream-tab-intro{font-size:14px}
@@ -712,7 +708,6 @@ body.refined.portfolio.design-system .home-reading-contact .contact-shell,
 body.career.refined.design-system .career-contact{background:var(--forest);color:var(--on-accent)}
 body.refined.portfolio.design-system #contact .contact-inner h2,
 body.career.refined.design-system #contact .career-contact h2{color:var(--on-accent)}
-body.design-system #contact .section-number{color:inherit}
 body.refined.portfolio.design-system #contact .contact-inner .eyebrow,
 body.refined.portfolio.design-system .home-reading-contact .contact-prompt,
 body.refined.portfolio.design-system .home-reading-contact-copy small,

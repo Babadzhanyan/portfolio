@@ -10,7 +10,6 @@ body.portfolio.editorial-site #field .field-shell {
   color: #fff;
 }
 body.portfolio.editorial-site #field .field-head h2 { color: #fff; }
-body.portfolio.editorial-site #field .section-number { color: #c8dbcf; }
 body.portfolio.editorial-site #field .project-photographs {
   display: grid;
   grid-template-columns: minmax(0, 1.92fr) repeat(2, minmax(0, 1fr));
@@ -120,5 +119,5 @@ body.portfolio.editorial-site #contact .home-reading-contact-link:focus-visible 
 }
 @media print {
   body.portfolio.editorial-site #field .field-shell { background: white; color: #1a1a1a; }
-  body.portfolio.editorial-site #field :is(.section-number, h2, figcaption) { color: #1a1a1a; }
+  body.portfolio.editorial-site #field :is(h2, figcaption) { color: #1a1a1a; }
 }
