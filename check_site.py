@@ -65,7 +65,7 @@ ALIASES = {
     "case-rocket-pricing": "case-nationwide-price-monitoring",
 }
 CAREER_HIGHLIGHTS = {
-    "case-glonass-office", "case-yandex-client-development",
+    "case-glonass-office", "case-yandex-sales",
     "case-steel-transformation", "case-b2b-saas",
 }
 CAREER_STAGE_CASES = {
