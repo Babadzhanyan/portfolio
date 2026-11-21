@@ -1,5 +1,31 @@
 /* The career page follows the sequence of roles. The case studies supply the evidence. */
 @media screen {
+  body.career.refined.editorial-site .wrap { padding-inline: var(--pad); }
+  body.career.premium-career.editorial-site :is(#profile, #path, #projects, #skills) {
+    padding-block: var(--space-chapter);
+  }
+  body.career.premium-career.editorial-site #profile .career-role {
+    margin-bottom: var(--space-label);
+    line-height: var(--leading-ui);
+  }
+  body.career.premium-career.editorial-site #profile .section-lead {
+    font-size: var(--type-lead);
+    line-height: var(--leading-copy);
+    margin-top: var(--space-related);
+  }
+  body.career.premium-career.editorial-site #profile .career-actions,
+  body.career.premium-career.editorial-site #path .path-list {
+    margin-top: var(--space-group);
+  }
+  body.career.premium-career.editorial-site #path .path-what {
+    line-height: var(--leading-heading);
+  }
+  body.career.premium-career.editorial-site :is(#projects .career-selected-grid, #skills .skill-grid) {
+    margin-top: var(--space-group);
+  }
+  body.career.premium-career.editorial-site #skills {
+    padding-bottom: var(--space-group);
+  }
   body.career.premium-career #path {
     background: white;
   }
@@ -41,7 +67,7 @@
   body.career.premium-career #path .path-mandate {
     max-width: none;
     font-size: 16px;
-    line-height: 1.48;
+    line-height: var(--leading-copy);
   }
 
   body.career.premium-career #path .career-partner-scope {
@@ -104,7 +130,7 @@
 
   body.career.premium-career #projects .career-project-outcome {
     font-size: 16px;
-    line-height: 1.44;
+    line-height: var(--leading-copy);
   }
 
   body.career.premium-career #projects #case-glonass {

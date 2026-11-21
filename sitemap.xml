@@ -24,4 +24,58 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/career/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/career/" />
   </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/services/strategy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/strategy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/strategy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/strategy/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/en/services/strategy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/strategy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/strategy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/strategy/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/services/deals/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/deals/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/deals/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/deals/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/en/services/deals/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/deals/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/deals/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/deals/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/services/efficiency/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/efficiency/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/efficiency/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/efficiency/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/en/services/efficiency/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/efficiency/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/efficiency/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/efficiency/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/services/transformation/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/transformation/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/transformation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/transformation/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/en/services/transformation/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://babadzhanyan.github.io/portfolio/services/transformation/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://babadzhanyan.github.io/portfolio/en/services/transformation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://babadzhanyan.github.io/portfolio/services/transformation/" />
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/blog/</loc>
+  </url>
+  <url>
+    <loc>https://babadzhanyan.github.io/portfolio/blog/proverka-prognoza-prodavtsa/</loc>
+  </url>
 </urlset>

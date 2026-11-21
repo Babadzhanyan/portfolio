@@ -1,0 +1,298 @@
+{
+  "strategy": {
+    "ru": {
+      "name": "Стратегия роста",
+      "question": "В какой рынок, продукт или канал направить инвестиции?",
+      "lead": "Помогаю собственнику и генеральному директору выбрать, куда вкладывать капитал. Сопоставляю рынки, спрос и экономику вариантов в одной модели",
+      "outputs": [
+        [
+          "Карта возможностей",
+          "Размер сегментов, конкуренты и условия входа показывают, какие гипотезы стоит проверять"
+        ],
+        [
+          "Сценарная модель",
+          "Цена, объём продаж и затраты показывают, при каких условиях выбранное направление окупится"
+        ],
+        [
+          "Решение для совета директоров",
+          "Приоритетные инициативы, потребность в инвестициях и первые контрольные точки"
+        ]
+      ],
+      "metric": "5 лет",
+      "caption": "горизонт стратегии, которую я защитил для ГЛОНАСС",
+      "proof": [
+        [
+          "case-glonass-strategy",
+          "Стратегия диверсификации ГЛОНАСС",
+          "Защитил стратегию перед советом директоров и министром транспорта. Утроение EBITDA за пять лет вошло в неё как цель"
+        ],
+        [
+          "case-it-pricing-benchmark",
+          "Ценовая стратегия ИТ-компании",
+          "Сформировал исходную выборку из 17 компаний для сравнения тарифов и пакетов. Клиент получил матрицу сравнения и предложения по ценам"
+        ]
+      ],
+      "ask": "Какое направление роста вы оцениваете?",
+      "brief": "Для первого разговора достаточно назвать варианты, которые рассматриваете, и срок инвестиционного решения",
+      "contact": "Хочу обсудить стратегию роста"
+    },
+    "en": {
+      "name": "Growth strategy",
+      "question": "Which market, product or channel deserves investment?",
+      "lead": "I help owners and CEOs decide where to invest. I compare demand, competition and unit economics so the board can weigh alternatives on the same assumptions",
+      "outputs": [
+        [
+          "Market opportunity map",
+          "Segment sizes, competitors and barriers to entry narrow the field to opportunities worth testing"
+        ],
+        [
+          "Investment scenarios",
+          "A working model shows how price, volume and costs affect the return on each option"
+        ],
+        [
+          "Board recommendation",
+          "A shortlist of initiatives with capital requirements and milestones for the first investment decision"
+        ]
+      ],
+      "metric": "5 years",
+      "caption": "the planning horizon of the GLONASS strategy I presented to its board",
+      "proof": [
+        [
+          "case-glonass-strategy",
+          "Diversification strategy for GLONASS",
+          "I presented the strategy to the board and the Minister of Transport. Tripling EBITDA over five years was a target in the plan"
+        ],
+        [
+          "case-it-pricing-benchmark",
+          "Pricing for an accounting software provider",
+          "I designed a pricing study with an initial sample of 17 providers. The client received a comparison matrix and pricing recommendations"
+        ]
+      ],
+      "ask": "Which growth opportunity are you evaluating?",
+      "brief": "Share the options under consideration and the date of your investment decision",
+      "contact": "I’d like to discuss a growth strategy project"
+    }
+  },
+  "deals": {
+    "ru": {
+      "name": "Сопровождение сделок M&A",
+      "question": "Сколько стоит бизнес и на каких условиях заключать сделку?",
+      "lead": "Помогаю покупателю обосновать цену и условия оплаты, а собственнику подготовить бизнес к продаже. В начале проекта согласуем сторону сделки, критерии решения и состав проверки",
+      "outputs": [
+        [
+          "Оценка бизнеса",
+          "Сценарии выручки, затрат и денежных потоков задают диапазон стоимости и показывают чувствительность к допущениям"
+        ],
+        [
+          "Проверка инвестиционной гипотезы",
+          "Сопоставляю прогноз продавца с клиентской базой, рынком и потребностью бизнеса в деньгах"
+        ],
+        [
+          "Позиция для переговоров",
+          "Материалы для комитета или покупателя связывают цену, финансирование и условия оплаты"
+        ]
+      ],
+      "metric": "≈ $16 млн",
+      "caption": "оценка молочного бизнеса. Обоснование покупки одобрили инвестиционный и кредитный комитеты",
+      "proof": [
+        [
+          "case-fmcg-buy-side",
+          "Покупка молочного производства",
+          "Инвестиционный и кредитный комитеты одобрили подготовленное обоснование покупки"
+        ],
+        [
+          "case-apparel-sell-side",
+          "Продажа бренда одежды",
+          "Вёл сделку на стороне продавца от подготовки материалов до согласования договоров. Стратегический инвестор купил бизнес стоимостью около $2 млн"
+        ]
+      ],
+      "ask": "Вы покупаете или продаёте бизнес?",
+      "brief": "Укажите отрасль, стадию переговоров и ближайшее решение. Название компании можно обсудить при знакомстве",
+      "contact": "Хочу обсудить сопровождение сделки"
+    },
+    "en": {
+      "name": "M&A advisory",
+      "question": "What is the business worth, and which terms should you negotiate?",
+      "lead": "I help buyers test the investment case and sellers prepare for negotiations. We agree on the decision, the scope of diligence and the material assumptions before modelling begins",
+      "outputs": [
+        [
+          "Business valuation",
+          "Revenue, cost and cash flow scenarios show a range of values and the assumptions that move it"
+        ],
+        [
+          "Commercial due diligence",
+          "I test the seller’s forecast against customer demand, market evidence and funding needs"
+        ],
+        [
+          "Negotiating position",
+          "Materials for the committee or buyer connect the valuation to financing and payment terms"
+        ]
+      ],
+      "metric": "≈ $16m",
+      "caption": "valuation of a dairy business. The investment and credit committees approved the acquisition case",
+      "proof": [
+        [
+          "case-fmcg-buy-side",
+          "Acquisition of a dairy business",
+          "The investment and credit committees approved the commercial and financial case for the acquisition"
+        ],
+        [
+          "case-apparel-sell-side",
+          "Sale of an apparel brand",
+          "I led the seller’s work from preparation through contract negotiations. A strategic investor acquired the business, valued at about $2m"
+        ]
+      ],
+      "ask": "Are you evaluating an acquisition or preparing a sale?",
+      "brief": "Share the sector, the stage of discussions and the next decision. We can discuss the company’s identity in person",
+      "contact": "I’d like to discuss M&A advisory"
+    }
+  },
+  "efficiency": {
+    "ru": {
+      "name": "Операционная эффективность",
+      "question": "Что ограничивает выпуск, производительность или маржу?",
+      "lead": "Помогаю операционному директору найти причину потерь и выбрать изменения в производстве или функциях поддержки. Сначала согласуем базовый период и способ проверки эффекта",
+      "outputs": [
+        [
+          "Диагностика потерь",
+          "Сопоставляю показатели процессов, загрузку сотрудников и наблюдения на рабочем месте"
+        ],
+        [
+          "Расчёт эффекта",
+          "Модель показывает исходный уровень, допущения и вклад каждой инициативы в выпуск, затраты или маржу"
+        ],
+        [
+          "План проверки",
+          "Владелец процесса получает показатель, источник данных и способ сравнить результат с базой"
+        ]
+      ],
+      "metric": "+10%",
+      "caption": "командный результат по годовому темпу выпуска на металлургическом производстве",
+      "proof": [
+        [
+          "case-steel-transformation",
+          "Управление производственными показателями",
+          "В составе Yakov & Partners внедрил систему работы с показателями. Годовой темп выпуска вырос на 100 тыс. тонн"
+        ],
+        [
+          "case-developer-workforce",
+          "Численность семи функций девелопера",
+          "Разработал модели нагрузки и численности. Расчётный потенциал оптимизации составил 10–30%"
+        ]
+      ],
+      "ask": "Какой процесс вы хотите улучшить?",
+      "brief": "Назовите показатель, который вас беспокоит, и участок, за который отвечает ваша команда",
+      "contact": "Хочу обсудить операционную эффективность"
+    },
+    "en": {
+      "name": "Operational improvement",
+      "question": "What is holding back output, productivity or margins?",
+      "lead": "I work with operations leaders to identify losses and choose changes on the shop floor or in support functions. We agree on a baseline and how to verify the impact",
+      "outputs": [
+        [
+          "Operational diagnosis",
+          "I examine process data and staffing alongside observations from the people doing the work"
+        ],
+        [
+          "Impact model",
+          "The model separates the baseline, assumptions and expected contribution of each initiative to output, cost or margin"
+        ],
+        [
+          "Performance review",
+          "The process owner gets a measure, a data source and a way to compare results with the baseline"
+        ]
+      ],
+      "metric": "+10%",
+      "caption": "increase in the annualised production rate achieved by the team at a steel plant",
+      "proof": [
+        [
+          "case-steel-transformation",
+          "Performance management at a steel plant",
+          "At Yakov & Partners, I implemented routines for monitoring production. The team raised the annualised output rate by 100,000 tonnes"
+        ],
+        [
+          "case-developer-workforce",
+          "Staffing for seven corporate functions",
+          "I modelled workload and staffing for a property developer. The model identified scope to optimise staffing by 10–30%"
+        ]
+      ],
+      "ask": "Which process is falling short?",
+      "brief": "Share the metric you want to improve and the operation your team is responsible for",
+      "contact": "I’d like to discuss an operational improvement project"
+    }
+  },
+  "transformation": {
+    "ru": {
+      "name": "Трансформация и проектный офис",
+      "question": "Как довести портфель инициатив до внедрения?",
+      "lead": "Помогаю руководителю перевести стратегию в портфель проектов. Беру на себя управление реализацией, согласую решения с заказчиком и работаю вместе с функциональными и техническими командами",
+      "outputs": [
+        [
+          "Приоритеты портфеля",
+          "Сопоставляем эффект, ресурсы и зависимости проектов, чтобы выбрать очередность работ"
+        ],
+        [
+          "Проектный офис",
+          "Закрепляем владельцев решений, порядок эскалации и регулярный разбор результатов"
+        ],
+        [
+          "Приёмка результата",
+          "Заказчик и команда заранее согласуют критерии готовности, показатели и материалы для передачи в работу"
+        ]
+      ],
+      "metric": "≈ $1 млн",
+      "caption": "общая стоимость проектов одного клиента, которыми я руковожу с партнёром RocketTech",
+      "proof": [
+        [
+          "case-glonass-office",
+          "Офис трансформации при генеральном директоре",
+          "Создал офис ГЛОНАСС и возглавил команду из пяти прямых подчинённых"
+        ],
+        [
+          "case-rocket-it-strategy",
+          "Портфель цифровизации агропредприятия",
+          "Веду около пяти проектов, отвечаю за P&L реализации и развитие клиента. Лично работаю с заказчиком и командой над решениями"
+        ]
+      ],
+      "ask": "Какой портфель предстоит реализовать?",
+      "brief": "Расскажите, какие проекты уже идут, кто принимает решения и где требуется ваше ближайшее вмешательство",
+      "contact": "Хочу обсудить управление портфелем проектов"
+    },
+    "en": {
+      "name": "Transformation and PMO",
+      "question": "How do you get a portfolio of initiatives into operation?",
+      "lead": "I help executives turn strategy into a portfolio of projects. I lead delivery, work through trade-offs with the sponsor and coordinate business and technical teams",
+      "outputs": [
+        [
+          "Portfolio priorities",
+          "We compare expected impact, resources and dependencies to sequence the work"
+        ],
+        [
+          "Transformation office",
+          "Teams agree who owns each decision, how issues are escalated and when progress is reviewed"
+        ],
+        [
+          "Handover and acceptance",
+          "The sponsor and delivery team agree on acceptance criteria, measures and what the operating team will receive"
+        ]
+      ],
+      "metric": "≈ $1m",
+      "caption": "combined value of the projects I lead for one client in partnership with RocketTech",
+      "proof": [
+        [
+          "case-glonass-office",
+          "Building the CEO’s transformation office",
+          "I set up the office at GLONASS and led a team of five direct reports"
+        ],
+        [
+          "case-rocket-it-strategy",
+          "Digital portfolio for an agribusiness",
+          "I lead around five projects for one client, own delivery P&L and account growth, and work directly on solutions with the client and team"
+        ]
+      ],
+      "ask": "Which portfolio needs delivery leadership?",
+      "brief": "Tell me which initiatives are under way, who owns the decisions and where progress has stalled",
+      "contact": "I’d like to discuss portfolio delivery"
+    }
+  }
+}

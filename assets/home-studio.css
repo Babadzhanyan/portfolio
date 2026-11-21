@@ -1,10 +1,83 @@
+/* Offer titles are links. Their descriptions support each buying decision. */
+body.portfolio .hero-copy .practice-kicker,
+body.portfolio .hero-proof .practice-proof-label {
+  display: block;
+  margin: 0 0 var(--space-label);
+  font-size: .9375rem;
+  font-weight: 600;
+  line-height: var(--leading-ui);
+  color: var(--editorial-forest);
+}
+body.portfolio .hero-proof .practice-proof-label {
+  color: var(--editorial-muted);
+  font-size: .875rem;
+  font-weight: 400;
+}
+body.refined.portfolio.editorial-site #advisory {
+  padding-block: var(--space-chapter);
+  color: var(--ink);
+  background: var(--group-surface);
+}
+body.portfolio #advisory h2 { margin: 0; }
+.practice-offers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-related) var(--grid-gap);
+  margin-top: var(--space-group);
+}
+body.portfolio #advisory .practice-offer {
+  display: grid;
+  grid-template: "icon title" auto "icon detail" auto / 1.5rem minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  column-gap: var(--space-related);
+  min-width: 0;
+  padding: var(--space-related) var(--space-group);
+  border-radius: var(--editorial-radius);
+  background: var(--paper);
+  text-decoration: none;
+}
+body.portfolio #advisory .practice-offer svg {
+  grid-area: icon;
+  color: var(--editorial-forest);
+  margin-top: .12em;
+}
+body.portfolio #advisory .practice-offer h3 {
+  grid-area: title;
+  color: var(--editorial-forest);
+  font-size: var(--type-subhead);
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+body.portfolio #advisory .practice-offer p {
+  grid-area: detail;
+  color: var(--editorial-muted);
+  line-height: var(--leading-copy);
+  font-size: 1rem;
+  margin: var(--space-label) 0 0;
+}
+body.portfolio #advisory .practice-offer:is(:hover, :focus-visible) {
+  background: var(--selected-surface);
+}
+@media (max-width: 640px) {
+  .practice-offers { grid-template-columns: minmax(0, 1fr); gap: var(--space-label); }
+}
+@media screen {
+  body.refined.portfolio.editorial-site #about {
+    background: var(--paper);
+    padding-block: var(--space-chapter) 0;
+  }
+  body.refined.portfolio.editorial-site #faq {
+    padding-block: 0 var(--space-chapter);
+  }
+}
 /* A photographic spread uses the original landscape and portrait compositions. */
-body.portfolio.editorial-site #field {
-  margin-block: clamp(20px, 3vw, 42px);
+body.refined.portfolio.editorial-site #field {
+  margin-block: 0;
   padding-block: 0;
 }
 body.portfolio.editorial-site #field .field-shell {
-  padding-block: clamp(32px, 4.5vw, 64px);
+  padding-block: var(--space-chapter);
   background: #103c30;
   border-radius: 0;
   color: #fff;
@@ -14,7 +87,7 @@ body.portfolio.editorial-site #field .project-photographs {
   display: grid;
   grid-template-columns: minmax(0, 1.92fr) repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 1.65vw, 24px);
-  margin-top: clamp(22px, 2.7vw, 38px);
+  margin-top: var(--space-group);
 }
 .reportage-frame { margin: 0; min-width: 0; }
 .reportage-frame picture {
@@ -85,10 +158,10 @@ body.portfolio.editorial-site #how .decision-route li > a {
   max-width: 100%;
 }
 body.portfolio.editorial-site #contact .contact-shell { padding: clamp(24px, 4.3vw, 58px); }
-body.portfolio.editorial-site #contact .contact-inner { padding: 0; }
+body.refined.portfolio.editorial-site #contact .contact-inner { padding: 0; }
 body.portfolio.editorial-site #contact .contact-actions { gap: 12px; }
 body.portfolio.editorial-site #contact .contact-options { margin-top: 24px; }
-body.portfolio.editorial-site #contact .contact-prompt { margin-top: 18px; font-size: 16px; }
+body.portfolio.editorial-site #contact .contact-prompt { margin-top: var(--space-related); font-size: 1rem; line-height: var(--leading-copy); }
 body.portfolio.editorial-site #contact .home-reading-contact-link:focus-visible { outline-color: #fff; }
 @media (hover:hover) and (prefers-reduced-motion:no-preference) {
   .hero-actions a, .portfolio-case-link, .decision-route a { transition: background-color 160ms ease, color 160ms ease; }

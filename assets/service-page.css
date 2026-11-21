@@ -1,0 +1,92 @@
+/* Service pages use the same chapter, type and grouping scales as the portfolio. */
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../fonts/SourceSansPro-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../fonts/SourceSansPro-Semibold.woff2") format("woff2");
+  font-weight: 600 800;
+  font-display: swap;
+}
+body.service-page {
+  background: #fff;
+  color: #1a1a1a;
+  font: 400 1.125rem/var(--leading-copy, 1.5) "Source Sans Pro", Arial, sans-serif;
+}
+.service-page .wrap { width: 100%; max-width: var(--w-page); margin-inline: auto; padding-inline: var(--pad); }
+.service-page h1, .service-page h2, .service-evidence strong {
+  font-family: var(--title-face, "Source Serif 4", Georgia, serif);
+  font-weight: 500;
+  color: inherit;
+  max-width: none;
+  letter-spacing: normal;
+}
+.service-page h1 { font-size: var(--type-display, clamp(2.25rem, 4.4vw, 4.2rem)); line-height: var(--leading-display, 1.08); }
+.service-page h2 { font-size: var(--type-section, clamp(1.8rem, 3vw, 2.65rem)); line-height: var(--leading-heading, 1.16); }
+.service-page h3 { font: 600 var(--type-subhead, 1.35rem)/var(--leading-heading, 1.16) "Source Sans Pro", Arial, sans-serif; letter-spacing: normal; }
+.service-page a { color: var(--editorial-forest); font-weight: 600; text-decoration: none; }
+.service-page a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.service-skip { position: absolute; top: 0; left: 0; transform: translateY(-110%); background: white; padding: 12px; z-index: 5; }
+.service-skip:focus { transform: none; }
+.service-nav .wrap, .service-nav nav, .service-lang, .service-actions, .service-footer nav, .service-reading { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-related, 14px); }
+.service-nav { background: #fff; }
+.service-nav .wrap { justify-content: space-between; gap: 4px; padding-block: 8px; }
+.service-nav a, .service-nav [aria-current], .service-parent, .service-actions a, .service-footer a, .service-reading a { display: inline-flex; align-items: center; min-height: 44px; }
+.service-brand span:last-child { display: none; }
+.service-nav a, .service-nav [aria-current] { font-size: 1rem; }
+.service-lang { gap: 2px; }
+.service-lang > * { justify-content: center; min-width: 44px; border-radius: var(--editorial-radius); }
+.service-lang [aria-current] { background: var(--editorial-hover); color: var(--forest-deep); font-weight: 600; }
+.service-intro { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, .8fr); align-items: stretch; gap: var(--grid-gap, 30px); padding-block: var(--space-chapter, 60px); }
+.service-parent { font-size: 1rem; margin-bottom: var(--space-label, 8px); }
+.service-lead { margin-block: var(--space-related, 16px) var(--space-group, 28px); max-width: 58ch; font-size: var(--type-lead, clamp(1.1rem, 1.65vw, 1.35rem)); }
+.service-evidence, .service-contact { padding: clamp(20px, 3.2vw, 44px); border-radius: var(--editorial-radius); }
+.service-evidence { display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: var(--space-related, 14px); background: var(--forest-deep); color: white; }
+.service-evidence svg { margin-bottom: auto; }
+.service-evidence strong { font-variant-numeric: lining-nums; font-size: clamp(2.7rem, 5vw, 4.9rem); line-height: 1; }
+.service-evidence figcaption { color: white; max-width: 36ch; font: inherit; }
+.service-page .service-button { display: inline-flex; justify-content: center; align-items: center; min-height: 46px; padding: .65rem 1.15rem; color: white; background: var(--editorial-forest); border-radius: var(--editorial-radius); }
+.service-page .service-button:focus-visible { outline-color: var(--forest-deep); }
+.service-scope ul, .service-proof ul { margin: var(--space-group, 28px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap, 24px); }
+.service-scope li { background: var(--editorial-surface); border-radius: var(--editorial-radius); padding: var(--space-group, 24px); }
+.service-scope li p, .service-proof li p, .service-contact p { margin: var(--space-label, 8px) 0 0; }
+.service-page .service-proof { padding-block: var(--space-chapter, 60px); }
+.service-proof ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.service-proof li p { max-width: 60ch; }
+.service-reading { margin-top: var(--space-related, 16px); }
+.service-proof h3 a { display: inline-block; }
+.service-contact { display: grid; align-items: start; grid-template-columns: 1.5fr minmax(0, .8fr); gap: var(--grid-gap, 28px); background: #edf4ef; }
+.service-actions { align-items: flex-start; flex-direction: column; gap: 4px; }
+.service-footer { margin-block: var(--space-chapter, 60px) var(--space-group, 24px); font-size: 1rem; }
+.service-footer nav { column-gap: var(--space-group, 24px); row-gap: 4px; }
+.service-footer nav + nav { margin-top: var(--space-related, 12px); }
+.service-footer nav + nav a { color: var(--editorial-muted); font-weight: 400; }
+@media (hover:hover) {
+  .service-page a:hover { color: #092e21; }
+  .service-page .service-button:hover { background: var(--forest-deep); color: white; }
+}
+@media (max-width: 47.99rem) {
+  .service-intro, .service-contact { grid-template-columns: minmax(0, 1fr); }
+  .service-scope ul, .service-proof ul { grid-template-columns: minmax(0, 1fr); }
+  .service-evidence { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: center; gap: var(--space-related, 14px); }
+  .service-evidence svg { display: none; }
+  .service-evidence strong { font-size: clamp(2rem, 6.5vw, 2.9rem); }
+}
+@media (max-width: 32rem) {
+  .service-brand span:first-child { display: none; }
+  .service-brand span:last-child { display: inline; }
+  .service-nav nav { gap: 8px; }
+  .service-evidence { grid-template-columns: 1fr; gap: var(--space-label, 8px); }
+}
+@media (max-width: 22rem) {
+  .service-nav .wrap { column-gap: 2px; }
+}
+@media print {
+  .service-nav, .service-footer, .service-actions, .service-intro .service-button, .service-reading { display: none; }
+  .service-page .service-evidence { color: #1a1a1a; background: white; }
+  .service-evidence figcaption { color: inherit; }
+  .service-scope li, .service-proof li, .service-contact { break-inside: avoid; }
+}

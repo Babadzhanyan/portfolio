@@ -29,28 +29,22 @@ body.design-system.editorial main h2 {
 }
 body.editorial-site #top.hero h1,
 body.editorial-site #profile h1 {
-  font-size: clamp(36px, 4.35vw, 65px);
-  line-height: 1.085;
+  font-size: var(--type-display);
+  line-height: var(--leading-display);
 }
+body.editorial-site #top.hero h1 { font-size: var(--type-hero); }
 body.editorial-site main h2 > .section-title-text {
   display: block;
-  font-size: clamp(28px, 3vw, 43px);
-  line-height: 1.12;
+  font-size: var(--type-section);
+  line-height: var(--leading-heading);
 }
 body.editorial-site #caseModal #caseModalTitle {
-  font-size: clamp(26px, 2.55vw, 37px);
-  line-height: 1.13;
-}
-@media (max-width: 540px) {
-  body.editorial-site #top.hero h1, body.editorial-site #profile h1 {
-    font-size: clamp(31px, 8.7vw, 42px);
-    line-height: 1.1;
-  }
+  font-size: clamp(1.625rem, 1.4rem + 1vw, 2.3125rem);
+  line-height: var(--leading-heading);
 }
 @media (max-width: 360px) {
   body.editorial-site #profile .career-folio {
     grid-template-columns: minmax(0,1fr) 60px;
     column-gap: 9px;
   }
-  body.editorial-site #profile h1 { font-size: 30px; }
 }

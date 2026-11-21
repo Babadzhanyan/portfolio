@@ -7,11 +7,13 @@
 import json
 import re
 import sys
+import subprocess
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import unquote, urlsplit
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).parent
 PAGES = ["index.html", "en/index.html", "career/index.html", "en/career/index.html",
@@ -450,6 +452,14 @@ for page, catalogue in catalogues.items():
     if catalogue != catalogues["index.html"]:
         note(f"Дефект {page}: классификация кейсов требует согласования с главным каталогом")
 
+# Каждая ссылка из услуги открывает кейс внутри выбранного направления.
+for area, copies in json.loads(read("services/content.json")).items():
+    for language, home in (("ru", "index.html"), ("en", "en/index.html")):
+        for case_id, title, _ in copies[language]["proof"]:
+            entry = catalogues[home].get(case_id)
+            if not entry or area not in entry[0]:
+                note(f"Дефект {language}/{area}: кейс «{title}» требует привязки к направлению")
+
 # Согласованные тексты портфолио используют первое лицо для личного вклада.
 
 css = read("assets/site.css")
@@ -500,6 +510,78 @@ def check_links(root, page, html):
             note(f"Дефект {rel}: требуется якорь {href}")
 
 
+def check_search_pages():
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9", "x": "http://www.w3.org/1999/xhtml"}
+    sitemap = ElementTree.parse(ROOT / "sitemap.xml")
+    root_page = Document(ru)
+    base = next(n.attrs["href"] for n in root_page.elements if n.attrs.get("rel") == "canonical")
+    brand_id = base + "#practice-brand"
+    brand_names = {lang: " ".join(n.text() for n in document.classes("practice-kicker"))
+                   for lang, document in (("ru", root_page), ("en", Document(en)))}
+    listed = set()
+    for entry in sitemap.findall("sm:url", ns):
+        url = entry.findtext("sm:loc", "", ns)
+        if not url.startswith(base) or url in listed or urlsplit(url).query or urlsplit(url).fragment:
+            note(f"Дефект sitemap.xml: проверьте канонический адрес {url}")
+            continue
+        listed.add(url)
+        path = url[len(base):]
+        page = ROOT / path / "index.html"
+        if not page.is_file():
+            note(f"Дефект sitemap.xml: указанная страница отсутствует {url}")
+            continue
+        doc = Document(page.read_text(encoding="utf-8"))
+        links = [n.attrs for n in doc.elements if n.tag == "link"]
+        canonicals = [a.get("href") for a in links if a.get("rel") == "canonical"]
+        if canonicals != [url]:
+            note(f"Дефект {page.relative_to(ROOT)}: канонический адрес расходится с картой сайта")
+        robots = {rule.strip().lower() for n in doc.elements if n.attrs.get("name") == "robots"
+                  for rule in n.attrs.get("content", "").split(",")}
+        if robots & {"noindex", "none"}:
+            note(f"Дефект {page.relative_to(ROOT)}: карта сайта содержит закрытую от поиска страницу")
+        alternate = {a["hreflang"]: a.get("href") for a in links if a.get("rel") == "alternate" and "hreflang" in a}
+        mapped = {n.get("hreflang"): n.get("href") for n in entry.findall("x:link", ns)}
+        section = path.removeprefix("en/")
+        if section == "" or section.startswith("services/"):
+            graphs = [json.loads(n.text()) for n in doc.elements
+                      if n.tag == "script" and n.attrs.get("type") == "application/ld+json"]
+            entities = [entity for graph in graphs for entity in graph.get("@graph", [graph])]
+            brands = [n for n in entities if n.get("@type") == "Brand"]
+            expected_name = brand_names["en" if path.startswith("en/") else "ru"]
+            if (not expected_name or len(brands) != 1 or brands[0].get("@id") != brand_id
+                    or brands[0].get("name") != expected_name):
+                note(f"Дефект {url}: название бренда должно совпадать с названием практики на главной")
+            services_on_page = [n for n in entities if n.get("@type") == "Service"]
+            if any(n.get("brand", {}).get("@id") != brand_id for n in services_on_page):
+                note(f"Дефект {url}: требуется ссылка каждой услуги на единый бренд практики")
+            if section and not any(n.get("@id") == url + "#service" and
+                                   n.get("provider", {}).get("@id") == base + "#person" for n in services_on_page):
+                note(f"Дефект {url}: требуется услуга с каноническим идентификатором и исполнителем")
+        if not section.startswith("blog/"):
+            pair = {"ru": base + section, "en": base + "en/" + section, "x-default": base + section}
+            if alternate != pair or mapped != pair:
+                note(f"Дефект {page.relative_to(ROOT)}: проверьте языковую пару страницы и карты сайта")
+    for prefix in ("", "en/"):
+        home = base + prefix
+        career = home + "career/"
+        offers = {home + "services/" + slug + "/" for slug in STREAMS}
+        if not ({home, career} | offers).issubset(listed):
+            note(f"Дефект sitemap.xml: требуется полный список услуг и профиля {home}")
+        for section, address in (("", home), ("career/", career)):
+            doc = Document(read(prefix + section + "index.html"))
+            graph = json.loads(doc.ids["profile-schema"].text())["@graph"]
+            if section:
+                files = [n["url"] for n in graph if n["@type"] == "DigitalDocument"]
+                if len(files) != 1 or not (ROOT / files[0].removeprefix(base)).is_file():
+                    note(f"Дефект {address}: требуется действующий PDF в разметке резюме")
+            else:
+                services = {n["url"] for n in graph if n["@type"] == "Service"
+                            and n.get("provider") == {"@id": base + "#person"}}
+                if services != offers:
+                    note(f"Дефект {address}: услуги должны вести на четыре страницы практики")
+
+
+check_search_pages()
 for page in [p for p in ROOT.rglob("*.html") if ".git" not in p.parts]:
     check_links(ROOT, page, page.read_text(encoding="utf-8"))
 
@@ -592,6 +674,11 @@ if "--self-check" in sys.argv:
         del defects[start:]
     print(f"Самопроверка подтвердила обнаружение видов дефектов: {len(checked)}")
 
+
+rendered_services = subprocess.run([sys.executable, str(ROOT / "build_services.py"), "--check"],
+                                   capture_output=True, text=True)
+if rendered_services.returncode:
+    note(rendered_services.stderr.strip() or "Требуется пересборка страниц услуг")
 
 if defects:
     print("\n".join(defects))

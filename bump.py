@@ -33,7 +33,11 @@ for page in PAGES:
     if updated != text:
         page.write_text(updated, encoding="utf-8")
 
-(ROOT / "version.json").write_text(json.dumps({"assets": new}) + "\n", encoding="utf-8")
+version_file = ROOT / "version.json"
+metadata = json.loads(version_file.read_text(encoding="utf-8"))
+metadata.update(assets=new, version=new)
+version_file.write_text(json.dumps(metadata) + "\n", encoding="utf-8")
+subprocess.run([sys.executable, str(ROOT / "build_services.py")], check=True)
 
 print(f"было {sorted(current)} → стало {new}")
 sys.exit(subprocess.call([sys.executable, str(ROOT / "check_site.py")]))

@@ -1,5 +1,5 @@
-@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SourceSansPro-Regular.ttf") format("truetype")}
-@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:600 800;font-display:swap;src:url("../fonts/SourceSansPro-Semibold.ttf") format("truetype")}
+@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SourceSansPro-Regular.woff2") format("woff2")}
+@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:600 800;font-display:swap;src:url("../fonts/SourceSansPro-Semibold.woff2") format("woff2")}
 body.career{--paper:#fff;--ink:#1a1a1a;--muted:#666;--forest:#124b38;--line:#e5e7e5;--text:"Source Sans Pro",Arial,sans-serif;--display:var(--text);--mono:var(--text);--tr-xl:0;--tr-l:0;--tr-m:0;--tr-s:0;--tr-xs:0;--section-space:64px;background:#fff;font:18px/1.5 var(--text)}
 .career :is(h1,h2,h3,h4,.mono,.logo,.path-when,.path-what,.skill-label){font-family:var(--text);letter-spacing:0;text-transform:none;text-wrap:pretty}
 .career h1{max-width:760px;font-size:44px;line-height:1.08;font-weight:600}
