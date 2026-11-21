@@ -81,6 +81,15 @@ body.refined.portfolio.editorial-site #services:is(.has-selection, .industry-cho
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+/* Keep the open picker inside the page layout so iOS can hit-test every row. */
+@media (max-width: 900px) {
+  body.refined.portfolio.editorial-site #services.industry-choosing #industries {
+    position: relative;
+    inset: auto;
+    grid-column: 1 / -1;
+    margin-top: 6px;
+  }
+}
 @media (min-width: 375px) and (max-width: 640px) {
   body.refined.portfolio.editorial-site #services:is(.has-selection, .industry-choosing) .catalogue-controls {
     display: grid;
