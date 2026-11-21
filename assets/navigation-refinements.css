@@ -81,13 +81,43 @@ body.refined.portfolio.editorial-site #services:is(.has-selection, .industry-cho
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* Keep the open picker inside the page layout so iOS can hit-test every row. */
+/* A top-layer sheet keeps touch targets independent of the sticky catalogue. */
+#industryDialog {
+  inset: 0;
+  box-sizing: border-box;
+  width: min(32rem, calc(100vw - 24px));
+  max-width: none;
+  max-height: min(84dvh, 42rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--group-surface);
+}
+#industryDialog::backdrop { background: rgb(16 45 34 / 40%); }
+html:has(#industryDialog[open]) { overflow: hidden; }
 @media (max-width: 900px) {
-  body.refined.portfolio.editorial-site #services.industry-choosing #industries {
-    position: relative;
-    inset: auto;
-    grid-column: 1 / -1;
-    margin-top: 6px;
+  body.refined.portfolio.editorial-site #industryDialog[open] > #industries {
+    display: flex;
+    flex-direction: column;
+    position: static;
+    box-sizing: border-box;
+    max-height: min(84dvh, 42rem);
+    margin: 0;
+    padding: 16px;
+    border-radius: inherit;
+    box-shadow: none;
+  }
+  body.refined.portfolio #industryDialog .industry-option input {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
   }
 }
 @media (min-width: 375px) and (max-width: 640px) {

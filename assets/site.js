@@ -362,73 +362,54 @@
   const industryToggle = document.querySelector(".industry-mobile-toggle");
   const industryApply = industryPanel?.querySelector("[data-apply-industries]");
   const mobileFilters = matchMedia("(max-width: 900px)");
-  let industryFitFrame = 0;
-  let industryPositionAdjusted = false;
-  const mobileIndustriesOpen = () => mobileFilters.matches && industryPanel && industryToggle?.getAttribute("aria-expanded") === "true";
-  const queueIndustryFit = () => {
-    if (!mobileIndustriesOpen() || industryFitFrame) return;
-    industryFitFrame = requestAnimationFrame(() => {
-      industryFitFrame = 0;
-      if (!mobileIndustriesOpen()) return;
-      const viewport = window.visualViewport;
-      const bottom = viewport ? viewport.offsetTop + viewport.height : innerHeight;
-      const navigation = document.querySelector(".site-nav")?.getBoundingClientRect();
-      const filterTop = controls?.getBoundingClientRect().top;
-      if (filterTop < (navigation?.bottom || 0) + 4 && !industryPositionAdjusted) {
-        industryPositionAdjusted = true;
-        window.scrollBy({ top: filterTop - (navigation?.bottom || 0) - 4, behavior: "instant" });
-      }
-      let available = bottom - industryPanel.getBoundingClientRect().top - 12;
-      const navigationHeight = navigation?.height || 0;
-      const filterHeight = controls?.getBoundingClientRect().height || 0;
-      const minimum = Math.min(300, Math.max(0, bottom - navigationHeight - filterHeight - 24));
-      if (available < minimum && !industryPositionAdjusted) {
-        industryPositionAdjusted = true;
-        window.scrollBy({ top: minimum - available, behavior: "instant" });
-        available = bottom - industryPanel.getBoundingClientRect().top - 12;
-      }
-      industryPanel.style.setProperty("--industry-available-height", `${Math.max(0, Math.floor(available))}px`);
-    });
+  const industryDialog = document.getElementById("industryDialog");
+  const desktopIndustryHost = industryPanel?.parentElement;
+  const mobileIndustriesOpen = () => Boolean(industryDialog?.open);
+  const closeIndustries = (returnFocus = true) => {
+    if (!mobileIndustriesOpen()) return;
+    industryDialog.close();
+    industryToggle.setAttribute("aria-expanded", "false");
+    if (returnFocus && mobileFilters.matches) industryToggle.focus({ preventScroll: true });
   };
-  const resetIndustryFit = () => {
-    industryPositionAdjusted = false;
-    queueIndustryFit();
-  };
-  const closeIndustries = () => {
-    industryPositionAdjusted = false;
-    industryToggle?.setAttribute("aria-expanded", "false");
-    industryPanel?.style.removeProperty("--industry-available-height");
-    controls?.closest("#services")?.classList.remove("industry-choosing");
-  };
-  window.addEventListener("scroll", queueIndustryFit, { passive: true });
-  window.addEventListener("resize", resetIndustryFit, { passive: true });
-  window.visualViewport?.addEventListener("resize", resetIndustryFit, { passive: true });
-  window.visualViewport?.addEventListener("scroll", queueIndustryFit, { passive: true });
   const placeIndustries = () => {
-    if (!controls || !industryPanel) return;
-    (mobileFilters.matches ? controls : document.querySelector(".catalogue-layout")).append(industryPanel);
-    closeIndustries();
+    if (!industryDialog || !industryPanel) return;
+    closeIndustries(false);
+    if (mobileFilters.matches) {
+      industryDialog.append(industryPanel);
+    } else {
+      desktopIndustryHost.insertBefore(industryPanel, industryDialog);
+    }
+    // On touch screens the native checkbox covers its full labelled tile.
+    industryPanel.querySelectorAll("input").forEach(input => input.classList.toggle("sr-only", !mobileFilters.matches));
   };
   placeIndustries();
   mobileFilters.addEventListener("change", placeIndustries);
   industryToggle?.addEventListener("click", () => {
-    const opening = industryToggle.getAttribute("aria-expanded") !== "true";
-    industryToggle.setAttribute("aria-expanded", String(opening));
-    controls?.closest("#services")?.classList.toggle("industry-choosing", opening);
-    resetIndustryFit();
+    if (!mobileFilters.matches || mobileIndustriesOpen()) return;
+    industryDialog.showModal();
+    industryToggle.setAttribute("aria-expanded", "true");
+    const option = industryPanel.querySelector("input:checked") || industryPanel.querySelector("input");
+    option?.focus({ preventScroll: true });
   });
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && industryToggle?.getAttribute("aria-expanded") === "true") {
-      closeIndustries();
-      industryToggle.focus();
-    }
+  industryDialog?.addEventListener("cancel", event => {
+    event.preventDefault();
+    closeIndustries();
   });
-  document.addEventListener("click", event => {
-    if (mobileFilters.matches && !controls?.contains(event.target)) closeIndustries();
+  const onIndustryBackdrop = event => {
+    if (event.target !== industryDialog) return false;
+    const box = industryDialog.getBoundingClientRect();
+    return event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
+  };
+  let startedOnIndustryBackdrop = false;
+  industryDialog?.addEventListener("pointerdown", event => {
+    startedOnIndustryBackdrop = onIndustryBackdrop(event);
+  });
+  industryDialog?.addEventListener("click", event => {
+    if (startedOnIndustryBackdrop && onIndustryBackdrop(event)) closeIndustries();
+    startedOnIndustryBackdrop = false;
   });
   industryApply?.addEventListener("click", () => {
     closeIndustries();
-    industryToggle?.focus({ preventScroll: true });
     if (!results?.hidden) requestAnimationFrame(() => {
       const offset = (topNavigation?.getBoundingClientRect().height || 0) + (controls?.getBoundingClientRect().height || 0) + 24;
       window.scrollTo({ top: Math.max(0, scrollY + results.getBoundingClientRect().top - offset), behavior: "instant" });
@@ -544,7 +525,6 @@
         }
       });
     }
-    resetIndustryFit();
   };
 
   const readFilters = () => {
