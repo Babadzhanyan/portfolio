@@ -1,0 +1,124 @@
+/* A photographic spread uses the original landscape and portrait compositions. */
+body.portfolio.editorial-site #field {
+  margin-block: clamp(20px, 3vw, 42px);
+  padding-block: 0;
+}
+body.portfolio.editorial-site #field .field-shell {
+  padding-block: clamp(32px, 4.5vw, 64px);
+  background: #103c30;
+  border-radius: 0;
+  color: #fff;
+}
+body.portfolio.editorial-site #field .field-head h2 { color: #fff; }
+body.portfolio.editorial-site #field .section-number { color: #c8dbcf; }
+body.portfolio.editorial-site #field .project-photographs {
+  display: grid;
+  grid-template-columns: minmax(0, 1.92fr) repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.65vw, 24px);
+  margin-top: clamp(22px, 2.7vw, 38px);
+}
+.reportage-frame { margin: 0; min-width: 0; }
+.reportage-frame picture {
+  display: block;
+  height: clamp(225px, 26vw, 365px);
+  overflow: hidden;
+  border-radius: 5px;
+  background: #22483c;
+}
+.reportage-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.reportage-frame figcaption { margin-top: 10px; color: #e0ebe2; font-size: 15px; line-height: 1.35; }
+.reportage-lead img { object-position: 42% 46%; }
+.reportage-portrait img { object-position: 50% 45%; }
+
+body.portfolio.editorial-site #about .experience-journey > li { padding-top: 0; }
+body.portfolio.editorial-site #about .experience-journey > li::before,
+body.portfolio.editorial-site #about .experience-journey > li::after { content: none; }
+body.portfolio.editorial-site #about .practice-map {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  margin-top: clamp(26px, 3vw, 42px);
+  padding: 0;
+}
+body.portfolio.editorial-site #about .practice-branch { padding: 0; background: transparent; }
+body.portfolio.editorial-site #about .practice-branch h3 { margin-block: 6px 10px; font-size: clamp(24px, 2.15vw, 32px); }
+body.portfolio.editorial-site #about .practice-branch > p { color: var(--editorial-muted); }
+body.portfolio.editorial-site #about .practice-metrics {
+  grid-template-columns: 1.35fr .78fr 1fr;
+  margin-block: 18px 5px;
+  padding: clamp(14px, 1.5vw, 20px);
+  border-radius: var(--editorial-radius);
+  background: #edf3ee;
+}
+body.portfolio.editorial-site #about .practice-metrics dd {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.1;
+}
+.portfolio-case-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--editorial-forest);
+  font-weight: 600;
+}
+body.portfolio.editorial-site #about .home-reading-foundation { margin-top: clamp(30px, 4vw, 56px); }
+body.portfolio.editorial-site #how .decision-route { align-items: stretch; gap: clamp(18px, 2vw, 30px); }
+body.portfolio.editorial-site #how .decision-route > li {
+  grid-template-columns: minmax(0,1fr) auto;
+  grid-template-rows: auto auto 1fr auto;
+  padding: clamp(18px, 1.9vw, 28px);
+  gap: 12px;
+  background: #f2f5f2;
+}
+body.portfolio.editorial-site #how .decision-route > li::before,
+body.portfolio.editorial-site #how .decision-route > li::after { content: none; }
+body.portfolio.editorial-site #how .decision-step-number { grid-area: 1 / 1; font-weight: 600; color: #476454; }
+body.portfolio.editorial-site #how li > .evidence-icon { grid-area: 1 / 2; width: 23px; height: 23px; }
+body.portfolio.editorial-site #how .decision-route h3 { grid-area: 2 / 1 / 3 / -1; margin: 0; }
+body.portfolio.editorial-site #how .decision-artifact { grid-area: 3 / 1 / 4 / -1; padding: 0; margin: 0; }
+body.portfolio.editorial-site #how .decision-artifact p { margin: 0; }
+body.portfolio.editorial-site #how .decision-route li > a {
+  grid-area: 4 / 1 / 5 / -1;
+  justify-self: start;
+  font-weight: 600;
+  max-width: 100%;
+}
+body.portfolio.editorial-site #contact .contact-shell { padding: clamp(24px, 4.3vw, 58px); }
+body.portfolio.editorial-site #contact .contact-inner { padding: 0; }
+body.portfolio.editorial-site #contact .contact-actions { gap: 12px; }
+body.portfolio.editorial-site #contact .contact-options { margin-top: 24px; }
+body.portfolio.editorial-site #contact .contact-prompt { margin-top: 18px; font-size: 16px; }
+body.portfolio.editorial-site #contact .home-reading-contact-link:focus-visible { outline-color: #fff; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .hero-actions a, .portfolio-case-link, .decision-route a { transition: background-color 160ms ease, color 160ms ease; }
+}
+@media (max-width: 740px) {
+  body.portfolio.editorial-site #about .practice-map { grid-template-columns: 1fr; }
+  body.portfolio.editorial-site #how .decision-route { grid-template-columns: 1fr; gap: 10px; }
+  body.portfolio.editorial-site #how .decision-route > li {
+    grid-template-columns: 24px minmax(0,1fr) 25px;
+    grid-template-rows: auto auto auto;
+    gap: 5px 12px;
+  }
+  body.portfolio.editorial-site #how .decision-step-number { grid-area: 1 / 1; }
+  body.portfolio.editorial-site #how li > .evidence-icon { grid-area: 1 / 3; }
+  body.portfolio.editorial-site #how .decision-route h3 { grid-area: 1 / 2; font-size: 21px; }
+  body.portfolio.editorial-site #how .decision-artifact { grid-area: 2 / 2 / 3 / -1; }
+  body.portfolio.editorial-site #how .decision-route li > a { grid-area: 3 / 2 / 4 / -1; }
+}
+@media (max-width: 639px) {
+  body.portfolio.editorial-site #field .project-photographs { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px 12px; }
+  .reportage-lead { grid-column: 1 / -1; }
+  .reportage-frame picture { height: auto; aspect-ratio: 4 / 5; }
+  .reportage-lead picture { aspect-ratio: 3 / 2; }
+  .reportage-frame figcaption { margin-top: 6px; font-size: 14px; }
+  body.portfolio.editorial-site #about .practice-metrics { grid-template-columns: 1.4fr .78fr 1fr; gap: 8px; padding: 12px; }
+  body.portfolio.editorial-site #about .practice-metrics dd { font-size: clamp(22px, 5.5vw, 28px); }
+  body.portfolio.editorial-site #contact .contact-actions { gap: 8px; }
+}
+@media print {
+  body.portfolio.editorial-site #field .field-shell { background: white; color: #1a1a1a; }
+  body.portfolio.editorial-site #field :is(.section-number, h2, figcaption) { color: #1a1a1a; }
+}

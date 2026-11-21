@@ -1,0 +1,150 @@
+/* Directions pair a field of work with one documented example */
+body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) .stream-tab {
+  position: relative;
+  display: grid;
+  align-content: start;
+  grid-template-rows: auto auto 1fr;
+  padding: clamp(18px, 1.8vw, 26px);
+  min-height: 176px;
+  gap: 3px 12px;
+  text-align: start;
+}
+body.refined.portfolio.editorial-site #services .stream-tab-proof {
+  display: grid;
+  grid-column: 1 / -1;
+  align-self: end;
+  gap: 2px;
+  margin-top: 21px;
+  color: var(--editorial-forest);
+}
+body.refined.portfolio.editorial-site #services .stream-tab-proof strong {
+  font-size: clamp(27px, 2.6vw, 37px);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -.025em;
+}
+body.refined.portfolio.editorial-site #services .stream-tab-proof > span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+body.refined.portfolio.editorial-site #services:is(.has-selection, .industry-choosing) .stream-tab-proof {
+  display: none;
+}
+body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) .stream-tab-count {
+  font-variant-numeric: tabular-nums;
+  align-self: start;
+}
+@media (min-width: 901px) {
+  body.refined.portfolio.editorial-site #services:not(.has-selection) .catalogue-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 34%);
+    align-items: start;
+  }
+  body.refined.portfolio.editorial-site #services:not(.has-selection) .industry-filter {
+    padding: clamp(18px, 1.8vw, 26px) 14px;
+  }
+  body.refined.portfolio.editorial-site #services:not(.has-selection) .industry-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 6px;
+  }
+  body.refined.portfolio.editorial-site #services:not(.has-selection) .industry-option {
+    gap: 6px;
+    padding: 8px;
+    min-height: 48px;
+  }
+}
+/* Small screens show the example directly below its direction */
+@media (max-width: 600px) {
+  body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) .stream-tab {
+    min-height: 134px;
+    padding: 14px;
+    column-gap: 5px;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(2.55em, auto) auto;
+  }
+  body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) :is(.stream-tab-intro, .stream-tab-count) {
+    display: none;
+  }
+  body.refined.portfolio.editorial-site #services .stream-tab-proof { align-self: start; margin-top: 8px; }
+  body.refined.portfolio.editorial-site #services .stream-tab-proof strong { font-size: 25px; }
+  body.refined.portfolio.editorial-site #services .stream-tab-proof > span { font-size: 13px; }
+}
+@media (max-width: 359px) {
+  body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) .stream-tab {
+    padding: 11px;
+  }
+}
+/* Keep the decision visually distinct from the three context columns */
+body.editorial-site #caseModal .case-modal-facts > :is(.fact--situation, .fact--task, .fact--action) {
+  padding: 14px 10px 14px 0;
+  background: transparent;
+}
+body.editorial-site #caseModal .case-modal-facts > .fact--result {
+  border-radius: var(--editorial-radius);
+  background: var(--editorial-forest);
+}
+body.editorial-site #caseModal .case-modal-facts > .fact--result :is(dt, dd, .semantic-icon, strong) {
+  color: white;
+}
+body.editorial-site #caseModal .case-modal-facts > .fact--result dt {
+  color: #daeee4;
+}
+body.editorial-site #caseModal .case-modal-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 15px;
+  border-radius: var(--editorial-radius);
+  background: var(--editorial-forest);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+body.editorial-site #caseModal .case-modal-contact:is(:hover, :focus-visible) {
+  background: #073926;
+}
+body.editorial-site #caseModal .case-modal-contact:focus-visible {
+  outline: 2px solid var(--editorial-forest);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  body.editorial-site #caseModal .case-modal-head { align-items: center; }
+  body.editorial-site #caseModal .case-modal-inner { padding-top: 10px; }
+  body.editorial-site #caseModal .case-modal-facts { gap: 12px; }
+  body.editorial-site #caseModal .case-modal-facts > :is(.fact--situation, .fact--task, .fact--action) { padding: 3px 0; }
+  body.editorial-site #caseModal .case-modal-facts > .fact--result { padding: 15px; }
+  body.editorial-site #caseModal .case-modal-foot { gap: 8px 12px; }
+  body.editorial-site #caseModal :is(.case-modal-contact, .case-modal-share) { flex: 1 1 138px; }
+}
+body.editorial-site #caseModal .artifact-decision > svg {
+  display: none;
+}
+body.editorial-site #caseModal .case-modal-close {
+  border-radius: var(--editorial-radius);
+  width: 44px;
+  height: 44px;
+}
+body.editorial-site #caseModal .case-modal-close:focus-visible {
+  outline: 2px solid var(--editorial-forest);
+  outline-offset: -4px;
+}
+@media (min-width: 320px) and (max-width: 359px) {
+  body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) .stream-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  body.refined.portfolio.editorial-site #services:not(.has-selection):not(.industry-choosing) .stream-tab-name {
+    font-size: 16px;
+  }
+}
+body.editorial-site #caseModal .case-modal-claims .claim {
+  padding-inline: 0;
+  color: #40594e;
+}
+body.editorial-site #caseModal .case-modal-claims .claim > span:last-child {
+  font-weight: 400;
+}

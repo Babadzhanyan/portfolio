@@ -1,43 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow">
-<title>OG-карточка портфолио Константина Бабаджаняна</title>
-<style>
-@font-face{font-family:'Manrope';font-weight:800;src:url(fonts/Manrope-800-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-04FF,U+2116;}
-@font-face{font-family:'Manrope';font-weight:800;src:url(fonts/Manrope-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F;}
-@font-face{font-family:'Golos Text';font-weight:500;src:url(fonts/GolosText-500-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-04FF,U+2116;}
-@font-face{font-family:'Golos Text';font-weight:500;src:url(fonts/GolosText-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F;}
-@font-face{font-family:'IBM Plex Mono';font-weight:500;src:url(fonts/IBMPlexMono-500-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-04FF,U+2116;}
-@font-face{font-family:'IBM Plex Mono';font-weight:500;src:url(fonts/IBMPlexMono-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F;}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1200px;height:630px}
-.card{width:1200px;height:630px;background:#FAFAF7;display:flex;overflow:hidden;position:relative}
-.stripe{position:absolute;left:0;top:0;bottom:0;width:10px;background:#124B38}
-.left{width:720px;padding:64px 48px 56px 72px;display:flex;flex-direction:column;justify-content:space-between}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:#4E5A54}
-.title{font-family:'Manrope',sans-serif;font-weight:800;font-size:52px;line-height:1.08;letter-spacing:-.02em;color:#131614;margin:22px 0 20px}
-.sub{font-family:'Golos Text',sans-serif;font-weight:500;font-size:23px;line-height:1.4;color:#4E5A54;max-width:600px}
-.logos{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:#8A938D}
-.mid{flex:1}
-.photo{width:400px;height:630px;flex:0 0 400px}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-</style>
-<link rel="stylesheet" href="assets/design-system.css?v=20261114.1">
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Константин Бабаджанян</title>
+  <link rel="stylesheet" href="assets/share-card.css">
 </head>
-<body class="design-system og-page">
-<div class="card">
-  <div class="stripe"></div>
-  <div class="left">
-    <div class="eyebrow">Константин Бабаджанян</div>
-    <div>
-      <h1 class="title">Помогаю принимать решения, влияющие на стоимость бизнеса</h1>
-      <div class="sub">Сделки, стратегия, рост выручки и маржинальности. Ключевую работу веду лично</div>
+<body>
+  <article class="card" id="career">
+    <div class="copy">
+      <p>Резюме</p>
+      <h1>Константин Бабаджанян</h1>
+      <p class="role">Стратегия и трансформация</p>
     </div>
-    <div class="logos" aria-label="Опыт работы"><span>McKinsey &amp; Company</span><span>Yakov &amp; Partners</span><span>Яндекс</span><span>ГЛОНАСС</span></div>
-  </div>
-  <div class="photo"><img src="img/kostya-hero-conf.jpg" alt="Константин Бабаджанян выступает на деловой конференции"></div>
-</div>
+    <img src="img/kostya-hero-suit.jpg" alt="Константин Бабаджанян">
+  </article>
+  <article class="card" id="portfolio">
+    <div class="copy">
+      <p>Константин Бабаджанян</p>
+      <h1>Стратегия, сделки и трансформация</h1>
+    </div>
+    <img src="img/kostya-hero-conf.jpg" alt="Константин Бабаджанян">
+  </article>
 </body>
 </html>

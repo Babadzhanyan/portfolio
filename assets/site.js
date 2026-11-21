@@ -36,7 +36,7 @@
   }
 
   const contact = document.getElementById("contact");
-  const navLinks = [...document.querySelectorAll(".nav-links a[href^='#']")];
+  const navLinks = [...document.querySelectorAll(".nav-links a[href^='#'], .nav-resume-utility[href^='#']")];
   const navSections = navLinks
     .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
     .filter((item) => item.section);
@@ -57,12 +57,22 @@
       const navHeight = document.querySelector(".site-nav")?.getBoundingClientRect().height || 64;
       const anchor = Math.max(navHeight + 28, (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) + 4);
       let current = null;
+      let nearest = -Infinity;
       navSections.forEach((item) => {
-        if (item.section.getBoundingClientRect().top <= anchor) current = item;
+        const top = item.section.getBoundingClientRect().top;
+        if (top <= anchor && top > nearest) {
+          nearest = top;
+          current = item;
+        }
       });
       const contactItem = navSections.find((item) => item.section === contact);
       const atEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
-      if (contactItem && atEnd && contact.getBoundingClientRect().top < window.innerHeight) current = contactItem;
+      if (contactItem && atEnd && contact.getBoundingClientRect().top < window.innerHeight) {
+        // Several short sections can share the same final scroll position. Respect the visited link there.
+        const destination = navSections.find(item => item.link.hash === location.hash);
+        const bounds = destination?.section.getBoundingClientRect();
+        current = bounds && bounds.top >= navHeight - 1 && bounds.top < innerHeight ? destination : contactItem;
+      }
       setActiveNav(current?.link || null);
     };
     const queueActiveNav = () => {
@@ -147,6 +157,10 @@
     document.addEventListener("click", (event) => {
       if (menu.classList.contains("open") && !event.target.closest(".site-nav")) setMenu(false);
     });
+    menu.addEventListener("focusout", event => {
+      const next = event.relatedTarget;
+      if (next && next !== menuButton && !menu.contains(next) && menu.classList.contains("open")) setMenu(false);
+    });
     document.addEventListener("keydown", (event) => {
       if (event.key !== "Escape" || !menu.classList.contains("open")) return;
       setMenu(false);
@@ -207,10 +221,7 @@
     }
   };
   window.addEventListener("hashchange", () => openHashTarget(true));
-  window.addEventListener("load", () => {
-    openHashTarget(true);
-    window.setTimeout(() => openHashTarget(true), 320);
-  }, { once: true });
+  window.addEventListener("load", () => openHashTarget(true), { once: true });
 
   const mobileCta = document.querySelector(".mobile-cta");
   const heroCta = document.querySelector("[data-placement='hero']");
@@ -481,10 +492,26 @@
       card.hidden = !careerPage && (!chosen || !intersects(selectedAreas, tags(card, "categories")) || !intersects(selectedIndustries, tags(card, "industries")));
       if (!careerPage) card.parentElement.hidden = card.hidden;
     });
+    const caseCountLabel = number => {
+      if (english) return number === 1 ? "case" : "cases";
+      const ending = number % 10;
+      const lastTwo = number % 100;
+      if (ending === 1 && lastTwo !== 11) return "кейс";
+      if (ending >= 2 && ending <= 4 && (lastTwo < 12 || lastTwo > 14)) return "кейса";
+      return "кейсов";
+    };
     streamTabs.forEach(tab => {
       tab.setAttribute("aria-pressed", String(selectedAreas.has(tab.dataset.stream)));
       const matches = cases.filter(card => tags(card, "categories").includes(tab.dataset.stream) && intersects(selectedIndustries, tags(card, "industries"))).length;
       tab.querySelector(".stream-tab-count").textContent = matches;
+      tab.setAttribute("aria-label", `${tab.querySelector(".stream-tab-name").textContent}, ${matches} ${caseCountLabel(matches)}`);
+      const proof = tab.querySelector(".stream-tab-proof");
+      if (proof && !chosen) {
+        proof.id = `example-${tab.dataset.stream}`;
+        tab.setAttribute("aria-describedby", proof.id);
+      } else {
+        tab.removeAttribute("aria-describedby");
+      }
     });
     industryInputs.forEach(input => {
       input.checked = selectedIndustries.has(input.dataset.industry);
@@ -497,8 +524,9 @@
     }
     const total = visibleCases().length;
     if (industryApply) {
-      const forms = total % 10 === 1 && total % 100 !== 11 ? "кейс" : total % 10 >= 2 && total % 10 <= 4 && !(total % 100 >= 12 && total % 100 <= 14) ? "кейса" : "кейсов";
-      industryApply.textContent = chosen ? (english ? `Show ${total} ${total === 1 ? "case" : "cases"}` : `Показать ${total} ${forms}`) : (english ? "Done" : "Готово");
+      industryApply.textContent = chosen
+        ? `${english ? "Show" : "Показать"} ${total} ${caseCountLabel(total)}`
+        : english ? "Done" : "Готово";
     }
     if (industryToggle) industryToggle.title = [...industryInputs].filter(input => input.checked).map(input => input.closest("label").querySelector("span").textContent).join(", ");
     if (count) count.textContent = (english ? "Matching cases: " : "Найдено кейсов: ") + total;
@@ -566,12 +594,6 @@
     streamTabs[0]?.focus();
   };
   document.querySelector("[data-reset-filters]")?.addEventListener("click", resetFilters);
-  document.querySelectorAll('.nav-links a[href="#services"]').forEach(link => link.addEventListener("click", event => {
-    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    applyFilters("replace");
-    catalogue?.scrollIntoView({ behavior: "instant", block: "start" });
-  }));
   streamHook = (slug, doScroll) => {
     if (slug === null) readFilters();
     else {
@@ -612,10 +634,22 @@
       deals: english ? "Deals and investment" : "Сделки и инвестиции"
     }[slug] || "");
 
+    // Lead with the outcome when the four STAR columns become a vertical story.
+    const narrowStory = matchMedia("(max-width: 600px)");
+    const placeOutcome = () => {
+      const outcome = slots.facts.querySelector(".fact--result");
+      const situation = slots.facts.querySelector(".fact--situation");
+      const action = slots.facts.querySelector(".fact--action");
+      if (!outcome || !situation || !action) return;
+      if (narrowStory.matches) situation.before(outcome);
+      else action.after(outcome);
+    };
+    narrowStory.addEventListener("change", placeOutcome);
     const fill = (card, addHistoryEntry) => {
       current = card;
       const slug = streamOf(card);
-      slots.stream.textContent = tags(card, "categories").map(labelOf).join(" / ");
+      const activeArea = tags(card, "categories").find(category => selectedAreas.has(category));
+      slots.stream.textContent = labelOf(activeArea || slug);
       slots.kicker.replaceChildren(...[...(card.querySelector(".case-kicker")?.childNodes || [])].map(node => node.cloneNode(true)));
       slots.title.replaceChildren(...[...(card.querySelector(".case-title")?.childNodes || [])].map(node => node.cloneNode(true)));
       slots.context.textContent = "";
@@ -625,6 +659,7 @@
       slots.claims.hidden = !claims;
       const facts = card.querySelector(".project-facts");
       slots.facts.innerHTML = facts ? facts.innerHTML : "";
+      placeOutcome();
       slots.facts.classList.toggle("project-facts--star", Boolean(facts?.classList.contains("project-facts--star")));
       slots.facts.querySelectorAll("[id]").forEach((node) => {
         const old = node.id;
@@ -657,11 +692,15 @@
         document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
       }
       if (!modal.open) {
-        returnUrl = window.location.pathname + window.location.search + (careerPage ? window.location.hash : "#services");
-        if (careerPage && returnUrl.includes("#case-")) returnUrl = window.location.pathname + window.location.search + "#projects";
         opener = document.activeElement === document.body
           ? card.querySelector("summary")
           : document.activeElement;
+        const returnHash = careerPage ? window.location.hash
+          : opener?.closest("#about") ? "#about" : "#services";
+        returnUrl = window.location.pathname + window.location.search + returnHash;
+        if (careerPage && returnHash.startsWith("#case-")) {
+          returnUrl = window.location.pathname + window.location.search + "#projects";
+        }
         modal.showModal();
       }
       const wasOpen = !fresh;
@@ -744,10 +783,10 @@
       event.preventDefault();
       step(event.key === "ArrowLeft" ? -1 : 1);
     });
-    const closeCase = () => {
+    const closeCase = (preserveCaseUrl = false) => {
       if (!modal.open) return;
       try {
-        if (current && window.location.hash === `#${current.id}`) {
+        if (!preserveCaseUrl && current && window.location.hash === `#${current.id}`) {
           history.replaceState(null, "", returnUrl);
         }
       } catch (_) {
@@ -764,6 +803,19 @@
     modal.addEventListener("cancel", event => {
       event.preventDefault();
       closeCase();
+    });
+    modal.querySelector(".case-modal-contact")?.addEventListener("click", event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!contact) return;
+      event.preventDefault();
+      closeCase(true);
+      location.hash = "contact";
+      const contactHeading = contact.querySelector("h2");
+      if (contactHeading) {
+        contactHeading.tabIndex = -1;
+        contactHeading.focus({ preventScroll: true });
+      }
+      contact.scrollIntoView({ block: "start", behavior: "instant" });
     });
     modal.querySelector(".case-modal-close")?.addEventListener("click", () => closeCase());
     modal.addEventListener("click", (event) => {

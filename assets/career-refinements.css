@@ -1,0 +1,225 @@
+/* The career page follows the sequence of roles. The case studies supply the evidence. */
+@media screen {
+  body.career.premium-career #path {
+    background: white;
+  }
+
+  body.career.premium-career #path .path-list {
+    gap: 0;
+  }
+
+  body.career.premium-career #path .path-item {
+    grid-template-columns: minmax(160px, .28fr) minmax(0, 1fr);
+    gap: clamp(20px, 4vw, 52px);
+    padding: clamp(26px, 3vw, 42px) 0;
+    background: white;
+    border-radius: 0;
+  }
+
+  body.career.premium-career #path .path-item:first-child {
+    padding-top: 0;
+    background: white;
+  }
+
+  body.career.premium-career #path .career-stage-identity {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+  }
+
+  body.career.premium-career #path .career-stage-identity .path-when {
+    grid-area: auto;
+    font-variant-numeric: tabular-nums;
+  }
+
+  body.career.premium-career #path .career-stage-identity .path-where {
+    grid-column: 1;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  body.career.premium-career #path .path-mandate {
+    max-width: none;
+    font-size: 16px;
+    line-height: 1.48;
+  }
+
+  body.career.premium-career #path .career-partner-scope {
+    margin-top: 18px;
+    padding: clamp(16px, 2vw, 26px);
+    background: var(--folio-tint);
+    border-radius: 6px;
+  }
+
+  body.career.premium-career #path .career-partner-scope .career-personal-delivery {
+    font-size: 15px;
+  }
+
+  body.career.premium-career #path .career-partner-scope>a {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 5px;
+    padding-inline: 0;
+    background: transparent;
+  }
+
+  body.career.premium-career #path .career-result-row {
+    background: #f5f7f5;
+    padding-inline: 14px;
+    border-radius: 5px;
+  }
+
+  body.career.premium-career #path .career-result-row:is(:hover, :focus-visible) {
+    background: #e9f1eb;
+    box-shadow: none;
+  }
+
+  body.career.premium-career #path .career-result-row:focus-visible,
+  body.career.premium-career #path .career-partner-scope>a:focus-visible {
+    outline: 2px solid var(--folio-forest);
+    outline-offset: 3px;
+  }
+
+  body.career.premium-career #projects .career-selected-grid {
+    gap: clamp(12px, 1.5vw, 22px);
+  }
+
+  body.career.premium-career #projects .career-project-card {
+    padding: clamp(20px, 2.4vw, 34px);
+    border-radius: 7px;
+    gap: 9px;
+    background: #f3f6f2;
+  }
+
+  body.career.premium-career #projects .career-project-card:hover,
+  body.career.premium-career #projects .career-project-card:focus-visible {
+    background: #eaf1eb;
+  }
+
+  body.career.premium-career #projects .career-project-title {
+    font-size: clamp(21px, 1.9vw, 29px);
+    line-height: 1.15;
+  }
+
+  body.career.premium-career #projects .career-project-outcome {
+    font-size: 16px;
+    line-height: 1.44;
+  }
+
+  body.career.premium-career #projects #case-glonass {
+    background: var(--folio-forest);
+    color: white;
+  }
+
+  body.career.premium-career #projects #case-glonass:is(:hover, :focus-visible) {
+    background: #0c3c2c;
+  }
+
+  body.career.premium-career #projects #case-glonass :is(.career-project-title,.career-project-company,.semantic-icon,.career-project-open) {
+    color: white;
+  }
+
+  body.career.premium-career #projects #case-glonass .career-project-outcome {
+    color: #e0ece4;
+  }
+
+  body.career.premium-career #projects .career-team-proof {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 8px 0 2px;
+    color: white;
+  }
+
+  body.career.premium-career #projects .career-team-proof strong {
+    font-size: clamp(46px, 5.3vw, 76px);
+    font-weight: 600;
+    line-height: .96;
+  }
+
+  body.career.premium-career #projects .career-team-proof span {
+    font-size: 18px;
+  }
+
+  body.career.premium-career #projects .career-project-open {
+    min-height: 32px;
+    padding-top: 4px;
+  }
+
+  body.career.premium-career #skills .skill-card {
+    padding-inline: 0;
+  }
+
+  body.career.premium-career #skills .skill-label {
+    margin-bottom: 14px;
+  }
+
+  @media (min-width: 960px) {
+    body.career.premium-career #skills .skill-card:first-child {
+      align-content: start;
+      row-gap: 20px;
+    }
+
+    body.career.premium-career #skills .education-entry + .education-entry {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 680px) {
+    body.career.premium-career #profile .brand-row .brand-logo--yandex {
+      width: 70px;
+      height: auto;
+      max-height: 17px;
+    }
+
+    body.career.premium-career #path .path-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      padding-block: 20px;
+    }
+
+    body.career.premium-career #path .career-stage-identity {
+      gap: 2px;
+    }
+
+    body.career.premium-career #path .career-partner-scope {
+      margin-top: 12px;
+    }
+
+    body.career.premium-career #path .career-scope {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 12px;
+    }
+
+    body.career.premium-career #path .career-scope > div:only-child {
+      grid-column: 1 / -1;
+    }
+
+    body.career.premium-career #projects .career-selected-grid {
+      gap: 10px;
+    }
+
+    body.career.premium-career #projects .career-project-card {
+      padding: 20px;
+      gap: 7px;
+    }
+
+    body.career.premium-career #projects .career-project-open {
+      min-height: 26px;
+    }
+
+    body.career.premium-career #skills .skill-grid {
+      gap: 0;
+    }
+
+    body.career.premium-career #skills .skill-card {
+      padding-block: 16px;
+    }
+
+    body.career.premium-career #skills .skill-label {
+      margin-bottom: 10px;
+    }
+  }
+}

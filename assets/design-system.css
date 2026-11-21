@@ -78,6 +78,35 @@ body.refined.portfolio.design-system .hero-lead{max-width:none;font-size:18px;li
 body.refined.portfolio.design-system .hero-actions{margin-top:24px}
 body.refined.portfolio.design-system .hero-visual picture{max-width:360px}
 body.refined.portfolio.design-system .hero-visual img{aspect-ratio:1.08;object-position:50% 22%;border-radius:var(--radius-group);box-shadow:none}
+body.refined.portfolio.design-system .hero-experience-link{
+ display:grid;
+ grid-template-columns:auto minmax(0,1fr) 20px;
+ align-items:center;
+ gap:14px;
+ max-width:495px;
+ margin-top:20px;
+ padding:12px 14px;
+ border:1px solid var(--line);
+ border-radius:var(--radius-group);
+ background:var(--forest-50);
+ color:var(--forest-deep);
+ text-decoration:none
+}
+body.refined.portfolio.design-system .hero-experience-link:hover{
+ border-color:var(--line-strong);
+ background:var(--forest-100);
+ text-decoration:none
+}
+.hero-experience-icon{width:24px;height:24px}
+.hero-experience-copy{display:grid;gap:1px;min-width:0}
+.hero-experience-title{font-size:15px;line-height:1.26;font-weight:650}
+.hero-experience-detail{color:var(--muted);font-size:13px;line-height:1.36}
+.hero-experience-arrow{width:18px;height:18px}
+@media(max-width:480px){
+ body.refined.portfolio.design-system .hero-experience-link{column-gap:10px;margin-top:16px;padding:10px}
+ .hero-experience-icon{width:21px;height:21px}
+ .hero-experience-title{font-size:14px}
+}
 body.refined.portfolio.design-system .hero-proof{margin-top:24px;padding-top:0;gap:10px}
 body.refined.portfolio.design-system .experience-label{font-size:13px;font-weight:400;color:var(--muted)}
 body.refined.portfolio.design-system .experience-logos{max-width:none;justify-content:flex-start;flex-wrap:wrap;gap:12px 24px}
@@ -189,6 +218,9 @@ body.career.refined.design-system .career-intro h1{font-size:32px;line-height:1.
 body.career.refined.design-system .career-role{font-size:16px;font-weight:600;color:var(--forest);margin-bottom:12px}
 body.career.refined.design-system .career-intro .section-lead{font-size:18px;line-height:1.5;max-width:960px}
 body.career.refined.design-system .career-intro .brand-row{margin-top:28px}
+@media(max-width:900px){
+ body.career.refined.design-system .career-intro .brand-wordmark--yakov{max-width:100%;font-size:clamp(14px,2.5vw,18px);white-space:normal}
+}
 body.career.refined.design-system .brand-logo--yakov{display:block;width:204px;max-width:100%;height:auto}
 body.career.refined.design-system img.brand-logo--yandex{display:block;width:90px;max-width:100%;height:auto}
 body.career.refined.design-system h2{font-size:24px;line-height:1.25}
@@ -351,6 +383,7 @@ body.design-system.og-page .photo img{width:100%;height:100%;object-fit:cover;ob
  body.refined.portfolio.design-system .hero-visual img{aspect-ratio:16/9;max-height:260px;object-position:50% 24%}
  body.refined.portfolio.design-system .hero-proof{margin-top:24px}
  body.refined.portfolio.design-system .experience-logos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 16px}
+ body.refined.portfolio.design-system .hero-proof .brand-wordmark--yakov{font-size:clamp(14px,4.1vw,22px);white-space:normal}
  body.refined.portfolio.design-system .home-reading{padding-block:32px}
  body.refined.portfolio.design-system .field-strip{padding-inline:22px;gap:16px}
  body.refined.portfolio.design-system .field-shot picture{height:220px}
