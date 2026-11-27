@@ -547,9 +547,7 @@
   };
 
   const ensureCaseVisible = card => {
-    if (careerPage || !card.hidden) return;
-    selectedAreas.clear();
-    selectedIndustries.clear();
+    if (careerPage || !card.hidden || selectedAreas.size || selectedIndustries.size) return;
     selectedAreas.add(tags(card, "categories")[0]);
     applyFilters("replace", true);
   };
@@ -662,7 +660,7 @@
       }
     };
 
-    const openCase = (card, scrollToStream = false) => {
+    const openCase = (card, scrollToStream = false, trigger = null) => {
       if (modal.open && current === card) return;
       const slug = streamOf(card);
       const fresh = !modal.open;
@@ -672,11 +670,12 @@
         document.getElementById("services")?.scrollIntoView({ behavior: "instant", block: "start" });
       }
       if (!modal.open) {
-        opener = document.activeElement === document.body
+        opener = trigger || (document.activeElement === document.body
           ? card.querySelector("summary")
-          : document.activeElement;
+          : document.activeElement);
+        const homeSection = opener?.closest("section[id]")?.id;
         const returnHash = careerPage ? window.location.hash
-          : opener?.closest("#about") ? "#about" : "#services";
+          : homeSection ? `#${homeSection}` : "#services";
         returnUrl = window.location.pathname + window.location.search + returnHash;
         if (careerPage && returnHash.startsWith("#case-")) {
           returnUrl = window.location.pathname + window.location.search + "#projects";
@@ -704,7 +703,7 @@
         const card = target?.dataset.caseTarget ? document.getElementById(target.dataset.caseTarget) : target;
         if (!card?.classList.contains("case-card")) return;
         event.preventDefault();
-        openCase(card);
+        openCase(card, false, link);
       });
     });
 
@@ -724,7 +723,7 @@
       summary?.addEventListener("click", (event) => {
         if (event.target.closest("a[href]")) return;
         event.preventDefault();
-        openCase(card);
+        openCase(card, false, summary);
       });
     });
 

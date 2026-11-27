@@ -79,7 +79,10 @@ def page(slug, lang):
 <title>{escape(title)}</title><meta name="description" content="{escape(description)}">
 <link rel="canonical" href="{url}"><link rel="alternate" hreflang="ru" href="{url_ru}"><link rel="alternate" hreflang="en" href="{url_en}"><link rel="alternate" hreflang="x-default" href="{url_ru}">
 <meta property="og:type" content="website"><meta property="og:url" content="{url}"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(description)}"><meta property="og:image" content="{share}"><meta property="og:image:alt" content="{label["photograph"]}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{root}apple-touch-icon.png">
+<link rel="icon" href="{root}favicon.ico?v={VERSION}">
+<link rel="icon" type="image/png" sizes="16x16" href="{root}favicon-16.png?v={VERSION}">
+<link rel="icon" type="image/png" sizes="32x32" href="{root}favicon-32.png?v={VERSION}">
+<link rel="apple-touch-icon" sizes="180x180" href="{root}apple-touch-icon.png?v={VERSION}">
 {styles}
 <script defer src="{root}assets/site.js?v={VERSION}"></script>
 <script type="application/ld+json">{json.dumps(graph, ensure_ascii=False, indent=2)}</script>
