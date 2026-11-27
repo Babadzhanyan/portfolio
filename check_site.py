@@ -74,7 +74,7 @@ CAREER_STAGE_CASES = {
     "experience-yandex": {"case-yandex-client-portfolios"},
     "experience-yakov": {"case-agri-market-model"},
     "experience-mckinsey": {"case-uzbek-bank-kpi", "case-middle-east-sustainability"},
-    "experience-early": {"case-development-financial-model", "case-telecom-analyst-training"},
+    "experience-early": {"case-development-financial-model", "case-telecom-analyst-training", "case-taxi-launch-model"},
 }
 HOME_SECTIONS = {"about", "services", "field", "how", "faq", "contact"}
 
