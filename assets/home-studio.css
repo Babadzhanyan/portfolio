@@ -116,7 +116,7 @@ body.portfolio.editorial-site #about .practice-branch { padding: 0; background: 
 body.portfolio.editorial-site #about .practice-branch h3 { margin-block: 6px 10px; font-size: clamp(24px, 2.15vw, 32px); }
 body.portfolio.editorial-site #about .practice-branch > p { color: var(--editorial-muted); }
 body.portfolio.editorial-site #about .practice-metrics {
-  grid-template-columns: 1.35fr .78fr 1fr;
+  grid-template-columns: repeat(2,minmax(0,1fr));
   margin-block: 18px 5px;
   padding: clamp(14px, 1.5vw, 20px);
   border-radius: var(--editorial-radius);
@@ -186,7 +186,7 @@ body.portfolio.editorial-site #contact .home-reading-contact-link:focus-visible 
   .reportage-frame picture { height: auto; aspect-ratio: 4 / 5; }
   .reportage-lead picture { aspect-ratio: 3 / 2; }
   .reportage-frame figcaption { margin-top: 6px; font-size: 14px; }
-  body.portfolio.editorial-site #about .practice-metrics { grid-template-columns: 1.4fr .78fr 1fr; gap: 8px; padding: 12px; }
+  body.portfolio.editorial-site #about .practice-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; padding: 12px; }
   body.portfolio.editorial-site #about .practice-metrics dd { font-size: clamp(22px, 5.5vw, 28px); }
   body.portfolio.editorial-site #contact .contact-actions { gap: 8px; }
 }
