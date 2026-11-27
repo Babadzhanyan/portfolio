@@ -730,7 +730,9 @@
     const step = (delta) => {
       if (!current) return;
       const list = siblings(current);
-      const next = list[list.indexOf(current) + delta];
+      const index = list.indexOf(current);
+      if (index < 0) return;
+      const next = list[index + delta];
       if (next) openCase(next);
     };
     prevButton?.addEventListener("click", () => step(-1));
