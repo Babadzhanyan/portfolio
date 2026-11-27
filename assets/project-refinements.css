@@ -120,6 +120,9 @@ body.editorial-site #caseModal .case-modal-contact:focus-visible {
   body.editorial-site #caseModal .case-modal-foot { gap: 8px 12px; }
   body.editorial-site #caseModal :is(.case-modal-contact, .case-modal-share) { flex: 1 1 138px; }
 }
+body.editorial-site #caseModal .artifact-decision {
+  grid-template-columns: minmax(0, 1fr);
+}
 body.editorial-site #caseModal .artifact-decision > svg {
   display: none;
 }
